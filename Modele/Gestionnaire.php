@@ -39,7 +39,4 @@ class Gestionnaire extends Personne implements Modele {
     else echo 'wrong type';
   }
 }
-$s = new Gestionnaire();
-//$s->select_mysql(123);
-$s->insert_mysql($s);
 ?>

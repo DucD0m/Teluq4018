@@ -46,9 +46,4 @@ class RendezVous implements Modele {
     else echo 'wrong type';
   }
 }
-
-$s = new RendezVous();
-//$s->select_mysql(123);
-$s->insert_mysql($s);
-
 ?>

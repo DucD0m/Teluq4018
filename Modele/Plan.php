@@ -55,8 +55,15 @@ class Plan implements Modele {
   }
 
   public function select_mysql(Int $id) {
-    // Code here
-    if($id > 0) echo gettype($id);
+    if($id > 0) {
+      // MySQL here
+      $this->set_nom("Mensuel...");
+      $this->set_duree(1);
+      $this->set_prix(55.00);
+      $this->set_acces_appareils(1);
+      $this->set_acces_cours_groupe(1);
+      $this->set_prix_cours_groupe(25.00);
+    }
   }
   public function insert_mysql(Object $obj) {
     // Code here
@@ -74,17 +81,4 @@ class Plan implements Modele {
     else echo 'wrong type';
   }
 }
-
-$s = new Plan();
-//$s->select_mysql(123);
-//$s->insert_mysql($s);
-$s->set_id(1);
-$s->set_nom('Mensuel avec appareils');
-$s->set_duree(1);
-$s->set_prix(80.00);
-$s->set_acces_appareils(1);
-$s->set_acces_cours_groupe(1);
-$s->set_prix_cours_groupe(25.00);
-//Personne::insert_mysql($s);
-var_dump($s);
 ?>

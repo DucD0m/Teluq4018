@@ -69,8 +69,18 @@ class Client extends Personne implements Modele {
   }
 
   public function select_mysql(Int $id) {
-    // Code here
-    if($id > 0) echo gettype($id);
+    if($id > 0) {
+      // MySQL here
+      $this->set_personne(1);
+      $this->set_adhesion("2023...");
+      $this->set_renouvellement("2023...");
+      $this->set_fin_abonnement("2023...");
+      $this->set_fin_acces_appareils("2023...");
+      $this->set_heures_specialistes(10);
+      $this->set_heures_specialistes_utilise(0);
+      $this->set_cours_groupe_semaine(1);
+      $this->set_plan(1);
+    }
   }
   public function insert_mysql(Object $obj) {
     // Code here
@@ -88,15 +98,4 @@ class Client extends Personne implements Modele {
     else echo 'wrong type';
   }
 }
-$s = new Client();
-//$s->select_mysql(123);
-//$s->insert_mysql($s);
-$tel = '(514)554-5761';
-$tel = str_replace("(","",$tel);
-$tel = str_replace(")","",$tel);
-$tel = str_replace("-","",$tel);
-$tel = str_replace(" ","",$tel);
-$s->set_telephone((Int)$tel);
-//Personne::insert_mysql($s);
-echo $s->get_telephone();
 ?>

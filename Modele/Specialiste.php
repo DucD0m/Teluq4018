@@ -27,8 +27,11 @@ class Specialiste extends Personne implements Modele {
   }
 
   public function select_mysql(Int $id) {
-    // Code here
-    if($id > 0) echo gettype($id);
+    if($id > 0) {
+      // MySQL here
+      $this->set_personne(1);
+      $this->set_specialite(1);
+    }
   }
   public function insert_mysql(Object $obj) {
     // Code here
@@ -46,9 +49,4 @@ class Specialiste extends Personne implements Modele {
     else echo 'wrong type';
   }
 }
-
-$s = new Specialiste();
-//$s->select_mysql(123);
-$s->insert_mysql($s);
-
 ?>

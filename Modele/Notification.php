@@ -60,7 +60,4 @@ class Notification implements Modele {
     else echo 'wrong type';
   }
 }
-$s = new Notification();
-//$s->select_mysql(123);
-$s->insert_mysql($s);
 ?>
