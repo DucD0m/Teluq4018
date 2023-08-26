@@ -1,5 +1,5 @@
 <?php // Singleton Design Pattern
-class ConnexionMySQL {
+class ConnexionBD {
 
   private static $obj;
 
@@ -9,7 +9,7 @@ class ConnexionMySQL {
 
   public static function connexion() {
     if (!isset(self::$obj)) {
-      self::$obj = new ConnexionMySQL();
+      self::$obj = new ConnexionBD();
     }
     return self::$obj;
   }

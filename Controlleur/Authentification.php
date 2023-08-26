@@ -33,7 +33,9 @@ class Authentification {
 
   public static function quitter() {
     $_SESSION = array();
-    die ("Vous avez quitté\n");
+    session_destroy();
+    header(location: "index.php");
+    //die ("Vous avez quitté\n");
   }
 }
 ?>

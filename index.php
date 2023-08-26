@@ -1,9 +1,17 @@
 <?php
-
-require "Controlleur/ConnexionMySQL.php";
+require "Vue/Templates/PageIndex.php";
+require "Controlleur/ConnexionBD.php";
 require "Controlleur/Authentification.php";
 require_once "Controlleur/GestionnaireControlleur.php";
 require_once "Controlleur/SpecialisteControlleur.php";
+
+if(isset($_POST['quitter']) && $_POST['quitter'] === true) {
+  Authentification::quitter();
+  exit;
+}
+
+session_start();
+$connexion = ConnexionBD::connexion();
 
 $_POST['courriel'] = "domupnorth@hotmail.com";
 $_POST['mdp'] = "Specialiste";
@@ -12,9 +20,9 @@ $_POST['mdp'] = "Specialiste";
 
 // Vérification de session
 if($_SESSION['auth'] === 'Gestionnaire' || $_SESSION['auth'] === 'Specialiste'){
+  session_start(); // Raffraîchir la session.
   if($_SESSION['auth'] === 'Gestionnaire') $utilisateur = new GestionnaireControlleur();
   else if($_SESSION['auth'] === 'Specialiste') $utilisateur = new SpecialisteControlleur();
-  $connexion = ConnexionMySQL::connexion();
   $utilisateur->afficherPage();
 }
 
@@ -24,7 +32,6 @@ else if(isset($_POST['courriel']) && $_POST['courriel'] != '' && isset($_POST['m
   $mot_passe = $_POST['mdp'];
   $utilisateur = Authentification::get_utilisateur($courriel, $mot_passe);
   if(get_class($utilisateur) === 'SpecialisteControlleur' || get_class($utilisateur) === 'GestionnaireControlleur'){
-    $connexion = ConnexionMySQL::connexion();
     $utilisateur->afficherPage();
   }
 }
@@ -32,7 +39,8 @@ else if(isset($_POST['courriel']) && $_POST['courriel'] != '' && isset($_POST['m
 // Affichage de la page d'authentification
 else {
   //require "Vue/Template/auth.php";
-  echo "Vous n'êtes pas authentifié.\n";
+  //echo "Vous n'êtes pas authentifié.\n";
+  $page = new PageIndex();
 }
 
 ?>

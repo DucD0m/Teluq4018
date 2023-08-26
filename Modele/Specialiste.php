@@ -26,7 +26,7 @@ class Specialiste extends Personne implements Modele {
     $this->mot_passe = $mot_passe;
   }
 
-  public function select_mysql(Int $id) {
+  public function select_mysql(Int $id) : void {
     if($id > 0) {
       // MySQL here
       $this->set_personne(1);
