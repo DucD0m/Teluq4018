@@ -25,6 +25,10 @@ if(isset($_POST['quitter']) && $_POST['quitter'] === "oui") {
 
 if(isset($_POST['retour']) && $_POST['retour'] === "oui") {
   unset($_SESSION['page']);
+
+  // POST REDIRECT GET pattern
+  header('Location: http://10.0.1.18', true, 303);
+  exit;
 }
 
 $connexion = ConnexionBD::connexion();
