@@ -6,7 +6,7 @@ require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 
 //if(isset($_POST['quitter']) && $_POST['quitter'] == "oui") {
-  console.log('quitter reçu');
+  echo('quitter reçu');
   Authentification::quitter();
   exit;
 //}
