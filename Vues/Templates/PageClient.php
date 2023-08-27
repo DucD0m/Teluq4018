@@ -417,11 +417,10 @@ class PageClient {
           overflow: scroll;
         }
         #nouveau-client {
-          display: none;
           font-size: 1.5vw;
           text-align: center;
-          height: 13.95vw;
-          line-height: 13.95vw;
+          height: 15.95vw;
+          line-height: 15.95vw;
         }
         #plans-liste {
           position: absolute;
