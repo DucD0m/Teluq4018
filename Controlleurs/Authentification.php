@@ -5,7 +5,7 @@ require_once "Controlleurs/SpecialisteControlleur.php";
 class Authentification {
 
   public static function get_utilisateur($courriel, $mot_passe) {
-    echo "Authentification en cours...\n";
+    //echo "Authentification en cours...\n";
 
     //mysql resquest gestionnaire
     if($mot_passe == 'Gestionnaire') $resultat_gestionnaire = true;
@@ -26,7 +26,7 @@ class Authentification {
       return $utilisateur;
     }
     else {
-      echo "Vous n'avez pas accès à cette application.\n";
+      //echo "Vous n'avez pas accès à cette application.\n";
       self::quitter();
     }
   }
@@ -34,8 +34,8 @@ class Authentification {
   public static function quitter() {
     $_SESSION = array();
     session_destroy();
-    //header('Location: index.php');
-    die ("Vous avez quitté\n");
+    header('Location: index.php');
+    //die ("Vous avez quitté\n");
   }
 }
 ?>
