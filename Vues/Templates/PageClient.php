@@ -4,19 +4,35 @@ class PageClient {
 
   public function __construct(Client $obj, array $plans) {
 
-    $prenom = htmlentities($obj->get_prenom());
-    $nom = htmlentities($obj->get_nom());
-    $adresse = htmlentities($obj->get_adresse());
-    $telephone = htmlentities($obj->get_telephone());
-    $courriel = htmlentities($obj->get_courriel());
-    $adhesion = htmlentities($obj->get_adhesion());
-    $plan = htmlentities($obj->get_plan());
-    $renouvellement = htmlentities($obj->get_renouvellement());
-    $fin_abonnement = htmlentities($obj->get_fin_abonnement());
-    $fin_acces_appareils = htmlentities($obj->get_fin_acces_appareils());
-    $heures_specialistes = htmlentities($obj->get_heures_specialistes());
-    $heures_specialistes_utilise = htmlentities($obj->get_heures_specialistes_utilise());
-    $cours_groupe_semaine = htmlentities($obj->get_cours_groupe_semaine());
+    $prenom = "";
+    $nom = "";
+    $adresse = "";
+    $telephone = "";
+    $courriel = "";
+    $adhesion = "";
+    $plan = "";
+    $renouvellement = "";
+    $fin_abonnement = "";
+    $fin_acces_appareils = "";
+    $heures_specialistes = "";
+    $heures_specialistes_utilise = "";
+    $cours_groupe_semaine = "";
+
+    if($obj->id > 0) {
+      $prenom = htmlentities($obj->get_prenom());
+      $nom = htmlentities($obj->get_nom());
+      $adresse = htmlentities($obj->get_adresse());
+      $telephone = htmlentities($obj->get_telephone());
+      $courriel = htmlentities($obj->get_courriel());
+      $adhesion = htmlentities($obj->get_adhesion());
+      $plan = htmlentities($obj->get_plan());
+      $renouvellement = htmlentities($obj->get_renouvellement());
+      $fin_abonnement = htmlentities($obj->get_fin_abonnement());
+      $fin_acces_appareils = htmlentities($obj->get_fin_acces_appareils());
+      $heures_specialistes = htmlentities($obj->get_heures_specialistes());
+      $heures_specialistes_utilise = htmlentities($obj->get_heures_specialistes_utilise());
+      $cours_groupe_semaine = htmlentities($obj->get_cours_groupe_semaine());
+    }
 ?>
 
     <!DOCTYPE HTML>
