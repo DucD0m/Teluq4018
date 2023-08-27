@@ -503,12 +503,12 @@ class PageClient {
           <i class="fa-solid fa-backward"></i> MENU<br>
         </div>
 
-        <button id="quitter" class="couleurs quitter">
-          QUITTER <i class="fa-solid fa-person-running"></i>
-          <form id="quitter-form" class="hidden" action="#" method="post">
-            <input type="hidden" id="quitter-input" name"quitter" value="true">
-          </form>
-        </button>
+        <form id="quitter-form" class="hidden" action="http://10.0.1.18" method="post">
+          <input type="hidden" id="quitter-input" name="quitter" value="oui">
+          <button id="quitter" class="couleurs quitter" type="submit" value="submit">
+            QUITTER <i class="fa-solid fa-person-running"></i>
+          </button>
+        </form>
 
         <div class="name">
           Dominique Ducas - GESTIONNAIRE DE COMPTE
