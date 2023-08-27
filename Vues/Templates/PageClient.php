@@ -556,7 +556,7 @@ class PageClient {
                   Heures avec spécialistes achetées: <span><?= $heures_specialistes; ?></span>
                 </div>
                 <div>
-                  Heures avec spécialistes utilisées: <span><?= $->heures_specialistes_utilise; ?></span>
+                  Heures avec spécialistes utilisées: <span><?= $heures_specialistes_utilise; ?></span>
                 </div>
                 <div>
                   Nombre de cours de groupes par semaine: <span><?= $cours_groupe_semaine; ?></span>
