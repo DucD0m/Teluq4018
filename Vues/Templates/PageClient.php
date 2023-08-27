@@ -2,7 +2,7 @@
 
 class PageClient {
 
-  protected function __construct(Client $obj, array $plans) {
+  public function __construct(Client $obj, array $plans) {
 
     $prenom = htmlentities($obj->get_prenom());
     $nom = htmlentities($obj->get_nom());
