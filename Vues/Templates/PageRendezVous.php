@@ -488,6 +488,9 @@ class PageRendezVous {
 
         <form id="quitter-form" class="hidden" action="http://10.0.1.18" method="post">
           <input type="hidden" id="quitter-input" name="quitter" value="oui">
+          <button id="quitter" class="couleurs quitter" type="submit" value="submit">
+            QUITTER <i class="fa-solid fa-person-running"></i>
+          </button>
         </form>
 
         <div class="name">
@@ -498,7 +501,7 @@ class PageRendezVous {
           NOUVEAU RENDEZ-VOUS
         </div>
 
-        <form id="rendez-vous" action="#" method="post">
+        <form id="rendez-vous" action="http://10.0.1.18" method="post">
           <input id="rdv-client" class="rdv" type="text" name="rdv-client" placeholder="nom ou no. de téléphone du client">
           <input id="rdv-date" class="rdv" type="text" name="rdv-date" placeholder="date du rendez-vous" readonly="readonly">
           <select id="rdv-heure" class="rdv">
@@ -533,11 +536,11 @@ class PageRendezVous {
                 $('#rdv-client'). removeAttr('readonly');
               }
             });
-            $('#quitter').click(function(){
-              //location.href = "file:///Users/dominiqueducas/Desktop/Gym-Argente/Vue/templates/auth.html";
-              console.log('quitter clicked');
-              $('#quitter-form').submit();
-            });
+            // $('#quitter').click(function(){
+            //   //location.href = "file:///Users/dominiqueducas/Desktop/Gym-Argente/Vue/templates/auth.html";
+            //   console.log('quitter clicked');
+            //   $('#quitter-form').submit();
+            // });
             $( function() {
               $( "#rdv-date" ).datepicker({
                 minDate: 0,
