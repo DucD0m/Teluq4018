@@ -5,7 +5,6 @@ require_once "Controlleurs/SpecialisteControlleur.php";
 class Authentification {
 
   public static function get_utilisateur($courriel, $mot_passe) {
-    //echo "Authentification en cours...\n";
 
     //mysql resquest gestionnaire
     if($mot_passe == 'Gestionnaire') $resultat_gestionnaire = true;
@@ -38,7 +37,6 @@ class Authentification {
 
     session_destroy();
 
-    //die ("Vous avez quitté\n");
   }
 }
 ?>

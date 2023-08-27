@@ -27,6 +27,7 @@ $connexion = ConnexionBD::connexion();
 
 // Vérification de session
 if(isset($_SESSION['auth']) && ($_SESSION['auth'] === 'Gestionnaire' || $_SESSION['auth'] === 'Specialiste')){
+
   if($_SESSION['auth'] === 'Gestionnaire') $utilisateur = new GestionnaireControlleur();
   else if($_SESSION['auth'] === 'Specialiste') $utilisateur = new SpecialisteControlleur();
   $utilisateur->afficherPage();
@@ -34,20 +35,18 @@ if(isset($_SESSION['auth']) && ($_SESSION['auth'] === 'Gestionnaire' || $_SESSIO
 
 // Authentification
 else if(isset($_POST['auth-courriel']) && $_POST['auth-courriel'] != '' && isset($_POST['auth-mdp']) && $_POST['auth-mdp'] != ''){
+
   $courriel = $_POST['auth-courriel'];
   $mot_passe = $_POST['auth-mdp'];
   $utilisateur = Authentification::get_utilisateur($courriel, $mot_passe);
-  //if(get_class($utilisateur) === 'SpecialisteControlleur' || get_class($utilisateur) === 'GestionnaireControlleur'){
-    //$utilisateur->afficherPage();
-    header('Location: http://10.0.1.18', true, 303);
-    exit;
-  //}
+
+  // POST REDIRECT GET pattern
+  header('Location: http://10.0.1.18', true, 303);
+  exit;
 }
 
 // Affichage de la page d'authentification
 else {
-  //require "Vue/Template/auth.php";
-  //echo "Vous n'êtes pas authentifié.\n";
   $page = new PageIndex();
 }
 
