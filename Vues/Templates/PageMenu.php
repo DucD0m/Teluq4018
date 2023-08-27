@@ -475,9 +475,12 @@ class PageMenu {
           ARGENTÉ
         </div>
 
-        <button id="quitter" class="couleurs quitter">
-          QUITTER <i class="fa-solid fa-person-running"></i>
-        </button>
+        <form id="quitter-form" class="hidden" action="http://10.0.1.18" method="post">
+          <input type="hidden" id="quitter-input" name="quitter" value="oui">
+          <button id="quitter" class="couleurs quitter" type="submit" value="submit">
+            QUITTER <i class="fa-solid fa-person-running"></i>
+          </button>
+        </form>
 
         <div class="name">
           Dominique Ducas
@@ -487,11 +490,15 @@ class PageMenu {
           GESTIONNAIRE DE COMPTE
         </div>
 
-        <button id="creer" class="couleurs menu menu1">
-          CRÉER UN<br>
-          NOUVEAU COMPTE<br>
-          <i class="icons fa-solid fa-user-plus"></i>
-        </button>
+
+        <form id="creer-form" class="hidden" action="http://10.0.1.18" method="post">
+          <input type="hidden" id="creer-compte" name="creer-compte" value="oui">
+          <button id="creer" class="couleurs menu menu1">
+            CRÉER UN<br>
+            NOUVEAU COMPTE<br>
+            <i class="icons fa-solid fa-user-plus"></i>
+          </button>
+        </form>
 
         <div class="couleurs-no-hover menu menu2">
           <div class="notif">
@@ -536,21 +543,6 @@ class PageMenu {
                 $('.vis-auto').val('').change();
                 $('.vis-auto'). removeAttr('readonly');
               }
-            });
-            $('#creer').click(function(){
-              location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/client.html";
-            });
-            $('#gestion-plan').click(function(){
-              location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/plans.html";
-            });
-            $('#notif-30').click(function(){
-              location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/notifications.html";
-            });
-            $('#notif-ex').click(function(){
-              location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/notifications.html";
-            });
-            $('#quitter').click(function(){
-              location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/auth.html";
             });
             $( document ).tooltip({
                classes: {
