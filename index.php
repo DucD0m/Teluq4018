@@ -16,12 +16,6 @@ $mot_passe;
 $utilisateur;
 $page;
 
-function redirection() {
-  // POST REDIRECT GET pattern
-  header('Location: http://10.0.1.18', true, 303);
-  exit;
-}
-
 // var_dump($_POST);
 // echo "<br>";
 // echo $_SESSION['auth'];
