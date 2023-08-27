@@ -5,10 +5,9 @@ require "Controlleurs/Authentification.php";
 require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 
-if(isset($_POST['quitter']) && $_POST['quitter'] == "oui") {
-  echo('quitter reçu');
+if($_POST['quitter'] == "oui") {
   Authentification::quitter();
-  exit;
+  //exit;
 }
 
 session_start();
