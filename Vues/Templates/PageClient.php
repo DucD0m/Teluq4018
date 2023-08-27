@@ -498,9 +498,12 @@ class PageClient {
     </head>
 
     <body>
-        <div id="retour-menu" class='couleurs retour'>
-          <i class="fa-solid fa-backward"></i> MENU<br>
-        </div>
+        <form id="retour-form" class="hidden" action="http://10.0.1.18" method="post">
+          <input type="hidden" id="retour-input" name="retour" value="oui">
+          <button id="retour-menu" class="couleurs retour" type="submit" value="submit">
+            <i class="fa-solid fa-backward"></i> MENU<br>
+          </button>
+        </form>
 
         <form id="quitter-form" class="hidden" action="http://10.0.1.18" method="post">
           <input type="hidden" id="quitter-input" name="quitter" value="oui">

@@ -23,6 +23,10 @@ if(isset($_POST['quitter']) && $_POST['quitter'] === "oui") {
   Authentification::quitter();
 }
 
+if(isset($_POST['retour']) && $_POST['retour'] === "oui") {
+  unset($_SESSION['page']);
+}
+
 $connexion = ConnexionBD::connexion();
 
 // Vérification de session
