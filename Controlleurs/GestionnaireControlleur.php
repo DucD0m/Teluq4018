@@ -8,7 +8,9 @@ class GestionnaireControlleur {
 
   public function afficherPage() {
 
-      $page = new PageMenu();
+      $gestionnaire_id = 1;
+      $message = "Test message";
+      $page = new PageMenu($gestionnaire_id, $message);
 
   }
 }
