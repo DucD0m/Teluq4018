@@ -18,7 +18,7 @@ class PageClient {
     $heures_specialistes_utilise = "";
     $cours_groupe_semaine = "";
 
-    if($obj->id > 0) {
+    if($obj->get_id() > 0) {
       $prenom = htmlentities($obj->get_prenom());
       $nom = htmlentities($obj->get_nom());
       $adresse = htmlentities($obj->get_adresse());
@@ -535,7 +535,7 @@ class PageClient {
 
           <div class="demi-droite">
 
-            <?php if($obj->id > 0) { ?>
+            <?php if($obj->get_id() > 0) { ?>
               <div id="info-plan" class="info-plan">
                 <div>
                   Date d'adhésion: <span><?= $adhesion; ?></span>
