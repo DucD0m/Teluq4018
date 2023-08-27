@@ -10,37 +10,37 @@ abstract class Personne implements Modele {
   private $telephone;
   private $courriel;
 
-  public function get_id() : Int {
+  public function get_id() {
     return $this->id;
   }
   public function set_id(Int $id) {
     $this->id = $id;
   }
-  public function get_prenom() : String {
+  public function get_prenom() {
     return $this->prenom;
   }
   public function set_prenom(String $prenom) {
     $this->prenom = $prenom;
   }
-  public function get_nom() : String {
+  public function get_nom() {
     return $this->nom;
   }
   public function set_nom(String $nom) {
     $this->nom = $nom;
   }
-  public function get_adresse() : String {
+  public function get_adresse() {
     return $this->adresse;
   }
   public function set_adresse(String $adresse) {
     $this->adresse = $adresse;
   }
-  public function get_telephone() : Int {
+  public function get_telephone() {
     return $this->telephone;
   }
   public function set_telephone(Int $telephone) {
     $this->telephone = $telephone;
   }
-  public function get_courriel() : String {
+  public function get_courriel() {
     return $this->courriel;
   }
   public function set_courriel(String $courriel) {

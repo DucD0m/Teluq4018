@@ -13,55 +13,55 @@ class Client extends Personne implements Modele {
   protected $cours_groupe_semaine;
   protected $plan;
 
-  public function get_personne() : Int {
+  public function get_personne() {
     return $this->personne;
   }
   public function set_personne(Int $personne) {
     $this->personne = $personne;
   }
-  public function get_adhesion() : String {
+  public function get_adhesion() {
     return $this->adhesion;
   }
   public function set_adhesion(String $adhesion) {
     $this->adhesion = $adhesion;
   }
-  public function get_renouvellement() : String {
+  public function get_renouvellement() {
     return $this->renouvellement;
   }
   public function set_renouvellement(String $renouvellement) {
     $this->renouvellement = $renouvellement;
   }
-  public function get_fin_abonnement() : String {
+  public function get_fin_abonnement() {
     return $this->fin_abonnement;
   }
   public function set_fin_abonnement(String $fin_abonnement) {
     $this->fin_abonnement = $fin_abonnement;
   }
-  public function get_fin_acces_appareils() : String {
+  public function get_fin_acces_appareils() {
     return $this->fin_acces_appareils;
   }
   public function set_fin_acces_appareils(String $fin_acces_appareils) {
     $this->fin_acces_appareils = $fin_acces_appareils;
   }
-  public function get_heures_specialistes() : Int {
+  public function get_heures_specialistes() {
     return $this->heures_specialistes;
   }
   public function set_heures_specialistes(Int $heures_specialistes) {
     $this->heures_specialistes = $heures_specialistes;
   }
-  public function get_heures_specialistes_utilise() : Int {
+  public function get_heures_specialistes_utilise() {
     return $this->heures_specialistes_utilise;
   }
   public function set_heures_specialistes_utilise(Int $heures_specialistes_utilise) {
     $this->heures_specialistes_utilise = $heures_specialistes_utilise;
   }
-  public function get_cours_groupe_semaine() : Int {
+  public function get_cours_groupe_semaine() {
     return $this->cours_groupe_semaine;
   }
   public function set_cours_groupe_semaine(Int $cours_groupe_semaine) {
     $this->cours_groupe_semaine = $cours_groupe_semaine;
   }
-  public function get_plan() : Int {
+  public function get_plan() {
     return $this->plan;
   }
   public function set_plan(Int $plan) {
