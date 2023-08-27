@@ -482,7 +482,7 @@ class PageIndex {
         <form action="#" method="post">
           <input class="auth auth-courriel" type="text" id="auth-email" name="auth-email" placeholder="courriel">
           <input class="auth auth-mdp" type="password" id="auth-mdp" name="auth-mdp" placeholder="mot de passe">
-          <input id="auth-soumettre" class="auth auth-submit couleurs" type="submit" value="OUVRIR UNE SESSION" onclick="return false;">
+          <input id="auth-soumettre" class="auth auth-submit couleurs" type="submit" value="OUVRIR UNE SESSION">
         </form>
 
         <script>
