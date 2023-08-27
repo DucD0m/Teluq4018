@@ -5,6 +5,8 @@ require "Controlleurs/Authentification.php";
 require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 
+$page = "";
+
 var_dump($_POST);
 echo "<br>";
 var_dump($_SESSION);
