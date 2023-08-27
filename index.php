@@ -46,10 +46,7 @@ else if(isset($_POST['auth-courriel']) && $_POST['auth-courriel'] != '' && isset
   $courriel = $_POST['auth-courriel'];
   $mot_passe = $_POST['auth-mdp'];
   $utilisateur = Authentification::get_utilisateur($courriel, $mot_passe);
-
-  // POST REDIRECT GET pattern
-  header('Location: http://10.0.1.18', true, 303);
-  exit;
+  redirection();
 }
 
 // Affichage de la page d'authentification
