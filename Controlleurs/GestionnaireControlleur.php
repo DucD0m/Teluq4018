@@ -13,6 +13,17 @@ class GestionnaireControlleur {
         $client = new Client();
         $plans = array();
         $page = new PageClient($client, $plans);
+        $_SESSION['page'] = "PageClient";
+
+        // POST REDIRECT GET pattern
+        header('Location: http://10.0.1.18', true, 303);
+        exit;
+      }
+      
+      if(isset($_SESSION['page']) && $_SESSION['page'] === "PageClient";) {
+        $client = new Client();
+        $plans = array();
+        $page = new PageClient($client, $plans);
       }
 
       else {
