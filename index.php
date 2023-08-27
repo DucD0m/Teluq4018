@@ -1,4 +1,8 @@
 <?php
+session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
 require "Vues/Templates/PageIndex.php";
 require "Controlleurs/ConnexionBD.php";
 require "Controlleurs/Authentification.php";
@@ -19,12 +23,10 @@ if(isset($_POST['quitter']) && $_POST['quitter'] == "oui") {
   Authentification::quitter();
 }
 
-session_start();
 $connexion = ConnexionBD::connexion();
 
 // Vérification de session
 if($_SESSION['auth'] === 'Gestionnaire' || $_SESSION['auth'] === 'Specialiste'){
-  session_start(); // Raffraîchir la session.
   if($_SESSION['auth'] === 'Gestionnaire') $utilisateur = new GestionnaireControlleur();
   else if($_SESSION['auth'] === 'Specialiste') $utilisateur = new SpecialisteControlleur();
   $utilisateur->afficherPage();
