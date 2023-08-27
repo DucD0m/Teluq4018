@@ -5,11 +5,15 @@ require "Controlleurs/Authentification.php";
 require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 
+$connexion;
+$courriel;
+$mot_passe;
+$utilisateur;
 $page;
 
-var_dump($_POST);
-echo "<br>";
-echo $_SESSION['auth'];
+// var_dump($_POST);
+// echo "<br>";
+// echo $_SESSION['auth'];
 
 if(isset($_POST['quitter']) && $_POST['quitter'] == "oui") {
   Authentification::quitter();
@@ -32,7 +36,9 @@ else if(isset($_POST['auth-courriel']) && $_POST['auth-courriel'] != '' && isset
   $mot_passe = $_POST['auth-mdp'];
   $utilisateur = Authentification::get_utilisateur($courriel, $mot_passe);
   if(get_class($utilisateur) === 'SpecialisteControlleur' || get_class($utilisateur) === 'GestionnaireControlleur'){
-    $utilisateur->afficherPage();
+    //$utilisateur->afficherPage();
+    header('Location: http://10.0.1.18', true, 303);
+    exit;
   }
 }
 

@@ -26,7 +26,7 @@ class Authentification {
       return $utilisateur;
     }
     else {
-      self::quitter();
+      return false;
     }
   }
 
