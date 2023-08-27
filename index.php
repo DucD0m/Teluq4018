@@ -9,7 +9,7 @@ $page;
 
 var_dump($_POST);
 echo "<br>";
-echo($_SESSION['auth']);
+echo $_SESSION['auth'];
 
 if(isset($_POST['quitter']) && $_POST['quitter'] == "oui") {
   Authentification::quitter();
@@ -17,11 +17,6 @@ if(isset($_POST['quitter']) && $_POST['quitter'] == "oui") {
 
 session_start();
 $connexion = ConnexionBD::connexion();
-
-//$_POST['courriel'] = "domupnorth@hotmail.com";
-//$_POST['mdp'] = "Specialiste";
-
-//$_SESSION['auth'] = "Gestionnaire";
 
 // Vérification de session
 if($_SESSION['auth'] === 'Gestionnaire' || $_SESSION['auth'] === 'Specialiste'){

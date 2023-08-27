@@ -26,8 +26,7 @@ class Authentification {
       return $utilisateur;
     }
     else {
-      header('Location: http://10.0.1.18', true, 303);
-      exit;
+      self::quitter();
     }
   }
 
