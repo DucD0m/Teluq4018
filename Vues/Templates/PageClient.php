@@ -533,8 +533,9 @@ class PageClient {
               </form>
           </div>
 
-  <?php if($obj->id > 0) { ?>
           <div class="demi-droite">
+
+            <?php if($obj->id > 0) { ?>
               <div id="info-plan" class="info-plan">
                 <div>
                   Date d'adhésion: <span><? $adhesion ?></span>
