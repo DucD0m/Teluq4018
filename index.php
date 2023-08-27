@@ -27,9 +27,9 @@ if($_SESSION['auth'] === 'Gestionnaire' || $_SESSION['auth'] === 'Specialiste'){
 }
 
 // Authentification
-else if(isset($_POST['courriel']) && $_POST['courriel'] != '' && isset($_POST['mdp']) && $_POST['mdp'] != ''){
-  $courriel = $_POST['courriel'];
-  $mot_passe = $_POST['mdp'];
+else if(isset($_POST['auth-courriel']) && $_POST['auth-courriel'] != '' && isset($_POST['auth-mdp']) && $_POST['auth-mdp'] != ''){
+  $courriel = $_POST['auth-courriel'];
+  $mot_passe = $_POST['auth-mdp'];
   $utilisateur = Authentification::get_utilisateur($courriel, $mot_passe);
   if(get_class($utilisateur) === 'SpecialisteControlleur' || get_class($utilisateur) === 'GestionnaireControlleur'){
     $utilisateur->afficherPage();
