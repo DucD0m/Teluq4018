@@ -2,7 +2,7 @@
 
 class PageRendezVous {
 
-  protected function __construct(Int $id, String $message) {
+  public function __construct(Int $id, String $message) {
 ?>
 
     <!DOCTYPE HTML>

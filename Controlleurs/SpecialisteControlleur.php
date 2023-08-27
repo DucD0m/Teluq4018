@@ -1,4 +1,5 @@
 <?php
+require "Vues/Templates/PageRendezVous.php";
 require_once "Modele/Client.php";
 require_once "Modele/Specialiste.php";
 require_once "Modele/RendezVous.php";
@@ -33,7 +34,7 @@ class SpecialisteControlleur {
     }
     $specialiste_id = 1;
     $message = "Test message";
-    $page = new PageRendezVous($specialise_id,$message);
+    $page = new PageRendezVous($specialiste_id, $message);
   }
 }
 ?>

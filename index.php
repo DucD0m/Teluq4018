@@ -1,9 +1,9 @@
 <?php
-require "Vue/Templates/PageIndex.php";
-require "Controlleur/ConnexionBD.php";
-require "Controlleur/Authentification.php";
-require_once "Controlleur/GestionnaireControlleur.php";
-require_once "Controlleur/SpecialisteControlleur.php";
+require "Vues/Templates/PageIndex.php";
+require "Controlleurs/ConnexionBD.php";
+require "Controlleurs/Authentification.php";
+require_once "Controlleurs/GestionnaireControlleur.php";
+require_once "Controlleurs/SpecialisteControlleur.php";
 
 if(isset($_POST['quitter']) && $_POST['quitter'] === true) {
   Authentification::quitter();

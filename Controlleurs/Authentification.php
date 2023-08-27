@@ -1,6 +1,6 @@
 <?php
-require_once "Controlleur/GestionnaireControlleur.php";
-require_once "Controlleur/SpecialisteControlleur.php";
+require_once "Controlleurs/GestionnaireControlleur.php";
+require_once "Controlleurs/SpecialisteControlleur.php";
 
 class Authentification {
 
@@ -34,8 +34,8 @@ class Authentification {
   public static function quitter() {
     $_SESSION = array();
     session_destroy();
-    header(location: "index.php");
-    //die ("Vous avez quitté\n");
+    //header('Location: index.php');
+    die ("Vous avez quitté\n");
   }
 }
 ?>
