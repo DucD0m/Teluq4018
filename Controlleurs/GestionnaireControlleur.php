@@ -10,9 +10,6 @@ class GestionnaireControlleur {
   public function afficherPage() {
 
       if(isset($_POST['creer-compte']) && $_POST['creer-compte'] === 'oui') {
-        $client = new Client();
-        $plans = array();
-        $page = new PageClient($client, $plans);
         $_SESSION['page'] = "PageClient";
 
         // POST REDIRECT GET pattern
