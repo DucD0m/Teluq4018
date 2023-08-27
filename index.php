@@ -4,13 +4,13 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
 require "Vues/Templates/PageIndex.php";
-require "Controlleurs/ConnexionBD.php";
+require "Controlleurs/ConnexionLireBD.php";
 require "Controlleurs/Authentification.php";
 require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 require_once "Controlleurs/fonctions_php.php";
 
-$connexion;
+$connexion_lecteur;
 $courriel;
 $mot_passe;
 $utilisateur;
@@ -30,7 +30,7 @@ if(isset($_POST['retour']) && $_POST['retour'] === "oui") {
   redirection();
 }
 
-$connexion = ConnexionBD::connexion();
+$connexion_lecteur = ConnexionLireBD::connexion();
 
 // Vérification de session
 if(isset($_SESSION['auth']) && ($_SESSION['auth'] === 'Gestionnaire' || $_SESSION['auth'] === 'Specialiste')){

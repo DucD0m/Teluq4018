@@ -3,44 +3,44 @@ require_once "Modele.php";
 
 abstract class Personne implements Modele {
 
-  private $id;
-  private $prenom;
-  private $nom;
-  private $adresse;
-  private $telephone;
-  private $courriel;
+  private $id = 0;
+  private $prenom = "";
+  private $nom = "";
+  private $adresse = "";
+  private $telephone = 0;
+  private $courriel = "";
 
-  public function get_id() {
+  public function get_id() : Int {
     return $this->id;
   }
   public function set_id(Int $id) {
     $this->id = $id;
   }
-  public function get_prenom() {
+  public function get_prenom() : String {
     return $this->prenom;
   }
   public function set_prenom(String $prenom) {
     $this->prenom = $prenom;
   }
-  public function get_nom() {
+  public function get_nom() : String {
     return $this->nom;
   }
   public function set_nom(String $nom) {
     $this->nom = $nom;
   }
-  public function get_adresse() {
+  public function get_adresse() : String {
     return $this->adresse;
   }
   public function set_adresse(String $adresse) {
     $this->adresse = $adresse;
   }
-  public function get_telephone() {
+  public function get_telephone() : Int {
     return $this->telephone;
   }
   public function set_telephone(Int $telephone) {
     $this->telephone = $telephone;
   }
-  public function get_courriel() {
+  public function get_courriel() : String {
     return $this->courriel;
   }
   public function set_courriel(String $courriel) {
