@@ -11,22 +11,14 @@ class Authentification {
     if($mot_passe == 'Gestionnaire') $resultat_gestionnaire = true;
     if($resultat_gestionnaire === true) {
       $_SESSION['auth'] = 'Gestionnaire';
-      $utilisateur = new GestionnaireControlleur();
+      $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     }
 
     //mysql resquest specialiste
     if($mot_passe == 'Specialiste') $resultat_specialiste = true;
     if($resultat_specialiste === true) {
       $_SESSION['auth'] = 'Specialiste';
-      $utilisateur = new SpecialisteControlleur();
-    }
-
-    if(get_class($utilisateur) === 'SpecialisteControlleur' || get_class($utilisateur) === 'GestionnaireControlleur'){
       $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-      return $utilisateur;
-    }
-    else {
-      return false;
     }
   }
 
