@@ -21,6 +21,10 @@ $page;
 
 if(isset($_POST['quitter']) && $_POST['quitter'] === "oui") {
   Authentification::quitter();
+  
+  // POST REDIRECT GET pattern
+  header('Location: http://10.0.1.18', true, 303);
+  exit;
 }
 
 if(isset($_POST['retour']) && $_POST['retour'] === "oui") {
