@@ -13,8 +13,8 @@ if(isset($_POST['quitter']) && $_POST['quitter'] === true) {
 session_start();
 $connexion = ConnexionBD::connexion();
 
-//$_POST['courriel'] = "domupnorth@hotmail.com";
-//$_POST['mdp'] = "Specialiste";
+$_POST['courriel'] = "domupnorth@hotmail.com";
+$_POST['mdp'] = "Specialiste";
 
 //$_SESSION['auth'] = "Gestionnaire";
 
