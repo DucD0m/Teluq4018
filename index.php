@@ -11,7 +11,6 @@ var_dump($_SESSION);
 
 if(isset($_POST['quitter']) && $_POST['quitter'] == "oui") {
   Authentification::quitter();
-  exit;
 }
 
 session_start();
