@@ -5,13 +5,8 @@ require_once "Modele/Specialiste.php";
 require_once "Modele/RendezVous.php";
 
 class SpecialisteControlleur {
+  
   public function afficherPage() {
-    // $client = new Client();
-    // $client->select_mysql(1);
-    // echo $client->get_heures_specialistes()."\n";
-    // $specialiste = new Specialiste();
-    // $specialiste->select_mysql(1);
-    // if($specialiste->get_specialite() == 1) echo "Physio\n";
 
     if(isset($_POST['rdv-client']) && $_POST['rdv-client'] > 0 &&
        isset($_POST['rdv-date']) && format_date($_POST['rdv-date'], "yy-mm-dd") &&

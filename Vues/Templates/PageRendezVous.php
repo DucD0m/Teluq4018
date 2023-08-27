@@ -536,11 +536,6 @@ class PageRendezVous {
                 $('#rdv-client'). removeAttr('readonly');
               }
             });
-            // $('#quitter').click(function(){
-            //   //location.href = "file:///Users/dominiqueducas/Desktop/Gym-Argente/Vue/templates/auth.html";
-            //   console.log('quitter clicked');
-            //   $('#quitter-form').submit();
-            // });
             $( function() {
               $( "#rdv-date" ).datepicker({
                 minDate: 0,
