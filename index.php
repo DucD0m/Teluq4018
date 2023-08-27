@@ -9,7 +9,7 @@ $page;
 
 var_dump($_POST);
 echo "<br>";
-var_dump($_SESSION);
+echo($_SESSION['auth']);
 
 if(isset($_POST['quitter']) && $_POST['quitter'] == "oui") {
   Authentification::quitter();
