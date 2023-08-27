@@ -14,7 +14,7 @@ if(isset($_POST['quitter']) && $_POST['quitter'] == "oui") {
   Authentification::quitter();
 }
 
-var_dump($_SESSION['auth']);
+echo $_SESSION['auth'];
 
 session_start();
 $connexion = ConnexionBD::connexion();
