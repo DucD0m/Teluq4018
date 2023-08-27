@@ -34,8 +34,8 @@ class Authentification {
   public static function quitter() {
     $_SESSION = array();
     session_destroy();
-    //header('Location: http://10.0.1.18');
-    die ("Vous avez quitté\n");
+    header('Location: http://10.0.1.18');
+    //die ("Vous avez quitté\n");
   }
 }
 ?>

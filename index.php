@@ -6,11 +6,12 @@ require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 
 var_dump($_POST);
+echo "<br>";
 var_dump($_SESSION);
 
-if($_POST['quitter'] == "oui") {
+if(isset($_POST['quitter']) && $_POST['quitter'] == "oui") {
   Authentification::quitter();
-  //exit;
+  exit;
 }
 
 session_start();
