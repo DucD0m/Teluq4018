@@ -3,9 +3,10 @@ require "Vues/Templates/PageRendezVous.php";
 require_once "Modele/Client.php";
 require_once "Modele/Specialiste.php";
 require_once "Modele/RendezVous.php";
+require_once "Controlleurs/fonctions_php.php";
 
 class SpecialisteControlleur {
-  
+
   public function afficherPage() {
 
     if(isset($_POST['rdv-client']) && $_POST['rdv-client'] > 0 &&
@@ -25,7 +26,7 @@ class SpecialisteControlleur {
           $message = "Le rendez-vous ne peut être fixé. La banque d'heures du client est vide.";
         }
         $rendez_vous = new RendezVous();
-
+        //redirection();
     }
     $specialiste_id = 1;
     $message = "Test message";

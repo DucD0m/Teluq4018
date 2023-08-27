@@ -8,6 +8,7 @@ require "Controlleurs/ConnexionBD.php";
 require "Controlleurs/Authentification.php";
 require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
+require_once "Controlleurs/fonctions_php.php";
 
 $connexion;
 $courriel;
@@ -15,24 +16,24 @@ $mot_passe;
 $utilisateur;
 $page;
 
+function redirection() {
+  // POST REDIRECT GET pattern
+  header('Location: http://10.0.1.18', true, 303);
+  exit;
+}
+
 // var_dump($_POST);
 // echo "<br>";
 // echo $_SESSION['auth'];
 
 if(isset($_POST['quitter']) && $_POST['quitter'] === "oui") {
   Authentification::quitter();
-  
-  // POST REDIRECT GET pattern
-  header('Location: http://10.0.1.18', true, 303);
-  exit;
+  redirection();
 }
 
 if(isset($_POST['retour']) && $_POST['retour'] === "oui") {
   unset($_SESSION['page']);
-
-  // POST REDIRECT GET pattern
-  header('Location: http://10.0.1.18', true, 303);
-  exit;
+  redirection();
 }
 
 $connexion = ConnexionBD::connexion();

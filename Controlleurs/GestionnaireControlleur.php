@@ -4,6 +4,7 @@ require "Vues/Templates/PageClient.php";
 require_once "Modele/Client.php";
 require_once "Modele/Plan.php";
 require_once "Modele/Notification.php";
+require_once "Controlleurs/fonctions_php.php";
 
 class GestionnaireControlleur {
 
@@ -11,10 +12,7 @@ class GestionnaireControlleur {
 
       if(isset($_POST['creer-compte']) && $_POST['creer-compte'] === 'oui') {
         $_SESSION['page'] = "PageClient";
-
-        // POST REDIRECT GET pattern
-        header('Location: http://10.0.1.18', true, 303);
-        exit;
+        redirection();
       }
 
       if(isset($_SESSION['page']) && $_SESSION['page'] === "PageClient") {
