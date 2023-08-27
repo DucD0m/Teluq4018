@@ -26,7 +26,7 @@ if(isset($_POST['quitter']) && $_POST['quitter'] == "oui") {
 $connexion = ConnexionBD::connexion();
 
 // Vérification de session
-if($_SESSION['auth'] === 'Gestionnaire' || $_SESSION['auth'] === 'Specialiste'){
+if(isset($_SESSION['auth']) && ($_SESSION['auth'] === 'Gestionnaire' || $_SESSION['auth'] === 'Specialiste')){
   if($_SESSION['auth'] === 'Gestionnaire') $utilisateur = new GestionnaireControlleur();
   else if($_SESSION['auth'] === 'Specialiste') $utilisateur = new SpecialisteControlleur();
   $utilisateur->afficherPage();
@@ -37,11 +37,11 @@ else if(isset($_POST['auth-courriel']) && $_POST['auth-courriel'] != '' && isset
   $courriel = $_POST['auth-courriel'];
   $mot_passe = $_POST['auth-mdp'];
   $utilisateur = Authentification::get_utilisateur($courriel, $mot_passe);
-  if(get_class($utilisateur) === 'SpecialisteControlleur' || get_class($utilisateur) === 'GestionnaireControlleur'){
+  //if(get_class($utilisateur) === 'SpecialisteControlleur' || get_class($utilisateur) === 'GestionnaireControlleur'){
     //$utilisateur->afficherPage();
     header('Location: http://10.0.1.18', true, 303);
     exit;
-  }
+  //}
 }
 
 // Affichage de la page d'authentification
