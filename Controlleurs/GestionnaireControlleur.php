@@ -8,9 +8,7 @@ class GestionnaireControlleur {
 
   public function afficherPage() {
 
-    if(!isset($_POST)) {
       $page = new PageMenu();
-    }
 
   }
 }
