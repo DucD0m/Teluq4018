@@ -618,13 +618,6 @@ class PageClient {
               $('#supprimer-client').click(function(){
                 confirm('Êtes-vous certain de vouloir supprimer ce compte client?');
               });
-              $('#retour-menu').click(function(){
-                location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/gestionnaire.html";
-              });
-              $('#quitter').click(function(){
-                //location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/auth.html";
-                $('#quitter-form').submit();
-              });
             });
           </script>
     </body>
