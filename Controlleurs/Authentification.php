@@ -6,7 +6,7 @@ class Authentification {
 
   public static function get_utilisateur($courriel, $mot_passe) {
     //echo "Authentification en cours...\n";
-
+    $mot_passe = $_POST['auth-mdp'];
     //mysql resquest gestionnaire
     if($mot_passe == 'Gestionnaire') $resultat_gestionnaire = true;
     if($resultat_gestionnaire === true) {

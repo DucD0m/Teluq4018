@@ -486,13 +486,13 @@ class PageIndex {
         </form>
 
         <script>
-          $( document ).ready(function() {
-            $('#auth-soumettre').click(function(){
-              if($('#auth-mdp').val() === "gestionnaire") location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/gestionnaire.html";
-              else if($('#auth-mdp').val() === "specialiste") location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/specialiste.html";
-              else alert("Svp vérifier vos informations d'identification");
-            });
-          });
+          // $( document ).ready(function() {
+          //   $('#auth-soumettre').click(function(){
+          //     if($('#auth-mdp').val() === "gestionnaire") location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/gestionnaire.html";
+          //     else if($('#auth-mdp').val() === "specialiste") location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/specialiste.html";
+          //     else alert("Svp vérifier vos informations d'identification");
+          //   });
+          // });
         </script>
 
     </body>
