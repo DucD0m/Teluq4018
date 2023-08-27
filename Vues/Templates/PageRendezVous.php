@@ -484,10 +484,11 @@ class PageRendezVous {
 
         <button id="quitter" class="couleurs quitter">
           QUITTER <i class="fa-solid fa-person-running"></i>
-          <form id="quitter-form" class="hidden" action="http://10.0.1.18" method="post">
-            <input type="hidden" id="quitter-input" name="quitter" value="oui">
-          </form>
         </button>
+
+        <form id="quitter-form" class="hidden" action="http://10.0.1.18" method="post">
+          <input type="hidden" id="quitter-input" name="quitter" value="oui">
+        </form>
 
         <div class="name">
           Dominique Ducas - PHYSIOTHÉRAPEUTE
