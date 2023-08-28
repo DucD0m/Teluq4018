@@ -93,11 +93,11 @@ ini_set('session.use_trans_sid','0');
 // À tester...
 //ini_set('session.referer_check','/var/www/html/');
 
-//ini_set('memory_limit','50M');
+ini_set('memory_limit','50M');
 // post_max_size           = 20M
-//ini_set('max_execution_time','60');
-//ini_set('report_memleaks','On');
+ini_set('max_execution_time','60');
+ini_set('report_memleaks','On');
 // track_errors            = Off // Removed as of PHP 8.
-//ini_set('html_errors','Off');
+ini_set('html_errors','Off');
 
 ?>
