@@ -1,2 +1,5 @@
-INSERT INTO Personnes (prenom, nom, adresse, telephone, adresse, courriel) VALUES ('Dominique', 'Ducas', '119-3 Rue Jean-Louis-Boudreau, Granby, Qc, J2H 0E1',5555555555,'ducas.dominique@univ.teluq.ca');
-INSERT INTO Personnes (prenom, nom, adresse, telephone, adresse, courriel) VALUES ('Richard', 'Hotte','455 rue du Parvis,Qc,G1K 9H6',18006654333,'richard.hotte@teluq.ca');
+INSERT INTO personnes (prenom, nom, adresse, telephone, courriel) VALUES ('Dominique', 'Ducas', '119-3 Rue Jean-Louis-Boudreau, Granby, Qc, J2H 0E1',5555555555,'ducas.dominique@univ.teluq.ca');
+INSERT INTO personnes (prenom, nom, adresse, telephone, courriel) VALUES ('Richard', 'Hotte','455 rue du Parvis,Qc,G1K 9H6',8006654333,'richard.hotte@teluq.ca');
+
+INSERT INTO gestionnaires (personne, mot_passe) VALUES (1,'$argon2id$v=19$m=65536,t=4,p=1$OHEzSjlRdDNaSEo3Z3gxdA$FPaL/M3xHcI+2BLPQEuq/IFlwTeEZ5SSsTyiElaJz5w');
+INSERT INTO gestionnaires (personne, mot_passe) VALUES (2,'$argon2id$v=19$m=65536,t=4,p=1$Nk9Yai84TDdqUUdSWXovbw$EKL2Q3N8RZaEqkd0yGUJ+hS3gqg3N4bwkhESY/kFcK0');
