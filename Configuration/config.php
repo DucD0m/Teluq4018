@@ -85,7 +85,7 @@ ini_set('session.cookie_lifetime','14400');
 ini_set('session.cookie_httponly','1');
 ini_set('session.cookie_samesite','Strict');
 ini_set('session.cache_expire','30');
-//ini_set('session.sid_length','256');
+ini_set('session.sid_length','256');
 //ini_set('session.sid_bits_per_character','6'); //PHP 7.2+
 // session.hash_function            = 1 # PHP 7.0-7.1
 // session.hash_bits_per_character  = 6 # PHP 7.0-7.1
@@ -99,11 +99,5 @@ ini_set('max_execution_time','60');
 ini_set('report_memleaks','On');
 // track_errors            = Off // Removed as of PHP 8.
 ini_set('html_errors','Off');
-
-// session_set_cookie_params(array(
-//             'secure' => true,
-//             'httponly' => true,
-//             'samesite' => 'Strict'
-//         ));
 
 ?>
