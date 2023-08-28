@@ -8,8 +8,6 @@ require_once "Controlleurs/SpecialisteControlleur.php";
 require_once "Controlleurs/fonctions_php.php";
 
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
 
 $connexion_lecteur;
 $courriel;
