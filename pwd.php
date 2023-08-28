@@ -1,12 +1,10 @@
 <?php
-$_SESSION['auth'] = 'gestionnaire';
-require "GestionnaireConfiguration.php";
-$config = new GestionnaireConfiguration();
-$pepper = $config->getPepper();
+require "Configuration/config.php";
+$pepper = PEPPER;
 $pwd = $argv[1];
 echo $pwd." ";
 $pwd_peppered = hash_hmac("sha256", $pwd, $pepper);
-$pwd_hashed = password_hash($pwd_peppered, PASSWORD_DEFAULT);
+$pwd_hashed = password_hash($pwd_peppered, PASSWORD_ARGON2ID);
 echo "\n".$pwd_hashed;
 if (password_verify($pwd_peppered, $pwd_hashed)) {
     echo "\nPassword matches.\n";

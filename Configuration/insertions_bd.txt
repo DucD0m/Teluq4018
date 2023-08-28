@@ -1,0 +1,2 @@
+INSERT INTO Personnes (prenom, nom, adresse, telephone, adresse, courriel) VALUES ('Dominique', 'Ducas', '119-3 Rue Jean-Louis-Boudreau, Granby, Qc, J2H 0E1',5555555555,'ducas.dominique@univ.teluq.ca');
+INSERT INTO Personnes (prenom, nom, adresse, telephone, adresse, courriel) VALUES ('Richard', 'Hotte','455 rue du Parvis,Qc,G1K 9H6',18006654333,'richard.hotte@teluq.ca');
