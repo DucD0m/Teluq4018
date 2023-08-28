@@ -1,5 +1,5 @@
 <?php
-require "Vues/Templates/PageRendezVous.php";
+require_once "Vues/Templates/PageRendezVous.php";
 require_once "Modele/Client.php";
 require_once "Modele/Specialiste.php";
 require_once "Modele/RendezVous.php";

@@ -1,14 +1,15 @@
 <?php
-session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
-
-require "Vues/Templates/PageIndex.php";
-require "Controlleurs/ConnexionLireBD.php";
-require "Controlleurs/Authentification.php";
+require_once "Configuration/config.php";
+require_once "Vues/Templates/PageIndex.php";
+require_once "Controlleurs/ConnexionLireBD.php";
+require_once "Controlleurs/Authentification.php";
 require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 require_once "Controlleurs/fonctions_php.php";
+
+session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 
 $connexion_lecteur;
 $courriel;
