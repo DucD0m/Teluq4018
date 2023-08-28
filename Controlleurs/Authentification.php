@@ -57,7 +57,7 @@ class Authentification {
     }
     else if(!isset($_SESSION['auth']) && isset($_SESSION['erreurs_mdp'])) {
       $_SESSION['erreurs_mdp'] = $_SESSION['erreurs_mdp'] + 1;
-      if($_SESSION['erreurs_mdp'] = 5) {
+      if($_SESSION['erreurs_mdp'] === 5) {
         $_SESSION['err_mdp_temps'] = strtotime('now');
       }
     }
