@@ -47,7 +47,7 @@ ini_set('session.gc_maxlifetime','600');
 
 // PHP file upload handling
 // Cette application ne requiert pas de télécharger des fichiers.
-//ini_set('file_uploads','Off');
+ini_set('file_uploads','Off');
 // file_uploads            = On
 // upload_tmp_dir          = /path/PHP-uploads/
 // upload_max_filesize     = 2M
@@ -62,10 +62,10 @@ ini_set('session.gc_maxlifetime','600');
 
 
 // PHP session handling
-//ini_set('session.save_path','/var/www/html/PHP-session/');
+ini_set('session.save_path','/var/www/html/PHP-session/');
 ini_set('session.name', 'ab19b0956c3dc02dbca4c1d13ac00cea6b5c7a8f4c9db8ffd99ea5d577063e4a');
 //session.auto_start               = Off
-//ini_set('session.use_trans_sid','0');
+ini_set('session.use_trans_sid','0');
 
 // Configurer lorsque l'application sera en production.
 // ini_set('session.cookie_domain','full.qualified.domain.name');
