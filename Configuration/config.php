@@ -78,9 +78,12 @@ ini_set('session.use_trans_sid','0');
 ini_set('session.use_cookies','1');
 ini_set('session.use_only_cookies','1');
 ini_set('session.cookie_lifetime','14400');
+
+// Configurer quand le certificat SSL sera activé.
 //ini_set('session.cookie_secure','1');
-//ini_set('session.cookie_httponly','1');
-//ini_set('session.cookie_samesite','Strict');
+
+ini_set('session.cookie_httponly','1');
+ini_set('session.cookie_samesite','Strict');
 ini_set('session.cache_expire','30');
 //ini_set('session.sid_length','256');
 //ini_set('session.sid_bits_per_character','6'); //PHP 7.2+
