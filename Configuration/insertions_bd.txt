@@ -1,5 +1,17 @@
 INSERT INTO personnes (prenom, nom, adresse, telephone, courriel) VALUES ('Dominique', 'Ducas', '119-3 Rue Jean-Louis-Boudreau, Granby, Qc, J2H 0E1',5555555555,'ducas.dominique@univ.teluq.ca');
-INSERT INTO personnes (prenom, nom, adresse, telephone, courriel) VALUES ('Richard', 'Hotte','455 rue du Parvis,Qc,G1K 9H6',8006654333,'richard.hotte@teluq.ca');
+INSERT INTO personnes (prenom, nom, adresse, telephone, courriel) VALUES ('Richard', 'Hotte','455 rue du Parvis,Qc,G1K 9H6',18006654333,'richard.hotte@teluq.ca');
 
 INSERT INTO gestionnaires (personne, mot_passe) VALUES (1,'$argon2id$v=19$m=65536,t=4,p=1$OHEzSjlRdDNaSEo3Z3gxdA$FPaL/M3xHcI+2BLPQEuq/IFlwTeEZ5SSsTyiElaJz5w');
 INSERT INTO gestionnaires (personne, mot_passe) VALUES (2,'$argon2id$v=19$m=65536,t=4,p=1$Nk9Yai84TDdqUUdSWXovbw$EKL2Q3N8RZaEqkd0yGUJ+hS3gqg3N4bwkhESY/kFcK0');
+
+INSERT INTO specialites (nom) VALUE ('Entraîneur personnel');
+INSERT INTO specialites (nom) VALUE ('Nutritionniste');
+INSERT INTO specialites (nom) VALUE ('Physiothérapeute');
+
+INSERT INTO specialistes (personne, specialite, mot_passe) VALUES (1,2,'$argon2id$v=19$m=65536,t=4,p=1$WUxYQWJZWG96blpHQUd5Lw$RvaX9Vb70qXz3T8MOx9ZN1Pyr+rlidIJScaunOXeB/A');
+INSERT INTO specialistes (personne, specialite, mot_passe) VALUES (1,3,'$argon2id$v=19$m=65536,t=4,p=1$LnVLaTlaODdha3NoOVhOTQ$IIhadMS+06N+d7X5vifses560lQXsK3gTjIRxHC+upM');
+INSERT INTO specialistes (personne, specialite, mot_passe) VALUES (2,1,'$argon2id$v=19$m=65536,t=4,p=1$c3E5TkxkLm56OVV3cUF1bw$xC7ha9y1I7TYkejH6ZGBeks8XBDt3FXQRlxVdsJBL34');
+INSERT INTO specialistes (personne, specialite, mot_passe) VALUES (2,3,'$argon2id$v=19$m=65536,t=4,p=1$Z0VTMkd0dmlaanBDaTNmMQ$g+AJzEvE9NTDphyaxCfrf6KMn+vid3atGQoponqLmUA');
+
+SELECT g.personne, g.mot_passe FROM gestionnaires g JOIN personnes p ON g.personne = p.id WHERE p.courriel = ducas.dominique@univ.teluq.ca;
+SELECT s.id, s.mot_passe FROM specialistes s JOIN personnes p ON s.personne = p.id WHERE p.courriel = :courriel

@@ -33,7 +33,8 @@ if(isset($_POST['retour']) && $_POST['retour'] === "oui") {
 $connexion_lecteur = ConnexionLireBD::connexion();
 
 // Vérification de session
-if(isset($_SESSION['auth']) && ($_SESSION['auth'] === 'Gestionnaire' || $_SESSION['auth'] === 'Specialiste')){
+if(isset($_SESSION['auth']) && ($_SESSION['auth'] === 'Gestionnaire' || $_SESSION['auth'] === 'Specialiste') &&
+isset($_SESSION['id']) && $_SESSION['id'] > 0){
 
   if($_SESSION['auth'] === 'Gestionnaire') $utilisateur = new GestionnaireControlleur();
   else if($_SESSION['auth'] === 'Specialiste') $utilisateur = new SpecialisteControlleur();

@@ -1,4 +1,5 @@
 <?php
+require_once "Configuration/config.php";
 require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 
@@ -6,11 +7,42 @@ class Authentification {
 
   public static function get_utilisateur($courriel, $mot_passe) {
 
-    //mysql resquest gestionnaire
-    if($mot_passe == 'Gestionnaire') $resultat_gestionnaire = true;
-    if($resultat_gestionnaire === true) {
+    $pepper = PEPPER;
+    $pwd = $mot_passe;
+    $pwd_peppered = hash_hmac("sha256", $pwd, $pepper);
+
+    $sql = $connexion_lecteur->prepare('SELECT g.personne, g.mot_passe
+      FROM gestionnaires g
+      JOIN personnes p ON g.personne = p.id
+      WHERE p.courriel = :courriel');
+
+    $sql->bindParam(':courriel', $courriel, PDO::PARAM_STR);
+    $sql->execute();
+    $resultat = $sql->fetch(PDO::FETCH_OBJ);
+
+    $pwd_hashed = $resultat->mot_passe;
+    if (password_verify($pwd_peppered, $pwd_hashed)) {
       $_SESSION['auth'] = 'Gestionnaire';
+      $_SESSION['id'] = $resultat->personne;
       $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+
+    else {
+      $sql = $connexion_lecteur->prepare('SELECT s.id, s.mot_passe
+        FROM specialistes s
+        JOIN personnes p ON s.personne = p.id
+        WHERE p.courriel = :courriel');
+
+      $sql->bindParam(':courriel', $courriel, PDO::PARAM_STR);
+      $sql->execute();
+      $resultat = $sql->fetch(PDO::FETCH_OBJ);
+
+      $pwd_hashed = $resultat->mot_passe;
+      if (password_verify($pwd_peppered, $pwd_hashed)) {
+        $_SESSION['auth'] = 'Specialiste';
+        $_SESSION['id'] = $resultat->personne;
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+      }
     }
 
     //mysql resquest specialiste

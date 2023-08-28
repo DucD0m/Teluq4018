@@ -1,5 +1,5 @@
 <?php // Singleton Design Pattern
-require "Configuration/config.php";
+require_once "Configuration/config.php";
 
 class ConnexionLireBD {
 
