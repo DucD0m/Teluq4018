@@ -91,7 +91,7 @@ ini_set('session.cache_expire','30');
 
 // Ne fonctionne pas.
 //ini_set('session.sid_length','256');
-ini_set('session.sid_length','32');
+ini_set('session.sid_length','128');
 
 ini_set('session.sid_bits_per_character','6'); //PHP 7.2+
 // session.hash_function            = 1 # PHP 7.0-7.1
