@@ -5,7 +5,7 @@ require_once "Controlleurs/SpecialisteControlleur.php";
 
 class Authentification {
 
-  public static function get_utilisateur($courriel, $mot_passe) {
+  public static function get_utilisateur($courriel, $mot_passe, $connexion_lecteur) {
 
     $pepper = PEPPER;
     $pwd = $mot_passe;

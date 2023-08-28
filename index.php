@@ -46,7 +46,7 @@ else if(isset($_POST['auth-courriel']) && $_POST['auth-courriel'] != '' && isset
 
   $courriel = $_POST['auth-courriel'];
   $mot_passe = $_POST['auth-mdp'];
-  $utilisateur = Authentification::get_utilisateur($courriel, $mot_passe);
+  $utilisateur = Authentification::get_utilisateur($courriel, $mot_passe, $connexion_lecteur);
   redirection();
 }
 
