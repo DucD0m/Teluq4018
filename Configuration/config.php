@@ -23,14 +23,14 @@ ini_set('display_errors','On'); // DEV
 // ini_set('display_errors','Off'); // PROD
 ini_set('display_startup_errors','On'); // DEV
 //ini_set('display_startup_errors','Off'); // PROD
-ini_set('log_errors','On');
-ini_set('error_log','/var/www/html/PHP-logs/php_error.log');
-ini_set('ignore_repeated_errors','Off');
+//ini_set('log_errors','On');
+//ini_set('error_log','/var/www/html/PHP-logs/php_error.log');
+//ini_set('ignore_repeated_errors','Off');
 
 
 // PHP general settings
 // doc_root                       = /path/DocumentRoot/PHP-scripts/
-ini_set('open_basedir','/var/www/html/');
+//ini_set('open_basedir','/var/www/html/');
 
 // Enlever commentaires et indiquer le path pour activer cette option.
 // ini_set('include_path','/path/PHP-pear/');
@@ -62,7 +62,7 @@ ini_set('file_uploads','Off');
 
 
 // PHP session handling
-ini_set('session.save_path','/var/www/html/PHP-session/');
+//ini_set('session.save_path','/var/www/html/PHP-session/');
 ini_set('session.name', 'ab19b0956c3dc02dbca4c1d13ac00cea6b5c7a8f4c9db8ffd99ea5d577063e4a');
 //session.auto_start               = Off
 ini_set('session.use_trans_sid','0');
