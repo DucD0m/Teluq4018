@@ -35,21 +35,16 @@ class Authentification {
 
       $sql->bindParam(':courriel', $courriel, PDO::PARAM_STR);
       $sql->execute();
-      $resultat = $sql->fetch(PDO::FETCH_OBJ);
+      $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
 
-      $pwd_hashed = $resultat->mot_passe;
-      if (password_verify($pwd_peppered, $pwd_hashed)) {
-        $_SESSION['auth'] = 'Specialiste';
-        $_SESSION['id'] = $resultat->personne;
-        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+      foreach($resultats as $resultat) {
+        $pwd_hashed = $resultat->mot_passe;
+        if (password_verify($pwd_peppered, $pwd_hashed)) {
+          $_SESSION['auth'] = 'Specialiste';
+          $_SESSION['id'] = $resultat->id;
+          $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
       }
-    }
-
-    //mysql resquest specialiste
-    if($mot_passe == 'Specialiste') $resultat_specialiste = true;
-    if($resultat_specialiste === true) {
-      $_SESSION['auth'] = 'Specialiste';
-      $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     }
   }
 
