@@ -91,7 +91,7 @@ ini_set('session.use_trans_sid','0');
 // Some more security paranoid checks
 
 // À tester...
-//ini_set('session.referer_check','/var/www/html/');
+ini_set('session.referer_check','/var/www/html/');
 
 ini_set('memory_limit','50M');
 // post_max_size           = 20M
