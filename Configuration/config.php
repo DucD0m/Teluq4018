@@ -76,14 +76,14 @@ ini_set('session.use_trans_sid','0');
 #session.cookie_path             = /application/path/
 //ini_set('session.use_strict_mode','1');
 ini_set('session.use_cookies','1');
-ini_set('session.use_only_cookies','1');
-ini_set('session.cookie_lifetime','14400');
-ini_set('session.cookie_secure','1');
-ini_set('session.cookie_httponly','1');
+//ini_set('session.use_only_cookies','1');
+//ini_set('session.cookie_lifetime','14400');
+//ini_set('session.cookie_secure','1');
+//ini_set('session.cookie_httponly','1');
 //ini_set('session.cookie_samesite','Strict');
-//ini_set('session.cache_expire','30');
-//ini_set('session.sid_length','256');
-//ini_set('session.sid_bits_per_character','6'); //PHP 7.2+
+ini_set('session.cache_expire','30');
+ini_set('session.sid_length','256');
+ini_set('session.sid_bits_per_character','6'); //PHP 7.2+
 // session.hash_function            = 1 # PHP 7.0-7.1
 // session.hash_bits_per_character  = 6 # PHP 7.0-7.1
 
