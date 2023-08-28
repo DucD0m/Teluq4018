@@ -97,4 +97,10 @@ ini_set('report_memleaks','On');
 // track_errors            = Off // Removed as of PHP 8.
 ini_set('html_errors','Off');
 
+session_set_cookie_params([
+            'secure' => true,
+            'httponly' => true,
+            'samesite' => 'Strict'
+        ]);
+
 ?>
