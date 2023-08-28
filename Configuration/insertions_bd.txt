@@ -12,6 +12,3 @@ INSERT INTO specialistes (personne, specialite, mot_passe) VALUES (1,2,'$argon2i
 INSERT INTO specialistes (personne, specialite, mot_passe) VALUES (1,3,'$argon2id$v=19$m=65536,t=4,p=1$LnVLaTlaODdha3NoOVhOTQ$IIhadMS+06N+d7X5vifses560lQXsK3gTjIRxHC+upM');
 INSERT INTO specialistes (personne, specialite, mot_passe) VALUES (2,1,'$argon2id$v=19$m=65536,t=4,p=1$c3E5TkxkLm56OVV3cUF1bw$xC7ha9y1I7TYkejH6ZGBeks8XBDt3FXQRlxVdsJBL34');
 INSERT INTO specialistes (personne, specialite, mot_passe) VALUES (2,3,'$argon2id$v=19$m=65536,t=4,p=1$Z0VTMkd0dmlaanBDaTNmMQ$g+AJzEvE9NTDphyaxCfrf6KMn+vid3atGQoponqLmUA');
-
-SELECT g.personne, g.mot_passe FROM gestionnaires g JOIN personnes p ON g.personne = p.id WHERE p.courriel = "ducas.dominique@univ.teluq.ca";
-SELECT s.id, s.mot_passe FROM specialistes s JOIN personnes p ON s.personne = p.id WHERE p.courriel = "ducas.dominique@univ.teluq.ca";

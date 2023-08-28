@@ -25,6 +25,8 @@ class Authentification {
       $_SESSION['auth'] = 'Gestionnaire';
       $_SESSION['id'] = $resultat->personne;
       $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+      unset($_SESSION['erreurs_mdp']);
+      unset($_SESSION['err_mdp_temps']);
     }
 
     else {
@@ -43,9 +45,23 @@ class Authentification {
           $_SESSION['auth'] = 'Specialiste';
           $_SESSION['id'] = $resultat->id;
           $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+          unset($_SESSION['erreurs_mdp']);
+          unset($_SESSION['err_mdp_temps']);
         }
       }
     }
+
+    // Compter le nombre d'erreurs de mots de passe. Protection contre le "Brute Force".
+    if(!isset($_SESSION['auth']) && !isset($_SESSION['erreurs_mdp'])) {
+      $_SESSION['erreurs_mdp'] = 1;
+    }
+    else if(!isset($_SESSION['auth']) && isset($_SESSION['erreurs_mdp'])) {
+      $_SESSION['erreurs_mdp'] = $_SESSION['erreurs_mdp'] + 1;
+      if($_SESSION['erreurs_mdp'] = 5) {
+        $_SESSION['err_mdp_temps'] = strtotime('now');
+      }
+    }
+
   }
 
   public static function quitter() {
