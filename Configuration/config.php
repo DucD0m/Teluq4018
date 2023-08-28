@@ -30,7 +30,7 @@ ini_set('ignore_repeated_errors','Off');
 
 // PHP general settings
 // doc_root                       = /path/DocumentRoot/PHP-scripts/
-//ini_set('open_basedir','/var/www/html/');
+ini_set('open_basedir','/var/www/html/');
 
 // Enlever commentaires et indiquer le path pour activer cette option.
 // ini_set('include_path','/path/PHP-pear/');
@@ -42,7 +42,7 @@ ini_set('ignore_repeated_errors','Off');
 // allow_url_include       = Off
 // variables_order         = "GPCS"
 // allow_webdav_methods    = Off
-ini_set('session.gc_maxlifetime','600';
+ini_set('session.gc_maxlifetime','600');
 
 
 // PHP file upload handling
