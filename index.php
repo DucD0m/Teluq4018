@@ -16,13 +16,9 @@ $mot_passe;
 $utilisateur;
 $page;
 
-// Pour le calcul de 5 minutes si il y a 5 erreurs de mot de passe consécutives.
-// $temps = strtotime('-5 minutes');
-$temps = strtotime('-30 seconds');
+// Pour le calcul du 5 minutes d'attente dans le cas où il y a 5 erreurs de mot de passe consécutives.
+$temps = strtotime('-5 minutes');
 
-// var_dump($_POST);
-// echo "<br>";
-// echo $_SESSION['auth'];
 
 if(isset($_SESSION['err_mdp_temps']) && $temps < $_SESSION['err_mdp_temps']) {
   die("Vous avez atteint le nombre maximum de 5 essais pour vous authentifier. Vous devez maintenant attendre 5 minutes avant de pouvoir essayer de nouveau.");
