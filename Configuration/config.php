@@ -63,7 +63,7 @@ ini_set('file_uploads','Off');
 
 // PHP session handling
 
-// La configuration par défaut est suffisante pour l'instant.
+// Les permissions doivent être ajustées pour permettre l'écriture au groupe du serveur web. (www-data).
 ini_set('session.save_path','/var/www/html/PHP-session/');
 
 ini_set('session.name', 'ab19b0956c3dc02dbca4c1d13ac00cea6b5c7a8f4c9db8ffd99ea5d577063e4a');
@@ -106,5 +106,23 @@ ini_set('max_execution_time','60');
 ini_set('report_memleaks','On');
 // track_errors            = Off // Removed as of PHP 8.
 ini_set('html_errors','Off');
+
+
+
+// Configuration des permissions de /var/www/html
+// drwxr-s--- 9 root www-data  4096 Aug 28 09:56 ./
+// drwxr-x--- 3 root www-data  4096 May  3 09:10 ../
+// drwxr-s--- 2 root www-data  4096 Aug 28 09:59 Configuration/
+// drwxr-s--- 2 root www-data  4096 Aug 28 07:31 Controlleurs/
+// -rw-r--r-- 1 root www-data 14340 Aug 27 22:00 .DS_Store
+// -rw-r----- 1 root www-data   330 Aug 26 20:23 GestionnaireConfiguration.php
+// drwxr-sr-x 8 root www-data  4096 Aug 28 10:10 .git/
+// -rw-r----- 1 root www-data  2079 Aug 28 08:24 index.php
+// drwxr-s--- 2 root www-data  4096 Aug 27 19:51 Modele/
+// drwxr-s--- 2 root www-data  4096 Aug 28 08:07 PHP-logs/
+// drwxrws--- 2 root www-data  4096 Aug 28 10:09 PHP-session/
+// -rw-r----- 1 root www-data   952 Aug 27 20:11 pwd.php
+// -rw-r----- 1 root www-data    96 Aug 26 20:23 README.md
+// drwxr-s--- 3 root www-data  4096 Aug 26 20:23 Vues/
 
 ?>
