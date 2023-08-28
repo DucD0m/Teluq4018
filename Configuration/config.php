@@ -13,16 +13,16 @@ define("PEPPER", "9bcf59c3d7751c9d3cdef0c98d32d233146c40819af6df132e28ad7e40c579
 
 
 // Configuration PHP selon les recommendations OWASP
-// Seulement les champs modifiables avec ini_set sont représentés.
-// Voir php.ini pour les autres.
+// Seulement les champs modifiables avec ini_set sont configurés.
+// Configuer php.ini pour les autres.
 
 // PHP error handling
 // expose_php              = Off
 ini_set('error_reporting','E_ALL');
-ini_set('display_errors','On'); // DEV
-// ini_set('display_errors','Off'); // PROD
-ini_set('display_startup_errors','On'); // DEV
-//ini_set('display_startup_errors','Off'); // PROD
+// ini_set('display_errors','On'); // DEV
+ini_set('display_errors','Off'); // PROD
+// ini_set('display_startup_errors','On'); // DEV
+ini_set('display_startup_errors','Off'); // PROD
 ini_set('log_errors','On');
 ini_set('error_log','/var/www/html/PHP-logs/php_error.log');
 ini_set('ignore_repeated_errors','Off');
@@ -48,7 +48,7 @@ ini_set('session.gc_maxlifetime','600');
 // PHP file upload handling
 // Cette application ne requiert pas de télécharger des fichiers.
 ini_set('file_uploads','Off');
-// file_uploads            = On
+// ini_set('file_uploads','On');
 // upload_tmp_dir          = /path/PHP-uploads/
 // upload_max_filesize     = 2M
 // max_file_uploads        = 2
@@ -63,7 +63,7 @@ ini_set('file_uploads','Off');
 
 // PHP session handling
 
-// Ne fonctionne pas...
+// Ne fonctionne pas. À vérifier ultérieurement...
 //ini_set('session.save_path','/var/www/html/PHP-session/');
 
 ini_set('session.name', 'ab19b0956c3dc02dbca4c1d13ac00cea6b5c7a8f4c9db8ffd99ea5d577063e4a');
@@ -74,7 +74,10 @@ ini_set('session.use_trans_sid','0');
 // ini_set('session.cookie_domain','full.qualified.domain.name');
 
 #session.cookie_path             = /application/path/
+
+// À configurer ultérieurement...
 //ini_set('session.use_strict_mode','1');
+
 ini_set('session.use_cookies','1');
 ini_set('session.use_only_cookies','1');
 ini_set('session.cookie_lifetime','14400');
@@ -85,7 +88,11 @@ ini_set('session.cookie_lifetime','14400');
 ini_set('session.cookie_httponly','1');
 ini_set('session.cookie_samesite','Strict');
 ini_set('session.cache_expire','30');
-ini_set('session.sid_length','256');
+
+// Ne fonctionne pas.
+//ini_set('session.sid_length','256');
+ini_set('session.sid_length','32');
+
 ini_set('session.sid_bits_per_character','6'); //PHP 7.2+
 // session.hash_function            = 1 # PHP 7.0-7.1
 // session.hash_bits_per_character  = 6 # PHP 7.0-7.1
