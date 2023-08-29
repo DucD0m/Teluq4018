@@ -4,14 +4,14 @@ require_once "Personne.php";
 class Client extends Personne implements Modele {
 
   protected Int $personne = 0;
-  protected String $adhesion = "";
-  protected String $renouvellement = "";
-  protected String $fin_abonnement = "";
-  protected Int $fin_acces_appareils = "";
-  protected Int $heures_specialistes = 0;
-  protected Int $heures_specialistes_utilise = 0;
-  protected Int $cours_groupe_semaine = 0;
-  protected Int $plan = 0;
+  protected $adhesion = "";
+  protected $renouvellement = "";
+  protected $fin_abonnement = "";
+  protected $fin_acces_appareils = "";
+  protected $heures_specialistes = 0;
+  protected $heures_specialistes_utilise = 0;
+  protected $cours_groupe_semaine = 0;
+  protected $plan = 0;
 
   public function get_personne() : Int {
     return $this->personne;
