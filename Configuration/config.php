@@ -7,15 +7,18 @@ define("SERVERNAME", "localhost");
 define("LECTEUR", "lecteur");
 define("MDPLECTEUR", "Jaimelire8!!");
 
-// Configuration pour la connexion lecture de la BD
+// Configuration pour la connexion ecriture de la BD
 define("ECRIVAIN", "ecrivain");
-define("MDPLECTEUR", "Jaimeecrire8!!");
+define("MDPECRIVAIN", "Jaimeecrire8!!");
+
+// Configuration pour la connexion effacer de la BD
+define("EFFACEUR", "effaceur");
+define("MDPEFFACEUR", "Jaimeeffacer8!!");
+
 
 
 // Configuration de la clé pour la vérification d'integrité du processus d'authentification.
 define("PEPPER", "9bcf59c3d7751c9d3cdef0c98d32d233146c40819af6df132e28ad7e40c579c1");
-
-
 
 
 
