@@ -46,7 +46,7 @@ abstract class Personne implements Modele {
   public function set_courriel(String $courriel) {
     $this->courriel = $courriel;
   }
-  public function select_mysql(Int $id, ConnexionLireBD $connexion_lire) : Object|Bool {
+  public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     if($id > 0) {
       $sql = $connexion_lire->prepare("SELECT * FROM personnes WHERE id = :id");
       $sql->bindParam(':id', $id, PDO::PARAM_INT);
@@ -58,7 +58,7 @@ abstract class Personne implements Modele {
       return false;
     }
   }
-  public function insert_mysql(Object $obj, ConnexionEcrireBD $connexion_ecrire) : Int {
+  public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int {
     if(get_class($obj) === 'Client' || get_class($obj) === 'Gestionnaire' || get_class($obj) === 'Specialiste') {
       $sql = $connexion_ecrire->prepare("INSERT INTO personnes (prenom, nom, adresse, telephone, courriel) VALUES (:prenom, :nom, :adresse, :telephone, :courriel)");
       $sql->bindParam(':prenom', $obj->get_prenom(), PDO::PARAM_STR);
@@ -74,7 +74,7 @@ abstract class Personne implements Modele {
       return false;
     }
   }
-  public function update_mysql(Object $obj, ConnexionEcrireBD $connexion_ecrire) : Object|Bool {
+  public function update_mysql(Object $obj, Object $connexion_ecrire) : Object|Bool {
     if(get_class($obj) === 'Client' || get_class($obj) === 'Gestionnaire' || get_class($obj) === 'Specialiste') {
       $sql = $connexion_ecrire->prepare("UPDATE personnes SET prenom = :pnenom, nom = :nom, adresse = :adresse, telephone = :telephone, courriel = :courriel WHERE id = :id");
       $sql->bindParam(':id', $obj->get_id(), PDO::PARAM_INT);
@@ -91,7 +91,7 @@ abstract class Personne implements Modele {
       return false;
     }
   }
-  public function delete_mysql(Object $obj, ConnexionEffacerBD $connexion_effacer) : Int {
+  public function delete_mysql(Object $obj, Object $connexion_effacer) : Int {
     if((get_class($obj) === 'Client' || get_class($obj) === 'Gestionnaire' || get_class($obj) === 'Specialiste') && $obj->get_id() > 0) {
       $sql = $connexion_effacer->prepare("DELETE FROM personnes WHERE id = :id");
       $sql->bindParam(':id', $obj->get_id(), PDO::PARAM_INT);
