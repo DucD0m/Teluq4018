@@ -4,7 +4,7 @@ require_once "Personne.php";
 class Client extends Personne implements Modele {
 
   protected Int $personne = 0;
-  protected string $adhesion = "";
+  protected String $adhesion = "";
   protected $renouvellement = "";
   protected $fin_abonnement = "";
   protected $fin_acces_appareils = "";
