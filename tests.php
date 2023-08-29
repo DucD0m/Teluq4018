@@ -7,6 +7,8 @@ require_once "Controlleurs/ConnexionEcrireBD.php";
 require_once "Controlleurs/ConnexionEffacerBD.php";
 require_once "Tests/ClientTest.php";
 
+echo "test require";
+exit;
 
 $connexion_lire = ConnexionLireBD::connexion();
 $connexion_ecrire = ConnexionEcrireBD::connexion();
