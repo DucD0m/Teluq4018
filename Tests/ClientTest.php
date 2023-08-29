@@ -17,12 +17,12 @@ class ClientTest {
         $date = new DateTime('now');
         $message = "";
 
-        $client->set_id() = 0;
-        $client->set_prenom() = "Jean";
-        $client->set_nom() = "Smith";
-        $client->set_adresse() = "123 rue test, Montréal, Qc, J2J 1J1";
-        $client->set_telephone() = 5145555555;
-        $client->set_courriel() = "jeansmith@hotmail.com";
+        $client->set_id(0);
+        $client->set_prenom("Jean");
+        $client->set_nom("Smith");
+        $client->set_adresse("123 rue test, Montréal, Qc, J2J 1J1");
+        $client->set_telephone(5145555555);
+        $client->set_courriel("jeansmith@hotmail.com");
 
         $client_id = $client->insert_personne_mysql($client, $connexion_ecrire);
         if($client_id == 0){
@@ -38,11 +38,11 @@ class ClientTest {
              $client_mysql->courriel === $client->get_courriel()) {
 
                $client->set_id($client_mysql->id);
-               $client->set_prenom() = "Louis";
-               $client->set_nom() = "Tremblay";
-               $client->set_adresse() = "999 Boul. Test, Québec, Qc, G2G 2G2";
-               $client->set_telephone() = 4185555555;
-               $client->set_courriel() = "louistremblay@google.com";
+               $client->set_prenom("Louis");
+               $client->set_nom("Tremblay");
+               $client->set_adresse("999 Boul. Test, Québec, Qc, G2G 2G2");
+               $client->set_telephone(4185555555);
+               $client->set_courriel("louistremblay@google.com");
 
                $client_mysql->update_personne_mysql($client, $connexion_ecrire);
 
