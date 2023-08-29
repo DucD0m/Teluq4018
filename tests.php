@@ -1,10 +1,11 @@
 <?php
-echo "Test";
-exit;
 require_once "Controlleurs/ConnexionLireBD.php";
 require_once "Controlleurs/ConnexionEcrireBD.php";
 require_once "Controlleurs/ConnexionEffacerBD.php";
 require_once "Tests/ClientTest.php";
+
+echo "Test require/n";
+exit;
 
 $connexion_lire = ConnexionLireBD::connexion();
 $connexion_ecrire = ConnexionEcrireBD::connexion();
