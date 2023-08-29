@@ -90,7 +90,7 @@ class Client extends Personne implements Modele {
     $resultat = parent::insert_mysql($obj, $connexion_ecrire);
     return $resultat;
   }
-  public function insert_mysql(Object $obj) {
+  public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int {
     // Code here
     if(get_class($obj) === 'Client') echo get_class($obj);
     else echo 'wrong type';
@@ -99,7 +99,7 @@ class Client extends Personne implements Modele {
     $resultat = parent::update_mysql($obj, $connexion_ecrire);
     return $resultat;
   }
-  public function update_mysql(Object $obj) {
+  public function update_mysql(Object $obj, Object $connexion_ecrire) : Object|Bool {
     // Code here
     if(get_class($obj) === 'Client') echo get_class($obj);
     else echo 'wrong type';
@@ -108,7 +108,7 @@ class Client extends Personne implements Modele {
     $resultat = parent::delete_mysql($obj, $connexion_effacer);
     return $resultat;
   }
-  public function delete_mysql(Object $obj) {
+  public function delete_mysql(Object $obj, Object $connexion_effacer) : Int {
     // Code here
     if(get_class($obj) === 'Client') echo get_class($obj);
     else echo 'wrong type';
