@@ -1,5 +1,5 @@
 <?php
-jgjjhbjhbjhb
+echo "ClientTest";
 //require_once "Modele/Client.php";
 
 // class ClientTest {
