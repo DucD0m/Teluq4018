@@ -11,7 +11,7 @@ class ConnexionEcrireBD {
     if (!isset(self::$connexion)) {
       $serveur = SERVERNAME;
       $ecrivain = ECRIVAIN;
-      $mdp_lecteur = MDPECRIVAIN;
+      $mdp_ecrivain = MDPECRIVAIN;
       $base_donnees = BASEDONNEES;
 
       try {

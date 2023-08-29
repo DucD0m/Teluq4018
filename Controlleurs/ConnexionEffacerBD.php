@@ -10,7 +10,7 @@ class ConnexionEffacerBD {
   public static function connexion() {
     if (!isset(self::$connexion)) {
       $serveur = SERVERNAME;
-      $effaceur = LECTEUR;
+      $effaceur = EFFACEUR;
       $mdp_effaceur = MDPEFFACEUR;
       $base_donnees = BASEDONNEES;
 
