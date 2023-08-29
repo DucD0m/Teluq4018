@@ -19,7 +19,7 @@ class ConnexionEffacerBD {
         self::$connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       } catch(PDOException $e) {
         //die("Connection failed: " . $e->getMessage());
-        die("Impossible de se connecter en ce moment. Veuillez essayer plus tard.");
+        die("Impossible de se connecter en ce moment. Veuillez essayer plus tard.(3)");
       }
     }
     return self::$connexion;

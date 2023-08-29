@@ -19,7 +19,7 @@ class ConnexionEcrireBD {
         self::$connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       } catch(PDOException $e) {
         //die("Connection failed: " . $e->getMessage());
-        die("Impossible de se connecter en ce moment. Veuillez essayer plus tard.");
+        die("Impossible de se connecter en ce moment. Veuillez essayer plus tard.(2)");
       }
     }
     return self::$connexion;
