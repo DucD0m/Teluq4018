@@ -3,12 +3,12 @@ require_once "Modele.php";
 
 abstract class Personne implements Modele {
 
-  private $id = 0;
-  private $prenom = "";
-  private $nom = "";
-  private $adresse = "";
-  private $telephone = 0;
-  private $courriel = "";
+  private Int $id = 0;
+  private String $prenom = "";
+  private String $nom = "";
+  private String $adresse = "";
+  private Int $telephone = 0;
+  private String $courriel = "";
 
   public function get_id() : Int {
     return $this->id;
