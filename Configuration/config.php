@@ -1,9 +1,16 @@
 <?php
-// Configuration pour la connexion lecture de la BD
+// Configuration de la base de données.
+define("BASEDONNEES", "gym_argente");
 define("SERVERNAME", "localhost");
+
+// Configuration pour la connexion lecture de la BD
 define("LECTEUR", "lecteur");
 define("MDPLECTEUR", "Jaimelire8!!");
-define("BASEDONNEES", "gym_argente");
+
+// Configuration pour la connexion lecture de la BD
+define("ECRIVAIN", "ecrivain");
+define("MDPLECTEUR", "Jaimeecrire8!!");
+
 
 // Configuration de la clé pour la vérification d'integrité du processus d'authentification.
 define("PEPPER", "9bcf59c3d7751c9d3cdef0c98d32d233146c40819af6df132e28ad7e40c579c1");

@@ -46,27 +46,61 @@ abstract class Personne implements Modele {
   public function set_courriel(String $courriel) {
     $this->courriel = $courriel;
   }
-
-  public function select_mysql(Int $id) {
-    // Code here
+  public function select_mysql(Int $id, ConnexionLireBD $connexion_lire) : Object|Bool {
+    if($id > 0) {
+      $sql = $connexion_lire->prepare("SELECT * FROM personnes WHERE id = :id");
+      $sql->bindParam(':id', $id, PDO::PARAM_INT);
+      $sql->execute();
+      $personne = $connexion_lire->fetch(PDO::FETCH_OBJ);
+      return $personne;
+    }
+    else{
+      return false;
+    }
   }
-  public function insert_mysql(Object $obj) {
+  public function insert_mysql(Object $obj, ConnexionEcrireBD $connexion_ecrire) : Int {
     if(get_class($obj) === 'Client' || get_class($obj) === 'Gestionnaire' || get_class($obj) === 'Specialiste') {
-      $sql = $connexion_lecteur->prepare("INSERT INTO personnes (prenom, nom, adresse, telephone, courriel) VALUES (:prenom, :nom, :adresse, :telephone, :courriel)");
-      $sql->bindParam(':prenom', $courriel, PDO::PARAM_STR);
-      $sql->bindParam(':nom', $courriel, PDO::PARAM_STR);
-      $sql->bindParam(':adresse', $courriel, PDO::PARAM_STR);
-      $sql->bindParam(':telephone', $courriel, PDO::PARAM_INT);
-      $sql->bindParam(':courriel', $courriel, PDO::PARAM_STR);
+      $sql = $connexion_ecrire->prepare("INSERT INTO personnes (prenom, nom, adresse, telephone, courriel) VALUES (:prenom, :nom, :adresse, :telephone, :courriel)");
+      $sql->bindParam(':prenom', $obj->get_prenom(), PDO::PARAM_STR);
+      $sql->bindParam(':nom', $obj->get_nom(), PDO::PARAM_STR);
+      $sql->bindParam(':adresse', $obj->get_adresse(), PDO::PARAM_STR);
+      $sql->bindParam(':telephone', $obj->get_telephone(), PDO::PARAM_INT);
+      $sql->bindParam(':courriel', $obj->get_courriel(), PDO::PARAM_STR);
+      $sql->execute();
+      $insert_id = $connexion_ecrire->lastInsertId();
+      return (Int)$insert_id;
+    }
+    else {
+      return false;
+    }
+  }
+  public function update_mysql(Object $obj, ConnexionEcrireBD $connexion_ecrire) : Object|Bool {
+    if(get_class($obj) === 'Client' || get_class($obj) === 'Gestionnaire' || get_class($obj) === 'Specialiste') {
+      $sql = $connexion_ecrire->prepare("UPDATE personnes SET prenom = :pnenom, nom = :nom, adresse = :adresse, telephone = :telephone, courriel = :courriel WHERE id = :id");
+      $sql->bindParam(':id', $obj->get_id(), PDO::PARAM_INT);
+      $sql->bindParam(':prenom', $obj->get_prenom(), PDO::PARAM_STR);
+      $sql->bindParam(':nom', $obj->get_nom(), PDO::PARAM_STR);
+      $sql->bindParam(':adresse', $obj->get_adresse(), PDO::PARAM_STR);
+      $sql->bindParam(':telephone', $obj->get_telephone(), PDO::PARAM_INT);
+      $sql->bindParam(':courriel', $obj->get_courriel(), PDO::PARAM_STR);
+      $sql->execute();
+      $personne = $connexion_ecrire->fetch(PDO::FETCH_OBJ);
+      return $personne;
+    }
+    else {
+      return false;
+    }
+  }
+  public function delete_mysql(Object $obj, ConnexionEffacerBD $connexion_effacer) : Int {
+    if((get_class($obj) === 'Client' || get_class($obj) === 'Gestionnaire' || get_class($obj) === 'Specialiste') && $obj->get_id() > 0) {
+      $sql = $connexion_effacer->prepare("DELETE FROM personnes WHERE id = :id");
+      $sql->bindParam(':id', $obj->get_id(), PDO::PARAM_INT);
       $sql->execute();
       return $sql;
     }
-  }
-  public function update_mysql(Object $obj) {
-    // Code here
-  }
-  public function delete_mysql(Object $obj) {
-    // Code here
+    else{
+      return false;
+    }
   }
 }
 ?>

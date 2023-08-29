@@ -68,7 +68,11 @@ class Client extends Personne implements Modele {
     $this->plan = $plan;
   }
 
-  public function select_mysql(Int $id) {
+  public function select_personne_mysql(Int $id, ConnexionEcrireBD $connexion_lire) : Object|Bool {
+    $resultat = parent::insert_mysql(Int $id, ConnexionLireBD $connexion_lire);
+    return $resultat;
+  }
+  public function select_mysql(Int $id, ConnexionLireBD $connexion_lire) {
     if($id > 0) {
       // MySQL here
       $this->set_personne(1);
@@ -82,18 +86,27 @@ class Client extends Personne implements Modele {
       $this->set_plan(1);
     }
   }
-  public function insert_personne_mysql(Object $obj) {
-    parent::insert_mysql($obj);
+  public function insert_personne_mysql(Object $obj, ConnexionEcrireBD $connexion_ecrire) : Int {
+    $resultat = parent::insert_mysql(Object $obj, ConnexionEcrireBD $connexion_ecrire);
+    return $resultat;
   }
   public function insert_mysql(Object $obj) {
     // Code here
     if(get_class($obj) === 'Client') echo get_class($obj);
     else echo 'wrong type';
   }
+  public function update_personne_mysql(Object $obj, ConnexionEcrireBD $connexion_ecrire) : Object|Bool {
+    $resultat = parent::update_mysql(Object $obj, ConnexionEcrireBD $connexion_ecrire);
+    return $resultat;
+  }
   public function update_mysql(Object $obj) {
     // Code here
     if(get_class($obj) === 'Client') echo get_class($obj);
     else echo 'wrong type';
+  }
+  public function delete_personne_mysql(Object $obj, ConnexionEffacerBD $connexion_effacer) : Int {
+    $resultat = parent::delete_mysql(Object $obj, ConnexionEffacerBD $connexion_effacer);
+    return $resultat;
   }
   public function delete_mysql(Object $obj) {
     // Code here

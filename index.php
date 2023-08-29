@@ -2,6 +2,8 @@
 require_once "Configuration/config.php";
 require_once "Vues/Templates/PageIndex.php";
 require_once "Controlleurs/ConnexionLireBD.php";
+require_once "Controlleurs/ConnexionEcrireBD.php";
+require_once "Controlleurs/ConnexionEffacerBD.php";
 require_once "Controlleurs/Authentification.php";
 require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
@@ -9,7 +11,7 @@ require_once "Controlleurs/fonctions_php.php";
 
 session_start();
 
-$connexion_lecteur;
+$connexion_lire;
 $courriel;
 $mot_passe;
 $utilisateur;
@@ -37,7 +39,7 @@ if(isset($_POST['retour']) && $_POST['retour'] === "oui") {
   redirection();
 }
 
-$connexion_lecteur = ConnexionLireBD::connexion();
+$connexion_lire = ConnexionLireBD::connexion();
 
 // Vérification de session
 if(isset($_SESSION['auth']) && ($_SESSION['auth'] === 'Gestionnaire' || $_SESSION['auth'] === 'Specialiste') &&
@@ -53,7 +55,7 @@ else if(isset($_POST['auth-courriel']) && $_POST['auth-courriel'] != '' && isset
 
   $courriel = $_POST['auth-courriel'];
   $mot_passe = $_POST['auth-mdp'];
-  $utilisateur = Authentification::get_utilisateur($courriel, $mot_passe, $connexion_lecteur);
+  $utilisateur = Authentification::get_utilisateur($courriel, $mot_passe, $connexion_lire);
   redirection();
 }
 
