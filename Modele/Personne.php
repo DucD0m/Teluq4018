@@ -51,10 +51,15 @@ abstract class Personne implements Modele {
     // Code here
   }
   public function insert_mysql(Object $obj) {
-    // Code here
-    // if $obj is instanceof Personne...
-    if($obj->telephone > 0) var_dump($obj);
-    else echo 'wrong id';
+    // if(get_class($obj) === 'Client') {
+    //   $sql = $connexion_lecteur->prepare("INSERT INTO personnes (prenom, nom, adresse, telephone, courriel) VALUES (:prenom, :nom, :adresse, :telephone, :courriel)");
+    //   $sql->bindParam(':prenom', $courriel, PDO::PARAM_STR);
+    //   $sql->bindParam(':nom', $courriel, PDO::PARAM_STR);
+    //   $sql->bindParam(':adresse', $courriel, PDO::PARAM_STR);
+    //   $sql->bindParam(':telephone', $courriel, PDO::PARAM_INT);
+    //   $sql->bindParam(':courriel', $courriel, PDO::PARAM_STR);
+    //   $sql->execute();
+    // }
   }
   public function update_mysql(Object $obj) {
     // Code here
