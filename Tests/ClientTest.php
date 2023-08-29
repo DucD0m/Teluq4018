@@ -1,5 +1,5 @@
 <?php
-require_once "..Modele/Client.php";
+require_once "../Modele/Client.php";
 
 // class ClientTest {
 //
