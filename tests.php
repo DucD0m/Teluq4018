@@ -1,4 +1,5 @@
 <?php
+require_once "Configuration/config.php";
 require_once "Controlleurs/ConnexionLireBD.php";
 require_once "Controlleurs/ConnexionEcrireBD.php";
 require_once "Controlleurs/ConnexionEffacerBD.php";
