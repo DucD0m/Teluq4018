@@ -1,4 +1,6 @@
 <?php
+echo "Test";
+exit;
 require_once "Controlleurs/ConnexionLireBD.php";
 require_once "Controlleurs/ConnexionEcrireBD.php";
 require_once "Controlleurs/ConnexionEffacerBD.php";
@@ -10,6 +12,5 @@ $connexion_effacer = ConnexionEffacerBD::connexion();
 
 //$test_client = ClientTest::test_client($connexion_lire,$connexion_ecrire,$connexion_effacer);
 //echo $test_client;
-echo "Test";
 
 ?>
