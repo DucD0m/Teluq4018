@@ -37,7 +37,7 @@ class ClientTest {
              $client_mysql->telephone === $client->get_telephone() &&
              $client_mysql->courriel === $client->get_courriel()) {
 
-               $client->set_id($client_mysql->id)
+               $client->set_id($client_mysql->id);
                $client->set_prenom() = "Louis";
                $client->set_nom() = "Tremblay";
                $client->set_adresse() = "999 Boul. Test, Québec, Qc, G2G 2G2";
