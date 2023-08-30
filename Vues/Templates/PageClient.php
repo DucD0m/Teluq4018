@@ -522,13 +522,13 @@ class PageClient {
         </button>
 
           <div class="demi-gauche">
-              <form action="#" method="post">
+              <form id="formulaire-gauche" action="#" method="post">
                 <input class="input-client" type="text" id="client-prenom" name="client-prenom" placeholder="prénom" value="<?php echo $prenom; ?>">
                 <input class="input-client" type="text" id="client-nom" name="cient-nom" placeholder="nom" value="<?php echo $nom;?>">
                 <input class="input-client" type="text" id="client-adresse" name="client-adresse" placeholder="adresse" value="<?php echo $adresse; ?>">
                 <input class="input-client" type="text" id="client-telephone" name="client-telephone" placeholder="téléphone (xxx) xxx-xxxx" value="<?php echo $telephone; ?>">
                 <input class="input-client" type="text" id="client-courriel" name="client-courriel" placeholder="courriel" value="<?php echo $courriel; ?>">
-                <input class="couleurs submit-client" type="submit" value="METTRE À JOUR" disabled>
+                <input class="couleurs submit-client" id="maj-personne" type="submit" value="METTRE À JOUR" disabled>
               </form>
           </div>
 
@@ -574,7 +574,7 @@ class PageClient {
 
   <!-- php if date renouvellement > now - 30 jours... else specialistes seulement-->
               <div class="modif-plan">
-                <form action="#" method="post">
+                <form id="formulaire-droite" action="#" method="post">
                   <select id="plan-choix" name="plan-choix">
                       <!-- AFFICHER L'OPTION POUR AJOUTER DES HEURES DE SPÉCIALISTES SEULEMENT SI L'ABONNEMENT EST BON POUR PLUS DE 30 JOURS -->
                     <?php foreach ($plans as $plan) {
@@ -615,6 +615,11 @@ class PageClient {
                     TOTAL À PAYER:
                   </label>
                   <input type="text" class="input-plan input-paiement" id="client-payer" name="client-payer" disabled>
+                  <input class="nouveau-client" type="hidden" id="nouveau-prenom" name="nouveau-prenom" value="" disabled>
+                  <input class="nouveau-client" type="hidden" id="nouveau-nom" name="nouveau-nom" value="" disabled>
+                  <input class="nouveau-client" type="hidden" id="nouveau-adresse" name="nouveau-adresse" value="" disabled>
+                  <input class="nouveau-client" type="hidden" id="nouveau-telephone" name="nouveau-telephone" value="" disabled>
+                  <input class="nouveau-client" type="hidden" id="nouveau-courriel" name="nouveau-courriel" value="" disabled>
                   <input type="submit" class="couleurs submit-client" value="AJOUTER">
                 </form>
               </div>
@@ -626,12 +631,26 @@ class PageClient {
                 confirm('Êtes-vous certain de vouloir supprimer ce compte client?');
               });
 
+              $('.input-client').change(function(){
+                if($(this).attr('id') == 'client-prenom') $('#nouveau-prenom').val($('#client-prenom').val());
+                else if($(this).attr('id') == 'client-nom') $('#nouveau-nom').val($('#client-nom').val());
+                else if($(this).attr('id') == 'client-adresse') $('#nouveau-prenom').val($('#client-adresse').val());
+                else if($(this).attr('id') == 'client-courriel') $('#nouveau-courriel').val($('#client-courriel').val());
+              });
               $('#client-telephone').change(function(){
-                $('#client-telephone').val(formatTelephone($('#client-telephone').val()));
+                let tel = formatTelephone($('#client-telephone').val());
+                $('#client-telephone').val(tel);
+                $('#nouveau-telephone').val(tel);
               });
 
               // Change le format du numéro au chargement initial de la page.
               $('#client-telephone').val(formatTelephone($('#client-telephone').val())).change();
+
+              // Active les champs hidden du formulaire
+              if($('#nouveau-client').length){
+              	$('#maj-personne').css('visibility','hidden');
+                $('.nouveau-client').removeAttr('disabled');
+              }
             });
           </script>
     </body>
