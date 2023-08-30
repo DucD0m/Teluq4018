@@ -3,9 +3,9 @@ require_once "Modele.php";
 
 class RendezVous implements Modele {
 
-  private $date_heure;
-  private $client;
-  private $specialiste;
+  private String $date_heure = "";
+  private Int $client = 0;
+  private Int $specialiste = 0;
 
   public function get_date_heure() : String{
     return $this->date_heure;
@@ -26,24 +26,17 @@ class RendezVous implements Modele {
     $this->specialiste = $specialiste;
   }
 
-  public function select_mysql(Int $id) {
+  public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     // Code here
-    if($id > 0) echo gettype($id);
   }
-  public function insert_mysql(Object $obj) {
+  public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     // Code here
-    if(get_class($obj) === 'RendezVous') echo get_class($obj);
-    else echo 'wrong type';
   }
-  public function update_mysql(Object $obj) {
+  public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     // Code here
-    if(get_class($obj) === 'RendezVous') echo get_class($obj);
-    else echo 'wrong type';
   }
-  public function delete_mysql(Object $obj) {
+  public function delete_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
     // Code here
-    if(get_class($obj) === 'RendezVous') echo get_class($obj);
-    else echo 'wrong type';
   }
 }
 ?>

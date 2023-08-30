@@ -3,8 +3,8 @@ require_once "Modele.php";
 
 class Specialite implements Modele {
 
-  protected $id;
-  protected $nom;
+  protected Int $id = 0;
+  protected String $nom = "";
 
   public function get_id() : Int {
     return $this->id;
@@ -19,27 +19,17 @@ class Specialite implements Modele {
     $this->nom = $nom;
   }
 
-  public function select_mysql(Int $id) {
+  public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     // Code here
-    if($id > 0) echo gettype($id);
   }
-  public function insert_mysql(Object $obj) {
+  public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     // Code here
-    if(get_class($obj) === 'Specialite') echo get_class($obj);
-    else echo 'wrong type';
   }
-  public function update_mysql(Object $obj) {
+  public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     // Code here
-    if(get_class($obj) === 'Specialite') echo get_class($obj);
-    else echo 'wrong type';
   }
-  public function delete_mysql(Object $obj) {
+  public function delete_mysql(Object $obj, Object $connexion_effacer) :Int|Bool {
     // Code here
-    if(get_class($obj) === 'Specialite') echo get_class($obj);
-    else echo 'wrong type';
   }
 }
-$s = new Specialite();
-//$s->select_mysql(123);
-$s->insert_mysql($s);
 ?>

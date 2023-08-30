@@ -19,16 +19,16 @@ class Gestionnaire extends Personne implements Modele {
     $this->mot_passe = $mot_passe;
   }
 
-  public function select_mysql(Int $id) : Object|Bool {
+  public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     // Code here
   }
-  public function insert_mysql(Object $obj) Int|Bool {
+  public function insert_mysql(Object $obj, Object $connexion_ecrire) Int|Bool {
     // Code here
   }
-  public function update_mysql(Object $obj) Int|Bool {
+  public function update_mysql(Object $obj, Object $connexion_ecrire) Int|Bool {
     // Code here
   }
-  public function delete_mysql(Object $obj) Int|Bool {
+  public function delete_mysql(Object $obj, Object $connexion_effacer) Int|Bool {
     // Code here
   }
 }

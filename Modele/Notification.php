@@ -3,11 +3,11 @@ require_once "Modele.php";
 
 class Notification implements Modele {
 
-  private $id;
-  private $date_heure;
-  private $type;
-  private $client;
-  private $vu;
+  private Int $id = 0;
+  private String $date_heure = "";
+  private Int $type = 0;
+  private Int $client = 0;
+  private Int $vu = 0;
 
   public function get_id() : Int {
     return $this->id;
@@ -40,24 +40,17 @@ class Notification implements Modele {
     $this->vu = $vu;
   }
 
-  public function select_mysql(Int $id) {
+  public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     // Code here
-    if($id > 0) echo gettype($id);
   }
-  public function insert_mysql(Object $obj) {
+  public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     // Code here
-    if(get_class($obj) === 'Notification') echo get_class($obj);
-    else echo 'wrong type';
   }
-  public function update_mysql(Object $obj) {
+  public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     // Code here
-    if(get_class($obj) === 'Notification') echo get_class($obj);
-    else echo 'wrong type';
   }
-  public function delete_mysql(Object $obj) {
+  public function delete_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
     // Code here
-    if(get_class($obj) === 'Notification') echo get_class($obj);
-    else echo 'wrong type';
   }
 }
 ?>
