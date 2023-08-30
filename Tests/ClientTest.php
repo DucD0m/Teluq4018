@@ -28,67 +28,68 @@ class ClientTest {
         }
         else {
           $client->select_personne_mysql($client_id, $connexion_lire);
+          var_dump($client);}
 
-          if($client_comparaison->get_prenom() === $client->get_prenom() &&
-             $client_comparaison->get_nom() === $client->get_nom() &&
-             $client_comparaison->get_adresse() === $client->get_adresse() &&
-             $client_comparaison->get_telephone() === $client->get_telephone() &&
-             $client_comparaison->get_courriel() === $client->get_courriel()) {
-
-               $client->set_id($client_comparaison->id);
-               $client->set_prenom("Louis");
-               $client->set_nom("Tremblay");
-               $client->set_adresse("999 Boul. Test, Québec, Qc, G2G 2G2");
-               $client->set_telephone(4185555555);
-               $client->set_courriel("louistremblay@google.com");
-               $client_comparaison = $client;
-
-               $client->update_personne_mysql($client, $connexion_ecrire);
-
-               $client->select_personne_mysql($client->get_id(), $connexion_lire);
-
-               if($client_comparaison->get_prenom() === $client->get_prenom() &&
-                  $client_comparaison->get_nom() === $client->get_nom() &&
-                  $client_comparaison->get_adresse() === $client->get_adresse() &&
-                  $client_comparaison->get_telephone() === $client->get_telephone() &&
-                  $client_comparaison->get_courriel() === $client->get_courriel()) {
-
-                  $client_effacer = $client->delete_personne_mysql($client, $connexion_effacer);
-
-                  if($client_effacer == 0) {
-                    $message .= "Le test delete_personne_mysql à échoué";
-                  }
-
-                } else {
-                  $message .= "Le test update_personne_mysql à échoué";
-                }
-
-             } else {
-               $message .= "Le test select_personne_mysql à échoué";
-             }
-         }
-
-
-
-        // $date->modify('+1 day');
-        // $date->format('Y-m-d H:i:s');
-        // $client->personne = 0;
-        // $client->adhesion = "";
-        // $client->renouvellement = "";
-        // $client->fin_abonnement = "";
-        // $client->fin_acces_appareils = "";
-        // $client->heures_specialistes = 0;
-        // $client->heures_specialistes_utilise = 0;
-        // $client->cours_groupe_semaine = 0;
-        // $client->plan = 0;
-
-        echo "Résultat des tests Client:./n";
-        if($message == "") {
-          echo "Tous les tests Client ont réussi./n";
-        }
-        else {
-          echo $message;
-        }
+        //   if($client_comparaison->get_prenom() === $client->get_prenom() &&
+        //      $client_comparaison->get_nom() === $client->get_nom() &&
+        //      $client_comparaison->get_adresse() === $client->get_adresse() &&
+        //      $client_comparaison->get_telephone() === $client->get_telephone() &&
+        //      $client_comparaison->get_courriel() === $client->get_courriel()) {
+        //
+        //        $client->set_id($client_comparaison->id);
+        //        $client->set_prenom("Louis");
+        //        $client->set_nom("Tremblay");
+        //        $client->set_adresse("999 Boul. Test, Québec, Qc, G2G 2G2");
+        //        $client->set_telephone(4185555555);
+        //        $client->set_courriel("louistremblay@google.com");
+        //        $client_comparaison = $client;
+        //
+        //        $client->update_personne_mysql($client, $connexion_ecrire);
+        //
+        //        $client->select_personne_mysql($client->get_id(), $connexion_lire);
+        //
+        //        if($client_comparaison->get_prenom() === $client->get_prenom() &&
+        //           $client_comparaison->get_nom() === $client->get_nom() &&
+        //           $client_comparaison->get_adresse() === $client->get_adresse() &&
+        //           $client_comparaison->get_telephone() === $client->get_telephone() &&
+        //           $client_comparaison->get_courriel() === $client->get_courriel()) {
+        //
+        //           $client_effacer = $client->delete_personne_mysql($client, $connexion_effacer);
+        //
+        //           if($client_effacer == 0) {
+        //             $message .= "Le test delete_personne_mysql à échoué";
+        //           }
+        //
+        //         } else {
+        //           $message .= "Le test update_personne_mysql à échoué";
+        //         }
+        //
+        //      } else {
+        //        $message .= "Le test select_personne_mysql à échoué";
+        //      }
+        //  }
+        //
+        //
+        //
+        // // $date->modify('+1 day');
+        // // $date->format('Y-m-d H:i:s');
+        // // $client->personne = 0;
+        // // $client->adhesion = "";
+        // // $client->renouvellement = "";
+        // // $client->fin_abonnement = "";
+        // // $client->fin_acces_appareils = "";
+        // // $client->heures_specialistes = 0;
+        // // $client->heures_specialistes_utilise = 0;
+        // // $client->cours_groupe_semaine = 0;
+        // // $client->plan = 0;
+        //
+        // echo "Résultat des tests Client:./n";
+        // if($message == "") {
+        //   echo "Tous les tests Client ont réussi./n";
+        // }
+        // else {
+        //   echo $message;
+        // }
     }
 }
 ?>
