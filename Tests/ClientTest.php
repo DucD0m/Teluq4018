@@ -27,8 +27,9 @@ class ClientTest {
           $message .= "Le test insert_personne_mysql à échoué";
         }
         else {
+          echo "ici2";
           $client->select_personne_mysql($client_id, $connexion_lire);
-          echo "ici";
+          echo "ici2";
         }
         //
         //   if($client_comparaison->get_prenom() === $client->get_prenom() &&
