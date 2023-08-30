@@ -75,4 +75,5 @@ class Plan implements Modele {
     // Code here
   }
 }
+$plan = new Plan();
 ?>
