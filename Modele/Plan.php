@@ -54,7 +54,7 @@ class Plan implements Modele {
     $this->prix_cours_groupe = $prix_cours_groupe;
   }
 
-  public function select_mysql(Int $id, Object $connexion_lire) Object|Bool {
+  public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     if($id > 0) {
       // MySQL here
       $this->set_nom("Mensuel...");
