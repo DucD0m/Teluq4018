@@ -24,6 +24,7 @@ class GestionnaireControlleur {
         // $client->set_telephone(4185555555);
         // $client->set_courriel("louistremblay@google.com");
         $plans = ListePlans::get_liste();
+        var_dump($plans); exit;
         $page = new PageClient($client, $plans);
       }
 
