@@ -12,7 +12,7 @@ class ListePlans {
     $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
     foreach ($resultats as $resultat) {
       $plan = new Plan();
-      $plan->set_id($resultat->id);
+      // $plan->set_id($resultat->id);
       // $plan->set_nom($resultat->nom);
       // $plan->set_duree($resultat->duree);
       // $plan->set_prix($resultat->prix);
