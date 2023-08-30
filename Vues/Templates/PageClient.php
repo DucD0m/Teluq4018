@@ -7,9 +7,9 @@ class PageClient {
     // $prenom = "";
     // $nom = "";
     // $adresse = "";
-    // $telephone = "";
-    $courriel = "";
-    $adhesion = "";
+    $telephone = "";
+    // $courriel = "";
+    // $adhesion = "";
     $plan = "";
     $renouvellement = "";
     $fin_abonnement = "";
@@ -22,7 +22,9 @@ class PageClient {
     $prenom = htmlentities($obj->get_prenom());
     $nom = htmlentities($obj->get_nom());
     $adresse = htmlentities($obj->get_adresse());
-    $telephone = String(htmlentities($obj->get_telephone()));
+    //$telephone = htmlentities($obj->get_telephone());
+    $courriel = htmlentities($obj->get_courriel());
+    $adhesion = htmlentities($obj->get_adhesion());
     if($obj->get_id() > 0) {
       $prenom = htmlentities($obj->get_prenom());
       $nom = htmlentities($obj->get_nom());
