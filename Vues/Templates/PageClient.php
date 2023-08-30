@@ -480,6 +480,18 @@ class PageClient {
           background-color: red;
         }
       </style>
+
+      <script>
+      // Cette fonction ajuste la présentation visuelle du numéro de téléphone.
+      function formatTelephone(phoneNumberString) {
+        var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+        var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+        if (match) {
+          return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+        }
+        return phoneNumberString;
+      }
+      </script>
     </head>
 
     <body>
@@ -514,7 +526,7 @@ class PageClient {
                 <input class="input-client" type="text" id="client-prenom" name="client-prenom" placeholder="prénom" value="<?php echo $prenom; ?>">
                 <input class="input-client" type="text" id="client-nom" name="cient-nom" placeholder="nom" value="<?php echo $nom;?>">
                 <input class="input-client" type="text" id="client-adresse" name="client-adresse" placeholder="adresse" value="<?php echo $adresse; ?>">
-                <input class="input-client" type="text" id="telephone" name="client-telephone" placeholder="téléphone" value="<?php echo $telephone; ?>">
+                <input class="input-client" type="text" id="client-telephone" name="client-telephone" placeholder="téléphone" value="<?php echo $telephone; ?>">
                 <input class="input-client" type="text" id="client-courriel" name="client-courriel" placeholder="courriel" value="<?php echo $courriel; ?>">
                 <input class="couleurs submit-client" type="submit" value="METTRE À JOUR">
               </form>
@@ -603,16 +615,6 @@ class PageClient {
 
           <script>
             $( document ).ready(function() {
-              // Cette fonction ajuste la présentation visuelle du numéro de téléphone.
-              function formatTelephone(phoneNumberString) {
-                var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
-                var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-                if (match) {
-                  return '(' + match[1] + ') ' + match[2] + '-' + match[3];
-                }
-                return phoneNumberString;
-              }
-
               $('#supprimer-client').click(function(){
                 confirm('Êtes-vous certain de vouloir supprimer ce compte client?');
               });
@@ -620,7 +622,7 @@ class PageClient {
               $('#client-telephone').change(function(){
                 $('#client-telephone').val(formatTelephone($('#client-telephone').val()));
               });
-              
+
               $('#client-telephone').val(formatTelephone($('#client-telephone').val())).change();
             });
           </script>
