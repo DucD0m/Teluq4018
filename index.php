@@ -9,7 +9,7 @@ require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 require_once "Controlleurs/fonctions_php.php";
 
-session_start();
+session_start()
 
 $connexion_lire;
 $courriel;

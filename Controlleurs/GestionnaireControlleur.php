@@ -25,8 +25,6 @@ class GestionnaireControlleur {
         // $client->set_courriel("louistremblay@google.com");
         //$plans = ListePlans::get_liste($connexion_lire);
         $plans = array();
-        phpinfo();
-        exit;
         $page = new PageClient($client, $plans);
       }
 
