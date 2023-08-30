@@ -85,7 +85,7 @@ abstract class Personne implements Modele {
       // $sql->bindParam(':courriel', $obj->get_courriel(), PDO::PARAM_STR);
       // $sql->execute();
       // return $sql;
-      return $obj->get_id();
+      return $obj->get_telephone();
     }
     else {
       return false;
