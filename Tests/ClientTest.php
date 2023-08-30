@@ -42,7 +42,7 @@ class ClientTest {
 
                $client_update = $client->update_personne_mysql($client, $connexion_ecrire);
 
-               $client_mysql = $client->select_personne_mysql($client_id, $connexion_lire);
+               $client_mysql = $client->select_personne_mysql($client->get_id(), $connexion_lire);
                var_dump($client_mysql);
 
                // if($client_mysql->prenom === $client->get_prenom() &&
