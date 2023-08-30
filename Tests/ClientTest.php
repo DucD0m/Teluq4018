@@ -81,9 +81,9 @@ class ClientTest {
         // $client->cours_groupe_semaine = 0;
         // $client->plan = 0;
 
-        echo "Résultat des tests Client:.\n";
+        echo "Résultat des tests Client:\n";
         if($message == "") {
-          echo "Tous les tests Client ont réussi.\n";
+          echo "Tous les tests Client ont réussi.\n\n";
         }
         else {
           echo $message;
