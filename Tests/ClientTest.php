@@ -92,7 +92,7 @@ class ClientTest {
         }
     }
 }
-
+echo "fin classe";
 // $connexion_lire = ConnexionLireBD::connexion();
 // $connexion_ecrire = ConnexionEcrireBD::connexion();
 // $connexion_effacer = ConnexionEffacerBD::connexion();
