@@ -22,7 +22,7 @@ class PageClient {
     $prenom = htmlentities($obj->get_prenom());
     $nom = htmlentities($obj->get_nom());
     $adresse = htmlentities($obj->get_adresse());
-    $telephone = htmlentities($obj->get_telephone());
+    $telephone = String(htmlentities($obj->get_telephone()));
     if($obj->get_id() > 0) {
       $prenom = htmlentities($obj->get_prenom());
       $nom = htmlentities($obj->get_nom());
