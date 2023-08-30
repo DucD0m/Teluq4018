@@ -24,7 +24,7 @@ class ClientTest {
 
         $client_id = $client->insert_personne_mysql($client, $connexion_ecrire);
         if($client_id == 0){
-          $message .= "Le test insert_personne_mysql à échoué";
+          $message .= "Le test insert_personne_mysql à échoué\n";
         }
         else {
           $client_select = $client->select_personne_mysql($client_id, $connexion_lire);
@@ -55,15 +55,15 @@ class ClientTest {
                   $client_effacer = $client->delete_personne_mysql($client, $connexion_effacer);
 
                   if($client_effacer == 0) {
-                    $message .= "Le test delete_personne_mysql à échoué";
+                    $message .= "Le test delete_personne_mysql à échoué\n";
                   }
 
                 } else {
-                  $message .= "Le test update_personne_mysql à échoué";
+                  $message .= "Le test update_personne_mysql à échoué\n";
                 }
 
              } else {
-               $message .= "Le test select_personne_mysql à échoué";
+               $message .= "Le test select_personne_mysql à échoué\n";
              }
          }
 
@@ -81,9 +81,9 @@ class ClientTest {
         // $client->cours_groupe_semaine = 0;
         // $client->plan = 0;
 
-        echo "Résultat des tests Client:./n";
+        echo "Résultat des tests Client:.\n";
         if($message == "") {
-          echo "Tous les tests Client ont réussi./n";
+          echo "Tous les tests Client ont réussi.\n";
         }
         else {
           echo $message;
