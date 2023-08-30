@@ -10,6 +10,7 @@ class ClientTest {
     public static function test_client($connexion_lire,$connexion_ecrire,$connexion_effacer) {
 
         $client = new Client();
+        $client_comparaison = new Client();
         $date = new DateTime('now');
         $message = "";
 
@@ -19,36 +20,38 @@ class ClientTest {
         $client->set_adresse("123 rue test, Montréal, Qc, J2J 1J1");
         $client->set_telephone(5145555555);
         $client->set_courriel("jeansmith@hotmail.com");
+        $client_comparaison = $client;
 
         $client_id = $client->insert_personne_mysql($client, $connexion_ecrire);
         if($client_id == 0){
           $message .= "Le test insert_personne_mysql à échoué";
         }
         else {
-          $client_mysql = $client->select_personne_mysql($client_id, $connexion_lire);
+          $client->select_personne_mysql($client_id, $connexion_lire);
 
-          if($client_mysql->prenom === $client->get_prenom() &&
-             $client_mysql->nom === $client->get_nom() &&
-             $client_mysql->adresse === $client->get_adresse() &&
-             $client_mysql->telephone === $client->get_telephone() &&
-             $client_mysql->courriel === $client->get_courriel()) {
+          if($client_comparaison->get_prenom() === $client->get_prenom() &&
+             $client_comparaison->get_nom() === $client->get_nom() &&
+             $client_comparaison->get_adresse() === $client->get_adresse() &&
+             $client_comparaison->get_telephone() === $client->get_telephone() &&
+             $client_comparaison->get_courriel() === $client->get_courriel()) {
 
-               $client->set_id($client_mysql->id);
+               $client->set_id($client_comparaison->id);
                $client->set_prenom("Louis");
                $client->set_nom("Tremblay");
                $client->set_adresse("999 Boul. Test, Québec, Qc, G2G 2G2");
                $client->set_telephone(4185555555);
                $client->set_courriel("louistremblay@google.com");
+               $client_comparaison = $client;
 
-               $client_update = $client->update_personne_mysql($client, $connexion_ecrire);
+               $client->update_personne_mysql($client, $connexion_ecrire);
 
-               $client_mysql = $client->select_personne_mysql($client->get_id(), $connexion_lire);
+               $client->select_personne_mysql($client->get_id(), $connexion_lire);
 
-               if($client_mysql->prenom === $client->get_prenom() &&
-                  $client_mysql->nom === $client->get_nom() &&
-                  $client_mysql->adresse === $client->get_adresse() &&
-                  $client_mysql->telephone === $client->get_telephone() &&
-                  $client_mysql->courriel === $client->get_courriel()) {
+               if($client_comparaison->get_prenom() === $client->get_prenom() &&
+                  $client_comparaison->get_nom() === $client->get_nom() &&
+                  $client_comparaison->get_adresse() === $client->get_adresse() &&
+                  $client_comparaison->get_telephone() === $client->get_telephone() &&
+                  $client_comparaison->get_courriel() === $client->get_courriel()) {
 
                   $client_effacer = $client->delete_personne_mysql($client, $connexion_effacer);
 
