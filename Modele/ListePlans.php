@@ -3,7 +3,7 @@ require_once "Plan.php";
 
 class ListePlans {
 
-  private static $liste = array();
+  //private static $liste = array();
 
   public static function get_liste($connexion_lire)  {
     // $sql = $connexion_lire->prepare("SELECT * FROM plans");
@@ -19,9 +19,10 @@ class ListePlans {
     //   $plan->set_acces_cours_groupe($resultat->acces_cours_groupe);
     //   $plan->set_prix_cours_groupe($resultat->prix_cours_groupe);
     //   array_push($liste, $plan);
-    self::$liste = array('fraise','bannanes');
+    $liste = array('fraise','bannanes');
+    var_dump($liste);
     }
-    return self::$liste;
+    //return self::$liste;
   }
 
 }
