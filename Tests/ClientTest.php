@@ -28,7 +28,6 @@ class ClientTest {
         }
         else {
           $client_select = $client->select_personne_mysql($client_id, $connexion_lire);
-        }
 
           if($client_comparaison->get_prenom() === $client->get_prenom() &&
              $client_comparaison->get_nom() === $client->get_nom() &&
