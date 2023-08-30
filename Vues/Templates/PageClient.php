@@ -620,17 +620,23 @@ class PageClient {
                   <input class="nouveau-client" type="hidden" id="nouveau-telephone" name="nouveau-telephone" value="" disabled>
                   <input class="nouveau-client" type="hidden" id="nouveau-courriel" name="nouveau-courriel" value="" disabled>
                   <input class="nouveau-client" type="hidden" id="formulaire-nouveau-client" name="nouveau-courriel" value="" disabled>
-                  <input type="submit" class="couleurs submit-client" value="AJOUTER" disabled>
+                  <input id="bouton-ajouter" type="submit" class="couleurs submit-client" value="AJOUTER" disabled>
                 </form>
               </div>
           </div>
 
           <script>
             $( document ).ready(function() {
-              var telephone_bd;
+
               $('#supprimer-client').click(function(){
                 confirm('Êtes-vous certain de vouloir supprimer ce compte client?');
               });
+
+              // Active les champs hidden du formulaire pour les nouveaux clients.
+              if($('#nouveau-client').length){
+              	$('#maj-personne').css('visibility','hidden');
+                $('.nouveau-client').removeAttr('disabled');
+              }
 
               // Envoi des valeur du formulaire de gauche dans les champs hidden du formulaire de droite.
               $('.input-client').change(function(){
@@ -652,6 +658,9 @@ class PageClient {
                 $('#client-telephone').val(tel);
                 $('#nouveau-telephone').val(tel);
               });
+
+              // Change le format du numéro au chargement initial de la page.
+              $('#client-telephone').val(formatTelephone($('#client-telephone').val())).change();
 
               // Cache l'option pour le nombre de cours de groupes lorsqu'un plan Spécialiste seulement est choisi.
               $('#plan-choix').change(function(){
@@ -705,14 +714,15 @@ class PageClient {
                 else $('#client-payer').val('');
               });
 
-              // Change le format du numéro au chargement initial de la page.
-              $('#client-telephone').val(formatTelephone($('#client-telephone').val())).change();
+              $('#bouton-ajouter').click(function(){
+                let validation = true;
+                $('input').each(function(){
+                    if($(this).val() === '') validation = false;
+                });
+                if(validation === false) alert('Tous les champs doivent être remplis');
+                else alert('Envoi du formulaire...');
+              });
 
-              // Active les champs hidden du formulaire pour les nouveaux clients.
-              if($('#nouveau-client').length){
-              	$('#maj-personne').css('visibility','hidden');
-                $('.nouveau-client').removeAttr('disabled');
-              }
             });
           </script>
     </body>
