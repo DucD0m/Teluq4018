@@ -54,7 +54,7 @@ abstract class Personne implements Modele {
       $personne = $connexion_lire->fetch(PDO::FETCH_OBJ);
       return $personne;
     }
-    else{
+    else {
       return false;
     }
   }
