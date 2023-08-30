@@ -23,10 +23,8 @@ class ClientTest {
         $client_id = $client->insert_personne_mysql($client, $connexion_ecrire);
         if($client_id == 0){
           $message .= "Le test insert_personne_mysql à échoué";
-          echo "no id";
         }
         else {
-          echo "yes id";
           $client_mysql = $client->select_personne_mysql($client_id, $connexion_lire);
           var_dump($client_mysql);}
         //
