@@ -664,6 +664,9 @@ class PageClient {
                   if($('#client-spec').val() > 10) heures_specialistes = (65 * ($('#client-spec').val() -1));
                   else heures_specialistes = (75 * ($('#client-spec').val() -1));
 
+                  console.log(prix);
+                  console.log(cours_groupe);
+                  console.log(heures_specialistes);
                   total = prix + cours_groupe + heures_specialistes;
                   $('#client-payer').val(total);
                 }
