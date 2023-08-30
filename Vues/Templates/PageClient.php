@@ -585,7 +585,7 @@ class PageClient {
                     ?>
                       <option
                         data-prix="<?php echo $plan_prix; ?>"
-                        data-prix-groupe="<?php echo $plan_prix_cours_groupe; ?>" 
+                        data-prix-groupe="<?php echo $plan_prix_cours_groupe; ?>"
                         value="<?php echo $plan_id; ?>"><?php echo $plan_nom." ( "; ?>
                         <?php
                           if($plan_prix > 0 && $plan_prix_cours_groupe > 0) echo $plan_prix."$ | ";
@@ -652,6 +652,22 @@ class PageClient {
                   $('#client-groupes, #client-groupes-label').css('visibility','hidden');
                 }
                 else $('#client-groupes, #client-groupes-label').css('visibility','visible');
+              });
+
+              $('#plan-choix, #client-groupes, #client-spec').change(function(){
+                if($('#client-groupes').val() != '' && $('#client-spec').val() != ''){
+                  let heures_specialistes;
+                  let total;
+                  let cours_groupe = $('#client-groupes').val() * $("#plan-choix option:selected").data('data-prix-groupe');
+                  let prix = $("#plan-choix option:selected").data('data-prix');
+
+                  if($('#client-spec').val() > 10) heures_specialistes = (65 * ($('#client-spec').val() -1));
+                  else heures_specialistes = (75 * ($('#client-spec').val() -1));
+
+                  total = prix + cours_groupe + heures_specialistes;
+                  $('#client-payer').val(total);
+                }
+                else $('#client-payer').val('');
               });
 
               // Change le format du numéro au chargement initial de la page.
