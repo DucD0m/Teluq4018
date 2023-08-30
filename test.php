@@ -2,7 +2,6 @@
 require_once "Modele/Plan.php";
 require_once "Controlleurs/ConnexionLireBD.php";
 
-echo "test";
 // class ListePlans {
 //
 //   private static $liste = array();
@@ -27,7 +26,8 @@ echo "test";
 //
 // }
 //
-// $connexion_lire = ConnexionLireBD::connexion();
+$connexion_lire = ConnexionLireBD::connexion();
 // $plans = ListePlans::get_liste($connexion_lire);
 // var_dump($plans);
+echo "test2";
 ?>
