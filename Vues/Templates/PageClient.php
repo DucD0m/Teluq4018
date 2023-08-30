@@ -19,7 +19,7 @@ class PageClient {
     $cours_groupe_semaine = "";
 
     $obj->set_prenom('Dominique');
-    $prenom = $obj->get_prenom();
+    $prenom = htmlentities($obj->get_prenom());
     if($obj->get_id() > 0) {
       $prenom = htmlentities($obj->get_prenom());
       $nom = htmlentities($obj->get_nom());
