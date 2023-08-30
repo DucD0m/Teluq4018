@@ -20,7 +20,7 @@ class PageClient {
 
     // $obj->set_prenom('Dominique');
     // $prenom = htmlentities($obj->get_prenom());
-    // if($obj->get_id() > 0) {
+    if($obj->get_id() >= 0) {
       $prenom = htmlentities($obj->get_prenom());
       $nom = htmlentities($obj->get_nom());
       $adresse = htmlentities($obj->get_adresse());
@@ -34,7 +34,7 @@ class PageClient {
       $heures_specialistes = htmlentities($obj->get_heures_specialistes());
       $heures_specialistes_utilise = htmlentities($obj->get_heures_specialistes_utilise());
       $cours_groupe_semaine = htmlentities($obj->get_cours_groupe_semaine());
-     // }
+     }
 ?>
 
     <!DOCTYPE HTML>
