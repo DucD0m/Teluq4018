@@ -23,12 +23,13 @@ class ClientTest {
         $client_comparaison = $client;
 
         $client_id = $client->insert_personne_mysql($client, $connexion_ecrire);
-        var_dump($client_comparaison);
-        // if($client_id == 0){
-        //   $message .= "Le test insert_personne_mysql à échoué";
-        // }
-        // else {
-        //   $client->select_personne_mysql($client_id, $connexion_lire);
+        if($client_id == 0){
+          $message .= "Le test insert_personne_mysql à échoué";
+        }
+        else {
+          $client->select_personne_mysql($client_id, $connexion_lire);
+          var_dump($client);
+        }
         //
         //   if($client_comparaison->get_prenom() === $client->get_prenom() &&
         //      $client_comparaison->get_nom() === $client->get_nom() &&
