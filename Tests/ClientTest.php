@@ -2,9 +2,9 @@
 ini_set('error_reporting','E_ALL');
 ini_set('display_errors','On');
 ini_set('display_startup_errors','On');
-require_once "/var/www/html/Controlleurs/ConnexionLireBD.php";
-require_once "/var/www/html/Controlleurs/ConnexionEcrireBD.php";
-require_once "/var/www/html/Controlleurs/ConnexionEffacerBD.php";
+require "Controlleurs/ConnexionLireBD.php";
+require "Controlleurs/ConnexionEcrireBD.php";
+require "Controlleurs/ConnexionEffacerBD.php";
 
 
 require_once "../Modele/Client.php";
