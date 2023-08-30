@@ -482,11 +482,15 @@ class PageClient {
       </style>
 
       <script>
+      // Pour insertion dans la base de données.
+      var telephone_bd;
+
       // Cette fonction ajuste la présentation visuelle du numéro de téléphone.
       function formatTelephone(phoneNumberString) {
         var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
         var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
         if (match) {
+          telephone_bd = phoneNumberString;
           return '(' + match[1] + ') ' + match[2] + '-' + match[3];
         }
         return '';
@@ -623,6 +627,7 @@ class PageClient {
 
           <script>
             $( document ).ready(function() {
+              var telephone_bd;
               $('#supprimer-client').click(function(){
                 confirm('Êtes-vous certain de vouloir supprimer ce compte client?');
               });
@@ -656,6 +661,24 @@ class PageClient {
                   $('#client-groupes').val('');
                 }
                 else $('#client-groupes, #client-groupes-label').css('visibility','visible');
+              });
+
+              // Validation des champs pour les cours de groupe et pour les heures specialistes.
+              $('#client-groupes').change(function(){
+                let val = parseInt($(this).val());
+        				if(Number.isInteger(val) && val >= 0 && val <= 10 ){}
+        				else {
+        					alert('Le nombre de cours de groupe doit être de 0 à 10.');
+        					$(this).val('');
+        				}
+              });
+              $('#client-spec').change(function(){
+                let val = parseInt($(this).val());
+        				if(Number.isInteger(val) && val >= 0 && val <= 100 ){}
+        				else {
+        					alert('Le nombre de cours de groupe doit être de 0 à 100.');
+        					$(this).val('');
+        				}
               });
 
               // Calcul du total à payer
