@@ -17,11 +17,11 @@ class GestionnaireControlleur {
 
       if(isset($_SESSION['page']) && $_SESSION['page'] === "PageClient") {
         $client = new Client();
-        $client->set_prenom("Louis");
-        $client->set_nom("Tremblay");
-        $client->set_adresse("999 Boul. Test, Québec, Qc, G2G 2G2");
-        $client->set_telephone(4185555555);
-        $client->set_courriel("louistremblay@google.com");
+        // $client->set_prenom("Louis");
+        // $client->set_nom("Tremblay");
+        // $client->set_adresse("999 Boul. Test, Québec, Qc, G2G 2G2");
+        // $client->set_telephone(4185555555);
+        // $client->set_courriel("louistremblay@google.com");
         $plans = array();
         $page = new PageClient($client, $plans);
       }
