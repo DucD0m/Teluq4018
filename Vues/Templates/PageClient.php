@@ -584,6 +584,11 @@ class PageClient {
                       $plan_prix_cours_groupe = $plan->get_prix_cours_groupe();
                     ?>
                       <option value="<?php echo $plan_id; ?>"><?php echo $plan_nom; ?> (<?php echo $plan_prix; ?>$ | 1 cours de groupe/sem: <?php echo $plan_prix_cours_groupe; ?>$)</option>
+                      <!-- <option value="<?php echo $plan_id; ?>">
+                        <?php echo $plan_nom." ("; ?>
+                        <?php if($plan_prix > 0) echo $plan_prix."$ | "; ?>
+                        <?php if($plan_prix_cours_groupe > 0) echo "1 cours de groupe/sem: "$plan_prix_cours_groupe."$)"; ?>
+                      </option> -->
                     <?php } ?>
 
                       <!-- <option value="1">Mensuel avec appareils (80$ | 1 cours de groupe/sem: 25$)</option>
