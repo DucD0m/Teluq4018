@@ -8,6 +8,7 @@ require_once "Controlleurs/Authentification.php";
 require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 require_once "Controlleurs/fonctions_php.php";
+echo "ici"; exit;
 
 session_start();
 
@@ -40,7 +41,7 @@ if(isset($_POST['retour']) && $_POST['retour'] === "oui") {
 }
 
 $connexion_lire = ConnexionLireBD::connexion();
-echo "ici"; exit;
+
 // Vérification de session
 if(isset($_SESSION['auth']) && ($_SESSION['auth'] === 'Gestionnaire' || $_SESSION['auth'] === 'Specialiste') &&
 isset($_SESSION['id']) && $_SESSION['id'] > 0){
