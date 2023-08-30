@@ -3,7 +3,7 @@
 class PageClient {
 
   public function __construct(Client $obj, array $plans) {
-
+    var_dump($obj);
     $prenom = "";
     $nom = "";
     $adresse = "";
