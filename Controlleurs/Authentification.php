@@ -5,13 +5,13 @@ require_once "Controlleurs/SpecialisteControlleur.php";
 
 class Authentification {
 
-  public static function get_utilisateur($courriel, $mot_passe, $connexion_lecteur) {
+  public static function get_utilisateur($courriel, $mot_passe, $connexion_lire) {
 
     $pepper = PEPPER;
     $pwd = $mot_passe;
     $pwd_peppered = hash_hmac("sha256", $pwd, $pepper);
 
-    $sql = $connexion_lecteur->prepare('SELECT g.personne, g.mot_passe
+    $sql = $connexion_lire->prepare('SELECT g.personne, g.mot_passe
       FROM gestionnaires g
       JOIN personnes p ON g.personne = p.id
       WHERE p.courriel = :courriel');
@@ -30,7 +30,7 @@ class Authentification {
     }
 
     else {
-      $sql = $connexion_lecteur->prepare('SELECT s.id, s.mot_passe
+      $sql = $connexion_lire->prepare('SELECT s.id, s.mot_passe
         FROM specialistes s
         JOIN personnes p ON s.personne = p.id
         WHERE p.courriel = :courriel');
