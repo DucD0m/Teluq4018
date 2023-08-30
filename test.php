@@ -4,10 +4,10 @@ require_once "Controlleurs/ConnexionLireBD.php";
 
 class ListePlans {
 
-  //private static $liste = array();
+  private static $liste = array();
 
   public static function get_liste($connexion_lire)  {
-    echo "test3";
+    self::$liste = ('fraise','bannane');
     // $sql = $connexion_lire->prepare("SELECT * FROM plans");
     // $sql->execute();
     // $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
@@ -22,12 +22,12 @@ class ListePlans {
     //   $plan->set_prix_cours_groupe($resultat->prix_cours_groupe);
     //   array_push($liste, $plan);
     // }
-    // return self::$liste;
+    return self::$liste;
   }
 
 }
 
 $connexion_lire = ConnexionLireBD::connexion();
 $plans = ListePlans::get_liste($connexion_lire);
-// var_dump($plans);
+var_dump($plans);
 ?>
