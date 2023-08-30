@@ -620,7 +620,7 @@ class PageClient {
                   <input class="nouveau-client" type="hidden" id="nouveau-telephone" name="nouveau-telephone" value="" disabled>
                   <input class="nouveau-client" type="hidden" id="nouveau-courriel" name="nouveau-courriel" value="" disabled>
                   <input class="nouveau-client" type="hidden" id="formulaire-nouveau-client" name="nouveau-courriel" value="" disabled>
-                  <input id="bouton-ajouter" type="submit" class="couleurs submit-client" value="AJOUTER" disabled>
+                  <input id="bouton-ajouter" type="submit" class="couleurs submit-client" value="AJOUTER" onclick="return false;">
                 </form>
               </div>
           </div>
