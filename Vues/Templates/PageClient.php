@@ -717,7 +717,10 @@ class PageClient {
               $('#bouton-ajouter').click(function(){
                 let validation = true;
                 $('input').each(function(){
-                    if($(this).val() === '') validation = false;
+                    if($(this).val() === '') {
+                      validation = false;
+                      alert($(this).attr('id'));
+                    }
                 });
                 if(validation === false) alert('Tous les champs doivent être remplis');
                 else alert('Envoi du formulaire...');
