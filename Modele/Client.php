@@ -105,8 +105,9 @@ class Client extends Personne implements Modele {
     else echo 'wrong type';
   }
   public function delete_personne_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
-    $resultat = parent::delete_mysql($obj, $connexion_effacer);
-    return $resultat;
+    // $resultat = parent::delete_mysql($obj, $connexion_effacer);
+    // return $resultat;
+    return true;
   }
   public function delete_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
     // Code here
