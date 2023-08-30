@@ -3,11 +3,8 @@ require_once "Vues/Templates/PageMenu.php";
 require_once "Vues/Templates/PageClient.php";
 require_once "Modele/Client.php";
 require_once "Modele/Plan.php";
-echo "ici Gest2";
 require_once "Modele/Notification.php";
-echo "ici Gest3";
 require_once "Controlleurs/fonctions_php.php";
-echo "ici Gest4";
 
 class GestionnaireControlleur {
 
@@ -31,5 +28,4 @@ class GestionnaireControlleur {
       }
   }
 }
-echo "ici Gest5";
 ?>
