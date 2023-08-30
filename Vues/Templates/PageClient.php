@@ -534,7 +534,7 @@ class PageClient {
 
           <div class="demi-droite">
 
-            <?php if($obj->get_id() > 0) { ?>
+            <?php if($obj->get_id() > 0): ?>
               <div id="info-plan" class="info-plan">
                 <div>
                   Date d'adhésion: <span><?php echo $adhesion; ?></span>
@@ -562,13 +562,13 @@ class PageClient {
                 </div>
               </div>
 
-  <?php } else { ?>
+            <?php else: ?>
 
               <div id="nouveau-client" class="info-plan">
                 NOUVEAU CLIENT
               </div>
 
-  <?php } ?>
+            <?php endif; ?>
 
               <hr>
 
@@ -578,11 +578,10 @@ class PageClient {
                   <select id="plan-choix" name="plan-choix">
                       <!-- AFFICHER L'OPTION POUR AJOUTER DES HEURES DE SPÉCIALISTES SEULEMENT SI L'ABONNEMENT EST BON POUR PLUS DE 30 JOURS -->
                     <!-- <?php foreach ($plans as $plan) {
-                      $plan_id = htmlentities($plan->get_id());
+                      $plan_id = $plan->get_id();
                       $plan_nom = htmlentities($plan->get_nom());
-                      $plan_prix = htmlentities($plan->get_prix());
-                      $plan_prix = htmlentities($plan->get_prix());
-                      $plan_prix_cours_groupe = htmlentities($plan->get_prix_cours_groupe());
+                      $plan_prix = $plan->get_prix();
+                      $plan_prix_cours_groupe = $plan->get_prix_cours_groupe();
                     ?>
                       <option value="<?php echo $plan_id; ?>"><?php echo $plan_nom; ?> (<?php echo $plan_prix; ?>$ | 1 cours de groupe/sem: <?php echo $plan_prix_cours_groupe; ?>$)</option>
                     <?php } ?> -->
