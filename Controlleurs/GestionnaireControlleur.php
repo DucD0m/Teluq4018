@@ -23,8 +23,7 @@ class GestionnaireControlleur {
         // $client->set_adresse("999 Boul. Test, Québec, Qc, G2G 2G2");
         // $client->set_telephone(4185555555);
         // $client->set_courriel("louistremblay@google.com");
-        $plans = ListePlans::get_liste();
-        var_dump($plans); exit;
+        $plans = ListePlans::get_liste($connexion_lire);
         $page = new PageClient($client, $plans);
       }
 
