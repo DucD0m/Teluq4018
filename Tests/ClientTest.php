@@ -23,7 +23,7 @@ class ClientTest {
         $client_comparaison = $client;
 
         $client_id = $client->insert_personne_mysql($client, $connexion_ecrire);
-        echo $client_id;
+        var_dump($client_comparaison);
         // if($client_id == 0){
         //   $message .= "Le test insert_personne_mysql à échoué";
         // }
