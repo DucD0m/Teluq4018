@@ -76,15 +76,16 @@ abstract class Personne implements Modele {
   }
   public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     if(get_class($obj) === 'Client' || get_class($obj) === 'Gestionnaire' || get_class($obj) === 'Specialiste') {
-      $sql = $connexion_ecrire->prepare("UPDATE personnes SET prenom = :prenom, nom = :nom, adresse = :adresse, telephone = :telephone, courriel = :courriel WHERE id = :id");
-      $sql->bindParam(':id', $obj->get_id(), PDO::PARAM_INT);
-      $sql->bindParam(':prenom', $obj->get_prenom(), PDO::PARAM_STR);
-      $sql->bindParam(':nom', $obj->get_nom(), PDO::PARAM_STR);
-      $sql->bindParam(':adresse', $obj->get_adresse(), PDO::PARAM_STR);
-      $sql->bindParam(':telephone', $obj->get_telephone(), PDO::PARAM_INT);
-      $sql->bindParam(':courriel', $obj->get_courriel(), PDO::PARAM_STR);
-      $sql->execute();
-      return $sql;
+      // $sql = $connexion_ecrire->prepare("UPDATE personnes SET prenom = :prenom, nom = :nom, adresse = :adresse, telephone = :telephone, courriel = :courriel WHERE id = :id");
+      // $sql->bindParam(':id', $obj->get_id(), PDO::PARAM_INT);
+      // $sql->bindParam(':prenom', $obj->get_prenom(), PDO::PARAM_STR);
+      // $sql->bindParam(':nom', $obj->get_nom(), PDO::PARAM_STR);
+      // $sql->bindParam(':adresse', $obj->get_adresse(), PDO::PARAM_STR);
+      // $sql->bindParam(':telephone', $obj->get_telephone(), PDO::PARAM_INT);
+      // $sql->bindParam(':courriel', $obj->get_courriel(), PDO::PARAM_STR);
+      // $sql->execute();
+      // return $sql;
+      return true;
     }
     else {
       return false;
