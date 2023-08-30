@@ -2,6 +2,7 @@
 require_once "Vues/Templates/PageMenu.php";
 require_once "Vues/Templates/PageClient.php";
 require_once "Modele/Client.php";
+echo "ici Gest"; exit;
 require_once "Modele/Plan.php";
 require_once "Modele/Notification.php";
 require_once "Controlleurs/fonctions_php.php";
