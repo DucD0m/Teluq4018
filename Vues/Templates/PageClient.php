@@ -627,16 +627,12 @@ class PageClient {
                 confirm('Êtes-vous certain de vouloir supprimer ce compte client?');
               });
 
-              // Validation et envoi des valeur du formulaire de gauche dans les champs hidden du formulaire de droite.
+              // Envoi des valeur du formulaire de gauche dans les champs hidden du formulaire de droite.
               $('.input-client').change(function(){
-                if($(this).attr('id') == 'client-prenom' && $('#client-prenom').val() != '') $('#nouveau-prenom').val($('#client-prenom').val());
-                else if($(this).attr('id') == 'client-nom' && $('#client-nom').val() != '') $('#nouveau-nom').val($('#client-nom').val());
-                else if($(this).attr('id') == 'client-adresse' && $('#client-adresse').val() != '') $('#nouveau-adresse').val($('#client-adresse').val());
-                else if($(this).attr('id') == 'client-courriel' && $('#client-prenom').val() != '') $('#nouveau-courriel').val($('#client-courriel').val());
-                else {
-                  alert("Ce champs ne doit être rempli.");
-                  $(this).val('');
-                }
+                if($(this).attr('id') == 'client-prenom') $('#nouveau-prenom').val($('#client-prenom').val());
+                else if($(this).attr('id') == 'client-nom') $('#nouveau-nom').val($('#client-nom').val());
+                else if($(this).attr('id') == 'client-adresse') $('#nouveau-adresse').val($('#client-adresse').val());
+                else if($(this).attr('id') == 'client-courriel') $('#nouveau-courriel').val($('#client-courriel').val());
               });
 
               // Change le format du numéro de téléphone
