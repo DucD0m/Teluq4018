@@ -41,6 +41,10 @@ if(isset($_POST['retour']) && $_POST['retour'] === "oui") {
 
 $connexion_lire = ConnexionLireBD::connexion();
 
+require_once "Modele/ListePlans.php";
+$liste = ListePlans::get_liste($connexion_lire);
+var_dump($liste); exit;
+
 // Vérification de session
 if(isset($_SESSION['auth']) && ($_SESSION['auth'] === 'Gestionnaire' || $_SESSION['auth'] === 'Specialiste') &&
 isset($_SESSION['id']) && $_SESSION['id'] > 0){
