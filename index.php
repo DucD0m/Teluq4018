@@ -5,8 +5,8 @@ require_once "Controlleurs/ConnexionLireBD.php";
 require_once "Controlleurs/ConnexionEcrireBD.php";
 require_once "Controlleurs/ConnexionEffacerBD.php";
 require_once "Controlleurs/Authentification.php";
-require_once "Controlleurs/GestionnaireControlleur.php";
 echo "ici"; exit;
+require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 require_once "Controlleurs/fonctions_php.php";
 
