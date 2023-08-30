@@ -70,7 +70,7 @@ class Client extends Personne implements Modele {
 
   public function select_personne_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     $resultat = parent::select_mysql($id, $connexion_lire);
-    var_dump($resultat);
+    var_dump($this);
     // $this->set_id($resultat->get_id());
     // $this->set_prenom($resultat->get_prenom());
     // $this->set_nom($resultat->get_nom());
