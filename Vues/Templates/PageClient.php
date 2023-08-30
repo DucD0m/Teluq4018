@@ -404,8 +404,8 @@ class PageClient {
         #nouveau-client {
           font-size: 1.5vw;
           text-align: center;
-          height: 15.95vw;
-          line-height: 15.95vw;
+          height: 16.5vw;
+          line-height: 16.5vw;
         }
         #plans-liste {
           position: absolute;
@@ -583,7 +583,10 @@ class PageClient {
                       $plan_prix = $plan->get_prix();
                       $plan_prix_cours_groupe = $plan->get_prix_cours_groupe();
                     ?>
-                      <option value="<?php echo $plan_id; ?>"><?php echo $plan_nom." ( "; ?>
+                      <option
+                        data-prix="<?php echo $plan_prix; ?>"
+                        data-prix-groupe="<?php echo $plan_prix_cours_groupe; ?>" 
+                        value="<?php echo $plan_id; ?>"><?php echo $plan_nom." ( "; ?>
                         <?php
                           if($plan_prix > 0 && $plan_prix_cours_groupe > 0) echo $plan_prix."$ | ";
                           else if($plan_prix == 0 && $plan_prix_cours_groupe > 0) echo "";
