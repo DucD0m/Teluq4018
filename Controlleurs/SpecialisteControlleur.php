@@ -7,7 +7,7 @@ require_once "Controlleurs/fonctions_php.php";
 
 class SpecialisteControlleur {
 
-  public function afficherPage() {
+  public function afficherPage($connexion_lire) {
 
     if(isset($_POST['rdv-client']) && $_POST['rdv-client'] > 0 &&
        isset($_POST['rdv-date']) && format_date($_POST['rdv-date'], "yy-mm-dd") &&

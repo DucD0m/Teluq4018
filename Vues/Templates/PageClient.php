@@ -577,22 +577,22 @@ class PageClient {
                 <form action="#" method="post">
                   <select id="plan-choix" name="plan-choix">
                       <!-- AFFICHER L'OPTION POUR AJOUTER DES HEURES DE SPÉCIALISTES SEULEMENT SI L'ABONNEMENT EST BON POUR PLUS DE 30 JOURS -->
-                    <!-- <?php foreach ($plans as $plan) {
+                    <?php foreach ($plans as $plan) {
                       $plan_id = $plan->get_id();
                       $plan_nom = htmlentities($plan->get_nom());
                       $plan_prix = $plan->get_prix();
                       $plan_prix_cours_groupe = $plan->get_prix_cours_groupe();
                     ?>
                       <option value="<?php echo $plan_id; ?>"><?php echo $plan_nom; ?> (<?php echo $plan_prix; ?>$ | 1 cours de groupe/sem: <?php echo $plan_prix_cours_groupe; ?>$)</option>
-                    <?php } ?> -->
+                    <?php } ?>
 
-                      <option value="1">Mensuel avec appareils (80$ | 1 cours de groupe/sem: 25$)</option>
+                      <!-- <option value="1">Mensuel avec appareils (80$ | 1 cours de groupe/sem: 25$)</option>
                       <option value="2">Mensuel sans appareils (1 cours de groupe/sem: 50$)</option>
                       <option value="3">Trimestriel avec appareils (220$ | 1 cours de groupe/sem: 60$)</option>
                       <option value="4">Trimestriel sans appareils (1 cours de groupe/sem: 135$)</option>
                       <option value="5">Annuel avec appareils (800$ | 1 cours de groupe/sem: 200$)</option>
                       <option value="6">Annuel sans appareils (1 cours de groupe/sem: 500$)</option>
-                      <option value="7">Spécialistes seulement</option>
+                      <option value="7">Spécialistes seulement</option> -->
 
                   </select>
                   <label for="client-groupes">
@@ -622,6 +622,7 @@ class PageClient {
                 $('#client-telephone').val(formatTelephone($('#client-telephone').val()));
               });
 
+              // Change le format du numéro au chargement initial de la page.
               $('#client-telephone').val(formatTelephone($('#client-telephone').val())).change();
             });
           </script>
