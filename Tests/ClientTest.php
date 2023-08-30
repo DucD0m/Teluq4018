@@ -2,12 +2,12 @@
 ini_set('error_reporting','E_ALL');
 ini_set('display_errors','On');
 ini_set('display_startup_errors','On');
-require_once "../Controlleurs/ConnexionLireBD.php";
-require_once "../Controlleurs/ConnexionEcrireBD.php";
-require_once "../Controlleurs/ConnexionEffacerBD.php";
+require_once "Controlleurs/ConnexionLireBD.php";
+require_once "Controlleurs/ConnexionEcrireBD.php";
+require_once "Controlleurs/ConnexionEffacerBD.php";
 
 
-require_once "../Modele/Client.php";
+require_once "Modele/Client.php";
 
 class ClientTest {
 
