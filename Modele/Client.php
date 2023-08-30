@@ -69,7 +69,8 @@ class Client extends Personne implements Modele {
   }
 
   public function select_personne_mysql(Int $id, Object $connexion_lire) : Object|Bool {
-    parent::insert_mysql($id, $connexion_lire);
+    $resultat = parent::select_mysql($id, $connexion_lire);
+    return $resultat;
   }
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     if($id > 0) {

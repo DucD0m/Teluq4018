@@ -47,18 +47,16 @@ abstract class Personne implements Modele {
     $this->courriel = $courriel;
   }
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
-    // if($id > 0) {
-    //   // $sql = $connexion_lire->prepare("SELECT * FROM personnes WHERE id = :id");
-    //   // $sql->bindParam(':id', $id, PDO::PARAM_INT);
-    //   // $sql->execute();
-    //   // $personne = $connexion_lire->fetch(PDO::FETCH_OBJ);
-    //   // return $personne;
-    //   return true;
-    // }
-    // else {
-    //   return false;
-    // }
-    echo "call parent";
+    if($id > 0) {
+      $sql = $connexion_lire->prepare("SELECT * FROM personnes WHERE id = :id");
+      $sql->bindParam(':id', $id, PDO::PARAM_INT);
+      $sql->execute();
+      $personne = $connexion_lire->fetch(PDO::FETCH_OBJ);
+      return $personne;
+    }
+    else {
+      return false;
+    }
   }
   public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int {
     if(get_class($obj) === 'Client' || get_class($obj) === 'Gestionnaire' || get_class($obj) === 'Specialiste') {
