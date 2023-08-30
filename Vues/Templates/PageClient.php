@@ -636,7 +636,9 @@ class PageClient {
               if($('#nouveau-client').length){
               	$('#maj-personne').css('visibility','hidden');
                 $('.nouveau-client').removeAttr('disabled');
+                $('#formulaire-nouveau-client').val('oui');
               }
+              else $('#formulaire-nouveau-client').val('non');
 
               // Envoi des valeur du formulaire de gauche dans les champs hidden du formulaire de droite.
               $('.input-client').change(function(){
@@ -719,7 +721,7 @@ class PageClient {
                 $('input').each(function(){
                     if($(this).val() === '') {
                       validation = false;
-                      alert($(this).attr('id'));
+                      //alert($(this).attr('id'));
                     }
                 });
                 if(validation === false) alert('Tous les champs doivent être remplis');
