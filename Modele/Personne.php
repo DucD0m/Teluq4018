@@ -92,10 +92,11 @@ abstract class Personne implements Modele {
   }
   public function delete_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
     if((get_class($obj) === 'Client' || get_class($obj) === 'Gestionnaire' || get_class($obj) === 'Specialiste') && $obj->get_id() > 0) {
-      $sql = $connexion_effacer->prepare("DELETE FROM personnes WHERE id = :id");
-      $sql->bindParam(':id', $obj->get_id(), PDO::PARAM_INT);
-      $sql->execute();
-      return $sql;
+      // $sql = $connexion_effacer->prepare("DELETE FROM personnes WHERE id = :id");
+      // $sql->bindParam(':id', $obj->get_id(), PDO::PARAM_INT);
+      // $sql->execute();
+      // return $sql;
+      return true;
     }
     else{
       return false;
