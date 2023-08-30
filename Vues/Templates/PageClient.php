@@ -658,10 +658,10 @@ class PageClient {
                 if($('#client-groupes').val() != '' && $('#client-spec').val() != ''){
                   let heures_specialistes;
                   let total;
-                  let cours_groupe = $('#client-groupes').val() * $("#plan-choix option:selected").data('data-prix-groupe');
-                  let prix = $("#plan-choix option:selected").data('data-prix');
+                  let cours_groupe = $('#client-groupes').val() * $("#plan-choix option:selected").data('prix-groupe');
+                  let prix = $("#plan-choix option:selected").data('prix');
 
-                  if($('#client-spec').val() > 10) heures_specialistes = (65 * ($('#client-spec').val() -1));
+                  if($('#client-spec').val() >= 10) heures_specialistes = (65 * ($('#client-spec').val() -1));
                   else heures_specialistes = (75 * ($('#client-spec').val() -1));
 
                   console.log(prix);
