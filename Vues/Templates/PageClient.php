@@ -15,6 +15,7 @@ class PageClient {
     //$fin_abonnement = "";
     //$fin_acces_appareils = "";
     //$heures_specialistes = "";
+    $heures_specialistes = $obj->get_heures_specialistes();
     $heures_specialistes_utilise = "";
     $cours_groupe_semaine = "";
 
@@ -29,7 +30,7 @@ class PageClient {
       $renouvellement = htmlentities($obj->get_renouvellement());
       $fin_abonnement = htmlentities($obj->get_fin_abonnement());
       $fin_acces_appareils = htmlentities($obj->get_fin_acces_appareils());
-      $heures_specialistes = htmlentities($obj->get_heures_specialistes());
+      //$heures_specialistes = htmlentities($obj->get_heures_specialistes());
       //$heures_specialistes_utilise = htmlentities($obj->get_heures_specialistes_utilise());
       //$cours_groupe_semaine = htmlentities($obj->get_cours_groupe_semaine());
      }
