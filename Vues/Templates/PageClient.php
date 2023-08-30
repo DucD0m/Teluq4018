@@ -603,7 +603,7 @@ class PageClient {
                       <option value="7">Spécialistes seulement</option> -->
 
                   </select>
-                  <label for="client-groupes">
+                  <label id="client-groupes-label" for="client-groupes">
                     Nombre de cours de groupes par semaine:
                   </label>
                   <input type="text" class="input-plan" id="client-groupes" name="client-groupes">
@@ -646,8 +646,9 @@ class PageClient {
               $('#plan-choix').change(function(){
                 let nom = $("#plan-choix option:selected").text();
                 if (nom.indexOf("Spécialiste") >= 0){
-                  $('#client-groupes').prop('disabled', true);
+                  $('#client-groupes, #client-groupes-label').css('visibility','hidden');
                 }
+                else $('#client-groupes, #client-groupes-label').css('visibility','visible');
               });
 
               // Change le format du numéro au chargement initial de la page.
