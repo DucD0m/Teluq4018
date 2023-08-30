@@ -40,7 +40,7 @@ if(isset($_POST['retour']) && $_POST['retour'] === "oui") {
 }
 
 $connexion_lire = ConnexionLireBD::connexion();
-
+echo "ici"; exit;
 // Vérification de session
 if(isset($_SESSION['auth']) && ($_SESSION['auth'] === 'Gestionnaire' || $_SESSION['auth'] === 'Specialiste') &&
 isset($_SESSION['id']) && $_SESSION['id'] > 0){
