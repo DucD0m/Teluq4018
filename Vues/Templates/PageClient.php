@@ -3,7 +3,7 @@
 class PageClient {
 
   public function __construct(Client $obj, array $plans) {
-    echo $obj->get_prenom();
+
     $prenom = "";
     $nom = "";
     $adresse = "";
@@ -18,6 +18,8 @@ class PageClient {
     $heures_specialistes_utilise = "";
     $cours_groupe_semaine = "";
 
+    $obj->set_prenom('Dominique');
+    $prenom = $obj->get_prenom();
     if($obj->get_id() > 0) {
       $prenom = htmlentities($obj->get_prenom());
       $nom = htmlentities($obj->get_nom());
