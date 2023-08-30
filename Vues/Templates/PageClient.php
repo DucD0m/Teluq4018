@@ -17,7 +17,7 @@ class PageClient {
     $heures_specialistes = $obj->get_heures_specialistes();
     $heures_specialistes_utilise = $obj->get_heures_specialistes_utilise();
     $cours_groupe_semaine = $obj->get_cours_groupe_semaine();
-var_dump($plans);exit;
+
 ?>
 
     <!DOCTYPE HTML>

@@ -1,13 +1,13 @@
 <?php
-require "Configuration/config.php";
-require "Vues/Templates/PageIndex.php";
-require "Controlleurs/ConnexionLireBD.php";
-require "Controlleurs/ConnexionEcrireBD.php";
-require "Controlleurs/ConnexionEffacerBD.php";
-require "Controlleurs/Authentification.php";
-require "Controlleurs/GestionnaireControlleur.php";
-require "Controlleurs/SpecialisteControlleur.php";
-require "Controlleurs/fonctions_php.php";
+require_once "Configuration/config.php";
+require_once "Vues/Templates/PageIndex.php";
+require_once "Controlleurs/ConnexionLireBD.php";
+require_once "Controlleurs/ConnexionEcrireBD.php";
+require_once "Controlleurs/ConnexionEffacerBD.php";
+require_once "Controlleurs/Authentification.php";
+require_once "Controlleurs/GestionnaireControlleur.php";
+require_once "Controlleurs/SpecialisteControlleur.php";
+require_once "Controlleurs/fonctions_php.php";
 
 session_start();
 
