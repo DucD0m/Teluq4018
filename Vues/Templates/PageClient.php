@@ -6,8 +6,8 @@ class PageClient {
 
     // $prenom = "";
     // $nom = "";
-    $adresse = "";
-    $telephone = "";
+    // $adresse = "";
+    // $telephone = "";
     $courriel = "";
     $adhesion = "";
     $plan = "";
@@ -21,6 +21,8 @@ class PageClient {
     //$obj->set_prenom('');
     $prenom = htmlentities($obj->get_prenom());
     $nom = htmlentities($obj->get_nom());
+    $adresse = htmlentities($obj->get_adresse());
+    $telephone = htmlentities($obj->get_telephone());
     if($obj->get_id() > 0) {
       $prenom = htmlentities($obj->get_prenom());
       $nom = htmlentities($obj->get_nom());
