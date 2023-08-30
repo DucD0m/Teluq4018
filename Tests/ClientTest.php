@@ -39,6 +39,7 @@ class ClientTest {
                $client->set_adresse("999 Boul. Test, Québec, Qc, G2G 2G2");
                $client->set_telephone(4185555555);
                $client->set_courriel("louistremblay@google.com");
+               echo $client->get_id();
 
                $client->update_personne_mysql($client, $connexion_ecrire);
              }}
