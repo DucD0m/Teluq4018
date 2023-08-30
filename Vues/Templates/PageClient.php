@@ -511,11 +511,11 @@ class PageClient {
 
           <div class="demi-gauche">
               <form action="#" method="post">
-                <input class="input-client" type="text" name="client-prenom" placeholder="prénom" value="<?php echo $prenom; ?>">
-                <input class="input-client" type="text" name="cient-nom" placeholder="nom" "<?php echo $nom;?>">
-                <input class="input-client" type="text" name="client-adresse" placeholder="adresse" "<?php echo $adresse; ?>">
-                <input class="input-client" type="text" name="client-telephone" placeholder="téléphone" "<?php echo $telephone; ?>">
-                <input class="input-client" type="text" name="client-courriel" placeholder="courriel" "<?php echo $courriel; ?>">
+                <input class="input-client" type="text" name="client-prenom" placeholder="prénom" value="<?=$prenom?>">
+                <input class="input-client" type="text" name="cient-nom" placeholder="nom" value="<?php echo $nom;?>">
+                <input class="input-client" type="text" name="client-adresse" placeholder="adresse" value="<?php echo $adresse; ?>">
+                <input class="input-client" type="text" name="client-telephone" placeholder="téléphone" value="<?php echo $telephone; ?>">
+                <input class="input-client" type="text" name="client-courriel" placeholder="courriel" value="<?php echo $courriel; ?>">
                 <input class="couleurs submit-client" type="submit" value="METTRE À JOUR">
               </form>
           </div>
