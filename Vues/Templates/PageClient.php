@@ -529,10 +529,10 @@ class PageClient {
           <div class="demi-gauche">
               <form action="#" method="post">
                 <input class="input-client" type="text" name="client-prenom" placeholder="prénom" value="<?php echo $prenom; ?>">
-                <input class="input-client" type="text" name="cient-nom" placeholder="nom" "<?= $nom;?>">
-                <input class="input-client" type="text" name="client-adresse" placeholder="adresse" "<?= $adresse; ?>">
-                <input class="input-client" type="text" name="client-telephone" placeholder="téléphone" "<?= $telephone; ?>">
-                <input class="input-client" type="text" name="client-courriel" placeholder="courriel" "<?= $courriel; ?>">
+                <input class="input-client" type="text" name="cient-nom" placeholder="nom" "<?php echo $nom;?>">
+                <input class="input-client" type="text" name="client-adresse" placeholder="adresse" "<?php echo $adresse; ?>">
+                <input class="input-client" type="text" name="client-telephone" placeholder="téléphone" "<?php echo $telephone; ?>">
+                <input class="input-client" type="text" name="client-courriel" placeholder="courriel" "<?php echo $courriel; ?>">
                 <input class="couleurs submit-client" type="submit" value="METTRE À JOUR">
               </form>
           </div>
@@ -542,28 +542,28 @@ class PageClient {
             <?php if($obj->get_id() > 0) { ?>
               <div id="info-plan" class="info-plan">
                 <div>
-                  Date d'adhésion: <span><?= $adhesion; ?></span>
+                  Date d'adhésion: <span><?php echo $adhesion; ?></span>
                 </div>
                 <div>
-                  Plan: <span><?= $plan; ?></span>
+                  Plan: <span><?php echo $plan; ?></span>
                 </div>
                 <div>
-                  Date de renouvellement: <span><?= $renouvellement; ?></span>
+                  Date de renouvellement: <span><?php echo $renouvellement; ?></span>
                 </div>
                 <div>
-                  Fin de l'abonnement: <span><?= $fin_abonnement; ?></span>
+                  Fin de l'abonnement: <span><?php echo $fin_abonnement; ?></span>
                 </div>
                 <div>
-                  Fin de l'accès aux appareils: <span><?= $fin_acces_appareils; ?></span>
+                  Fin de l'accès aux appareils: <span><?php echo $fin_acces_appareils; ?></span>
                 </div>
                 <div>
-                  Heures avec spécialistes achetées: <span><?= $heures_specialistes; ?></span>
+                  Heures avec spécialistes achetées: <span><?php echo $heures_specialistes; ?></span>
                 </div>
                 <div>
-                  Heures avec spécialistes utilisées: <span><?= $heures_specialistes_utilise; ?></span>
+                  Heures avec spécialistes utilisées: <span><?php echo $heures_specialistes_utilise; ?></span>
                 </div>
                 <div>
-                  Nombre de cours de groupes par semaine: <span><?= $cours_groupe_semaine; ?></span>
+                  Nombre de cours de groupes par semaine: <span><?php echo $cours_groupe_semaine; ?></span>
                 </div>
               </div>
 
@@ -589,7 +589,7 @@ class PageClient {
                       $plan_prix = htmlentities($plan->get_prix());
                       $plan_prix_cours_groupe = htmlentities($plan->get_prix_cours_groupe());
                     ?>
-                      <option value="<?= $plan_id; ?>"><?= $plan_nom; ?> (<?= $plan_prix; ?>$ | 1 cours de groupe/sem: <?= $plan_prix_cours_groupe; ?>$)</option>
+                      <option value="<?php echo $plan_id; ?>"><?php echo $plan_nom; ?> (<?php echo $plan_prix; ?>$ | 1 cours de groupe/sem: <?php echo $plan_prix_cours_groupe; ?>$)</option>
                     <?php } ?> -->
 
                       <option value="1">Mensuel avec appareils (80$ | 1 cours de groupe/sem: 25$)</option>
