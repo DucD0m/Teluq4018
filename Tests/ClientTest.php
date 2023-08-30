@@ -32,7 +32,7 @@ class ClientTest {
              $client_mysql->adresse === $client->get_adresse() &&
              $client_mysql->telephone === $client->get_telephone() &&
              $client_mysql->courriel === $client->get_courriel()) {
-               echo "client mysql ok";} else echo "fail";
+               echo "client mysql ok";} else echo "fail";}
 
         //
         //        $client->set_id($client_mysql->id);
