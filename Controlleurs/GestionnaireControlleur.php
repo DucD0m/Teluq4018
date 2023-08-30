@@ -31,5 +31,5 @@ class GestionnaireControlleur {
       }
   }
 }
-echo "ici Gest5";exit;
+echo "ici Gest5";
 ?>
