@@ -3,8 +3,8 @@ require_once "Personne.php";
 
 class Gestionnaire extends Personne implements Modele {
 
-  protected $personne;
-  protected $mot_passe;
+  protected Int $personne = 0;
+  protected String $mot_passe = "";
 
   public function get_personne() : Int {
     return $this->personne;
@@ -19,24 +19,17 @@ class Gestionnaire extends Personne implements Modele {
     $this->mot_passe = $mot_passe;
   }
 
-  public function select_mysql(Int $id) {
+  public function select_mysql(Int $id) : Object|Bool {
     // Code here
-    if($id > 0) echo gettype($id);
   }
-  public function insert_mysql(Object $obj) {
+  public function insert_mysql(Object $obj) Int|Bool {
     // Code here
-    if(get_class($obj) === 'Gestionnaire') echo get_class($obj);
-    else echo 'wrong type';
   }
-  public function update_mysql(Object $obj) {
+  public function update_mysql(Object $obj) Int|Bool {
     // Code here
-    if(get_class($obj) === 'Gestionnaire') echo get_class($obj);
-    else echo 'wrong type';
   }
-  public function delete_mysql(Object $obj) {
+  public function delete_mysql(Object $obj) Int|Bool {
     // Code here
-    if(get_class($obj) === 'Gestionnaire') echo get_class($obj);
-    else echo 'wrong type';
   }
 }
 ?>

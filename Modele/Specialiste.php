@@ -3,9 +3,9 @@ require_once "Personne.php";
 
 class Specialiste extends Personne implements Modele {
 
-  protected $personne;
-  protected $specialite;
-  protected $mot_passe;
+  protected Int $personne = 0;
+  protected Int $specialite = 0;
+  protected String $mot_passe = "";
 
   public function get_personne() : Int {
     return $this->personne;
@@ -26,27 +26,21 @@ class Specialiste extends Personne implements Modele {
     $this->mot_passe = $mot_passe;
   }
 
-  public function select_mysql(Int $id) : void {
+  public function select_mysql(Int $id, Object $connexion_lire) Object|Bool {
     if($id > 0) {
       // MySQL here
       $this->set_personne(1);
       $this->set_specialite(1);
     }
   }
-  public function insert_mysql(Object $obj) {
+  public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     // Code here
-    if(get_class($obj) === 'Specialiste') echo get_class($obj);
-    else echo 'wrong type';
   }
-  public function update_mysql(Object $obj) {
+  public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     // Code here
-    if(get_class($obj) === 'Specialiste') echo get_class($obj);
-    else echo 'wrong type';
   }
-  public function delete_mysql(Object $obj) {
+  public function delete_mysql(Object $obj, Object $connexion_effacer) :Int|Bool {
     // Code here
-    if(get_class($obj) === 'Specialiste') echo get_class($obj);
-    else echo 'wrong type';
   }
 }
 ?>
