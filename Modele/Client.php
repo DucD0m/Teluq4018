@@ -86,29 +86,29 @@ class Client extends Personne implements Modele {
       $this->set_plan(1);
     }
   }
-  public function insert_personne_mysql(Object $obj, Object $connexion_ecrire) : Int {
+  public function insert_personne_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     $resultat = parent::insert_mysql($obj, $connexion_ecrire);
     return $resultat;
   }
-  public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int {
+  public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     // Code here
     if(get_class($obj) === 'Client') echo get_class($obj);
     else echo 'wrong type';
   }
-  public function update_personne_mysql(Object $obj, Object $connexion_ecrire) : Int {
+  public function update_personne_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     $resultat = parent::update_mysql($obj, $connexion_ecrire);
     return $resultat;
   }
-  public function update_mysql(Object $obj, Object $connexion_ecrire) : Object|Bool {
+  public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     // Code here
     if(get_class($obj) === 'Client') echo get_class($obj);
     else echo 'wrong type';
   }
-  public function delete_personne_mysql(Object $obj, Object $connexion_effacer) : Int {
+  public function delete_personne_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
     $resultat = parent::delete_mysql($obj, $connexion_effacer);
     return $resultat;
   }
-  public function delete_mysql(Object $obj, Object $connexion_effacer) : Int {
+  public function delete_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
     // Code here
     if(get_class($obj) === 'Client') echo get_class($obj);
     else echo 'wrong type';
