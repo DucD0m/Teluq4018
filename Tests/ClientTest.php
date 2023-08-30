@@ -51,41 +51,42 @@ class ClientTest {
                   $client_mysql->courriel === $client->get_courriel()) {
 
                   $client_effacer = $client->delete_personne_mysql($client, $connexion_effacer);
+                  echo $_client_effacer;}}}
 
-                  if($client_effacer === 0) {
-                    $message .= "Le test delete_personne_mysql à échoué";
-                  }
-
-                } else {
-                  $message .= "Le test update_personne_mysql à échoué";
-                }
-
-             } else {
-               $message .= "Le test select_personne_mysql à échoué";
-             }
-         }
-
-
-
-        // $date->modify('+1 day');
-        // $date->format('Y-m-d H:i:s');
-        // $client->personne = 0;
-        // $client->adhesion = "";
-        // $client->renouvellement = "";
-        // $client->fin_abonnement = "";
-        // $client->fin_acces_appareils = "";
-        // $client->heures_specialistes = 0;
-        // $client->heures_specialistes_utilise = 0;
-        // $client->cours_groupe_semaine = 0;
-        // $client->plan = 0;
-
-        echo "Résultat des tests Client:./n";
-        if($message == "") {
-          echo "Tous les tests Client ont réussi./n";
-        }
-        else {
-          echo $message;
-        }
+        //           if($client_effacer === 0) {
+        //             $message .= "Le test delete_personne_mysql à échoué";
+        //           }
+        //
+        //         } else {
+        //           $message .= "Le test update_personne_mysql à échoué";
+        //         }
+        //
+        //      } else {
+        //        $message .= "Le test select_personne_mysql à échoué";
+        //      }
+        //  }
+        //
+        //
+        //
+        // // $date->modify('+1 day');
+        // // $date->format('Y-m-d H:i:s');
+        // // $client->personne = 0;
+        // // $client->adhesion = "";
+        // // $client->renouvellement = "";
+        // // $client->fin_abonnement = "";
+        // // $client->fin_acces_appareils = "";
+        // // $client->heures_specialistes = 0;
+        // // $client->heures_specialistes_utilise = 0;
+        // // $client->cours_groupe_semaine = 0;
+        // // $client->plan = 0;
+        //
+        // echo "Résultat des tests Client:./n";
+        // if($message == "") {
+        //   echo "Tous les tests Client ont réussi./n";
+        // }
+        // else {
+        //   echo $message;
+        // }
     }
 }
 ?>
