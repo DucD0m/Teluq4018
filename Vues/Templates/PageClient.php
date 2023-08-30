@@ -597,14 +597,6 @@ class PageClient {
                       </option>
                     <?php } ?>
 
-                      <!-- <option value="1">Mensuel avec appareils (80$ | 1 cours de groupe/sem: 25$)</option>
-                      <option value="2">Mensuel sans appareils (1 cours de groupe/sem: 50$)</option>
-                      <option value="3">Trimestriel avec appareils (220$ | 1 cours de groupe/sem: 60$)</option>
-                      <option value="4">Trimestriel sans appareils (1 cours de groupe/sem: 135$)</option>
-                      <option value="5">Annuel avec appareils (800$ | 1 cours de groupe/sem: 200$)</option>
-                      <option value="6">Annuel sans appareils (1 cours de groupe/sem: 500$)</option>
-                      <option value="7">Spécialistes seulement</option> -->
-
                   </select>
                   <label id="client-groupes-label" for="client-groupes">
                     Nombre de cours de groupes par semaine:
@@ -634,18 +626,22 @@ class PageClient {
                 confirm('Êtes-vous certain de vouloir supprimer ce compte client?');
               });
 
+              // Envoi des valeur du formulaire de gauche dans les champs hidden du formulaire de droite.
               $('.input-client').change(function(){
                 if($(this).attr('id') == 'client-prenom') $('#nouveau-prenom').val($('#client-prenom').val());
                 else if($(this).attr('id') == 'client-nom') $('#nouveau-nom').val($('#client-nom').val());
                 else if($(this).attr('id') == 'client-adresse') $('#nouveau-adresse').val($('#client-adresse').val());
                 else if($(this).attr('id') == 'client-courriel') $('#nouveau-courriel').val($('#client-courriel').val());
               });
+
+              // Change le format du numéro de téléphone
               $('#client-telephone').change(function(){
                 let tel = formatTelephone($('#client-telephone').val());
                 $('#client-telephone').val(tel);
                 $('#nouveau-telephone').val(tel);
               });
 
+              // Cache l'option pour le nombre de cours de groupes lorsqu'un plan Spécialiste seulement est choisi.
               $('#plan-choix').change(function(){
                 let nom = $("#plan-choix option:selected").text();
                 if (nom.indexOf("Spécialiste") >= 0){
@@ -655,6 +651,7 @@ class PageClient {
                 else $('#client-groupes, #client-groupes-label').css('visibility','visible');
               });
 
+              // Calcul du total à payer
               $('#plan-choix, #client-groupes, #client-spec').change(function(){
                 if($('#client-groupes').val() != '' && $('#client-spec').val() != ''){
                   let prix = $("#plan-choix option:selected").data('prix');
@@ -672,7 +669,7 @@ class PageClient {
                   else  {
                     total = prix + cours_groupe + heures_specialistes;
                   }
-                  
+
                   $('#client-payer').val(total.toFixed(2));
                 }
                 else $('#client-payer').val('');
