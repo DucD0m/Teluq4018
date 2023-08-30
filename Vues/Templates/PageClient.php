@@ -650,25 +650,30 @@ class PageClient {
                 let nom = $("#plan-choix option:selected").text();
                 if (nom.indexOf("Spécialiste") >= 0){
                   $('#client-groupes, #client-groupes-label').css('visibility','hidden');
+                  $('#client-groupes').val('');
                 }
                 else $('#client-groupes, #client-groupes-label').css('visibility','visible');
               });
 
               $('#plan-choix, #client-groupes, #client-spec').change(function(){
                 if($('#client-groupes').val() != '' && $('#client-spec').val() != ''){
+                  let prix = $("#plan-choix option:selected").data('prix');
+                  let cours_groupe = $('#client-groupes').val() * $("#plan-choix option:selected").data('prix-groupe');
                   let heures_specialistes;
                   let total;
-                  let cours_groupe = $('#client-groupes').val() * $("#plan-choix option:selected").data('prix-groupe');
-                  let prix = $("#plan-choix option:selected").data('prix');
 
-                  if($('#client-spec').val() >= 10) heures_specialistes = (65 * ($('#client-spec').val() -1));
-                  else heures_specialistes = (75 * ($('#client-spec').val() -1));
+                  if($('#client-spec').val() >= 10) heures_specialistes = 65 * ($('#client-spec').val());
+                  else heures_specialistes = 75 * ($('#client-spec').val());
 
-                  console.log(prix);
-                  console.log(cours_groupe);
-                  console.log(heures_specialistes);
-                  total = prix + cours_groupe + heures_specialistes;
-                  $('#client-payer').val(total);
+                  let nom = $("#plan-choix option:selected").text();
+                  if (nom.indexOf("Spécialiste") >= 0){
+                    total = heures_specialistes
+                  }
+                  else  {
+                    total = prix + cours_groupe + heures_specialistes;
+                  }
+                  
+                  $('#client-payer').val(total.toFixed(2));
                 }
                 else $('#client-payer').val('');
               });
