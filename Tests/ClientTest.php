@@ -20,8 +20,8 @@ class ClientTest {
         $client->set_telephone(5145555555);
         $client->set_courriel("jeansmith@hotmail.com");
 
-        var_dump($client);
-        // $client_id = $client->insert_personne_mysql($client, $connexion_ecrire);
+        $client_id = $client->insert_personne_mysql($client, $connexion_ecrire);
+        echo $client_id."/n";
         // if($client_id == 0){
         //   $message .= "Le test insert_personne_mysql à échoué";
         // }
