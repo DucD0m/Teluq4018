@@ -528,7 +528,7 @@ class PageClient {
                 <input class="input-client" type="text" id="client-adresse" name="client-adresse" placeholder="adresse" value="<?php echo $adresse; ?>">
                 <input class="input-client" type="text" id="client-telephone" name="client-telephone" placeholder="téléphone" value="<?php echo $telephone; ?>">
                 <input class="input-client" type="text" id="client-courriel" name="client-courriel" placeholder="courriel" value="<?php echo $courriel; ?>">
-                <input class="couleurs submit-client" type="submit" value="METTRE À JOUR">
+                <input class="couleurs submit-client" type="submit" value="METTRE À JOUR" disabled>
               </form>
           </div>
 
