@@ -48,12 +48,11 @@ abstract class Personne implements Modele {
   }
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     if($id > 0) {
-      // $sql = $connexion_lire->prepare("SELECT * FROM personnes WHERE id = :id");
-      // $sql->bindParam(':id', $id, PDO::PARAM_INT);
-      // $sql->execute();
-      // $personne = $connexion_lire->fetch(PDO::FETCH_OBJ);
-      // return $personne;
-      return true;
+      $sql = $connexion_lire->prepare("SELECT * FROM personnes WHERE id = :id");
+      $sql->bindParam(':id', $id, PDO::PARAM_INT);
+      $sql->execute();
+      $personne = $sql->fetch(PDO::FETCH_OBJ);
+      return $personne;
     }
     else {
       return false;
