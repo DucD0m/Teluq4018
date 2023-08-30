@@ -28,7 +28,7 @@ class ClientTest {
         }
         else {
           $client->select_personne_mysql($client_id, $connexion_lire);
-          var_dump($client);
+          echo "ici";
         }
         //
         //   if($client_comparaison->get_prenom() === $client->get_prenom() &&

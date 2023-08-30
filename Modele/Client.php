@@ -76,7 +76,6 @@ class Client extends Personne implements Modele {
     $this->set_adresse($resultat->adresse);
     $this->set_telephone($resultat->telephone);
     $this->set_courriel($resultat->courriel);
-    var_dump($this);
   }
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     if($id > 0) {
