@@ -36,7 +36,6 @@ class ClientTest {
              $client_comparaison->get_telephone() === $client->get_telephone() &&
              $client_comparaison->get_courriel() === $client->get_courriel()) {
 
-               $client->set_id($client_comparaison->id);
                $client->set_prenom("Louis");
                $client->set_nom("Tremblay");
                $client->set_adresse("999 Boul. Test, Québec, Qc, G2G 2G2");
