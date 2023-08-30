@@ -8,19 +8,19 @@ require_once "Modele/Client.php";
 class ClientTest {
 
     public static function test_client($connexion_lire,$connexion_ecrire,$connexion_effacer) {
-        echo "test fonction";
 
-        // $client = new Client();
-        // $date = new DateTime('now');
-        // $message = "";
-        //
-        // $client->set_id(0);
-        // $client->set_prenom("Jean");
-        // $client->set_nom("Smith");
-        // $client->set_adresse("123 rue test, Montréal, Qc, J2J 1J1");
-        // $client->set_telephone(5145555555);
-        // $client->set_courriel("jeansmith@hotmail.com");
-        //
+        $client = new Client();
+        $date = new DateTime('now');
+        $message = "";
+
+        $client->set_id(0);
+        $client->set_prenom("Jean");
+        $client->set_nom("Smith");
+        $client->set_adresse("123 rue test, Montréal, Qc, J2J 1J1");
+        $client->set_telephone(5145555555);
+        $client->set_courriel("jeansmith@hotmail.com");
+
+        var_dump($client);
         // $client_id = $client->insert_personne_mysql($client, $connexion_ecrire);
         // if($client_id == 0){
         //   $message .= "Le test insert_personne_mysql à échoué";
