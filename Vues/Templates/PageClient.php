@@ -634,7 +634,7 @@ class PageClient {
               $('.input-client').change(function(){
                 if($(this).attr('id') == 'client-prenom') $('#nouveau-prenom').val($('#client-prenom').val());
                 else if($(this).attr('id') == 'client-nom') $('#nouveau-nom').val($('#client-nom').val());
-                else if($(this).attr('id') == 'client-adresse') $('#nouveau-prenom').val($('#client-adresse').val());
+                else if($(this).attr('id') == 'client-adresse') $('#nouveau-adresse').val($('#client-adresse').val());
                 else if($(this).attr('id') == 'client-courriel') $('#nouveau-courriel').val($('#client-courriel').val());
               });
               $('#client-telephone').change(function(){
@@ -643,10 +643,17 @@ class PageClient {
                 $('#nouveau-telephone').val(tel);
               });
 
+              $('#plan-choix').change(function(){
+                let nom = $("#plan-choix option:selected").text();
+                if (nom.indexOf("Specialiste") >= 0){
+                  $('#client-groupes').prop('disabled', true);
+                }
+              });
+
               // Change le format du numéro au chargement initial de la page.
               $('#client-telephone').val(formatTelephone($('#client-telephone').val())).change();
 
-              // Active les champs hidden du formulaire
+              // Active les champs hidden du formulaire pour les nouveaux clients.
               if($('#nouveau-client').length){
               	$('#maj-personne').css('visibility','hidden');
                 $('.nouveau-client').removeAttr('disabled');
