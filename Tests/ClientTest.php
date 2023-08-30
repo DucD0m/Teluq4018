@@ -21,12 +21,12 @@ class ClientTest {
         $client->set_courriel("jeansmith@hotmail.com");
 
         $client_id = $client->insert_personne_mysql($client, $connexion_ecrire);
-        echo $client_id."/n";
-        // if($client_id == 0){
-        //   $message .= "Le test insert_personne_mysql à échoué";
-        // }
-        // else {
-        //   $client_mysql->select_personne_mysql($client_id, $connexion_lire);
+        if($client_id == 0){
+          $message .= "Le test insert_personne_mysql à échoué";
+        }
+        else {
+          $client_mysql->select_personne_mysql($client_id, $connexion_lire);
+          var_dump($client_mysql);}
         //
         //   if($client_mysql->prenom === $client->get_prenom() &&
         //      $client_mysql->nom === $client->get_nom() &&
