@@ -1,5 +1,5 @@
 <?php
-require_once "Modele/Plan.php";
+require_once "Plan.php";
 
 class ListePlans {
 
