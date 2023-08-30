@@ -5,7 +5,7 @@ require_once "Controlleurs/ConnexionLireBD.php";
 require_once "Controlleurs/ConnexionEcrireBD.php";
 require_once "Controlleurs/ConnexionEffacerBD.php";
 require_once "Controlleurs/Authentification.php";
-//require_once "Controlleurs/GestionnaireControlleur.php";
+require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 require_once "Controlleurs/fonctions_php.php";
 
@@ -40,21 +40,6 @@ if(isset($_POST['retour']) && $_POST['retour'] === "oui") {
 }
 
 $connexion_lire = ConnexionLireBD::connexion();
-$sql = $connexion_lire->prepare("SELECT * FROM plans");
-$sql->execute();
-$resultats = $sql->fetchAll(PDO::FETCH_OBJ);
-foreach ($resultats as $resultat) {
-  $plan = new Plan();
-  $plan->set_id($resultat->id);
-  $plan->set_nom($resultat->nom);
-  $plan->set_duree($resultat->duree);
-  $plan->set_prix($resultat->prix);
-  $plan->set_acces_appareils($resultat->acces_appareils);
-  $plan->set_acces_cours_groupe($resultat->acces_cours_groupe);
-  $plan->set_prix_cours_groupe($resultat->prix_cours_groupe);
-  array_push($liste, $plan);
-}
-var_dump($liste);exit;
 
 // Vérification de session
 if(isset($_SESSION['auth']) && ($_SESSION['auth'] === 'Gestionnaire' || $_SESSION['auth'] === 'Specialiste') &&
