@@ -75,13 +75,4 @@ class Plan implements Modele {
     // Code here
   }
 }
-$plan = new Plan();
-$plan->set_id(1);
-$plan->set_nom("test");
-$plan->set_duree(1);
-$plan->set_prix(50.00);
-$plan->set_acces_appareils(1);
-$plan->set_acces_cours_groupe(1);
-$plan->set_prix_cours_groupe(10.90);
-var_dump($plan);
 ?>
