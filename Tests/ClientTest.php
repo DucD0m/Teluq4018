@@ -40,7 +40,7 @@ class ClientTest {
                $client->set_telephone(4185555555);
                $client->set_courriel("louistremblay@google.com");
 
-               $client_mysql->update_personne_mysql($client, $connexion_ecrire);
+               $client->update_personne_mysql($client, $connexion_ecrire);
              }}
         //
         //        $client_mysql->select_personne_mysql($client->get_id(), $connexion_lire);
