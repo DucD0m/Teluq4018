@@ -18,7 +18,7 @@ class ListePlans {
       $plan->set_acces_appareils($resultat->acces_appareils);
       $plan->set_acces_cours_groupe($resultat->acces_cours_groupe);
       $plan->set_prix_cours_groupe($resultat->prix_cours_groupe);
-      array_push($liste, $plan);
+      array_push(self::$liste, $plan);
     }
     return self::$liste;
   }
