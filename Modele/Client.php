@@ -95,7 +95,7 @@ class Client extends Personne implements Modele {
     if(get_class($obj) === 'Client') echo get_class($obj);
     else echo 'wrong type';
   }
-  public function update_personne_mysql(Object $obj, Object $connexion_ecrire) : Object|Bool {
+  public function update_personne_mysql(Object $obj, Object $connexion_ecrire) : Int {
     $resultat = parent::update_mysql($obj, $connexion_ecrire);
     return $resultat;
   }

@@ -43,7 +43,7 @@ class ClientTest {
                $client->update_personne_mysql($client, $connexion_ecrire);
              }}
         //
-        //        $client_mysql->select_personne_mysql($client->get_id(), $connexion_lire);
+        //        $client_mysql = $client->select_personne_mysql($client_id, $connexion_lire);
         //
         //        if($client_mysql->prenom === $client->get_prenom() &&
         //           $client_mysql->nom === $client->get_nom() &&
@@ -51,7 +51,7 @@ class ClientTest {
         //           $client_mysql->telephone === $client->get_telephone() &&
         //           $client_mysql->courriel === $client->get_courriel()) {
         //
-        //           $client_effacer->delete_personne_mysql($client, $connexion_effacer);
+        //           $client_effacer = $client->delete_personne_mysql($client, $connexion_effacer);
         //
         //           if($client_effacer === 0) {
         //             $message .= "Le test delete_personne_mysql à échoué";
