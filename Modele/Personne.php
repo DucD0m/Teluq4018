@@ -84,7 +84,7 @@ abstract class Personne implements Modele {
       $sql->bindParam(':telephone', $obj->get_telephone(), PDO::PARAM_INT);
       $sql->bindParam(':courriel', $obj->get_courriel(), PDO::PARAM_STR);
       $sql->execute();
-      $personne = $connexion_ecrire->fetch(PDO::FETCH_OBJ);
+      $personne = $sql->fetch(PDO::FETCH_OBJ);
       return $personne;
     }
     else {
