@@ -645,7 +645,7 @@ class PageClient {
 
               $('#plan-choix').change(function(){
                 let nom = $("#plan-choix option:selected").text();
-                if (nom.indexOf("Specialiste") >= 0){
+                if (nom.indexOf("Spécialiste") >= 0){
                   $('#client-groupes').prop('disabled', true);
                 }
               });
