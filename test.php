@@ -7,7 +7,7 @@ class ListePlans {
   private static $liste = array();
 
   public static function get_liste($connexion_lire)  {
-    self::$liste = ('fraise','bannane');
+    self::$liste = array('fraise','bannane');
     // $sql = $connexion_lire->prepare("SELECT * FROM plans");
     // $sql->execute();
     // $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
