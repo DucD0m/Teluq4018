@@ -1,5 +1,7 @@
 <?php
 require_once "Configuration/config.php";
+phpinfo();
+exit;
 require_once "Vues/Templates/PageIndex.php";
 require_once "Controlleurs/ConnexionLireBD.php";
 require_once "Controlleurs/ConnexionEcrireBD.php";
@@ -9,8 +11,6 @@ require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 require_once "Controlleurs/fonctions_php.php";
 
-phpinfo();
-exit;
 session_start();
 
 $connexion_lire;
