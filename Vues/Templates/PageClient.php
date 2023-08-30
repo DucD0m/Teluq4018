@@ -528,7 +528,7 @@ class PageClient {
 
           <div class="demi-gauche">
               <form action="#" method="post">
-                <input class="input-client" type="text" name="client-prenom" placeholder="prénom" value="<?= $prenom; ?>">
+                <input class="input-client" type="text" name="client-prenom" placeholder="prénom" value="<?php echo $prenom; ?>">
                 <input class="input-client" type="text" name="cient-nom" placeholder="nom" "<?= $nom;?>">
                 <input class="input-client" type="text" name="client-adresse" placeholder="adresse" "<?= $adresse; ?>">
                 <input class="input-client" type="text" name="client-telephone" placeholder="téléphone" "<?= $telephone; ?>">
