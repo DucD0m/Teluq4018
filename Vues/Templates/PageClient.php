@@ -18,9 +18,9 @@ class PageClient {
     $heures_specialistes_utilise = "";
     $cours_groupe_semaine = "";
 
-    // $obj->set_prenom('Dominique');
-    // $prenom = htmlentities($obj->get_prenom());
-    if($obj->get_id() >= 0) {
+    //$obj->set_prenom('');
+    $prenom = htmlentities($obj->get_prenom());
+    if($obj->get_id() > 0) {
       $prenom = htmlentities($obj->get_prenom());
       $nom = htmlentities($obj->get_nom());
       $adresse = htmlentities($obj->get_adresse());
