@@ -480,13 +480,13 @@ class PageClient {
         }
         #supprimer-client {
             position: absolute;
-            top: 4.5vw;
-            right: 34vw;
-            width: 16vw;
-            height: 4vw;
+            top: 5vw;
+            right: 57vw;
+            width: 5vw;
+            height: 3vw;
             text-align: center;
             font-size: 1vw;
-            line-height: 4vw;
+            line-height: 3vw;
             border-radius: 1.5vw;
             cursor: pointer;
             border: none;
@@ -521,7 +521,7 @@ class PageClient {
         </div>
 
         <button id="supprimer-client">
-          SUPPRIMER LE COMPTE <i class="fa-solid fa-trash"></i>
+          <i class="fa-solid fa-trash"></i>
         </button>
 
           <div class="demi-gauche">
