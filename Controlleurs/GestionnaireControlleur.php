@@ -52,7 +52,7 @@ class GestionnaireControlleur {
         $client->set_cours_groupe_semaine(intval($_POST['client-groupes']));
         $client->set_plan(intval($plan->get_id()));
 
-        $resultat_insertion = $client->insert_mysql();
+        $resultat_insertion = $client->insert_mysql($client, $connexion_ecrire);
 
         if($resultat_insertion > 0) {
           $_SESSION['message'] = "Le nouveau compte client a été créé avec succès.";
