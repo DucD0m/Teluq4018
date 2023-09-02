@@ -27,7 +27,7 @@ class GestionnaireControlleur {
         $client->set_prenom($_POST['nouveau-prenom']);
         $client->set_nom($_POST['nouveau-nom']);
         $client->set_adresse($_POST['nouveau-adresse']);
-        $client->set_telephone($_POST['nouveau-telephone']);
+        $client->set_telephone(intval($_POST['nouveau-telephone']));
         $client->set_courriel($_POST['nouveau-courriel']);
         //$client->set_personne() = 0;
         $client->set_adhesion($date);
@@ -47,10 +47,10 @@ class GestionnaireControlleur {
           $client->set_fin_acces_appareils($date);
         }
 
-        $client->set_heures_specialistes($_POST['client-spec']);
+        $client->set_heures_specialistes(intval($_POST['client-spec']));
         $client->set_heures_specialistes_utilise(0);
-        $client->set_cours_groupe_semaine($_POST['client-groupes']);
-        $client->set_plan($plan->id);
+        $client->set_cours_groupe_semaine(intval($_POST['client-groupes']));
+        $client->set_plan(intval($plan->id));
         var_dump($client);exit;
         redirection();
       }
