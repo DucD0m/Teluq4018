@@ -410,6 +410,10 @@ class PageClient {
           height: 16.5vw;
           line-height: 16.5vw;
         }
+        #options-texte {
+          text-align: center;
+          height: 4.2vw;
+        }
         #plans-liste {
           position: absolute;
           top: 10vw;
@@ -624,7 +628,7 @@ class PageClient {
                   </select>
 
                   <?php if($date < strtotime($fin_abonnement." -1 month + 1 day")): ?>
-                    <div>Les autre options seront disponible à moins de 30 jours du renouvellement.</div>
+                    <div id="options-texte">Les autre options seront disponible à moins de 30 jours du renouvellement.</div>
                   <?php else: ?>
                     <label id="client-groupes-label" for="client-groupes">
                       Nombre de cours de groupes par semaine:
