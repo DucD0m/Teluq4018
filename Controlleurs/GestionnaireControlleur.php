@@ -14,6 +14,7 @@ class GestionnaireControlleur {
 
       if(isset($_POST['creer-compte']) && $_POST['creer-compte'] === 'oui') {
         $_SESSION['page'] = "PageClient";
+        unset($_SESSION['client-id']);
         redirection();
       }
 
