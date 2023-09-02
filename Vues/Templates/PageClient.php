@@ -19,6 +19,7 @@ class PageClient {
     $cours_groupe_semaine = $obj->get_cours_groupe_semaine();
 
     $plan_nom = $plan->get_nom();
+    $date = strtotime('now');
 
 ?>
 
@@ -599,12 +600,12 @@ class PageClient {
               <div class="modif-plan">
                 <form id="formulaire-droite" action="http://10.0.1.18" method="post">
                   <select id="plan-id" name="plan-id">
-                      <!-- AFFICHER L'OPTION POUR AJOUTER DES HEURES DE SPÉCIALISTES SEULEMENT SI L'ABONNEMENT EST BON POUR PLUS DE 30 JOURS -->
                     <?php foreach ($plans as $p) {
                       $p_id = $p->get_id();
                       $p_nom = htmlentities($p->get_nom());
                       $p_prix = $p->get_prix();
                       $p_prix_cours_groupe = $p->get_prix_cours_groupe();
+                      if($date < strtotime($fin_abonnement." -1 month") && strpos($plan->get_nom(),"Spécialiste") != '') continue;
                     ?>
                       <option
                         data-prix="<?php echo $p_prix; ?>"
