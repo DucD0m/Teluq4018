@@ -596,7 +596,7 @@ class PageClient {
 
               <hr>
 
-  <!-- php if date renouvellement > now - 30 jours... else specialistes seulement-->
+
               <div class="modif-plan">
                 <form id="formulaire-droite" action="http://10.0.1.18" method="post">
                   <select id="plan-id" name="plan-id">
@@ -605,7 +605,7 @@ class PageClient {
                       $p_nom = htmlentities($p->get_nom());
                       $p_prix = $p->get_prix();
                       $p_prix_cours_groupe = $p->get_prix_cours_groupe();
-                      if($date < strtotime($fin_abonnement." -1 month + 1 day") && strpos($plan->get_nom(),"Spécialiste") != '') continue;
+                      if($date < strtotime($fin_abonnement." -1 month + 1 day") && strpos($plan->get_nom(),"Spécialiste") == '') continue;
                     ?>
                       <option
                         data-prix="<?php echo $p_prix; ?>"
