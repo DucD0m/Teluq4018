@@ -73,6 +73,11 @@ class GestionnaireControlleur {
 
         redirection();
       }
+      // IModification des plans
+      else if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
+         isset($_POST['formulaire-modifier-plans']) && $_POST['formulaire-modifier-plans'] === 'oui') {
+         var_dump($_POST);exit;
+      }
 
       if(isset($_SESSION['page']) && $_SESSION['page'] === "PageClient") {
         $client = new Client();

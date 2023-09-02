@@ -492,7 +492,7 @@ class PagePlans {
         </div>
 
         <div id="plans-liste">
-          <form action="#" method="post">
+          <form id="formulaire-plans" action="http://10.0.1.18" method="post">
             <table id="plans-table">
               <thead>
                 <tr>
@@ -540,10 +540,10 @@ class PagePlans {
                   <td><?php echo $p_acces_appareils; ?></td>
                   <td><?php echo $p_acces_cours_groupe; ?></td>
                   <td>
-                    <input type="hidden" id="plan-id<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_id; ?>">
-                    <input type="text" id="plan-prix-groupe<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix_cours_groupe; ?>">
+                    <input type="hidden" id="plan-id<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>" value="<?php echo $p_id; ?>">
+                    <input type="text" id="plan-prix-groupe<?php echo $p_id; ?>" name="plan-prix-groupe<?php echo $p_id; ?>" value="<?php echo $p_prix_cours_groupe; ?>">
                   </td>
-                  <td class="plans-tr-droite"><input type="text" id="plan-prix<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix; ?>"></td>
+                  <td class="plans-tr-droite"><input type="text" id="plan-prix<?php echo $p_id; ?>" name="plan-prix<?php echo $p_id; ?>" value="<?php echo $p_prix; ?>"></td>
                 </tr>
                 <?php } ?>
 
@@ -612,13 +612,39 @@ class PagePlans {
                 </tr> -->
               </tbody>
             </table>
-            <input type="submit" id="submit-plans" class="couleurs" value="METTRE À JOUR" onclick="return false;">
+            <input type="hidden" id="formulaire-modifier-plans" name="formulaire-modifier-plans" value="oui">
+            <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+            <input type="submit" id="modifier-plans" class="couleurs" value="METTRE À JOUR" onclick="return false;">
           </form>
         </div>
 
         <script>
           $( document ).ready(function() {
-
+            $('#modifier-plans').click(function(){
+              let validation = true;
+              $('input').each(function(){
+                  if($(this).val() === '') {
+                    validation = false;
+                    //alert($(this).attr('id'));
+                  }
+              });
+              if(validation === false) alert('Tous les champs doivent être remplis');
+              else {
+                $('input').each(function(){
+                    if($(this).val() == 'N/A') {
+                      $(this).val(0.00);
+                    }
+                    else {
+                      let val = $(this).val();
+              				val = parseFloat(val.replace('$','')).toFixed(2);
+              				if(Number.isFinite(parseFloat(val))) {
+              					$(this).val(val);
+              				}
+                    }
+                });
+                $('#formulaire-plans').submit();
+              }
+            });
           });
         </script>
 
