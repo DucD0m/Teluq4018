@@ -469,13 +469,19 @@ class PagePlans {
     </head>
 
     <body>
-        <div id="retour-menu" class='couleurs retour'>
-          <i class="fa-solid fa-backward"></i> MENU<br>
-        </div>
+        <form id="retour-form" class="hidden" action="http://10.0.1.18" method="post">
+          <input type="hidden" id="retour-input" name="retour" value="oui">
+          <button id="retour-menu" class="couleurs retour" type="submit" value="submit">
+            <i class="fa-solid fa-backward"></i> MENU<br>
+          </button>
+        </form>
 
-        <button id="quitter" class="couleurs quitter">
-          QUITTER <i class="fa-solid fa-person-running"></i>
-        </button>
+        <form id="quitter-form" class="hidden" action="http://10.0.1.18" method="post">
+          <input type="hidden" id="quitter-input" name="quitter" value="oui">
+          <button id="quitter" class="couleurs quitter" type="submit" value="submit">
+            QUITTER <i class="fa-solid fa-person-running"></i>
+          </button>
+        </form>
 
         <div class="name">
           Dominique Ducas - GESTIONNAIRE DE COMPTE
