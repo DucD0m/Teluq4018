@@ -57,7 +57,7 @@ class GestionnaireControlleur {
         $client->set_heures_specialistes(intval($_POST['client-spec']));
         $client->set_heures_specialistes_utilise(0);
         $client->set_cours_groupe_semaine(intval($_POST['client-groupes']));
-        $client->set_plan($plan);
+        $client->set_plan($_POST['plan-id']);
 
         $resultat_insertion = $client->insert_mysql($client, $connexion_ecrire);
 
