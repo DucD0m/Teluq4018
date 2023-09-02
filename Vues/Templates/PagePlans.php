@@ -505,16 +505,41 @@ class PagePlans {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="plans-tr-gauche">Mensuel avec appareils</td>
-                  <td>1 mois</td>
-                  <td>OUI</td>
-                  <td>OUI</td>
-                  <td><input type="text" id="plan-prix-groupe1" name="plan-prix-groupe1" value="25.00$"></td>
-                  <td class="plans-tr-droite"><input type="text" id="plan-prix1" name="plan-prix1" value="80.00$"></td>
-                </tr>
+                <?php foreach ($plans as $p) {
+                  $p_id = $p->get_id();
+                  $p_nom = htmlentities($p->get_nom());
+                  $p_duree = $p->get_duree();
 
+                  $p_prix = $p->get_prix();
+                  if($p_prix == 0) $p_prix = "N/A";
+
+                  $p_acces_appareils = $p->get_acces_appareils();
+                  if($p_acces_appareils == 1) $p_acces_appareils = "OUI";
+                  else $p_acces_appareils = "NON";
+
+                  $p_acces_cours_groupe = $p->get_acces_cours_groupe();
+                  if($p_acces_cours_groupe == 1) $p_acces_cours_groupe = "OUI";
+                  else $p_acces_cours_groupe = "NON";
+
+                  $p_prix_cours_groupe = $p->get_prix_cours_groupe();
+                  if($p_prix_cours_groupe == 0) $p_prix_cours_groupe = "N/A";
+                  //if($date < strtotime($fin_abonnement." -1 month") && strpos($p->get_nom(),"Spécialiste") == '') continue;
+                ?>
                 <tr>
+                  <td class="plans-tr-gauche"><?php echo $p_nom; ?></td>
+                  <td><?php echo $p_duree; ?> mois</td>
+                  <td><?php echo $p_acces_appareils; ?></td>
+                  <td><?php echo $p_acces_cours_groupe; ?></td>
+                  <td>
+                    <input type="hidden" id="plan-id<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_id; ?>">
+                    <input type="text" id="plan-prix-groupe<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix_cours_groupe; ?>$">
+                  </td>
+                  <td class="plans-tr-droite"><input type="text" id="plan-prix<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix_cours_groupe; ?>$"></td>
+                </tr>
+                <?php } ?>
+
+
+                <!-- <tr>
                   <td class="plans-tr-gauche">Mensuel sans appareils</td>
                   <td>1 mois</td>
                   <td>NON</td>
@@ -575,7 +600,7 @@ class PagePlans {
                   <td>NON</td>
                   <td><input type="text" id="plan-prix-groupe8" name="plan-prix-groupe8" value="N/A" disabled></td>
                   <td class="plans-tr-droite"><input type="text" id="plan-prix8" name="plan-prix8" value="65.00$"></td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
             <input type="submit" id="submit-plans" class="couleurs" value="METTRE À JOUR" onclick="return false;">
@@ -584,7 +609,7 @@ class PagePlans {
 
         <script>
           $( document ).ready(function() {
-            
+
           });
         </script>
 
