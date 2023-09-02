@@ -80,16 +80,29 @@ class Client extends Personne implements Modele {
   }
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     if($id > 0) {
-      // MySQL here
-      $this->set_personne(1);
-      $this->set_adhesion("2023...");
-      $this->set_renouvellement("2023...");
-      $this->set_fin_abonnement("2023...");
-      $this->set_fin_acces_appareils("2023...");
-      $this->set_heures_specialistes(10);
-      $this->set_heures_specialistes_utilise(0);
-      $this->set_cours_groupe_semaine(1);
-      $this->set_plan(1);
+      $sql = $connexion_lire->prepare("SELECT * FROM personnes p JOIN clients c ON p.id = c.personne WHERE c.personne = :id");
+      $sql->bindParam(':id', $id, PDO::PARAM_INT);
+      $sql->execute();
+      $client = $sql->fetch(PDO::FETCH_OBJ);
+
+      $this->set_prenom($client->prenom);
+      $this->set_nom($client->nom);
+      $this->set_adresse($client->adresse);
+      $this->set_telephone(intval($client->telephone));
+      $this->set_courriel($client->courriel);
+      $this->set_personne($client->personne);
+      $this->set_adhesion($client->adhesion);
+      $this->set_renouvellement($client->renouvellement);
+      $this->set_fin_abonnement($client->fin_abonnement);
+      $this->set_fin_acces_appareils($client->fin_acces_appareils);
+      $this->set_heures_specialistes($client->heures_specialistes);
+      $this->set_heures_specialistes_utilise($client->heures_specialistes_utilise);
+      $this->set_cours_groupe_semaine($client->cours_groupe_semaine);
+      $this->set_plan($client->plan);
+      return true;
+    }
+    else {
+      return false;
     }
   }
   public function insert_personne_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {

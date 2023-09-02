@@ -5,6 +5,7 @@ require_once "Modele/Client.php";
 require_once "Modele/Plan.php";
 require_once "Modele/ListePlans.php";
 require_once "Modele/Notification.php";
+require_once "Controlleurs/Authentification.php";
 require_once "Controlleurs/fonctions_php.php";
 
 class GestionnaireControlleur {
@@ -16,7 +17,13 @@ class GestionnaireControlleur {
         redirection();
       }
 
-      if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
+      // Si le token csrf ne correspond pas.
+      if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        Authentification::quitter();
+      }
+
+      // Insertion d'un nouveau compte client.
+      else if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
          isset($_POST['formulaire-nouveau-client']) && $_POST['formulaire-nouveau-client'] === 'oui') {
 
         $date = date("Y-m-d",strtotime('now'));
@@ -59,17 +66,14 @@ class GestionnaireControlleur {
           $_SESSION['client-id'] = $resultat_insertion;
         }
 
-        //echo $resultat_insertion." / ".$_SESSION['message'];exit;
         redirection();
       }
 
       if(isset($_SESSION['page']) && $_SESSION['page'] === "PageClient") {
         $client = new Client();
-        // $client->set_prenom("Louis");
-        // $client->set_nom("Tremblay");
-        // $client->set_adresse("999 Boul. Test, Québec, Qc, G2G 2G2");
-        // $client->set_telephone(4185555555);
-        // $client->set_courriel("louistremblay@google.com");
+        if(isset($_SESSION['client-id']) && isset($_SESSION['client-id'] > 0){
+          $select_client = $client->select_mysql($_SESSION['client-id'], $connexion_lire);
+        }
         $plans = ListePlans::get_liste($connexion_lire);
         $page = new PageClient($client, $plans);
       }
