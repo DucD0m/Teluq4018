@@ -33,7 +33,7 @@ class GestionnaireControlleur {
         $client->set_adhesion($date);
         $client->set_renouvellement($date);
 
-        if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste")) != '') $client->set_fin_abonnement($date);
+        if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') $client->set_fin_abonnement($date);
         else {
           $fin_abonnement = date("Y-m-d",strtotime("+".$plan->get_duree()." months"));
           $client->set_fin_abonnement($fin_abonnement);
