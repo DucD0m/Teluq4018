@@ -649,6 +649,19 @@ class PageClient {
           <script>
             $( document ).ready(function() {
 
+              function afficher_heures_specialistes_seulement() {
+                let nom = $("#plan-id option:selected").text();
+                if (nom.indexOf("Spécialiste") >= 0){
+                  $('#client-groupes, #client-groupes-label').css('visibility','hidden');
+                  $('#client-groupes').val(0);
+                }
+                else $('#client-groupes, #client-groupes-label').css('visibility','visible');
+              }
+
+              // Pour vérifier si on affiche seulement les options spécialistes dans le cas ou on est a plus de 30 jours du renouvellement
+              // lors du chargement initual de la page.
+              afficher_heures_specialistes_seulement();
+
               $('#supprimer-client').click(function(){
                 confirm('Êtes-vous certain de vouloir supprimer ce compte client?');
               });
@@ -694,17 +707,8 @@ class PageClient {
 
               // Cache l'option pour le nombre de cours de groupes lorsqu'un plan Spécialiste seulement est choisi.
               $('#plan-id').change(function(){
-                let nom = $("#plan-id option:selected").text();
-                if (nom.indexOf("Spécialiste") >= 0){
-                  $('#client-groupes, #client-groupes-label').css('visibility','hidden');
-                  $('#client-groupes').val(0);
-                }
-                else $('#client-groupes, #client-groupes-label').css('visibility','visible');
+                afficher_heures_specialistes_seulement();
               });
-
-              // Pour cacher le champ cours de groupes lorsqu'on affiche seulement la possibilité d'ajouter
-              //des heures spécialiste (a plus de 30 jours du renouvellement).
-              $('#plan-id').val().change();
 
               // Validation des champs pour les cours de groupe et pour les heures specialistes.
               $('#client-groupes').change(function(){
