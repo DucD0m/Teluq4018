@@ -22,7 +22,6 @@ class GestionnaireControlleur {
         $date = date("Y-m-d H:i:s",strtotime('now'));
         $plan = new Plan();
         $plan->select_mysql($_POST['plan-id'], $connexion_lire);
-        var_dump($plan);exit;
 
         $client = new Client();
         $client->set_prenom($_POST['nouveau-prenom']);
