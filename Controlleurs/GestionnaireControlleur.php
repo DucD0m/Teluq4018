@@ -33,7 +33,7 @@ class GestionnaireControlleur {
         $client->set_adhesion($date);
         $client->set_renouvellement($date);
 
-        if(strpos($plan->nom,"Spécialiste") >= 0) $client->set_fin_abonnement($date);
+        if(strpos($plan->get_nom(),"Spécialiste") >= 0) $client->set_fin_abonnement($date);
         else {
           $fin_abonnement = date("Y-m-d",strtotime("+$plan->duree month"));
           $client->set_fin_abonnement($fin_abonnement);
@@ -50,7 +50,7 @@ class GestionnaireControlleur {
         $client->set_heures_specialistes(intval($_POST['client-spec']));
         $client->set_heures_specialistes_utilise(0);
         $client->set_cours_groupe_semaine(intval($_POST['client-groupes']));
-        $client->set_plan(intval($plan->id));
+        $client->set_plan(intval($plan->get_id()));
         var_dump($client);exit;
         redirection();
       }
