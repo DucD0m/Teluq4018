@@ -63,10 +63,10 @@ class Plan implements Modele {
       $this->set_id($plan->id);
       $this->set_nom($plan->nom);
       $this->set_duree($plan->duree);
-      $this->set_prix($plan->prix);
+      $this->set_prix(Float($plan->prix));
       $this->set_acces_appareils($plan->set_acces_appareils);
       $this->set_acces_cours_groupe($plan->set_acces_cours_groupe);
-      $this->set_prix_cours_groupe($plan->prix_cours_groupe);
+      $this->set_prix_cours_groupe(Float($plan->prix_cours_groupe));
       return true;
     }
     else {
