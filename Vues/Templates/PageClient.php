@@ -702,6 +702,10 @@ class PageClient {
                 else $('#client-groupes, #client-groupes-label').css('visibility','visible');
               });
 
+              // Pour cacher le champ cours de groupes lorsqu'on affiche seulement la possibilité d'ajouter
+              //des heures spécialiste (a plus de 30 jours du renouvellement).
+              $('#plan-id').val().change();
+
               // Validation des champs pour les cours de groupe et pour les heures specialistes.
               $('#client-groupes').change(function(){
                 let val = parseInt($(this).val());
