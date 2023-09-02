@@ -17,8 +17,7 @@ class GestionnaireControlleur {
         unset($_SESSION['client-id']);
         redirection();
       }
-
-      if(isset($_POST['gestion-plans']) && $_POST['gestion-plans'] === 'oui') {
+      else if(isset($_POST['gestion-plans']) && $_POST['gestion-plans'] === 'oui') {
         $_SESSION['page'] = "PagePlans";
         redirection();
       }
@@ -27,7 +26,6 @@ class GestionnaireControlleur {
       if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         Authentification::quitter();
       }
-
       // Insertion d'un nouveau compte client.
       else if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
          isset($_POST['formulaire-nouveau-client']) && $_POST['formulaire-nouveau-client'] === 'oui') {
@@ -85,7 +83,10 @@ class GestionnaireControlleur {
         $plans = ListePlans::get_liste($connexion_lire);
         $page = new PageClient($client, $plan, $plans);
       }
-
+      else if(isset($_SESSION['page']) && $_SESSION['page'] === "PagePlans") {
+        $plans = ListePlans::get_liste($connexion_lire);
+        $page = new PagePlans($plans);
+      }
       else {
         $gestionnaire_id = 1;
         $message = "Test message";
