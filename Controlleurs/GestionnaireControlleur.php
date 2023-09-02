@@ -1,6 +1,7 @@
 <?php
 require_once "Vues/Templates/PageMenu.php";
 require_once "Vues/Templates/PageClient.php";
+require_once "Vues/Templates/PagePlans.php";
 require_once "Modele/Client.php";
 require_once "Modele/Plan.php";
 require_once "Modele/ListePlans.php";
