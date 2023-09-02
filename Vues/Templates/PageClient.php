@@ -622,10 +622,16 @@ class PageClient {
                     <?php } ?>
 
                   </select>
-                  <label id="client-groupes-label" for="client-groupes">
-                    Nombre de cours de groupes par semaine:
-                  </label>
-                  <input type="text" class="input-plan" id="client-groupes" name="client-groupes">
+
+                  <?php if($date < strtotime($fin_abonnement." -1 month + 1 day") && strpos($p->get_nom(),"Spécialiste") == ''): ?>
+                    <div>Les autre options seront disponible à moins de 30 jours du renouvellement.</div>
+                  <?php else: ?>
+                    <label id="client-groupes-label" for="client-groupes">
+                      Nombre de cours de groupes par semaine:
+                    </label>
+                    <input type="text" class="input-plan" id="client-groupes" name="client-groupes">
+                  <?php endif; ?>
+
                   <label for="client-spec">
                     Nombre d'heures avec un spécialiste:
                   </label>
