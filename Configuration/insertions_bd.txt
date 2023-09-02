@@ -20,4 +20,4 @@ INSERT INTO plans (nom, duree, prix, acces_appareils, acces_cours_groupe, prix_c
 INSERT INTO plans (nom, duree, prix, acces_appareils, acces_cours_groupe, prix_cours_groupe) VALUES ('Annuel avec appareils',12,800.00,1,1,200.00);
 INSERT INTO plans (nom, duree, prix, acces_appareils, acces_cours_groupe, prix_cours_groupe) VALUES ('Annuel sans appareils',12,0.00,0,1,500.00);
 INSERT INTO plans (nom, duree, prix, acces_appareils, acces_cours_groupe, prix_cours_groupe) VALUES ('Spécialistes 1 heure',1,75.00,0,0,0.00);
-INSERT INTO plans (nom, duree, prix, acces_appareils, acces_cours_groupe, prix_cours_groupe) VALUES ('Spécialistes 10 heures',10,65.00,0,0,0.00);
+INSERT INTO plans (nom, duree, prix, acces_appareils, acces_cours_groupe, prix_cours_groupe) VALUES ('Spécialistes 10 heures ou plus',10,65.00,0,0,0.00);

@@ -507,11 +507,20 @@ class PagePlans {
               <tbody>
                 <?php foreach ($plans as $p) {
                   $p_id = $p->get_id();
+
                   $p_nom = htmlentities($p->get_nom());
                   $p_duree = $p->get_duree();
+                  if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') {
+                    if($p_duree > 1) $type_duree = "heures";
+                    else $type_duree = "heure";
+                  }
+                  else {
+                    $type_duree = "mois";
+                  }
 
                   $p_prix = $p->get_prix();
                   if($p_prix == 0) $p_prix = "N/A";
+                  else $p_prix = number_format($p_prix,2)."$";
 
                   $p_acces_appareils = $p->get_acces_appareils();
                   if($p_acces_appareils == 1) $p_acces_appareils = "OUI";
@@ -523,18 +532,18 @@ class PagePlans {
 
                   $p_prix_cours_groupe = $p->get_prix_cours_groupe();
                   if($p_prix_cours_groupe == 0) $p_prix_cours_groupe = "N/A";
-                  //if($date < strtotime($fin_abonnement." -1 month") && strpos($p->get_nom(),"Spécialiste") == '') continue;
+                  else $p_prix_cours_groupe = number_format($p_prix_cours_groupe,2)."$";
                 ?>
                 <tr>
                   <td class="plans-tr-gauche"><?php echo $p_nom; ?></td>
-                  <td><?php echo $p_duree; ?> mois</td>
+                  <td><?php echo $p_duree." ".$type_duree; ?></td>
                   <td><?php echo $p_acces_appareils; ?></td>
                   <td><?php echo $p_acces_cours_groupe; ?></td>
                   <td>
                     <input type="hidden" id="plan-id<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_id; ?>">
                     <input type="text" id="plan-prix-groupe<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix_cours_groupe; ?>$">
                   </td>
-                  <td class="plans-tr-droite"><input type="text" id="plan-prix<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix_cours_groupe; ?>$"></td>
+                  <td class="plans-tr-droite"><input type="text" id="plan-prix<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix; ?>$"></td>
                 </tr>
                 <?php } ?>
 
