@@ -727,7 +727,12 @@ class PageClient {
                     }
                 });
                 if(validation === false) alert('Tous les champs doivent être remplis');
-                else $('#formulaire-droite').submit();
+                else {
+                  let nouveau_tel = $('#nouveau-telephone').val();
+                  nouveau_tel = nouveau_tel.replace(' ','').replace('(','').replace(')','').replace('-','');
+                  $('#nouveau-telephone').val(nouveau_tel);
+                  $('#formulaire-droite').submit();
+                }
               });
 
             });
