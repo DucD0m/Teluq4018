@@ -11,6 +11,7 @@ class PageClient {
     $courriel = htmlentities($obj->get_courriel());
     $adhesion = htmlentities($obj->get_adhesion());
     $plan = $obj->get_plan();
+    $plan_nom = $plan->get_nom();
     $renouvellement = htmlentities($obj->get_renouvellement());
     $fin_abonnement = htmlentities($obj->get_fin_abonnement());
     $fin_acces_appareils = htmlentities($obj->get_fin_acces_appareils());
@@ -561,7 +562,7 @@ class PageClient {
                   Date d'adhésion: <span><?php echo $adhesion; ?></span>
                 </div>
                 <div>
-                  Plan: <span><?php echo $plan; ?></span>
+                  Plan: <span><?php echo $plan_nom; ?></span>
                 </div>
                 <div>
                   Date de renouvellement: <span><?php echo $renouvellement; ?></span>
