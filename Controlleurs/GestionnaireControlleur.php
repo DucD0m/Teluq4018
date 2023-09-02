@@ -19,7 +19,7 @@ class GestionnaireControlleur {
       if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
          isset($_POST['formulaire-nouveau-client']) && $_POST['formulaire-nouveau-client'] === 'oui') {
 
-        $date = date("Y-m-d H:i:s",strtotime('now'));
+        $date = date("Y-m-d",strtotime('now'));
         $plan = new Plan();
         $plan->select_mysql($_POST['plan-id'], $connexion_lire);
 
@@ -33,7 +33,7 @@ class GestionnaireControlleur {
         $client->set_adhesion($date);
         $client->set_renouvellement($date);
 
-        if(strpos($plan->get_nom(),"Spécialiste") >= 0) $client->set_fin_abonnement($date);
+        if(strpos($plan->get_nom(),"Spécialiste") >= 0 && $plan->get_nom(),"Spécialiste") != '') $client->set_fin_abonnement($date);
         else {
           $fin_abonnement = date("Y-m-d",strtotime("+".$plan->get_duree()." months"));
           $client->set_fin_abonnement($fin_abonnement);
