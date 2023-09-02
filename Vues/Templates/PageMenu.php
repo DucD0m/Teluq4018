@@ -511,11 +511,14 @@ class PageMenu {
           </form>
         </div>
 
-        <button id="gestion-plan" class="couleurs menu menu3">
-          GESTION<br>
-          DES PLANS<br>
-          <i class="icons fa-solid fa-file"></i>
-        </button>
+        <form id="plans-form" class="hidden" action="http://10.0.1.18" method="post">
+          <input type="hidden" id="gestion-plans" name="gestion-plans" value="oui">
+          <button id="plans" class="couleurs menu menu3">
+            GESTION<br>
+            DES PLANS<br>
+            <i class="icons fa-solid fa-file"></i>
+          </button>
+        </form>
 
         <div class="couleurs-no-hover menu menu4">
           <div class="notif">

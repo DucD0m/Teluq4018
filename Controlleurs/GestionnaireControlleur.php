@@ -18,6 +18,11 @@ class GestionnaireControlleur {
         redirection();
       }
 
+      if(isset($_POST['gestion-plans']) && $_POST['gestion-plans'] === 'oui') {
+        $_SESSION['page'] = "PagePlans";
+        redirection();
+      }
+
       // Si le token csrf ne correspond pas.
       if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         Authentification::quitter();
