@@ -623,7 +623,7 @@ class PageClient {
 
                   </select>
 
-                  <?php if($date < strtotime($fin_abonnement." -1 month + 1 day") && strpos($p->get_nom(),"Spécialiste") == ''): ?>
+                  <?php if($date < strtotime($fin_abonnement." -1 month + 1 day")): ?>
                     <div>Les autre options seront disponible à moins de 30 jours du renouvellement.</div>
                   <?php else: ?>
                     <label id="client-groupes-label" for="client-groupes">
