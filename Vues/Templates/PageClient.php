@@ -10,7 +10,7 @@ class PageClient {
     $telephone = $obj->get_telephone();
     $courriel = htmlentities($obj->get_courriel());
     $adhesion = htmlentities($obj->get_adhesion());
-    $plan = $obj->get_plan();
+    $plan_id = $obj->get_plan();
     $renouvellement = htmlentities($obj->get_renouvellement());
     $fin_abonnement = htmlentities($obj->get_fin_abonnement());
     $fin_acces_appareils = htmlentities($obj->get_fin_acces_appareils());
@@ -600,22 +600,22 @@ class PageClient {
                 <form id="formulaire-droite" action="http://10.0.1.18" method="post">
                   <select id="plan-id" name="plan-id">
                       <!-- AFFICHER L'OPTION POUR AJOUTER DES HEURES DE SPÉCIALISTES SEULEMENT SI L'ABONNEMENT EST BON POUR PLUS DE 30 JOURS -->
-                    <?php foreach ($plans as $plan) {
-                      $plan_id = $plan->get_id();
-                      $plan_nom = htmlentities($plan->get_nom());
-                      $plan_prix = $plan->get_prix();
-                      $plan_prix_cours_groupe = $plan->get_prix_cours_groupe();
+                    <?php foreach ($plans as $p) {
+                      $p_id = $p->get_id();
+                      $p_nom = htmlentities($p->get_nom());
+                      $p_prix = $p->get_prix();
+                      $p_prix_cours_groupe = $p->get_prix_cours_groupe();
                     ?>
                       <option
-                        data-prix="<?php echo $plan_prix; ?>"
-                        data-prix-groupe="<?php echo $plan_prix_cours_groupe; ?>"
-                        value="<?php echo $plan_id; ?>"><?php echo $plan_nom." ( "; ?>
+                        data-prix="<?php echo $p_prix; ?>"
+                        data-prix-groupe="<?php echo $p_prix_cours_groupe; ?>"
+                        value="<?php echo $p_id; ?>"><?php echo $p_nom." ( "; ?>
                         <?php
-                          if($plan_prix > 0 && $plan_prix_cours_groupe > 0) echo $plan_prix."$ | ";
-                          else if($plan_prix == 0 && $plan_prix_cours_groupe > 0) echo "";
-                          else echo $plan_prix."$";
+                          if($p_prix > 0 && $p_prix_cours_groupe > 0) echo $p_prix."$ | ";
+                          else if($p_prix == 0 && $p_prix_cours_groupe > 0) echo "";
+                          else echo $p_prix."$";
                         ?>
-                        <?php if($plan_prix_cours_groupe > 0) echo "1 cours de groupe/sem: ".$plan_prix_cours_groupe."$"; ?>
+                        <?php if($p_prix_cours_groupe > 0) echo "1 cours de groupe/sem: ".$p_prix_cours_groupe."$"; ?>
                         <?php echo " )"; ?>
                       </option>
                     <?php } ?>
