@@ -509,7 +509,7 @@ class PageClient {
 
         <?php if(isset($_SESSION['message']) && ($_SESSION['message'] != '')): ?>
           <script>
-            alert(<?php echo $_SESSION['message']; ?>);
+            alert("<?php echo $_SESSION['message']; ?>");
           </script>
         <?php unset($_SESSION['message']); endif; ?>
 
@@ -535,9 +535,11 @@ class PageClient {
           COMPTE CLIENT
         </div>
 
-        <button id="supprimer-client">
-          <i class="fa-solid fa-trash"></i>
-        </button>
+        <?php if($obj->get_id() > 0): ?>
+          <button id="supprimer-client">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        <?php endif; ?>
 
           <div class="demi-gauche">
               <form id="formulaire-gauche" action="#" method="post">
