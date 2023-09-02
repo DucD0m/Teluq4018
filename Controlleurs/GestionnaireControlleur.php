@@ -59,6 +59,7 @@ class GestionnaireControlleur {
           $_SESSION['client-id'] = $resultat_insertion;
         }
 
+        echo $resultat_insertion." / ".$_SESSION['message'];exit;
         redirection();
       }
 
