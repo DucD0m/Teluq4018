@@ -56,23 +56,31 @@ class Plan implements Modele {
 
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     if($id > 0) {
-      // MySQL here
-      $this->set_nom("Mensuel...");
-      $this->set_duree(1);
-      $this->set_prix(55.00);
-      $this->set_acces_appareils(1);
-      $this->set_acces_cours_groupe(1);
-      $this->set_prix_cours_groupe(25.00);
+      $sql = $connexion_lire->prepare("SELECT * FROM plans WHERE id = :id");
+      $sql->bindParam(':id', $id, PDO::PARAM_INT);
+      $sql->execute();
+      $plan = $sql->fetch(PDO::FETCH_OBJ);
+      $this->set_id($plan->id);
+      $this->set_nom($plan->nom);
+      $this->set_duree($plan->duree);
+      $this->set_prix($plan->prix);
+      $this->set_acces_appareils($plan->set_acces_appareils);
+      $this->set_acces_cours_groupe($plan->set_acces_cours_groupe);
+      $this->set_prix_cours_groupe($plan->prix_cours_groupe);
+      return true;
+    }
+    else {
+      return false;
     }
   }
   public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    // Code here
+    // Code
   }
   public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    // Code here
+    // Code
   }
   public function delete_mysql(Object $obj, Object $connexion_effacer) :Int|Bool {
-    // Code here
+    // Code
   }
 }
 ?>

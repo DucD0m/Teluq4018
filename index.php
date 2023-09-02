@@ -47,7 +47,7 @@ isset($_SESSION['id']) && $_SESSION['id'] > 0){
 
   if($_SESSION['auth'] === 'Gestionnaire') $utilisateur = new GestionnaireControlleur();
   else if($_SESSION['auth'] === 'Specialiste') $utilisateur = new SpecialisteControlleur();
-  $utilisateur->afficherPage($connexion_lire);
+  $utilisateur->afficherPage($connexion_lire, $connexion_ecrire, $connexion_effacer);
 }
 
 // Authentification

@@ -532,6 +532,7 @@ class PageClient {
                 <input class="input-client" type="text" id="client-adresse" name="client-adresse" placeholder="adresse" value="<?php echo $adresse; ?>">
                 <input class="input-client" type="text" id="client-telephone" name="client-telephone" placeholder="téléphone (xxx) xxx-xxxx" value="<?php echo $telephone; ?>">
                 <input class="input-client" type="text" id="client-courriel" name="client-courriel" placeholder="courriel" value="<?php echo $courriel; ?>">
+                <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                 <input class="couleurs submit-client" id="maj-personne" type="submit" value="METTRE À JOUR" disabled>
               </form>
           </div>
@@ -578,8 +579,8 @@ class PageClient {
 
   <!-- php if date renouvellement > now - 30 jours... else specialistes seulement-->
               <div class="modif-plan">
-                <form id="formulaire-droite" action="#" method="post">
-                  <select id="plan-choix" name="plan-choix">
+                <form id="formulaire-droite" action="http://10.0.1.18" method="post">
+                  <select id="plan-id" name="plan-id">
                       <!-- AFFICHER L'OPTION POUR AJOUTER DES HEURES DE SPÉCIALISTES SEULEMENT SI L'ABONNEMENT EST BON POUR PLUS DE 30 JOURS -->
                     <?php foreach ($plans as $plan) {
                       $plan_id = $plan->get_id();
@@ -619,7 +620,8 @@ class PageClient {
                   <input class="nouveau-client" type="hidden" id="nouveau-adresse" name="nouveau-adresse" value="" disabled>
                   <input class="nouveau-client" type="hidden" id="nouveau-telephone" name="nouveau-telephone" value="" disabled>
                   <input class="nouveau-client" type="hidden" id="nouveau-courriel" name="nouveau-courriel" value="" disabled>
-                  <input class="nouveau-client" type="hidden" id="formulaire-nouveau-client" name="nouveau-courriel" value="" disabled>
+                  <input class="nouveau-client" type="hidden" id="formulaire-nouveau-client" name="formulaire-nouveau-client" value="oui" disabled>
+                  <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                   <input id="bouton-ajouter" type="submit" class="couleurs submit-client" value="AJOUTER" onclick="return false;">
                 </form>
               </div>
@@ -665,8 +667,8 @@ class PageClient {
               $('#client-telephone').val(formatTelephone($('#client-telephone').val())).change();
 
               // Cache l'option pour le nombre de cours de groupes lorsqu'un plan Spécialiste seulement est choisi.
-              $('#plan-choix').change(function(){
-                let nom = $("#plan-choix option:selected").text();
+              $('#plan-id').change(function(){
+                let nom = $("#plan-id option:selected").text();
                 if (nom.indexOf("Spécialiste") >= 0){
                   $('#client-groupes, #client-groupes-label').css('visibility','hidden');
                   $('#client-groupes').val('');
@@ -693,17 +695,17 @@ class PageClient {
               });
 
               // Calcul du total à payer
-              $('#plan-choix, #client-groupes, #client-spec').change(function(){
+              $('#plan-id, #client-groupes, #client-spec').change(function(){
                 if($('#client-groupes').val() != '' && $('#client-spec').val() != ''){
-                  let prix = $("#plan-choix option:selected").data('prix');
-                  let cours_groupe = $('#client-groupes').val() * $("#plan-choix option:selected").data('prix-groupe');
+                  let prix = $("#plan-id option:selected").data('prix');
+                  let cours_groupe = $('#client-groupes').val() * $("#plan-id option:selected").data('prix-groupe');
                   let heures_specialistes;
                   let total;
 
                   if($('#client-spec').val() >= 10) heures_specialistes = 65 * ($('#client-spec').val());
                   else heures_specialistes = 75 * ($('#client-spec').val());
 
-                  let nom = $("#plan-choix option:selected").text();
+                  let nom = $("#plan-id option:selected").text();
                   if (nom.indexOf("Spécialiste") >= 0){
                     total = heures_specialistes
                   }
@@ -725,7 +727,7 @@ class PageClient {
                     }
                 });
                 if(validation === false) alert('Tous les champs doivent être remplis');
-                else alert('Envoi du formulaire...');
+                else $('#formulaire-droite').submit();
               });
 
             });
