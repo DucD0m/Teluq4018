@@ -609,7 +609,7 @@ class PageClient {
                       $p_nom = htmlentities($p->get_nom());
                       $p_prix = $p->get_prix();
                       $p_prix_cours_groupe = $p->get_prix_cours_groupe();
-                      if($date < strtotime($fin_abonnement." -1 month + 1 day") && strpos($p->get_nom(),"Spécialiste") == '') continue;
+                      if($date < strtotime($fin_abonnement." -1 month") && strpos($p->get_nom(),"Spécialiste") == '') continue;
                     ?>
                       <option
                         data-prix="<?php echo $p_prix; ?>"
@@ -627,7 +627,7 @@ class PageClient {
 
                   </select>
 
-                  <?php if($date < strtotime($fin_abonnement." -1 month + 1 day")): ?>
+                  <?php if($date < strtotime($fin_abonnement." -1 month")): ?>
                     <div id="options-texte">Les autre options seront disponible à moins de 30 jours du renouvellement.</div>
                   <?php else: ?>
                     <label id="client-groupes-label" for="client-groupes">
