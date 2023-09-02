@@ -35,12 +35,12 @@ class GestionnaireControlleur {
 
         if(strpos($plan->get_nom(),"Spécialiste") >= 0) $client->set_fin_abonnement($date);
         else {
-          $fin_abonnement = date("Y-m-d",strtotime("+$plan->duree month"));
+          $fin_abonnement = date("Y-m-d",strtotime("+".$plan->get_duree()." months"));
           $client->set_fin_abonnement($fin_abonnement);
         }
 
-        if($plan->acces_appareils == 1) {
-          $fin_abonnement = date("Y-m-d",strtotime("+$plan->duree month"));
+        if($plan->get_acces_appareils() == 1) {
+          $fin_abonnement = date("Y-m-d",strtotime("+".$plan->get_duree()." months"));
           $client->set_fin_acces_appareils();
         }
         else {
