@@ -51,7 +51,14 @@ class GestionnaireControlleur {
         $client->set_heures_specialistes_utilise(0);
         $client->set_cours_groupe_semaine(intval($_POST['client-groupes']));
         $client->set_plan(intval($plan->get_id()));
-        var_dump($client);exit;
+
+        $resultat_insertion = $client->insert_mysql();
+
+        if($resultat_insertion > 0) {
+          $_SESSION['message'] = "Le nouveau compte client a été créé avec succès.";
+          $_SESSION['client-id'] = $resultat_insertion;
+        }
+
         redirection();
       }
 

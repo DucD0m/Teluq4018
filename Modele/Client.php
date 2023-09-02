@@ -97,9 +97,29 @@ class Client extends Personne implements Modele {
     return $resultat;
   }
   public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    // Code here
-    if(get_class($obj) === 'Client') echo get_class($obj);
-    else echo 'wrong type';
+    if(get_class($obj) === 'Client') {
+      $personne = parent::insert_mysql($obj, $connexion_ecrire);
+      $sql = $connexion_ecrire->prepare("INSERT INTO clients (
+        personne, adhesion, renouvellement, fin_abonnement, fin_acces_appareils,
+        heures_specialistes, heures_specialistes_utilise, cours_groupe_semaine, plan)
+        VALUES (:personne, :adhesion, :renouvellement, :fin_abonnement, :fin_acces_appareils,
+        :heures_specialistes, :heures_specialistes_utilise, :cours_groupe_semaine, :plan)");
+      $sql->bindParam(':personne', $personne, PDO::PARAM_INT);
+      $sql->bindParam(':adhesion', $obj->get_adhesion(), PDO::PARAM_STR);
+      $sql->bindParam(':renouvellement', $obj->get_renouvellement(), PDO::PARAM_STR);
+      $sql->bindParam(':fin_abonnement', $obj->get_fin_abonnement(), PDO::PARAM_STR);
+      $sql->bindParam(':fin_acces_appareils', $obj->get_fin_acces_appareils(), PDO::PARAM_STR);
+      $sql->bindParam(':heures_specialistes', $obj->get_heures_specialistes(), PDO::PARAM_INT);
+      $sql->bindParam(':heures_specialistes_utilise', $obj->get_heures_specialistes_utilise(), PDO::PARAM_INT);
+      $sql->bindParam(':cours_groupe_semaine', $obj->get_cours_groupe_semaine(), PDO::PARAM_INT);
+      $sql->bindParam(':plan', $obj->get_plan(), PDO::PARAM_INT);
+      $sql->execute();
+      $insert_id = $connexion_ecrire->lastInsertId();
+      return (Int)$insert_id;
+    }
+    else {
+      return false;
+    }
   }
   public function update_personne_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     $resultat = parent::update_mysql($obj, $connexion_ecrire);
