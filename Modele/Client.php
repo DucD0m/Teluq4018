@@ -114,8 +114,7 @@ class Client extends Personne implements Modele {
       $sql->bindParam(':cours_groupe_semaine', $obj->get_cours_groupe_semaine(), PDO::PARAM_INT);
       $sql->bindParam(':plan', $obj->get_plan(), PDO::PARAM_INT);
       $sql->execute();
-      $insert_id = $connexion_ecrire->lastInsertId();
-      return (Int)$insert_id;
+      return (Int)$personne;
     }
     else {
       return false;
