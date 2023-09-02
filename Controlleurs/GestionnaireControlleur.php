@@ -40,8 +40,8 @@ class GestionnaireControlleur {
         }
 
         if($plan->get_acces_appareils() == 1) {
-          $fin_abonnement = date("Y-m-d",strtotime("+".$plan->get_duree()." months"));
-          $client->set_fin_acces_appareils();
+          $fin_acces_appareils = date("Y-m-d",strtotime("+".$plan->get_duree()." months"));
+          $client->set_fin_acces_appareils($fin_acces_appareils);
         }
         else {
           $client->set_fin_acces_appareils($date);
