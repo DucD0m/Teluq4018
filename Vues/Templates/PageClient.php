@@ -556,7 +556,7 @@ class PageClient {
                 <input class="input-client" type="text" id="client-telephone" name="client-telephone" placeholder="téléphone (xxx) xxx-xxxx" value="<?php echo $telephone; ?>">
                 <input class="input-client" type="text" id="client-courriel" name="client-courriel" placeholder="courriel" value="<?php echo $courriel; ?>">
                 <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-                <input class="couleurs submit-client" id="maj-personne" type="submit" value="METTRE À JOUR" disabled>
+                <input class="couleurs submit-client" id="maj-personne" type="submit" value="METTRE À JOUR" onclick="return false;">
               </form>
           </div>
 

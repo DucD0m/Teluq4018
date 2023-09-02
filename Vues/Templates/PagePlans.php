@@ -578,18 +578,13 @@ class PagePlans {
                 </tr>
               </tbody>
             </table>
-            <input type="submit" id="submit-plans" class="couleurs" value="METTRE À JOUR">
+            <input type="submit" id="submit-plans" class="couleurs" value="METTRE À JOUR" onclick="return false;">
           </form>
         </div>
 
         <script>
           $( document ).ready(function() {
-            $('#retour-menu').click(function(){
-              location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/gestionnaire.html";
-            });
-            $('#quitter').click(function(){
-              location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/auth.html";
-            });
+            
           });
         </script>
 
