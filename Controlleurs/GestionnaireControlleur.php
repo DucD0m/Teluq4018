@@ -73,9 +73,11 @@ class GestionnaireControlleur {
         $client = new Client();
         if(isset($_SESSION['client-id']) && $_SESSION['client-id'] > 0) {
           $select_client = $client->select_mysql($_SESSION['client-id'], $connexion_lire);
+          $plan = new Plan();
+          $select_plan = $plan->select_mysql($client->plan, $connexion_lire);
         }
         $plans = ListePlans::get_liste($connexion_lire);
-        $page = new PageClient($client, $plans);
+        $page = new PageClient($client, $plan, $plans);
       }
 
       else {

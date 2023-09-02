@@ -1,6 +1,5 @@
 <?php declare(strict_types=1);
 require_once "Personne.php";
-require_once "Plan.php";
 
 class Client extends Personne implements Modele {
 
@@ -12,7 +11,7 @@ class Client extends Personne implements Modele {
   protected Int $heures_specialistes = 0;
   protected Int $heures_specialistes_utilise = 0;
   protected Int $cours_groupe_semaine = 0;
-  protected Plan $plan = new Plan();
+  protected Int $plan = 0;
 
   public function get_personne() : Int {
     return $this->personne;
@@ -62,10 +61,10 @@ class Client extends Personne implements Modele {
   public function set_cours_groupe_semaine(Int $cours_groupe_semaine) {
     $this->cours_groupe_semaine = $cours_groupe_semaine;
   }
-  public function get_plan() : Plan {
+  public function get_plan() : Int {
     return $this->plan;
   }
-  public function set_plan(Plan $plan) {
+  public function set_plan(Int $plan) {
     $this->plan = $plan;
   }
 
@@ -100,9 +99,7 @@ class Client extends Personne implements Modele {
       $this->set_heures_specialistes($client->heures_specialistes);
       $this->set_heures_specialistes_utilise($client->heures_specialistes_utilise);
       $this->set_cours_groupe_semaine($client->cours_groupe_semaine);
-      $plan_obj = $this->get_plan();
-      $plan_obj->select_mysql($client->plan, $connexion_lire);
-      $this->set_plan($plan_obj);
+      $this->set_plan($client->plan);
       return true;
     }
     else {

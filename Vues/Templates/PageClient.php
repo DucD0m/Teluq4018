@@ -2,7 +2,7 @@
 
 class PageClient {
 
-  public function __construct(Client $obj, array $plans) {
+  public function __construct(Client $obj, Plan $plan, array $plans) {
 
     $prenom = htmlentities($obj->get_prenom());
     $nom = htmlentities($obj->get_nom());
@@ -11,13 +11,14 @@ class PageClient {
     $courriel = htmlentities($obj->get_courriel());
     $adhesion = htmlentities($obj->get_adhesion());
     $plan = $obj->get_plan();
-    $plan_nom = $plan->get_nom();
     $renouvellement = htmlentities($obj->get_renouvellement());
     $fin_abonnement = htmlentities($obj->get_fin_abonnement());
     $fin_acces_appareils = htmlentities($obj->get_fin_acces_appareils());
     $heures_specialistes = $obj->get_heures_specialistes();
     $heures_specialistes_utilise = $obj->get_heures_specialistes_utilise();
     $cours_groupe_semaine = $obj->get_cours_groupe_semaine();
+
+    $plan_nom = $plan->get_nom();
 
 ?>
 
