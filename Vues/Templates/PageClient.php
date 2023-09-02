@@ -692,7 +692,7 @@ class PageClient {
                 let nom = $("#plan-id option:selected").text();
                 if (nom.indexOf("Spécialiste") >= 0){
                   $('#client-groupes, #client-groupes-label').css('visibility','hidden');
-                  $('#client-groupes').val('');
+                  $('#client-groupes').val(0);
                 }
                 else $('#client-groupes, #client-groupes-label').css('visibility','visible');
               });
