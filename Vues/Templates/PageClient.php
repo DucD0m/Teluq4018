@@ -495,6 +495,13 @@ class PageClient {
         }
         return '';
       }
+      function validateEmail(email) {
+        return String(email)
+          .toLowerCase()
+          .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          );
+      };
       </script>
     </head>
 
@@ -669,6 +676,13 @@ class PageClient {
                 $('#client-telephone').val(tel);
                 $('#nouveau-telephone').val(tel);
               });
+
+              $('#client-courriel').change(function(){
+        				if(!validateEmail($(this).val())) {
+        					alert('Le format du courriel doit être valide.');
+        					$(this).val('');
+        				}
+        			});
 
               // Change le format du numéro au chargement initial de la page.
               $('#client-telephone').val(formatTelephone($('#client-telephone').val())).change();
