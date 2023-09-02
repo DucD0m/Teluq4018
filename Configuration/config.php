@@ -28,7 +28,7 @@ define("PEPPER", "9bcf59c3d7751c9d3cdef0c98d32d233146c40819af6df132e28ad7e40c579
 
 // PHP error handling
 // expose_php              = Off
-ini_set('error_reporting','E_ALL');
+ini_set('error_reporting','32767'); //E_ALL
 ini_set('display_errors','On'); // DEV
 // ini_set('display_errors','Off'); // PROD
 ini_set('display_startup_errors','On'); // DEV
