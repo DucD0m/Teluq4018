@@ -543,7 +543,7 @@ class PageClient {
         </div>
 
         <?php if($obj->get_id() > 0): ?>
-          <button id="supprimer-client">
+          <button id="supprimer-client" title="Supprimer le compte client">
             <i class="fa-solid fa-trash"></i>
           </button>
         <?php endif; ?>
@@ -671,6 +671,12 @@ class PageClient {
               // Pour vérifier si on affiche seulement les options spécialistes dans le cas ou on est a plus de 30 jours du renouvellement
               // lors du chargement initual de la page.
               afficher_heures_specialistes_seulement();
+
+              $( document ).tooltip({
+                 classes: {
+                   "ui-tooltip": "ui-corner-all"
+                 }
+               });
 
               $('#supprimer-client').click(function(){
                 confirm('Êtes-vous certain de vouloir supprimer ce compte client?');
