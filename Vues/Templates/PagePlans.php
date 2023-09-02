@@ -510,7 +510,7 @@ class PagePlans {
 
                   $p_nom = htmlentities($p->get_nom());
                   $p_duree = $p->get_duree();
-                  if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') {
+                  if(strpos($p->get_nom(),"Spécialiste") >= 0 && strpos($p->get_nom(),"Spécialiste") != '') {
                     if($p_duree > 1) $type_duree = "heures";
                     else $type_duree = "heure";
                   }
