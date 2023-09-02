@@ -496,6 +496,11 @@ class PageClient {
         return '';
       }
       </script>
+      <?php if(isset($_SESSION['message']) && ($_SESSION['message'] != '')): ?>
+        <script>
+          alert(<?php echo $_SESSION['message']; ?>);
+        </script>
+      <?php unset($_SESSION['message']); endif; ?>
     </head>
 
     <body>
@@ -734,9 +739,6 @@ class PageClient {
                   $('#formulaire-droite').submit();
                 }
               });
-              <?php if(isset($_SESSION['message']) && ($_SESSION['message'] != '')): ?>
-                alert(<?php echo $_SESSION['message']; ?>);
-              <?php unset($_SESSION['message']); endif; ?>
             });
           </script>
     </body>
