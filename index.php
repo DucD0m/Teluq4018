@@ -47,6 +47,8 @@ isset($_SESSION['id']) && $_SESSION['id'] > 0){
 
   if($_SESSION['auth'] === 'Gestionnaire') $utilisateur = new GestionnaireControlleur();
   else if($_SESSION['auth'] === 'Specialiste') $utilisateur = new SpecialisteControlleur();
+  $connexion_ecrire = ConnexionEcrireBD::connexion();
+  $connexion_effacer = ConnexionEffacerBD::connexion();
   $utilisateur->afficherPage($connexion_lire, $connexion_ecrire, $connexion_effacer);
 }
 
