@@ -541,9 +541,9 @@ class PagePlans {
                   <td><?php echo $p_acces_cours_groupe; ?></td>
                   <td>
                     <input type="hidden" id="plan-id<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_id; ?>">
-                    <input type="text" id="plan-prix-groupe<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix_cours_groupe; ?>$">
+                    <input type="text" id="plan-prix-groupe<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix_cours_groupe; ?>">
                   </td>
-                  <td class="plans-tr-droite"><input type="text" id="plan-prix<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix; ?>$"></td>
+                  <td class="plans-tr-droite"><input type="text" id="plan-prix<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix; ?>"></td>
                 </tr>
                 <?php } ?>
 
