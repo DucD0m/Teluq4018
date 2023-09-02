@@ -85,6 +85,7 @@ class Client extends Personne implements Modele {
       $sql->execute();
       $client = $sql->fetch(PDO::FETCH_OBJ);
 
+      $this->set_id($client->id);
       $this->set_prenom($client->prenom);
       $this->set_nom($client->nom);
       $this->set_adresse($client->adresse);
