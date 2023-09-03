@@ -542,7 +542,7 @@ class PageMenu {
             $( ".vis-auto" ).autocomplete({
               source: "Modele/ClientAutocomplete.php",
               close: function( event, ui ) {
-                alert(ui);
+                alert(ui.item);
                 // if (!ui.item) {
                 //   $(this).val('');
                 // }
