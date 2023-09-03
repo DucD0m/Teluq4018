@@ -14,7 +14,7 @@ class PagePlans {
       <meta charset="UTF-8">
 
       <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/cupertino/jquery-ui.css">
-      <link rel="stylesheet" href="Vues/css/global.css">
+      <link rel="stylesheet" href="Vues/css/global.css?v1">
 
       <script
         src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -529,11 +529,11 @@ class PagePlans {
                   $p_prix = $p->get_prix();
                   if($p_prix == 0) {
                     $p_prix = "N/A";
-                    $disabled = "disabled";
+                    $disabled_prix = "disabled";
                   }
                   else {
                     $p_prix = number_format($p_prix,2)."$";
-                    $disabled = "";
+                    $disabled_prix = "";
                   }
 
                   $p_acces_appareils = $p->get_acces_appareils();
@@ -545,8 +545,14 @@ class PagePlans {
                   else $p_acces_cours_groupe = "NON";
 
                   $p_prix_cours_groupe = $p->get_prix_cours_groupe();
-                  if($p_prix_cours_groupe == 0) $p_prix_cours_groupe = "N/A";
-                  else $p_prix_cours_groupe = number_format($p_prix_cours_groupe,2)."$";
+                  if($p_prix_cours_groupe == 0) {
+                    $p_prix_cours_groupe = "N/A";
+                    $disabled_prix_groupe = "disabled";
+                  }
+                  else {
+                    $p_prix_cours_groupe = number_format($p_prix_cours_groupe,2)."$";
+                    $disabled_prix_groupe = "";
+                  }
                 ?>
                 <tr>
                   <td class="plans-tr-gauche"><?php echo $p_nom; ?></td>
@@ -555,9 +561,9 @@ class PagePlans {
                   <td><?php echo $p_acces_cours_groupe; ?></td>
                   <td>
                     <input type="hidden" class="plan-id" id="plan-id<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_id; ?>">
-                    <input class="<?php echo $disabled; ?>" type="text" id="plan-prix-groupe<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix_cours_groupe; ?>">
+                    <input class="<?php echo $disabled_prix_groupe; ?>" type="text" id="plan-prix-groupe<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix_cours_groupe; ?>">
                   </td>
-                  <td class="plans-tr-droite <?php echo $disabled; ?>"><input type="text" id="plan-prix<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix; ?>"></td>
+                  <td class="plans-tr-droite <?php echo $disabled_prix; ?>"><input type="text" id="plan-prix<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix; ?>"></td>
                 </tr>
                 <?php } ?>
 
