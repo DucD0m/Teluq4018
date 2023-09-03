@@ -4,19 +4,6 @@ require_once __DIR__ . "/../Controlleurs/ConnexionLireBD.php";
 
 $connexion_lire = ConnexionLireBD::connexion();
 
-// $serveur = SERVERNAME;
-// $lecteur = LECTEUR;
-// $mdp_lecteur = MDPLECTEUR;
-// $base_donnees = BASEDONNEES;
-//
-// try {
-//   $connexion_lire = new PDO("mysql:host=$serveur;dbname=$base_donnees", $lecteur, $mdp_lecteur);
-//   $connexion_lire->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-// } catch(PDOException $e) {
-//   //die("Connection failed: " . $e->getMessage());
-//   die("Impossible de se connecter en ce moment. Veuillez essayer plus tard.(1)");
-// }
-
 $choix_liste = array();
 
 $client = trim($_GET["term"]);
