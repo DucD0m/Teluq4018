@@ -637,7 +637,7 @@ class PagePlans {
                       $(this).val(parseFloat(0).toFixed(2));
                     }
                     else if(Number.isFinite(parseFloat(val))) {
-                      $(this).val($(this).val().toFixed(2));
+                      $(this).val(parseFloat(val).toFixed(2));
                     }
                     else if(val.indexOf("$") >= 0) {
               				val = parseFloat(val.replace('$','')).toFixed(2);
