@@ -82,9 +82,12 @@ class GestionnaireControlleur {
 
            foreach ($_POST as $prix) {
              $plan = new Plan();
-             $plan->select_mysql($prix[0],$connexion_lire);
-             $plan->set_prix_cours_groupe($prix[1]);
-             $plan->set_prix($prix[2]);
+             $plan_id = $prix[0];
+             $plan_prix_cours_groupe = $prix[1];
+             $plan_prix = $prix[2];
+             $plan->select_mysql($plan_id,$connexion_lire);
+             $plan->set_prix_cours_groupe($plan_prix_cours_groupe);
+             $plan->set_prix($plan_prix);
              $update_plans = $plan->update_mysql($plan, $connexion_ecrire);
              // var_dump($plan);
              // echo "<br>";
