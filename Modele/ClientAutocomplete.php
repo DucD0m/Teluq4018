@@ -26,11 +26,11 @@ $choix_liste = array();
 $client = trim($_GET["term"]);
 
 if($client != ""){
-  $sql = $connexion_lire->prepare("SELECT id, prenom, nom, telephone FROM personnes p JOIN clients c ON p.id = c.personne WHERE prenom LIKE '%$client%' OR nom LIKE '%$client%' OR telephone LIKE '%$client%' ORDER BY prenom ASC");
-	// $sql = $connexion_lire->prepare("SELECT id, prenom, nom, telephone FROM personnes WHERE prenom LIKE CONCAT('%',:prenom,'%') OR nom LIKE CONCAT('%',:nom,'%') OR telephone LIKE CONCAT('%',:tel,'%') ORDER BY prenom ASC");
-  // $sql->bindParam(':prenom', $client, PDO::PARAM_STR);
-  // $sql->bindParam(':nom', $client, PDO::PARAM_STR);
-  // $sql->bindParam(':tel', $client, PDO::PARAM_INT);
+  //$sql = $connexion_lire->prepare("SELECT id, prenom, nom, telephone FROM personnes p JOIN clients c ON p.id = c.personne WHERE prenom LIKE '%$client%' OR nom LIKE '%$client%' OR telephone LIKE '%$client%' ORDER BY prenom ASC");
+	$sql = $connexion_lire->prepare("SELECT id, prenom, nom, telephone FROM personnes p JOIN clients c ON p.id = c.personne WHERE prenom LIKE CONCAT('%',:prenom,'%') OR nom LIKE CONCAT('%',:nom,'%') OR telephone LIKE CONCAT('%',:tel,'%') ORDER BY prenom ASC");
+  $sql->bindParam(':prenom', $client, PDO::PARAM_STR);
+  $sql->bindParam(':nom', $client, PDO::PARAM_STR);
+  $sql->bindParam(':tel', $client, PDO::PARAM_INT);
   $sql->execute();
   $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
 
