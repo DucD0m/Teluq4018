@@ -541,7 +541,7 @@ class PagePlans {
                   <td><?php echo $p_acces_appareils; ?></td>
                   <td><?php echo $p_acces_cours_groupe; ?></td>
                   <td>
-                    <input type="hidden" id="plan-id<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_id; ?>">
+                    <input type="hidden" class="plan-id" id="plan-id<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_id; ?>">
                     <input type="text" id="plan-prix-groupe<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix_cours_groupe; ?>">
                   </td>
                   <td class="plans-tr-droite"><input type="text" id="plan-prix<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix; ?>"></td>
@@ -632,6 +632,7 @@ class PagePlans {
               if(validation === false) alert('Tous les champs doivent être remplis');
               else {
                 $('input[name^="plan"]').each(function(){
+                    if(this.className == 'plan-id') continue;
                     let val = $(this).val();
                     if(val == 'N/A') {
                       $(this).val(parseFloat(0).toFixed(2));
