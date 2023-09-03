@@ -541,11 +541,12 @@ class PageMenu {
           $( document ).ready(function() {
             $( ".vis-auto" ).autocomplete({
               source: "Modele/ClientAutocomplete.php",
-              close: function( event, ui ) {
-                if($(this).val != '') {
-                  $('#visualiser-form').removeAttr('onSubmit');
-                  $('#visualiser-form').submit();
-                }
+              select: function( event, ui ) {
+                alert(ui.value);
+                // if($(this).val != '') {
+                //   $('#visualiser-form').removeAttr('onSubmit');
+                //   $('#visualiser-form').submit();
+                // }
               }
             });
             $( document ).tooltip({
