@@ -26,7 +26,6 @@ class GestionnaireControlleur {
         $_SESSION['page'] = "PageClient";
         $client_id_pos = strpos($_POST['vis-client']," -");
         $client_id = substr($_POST['vis-client'],0,$client_id_pos);
-        echo $client_id;exit;
         $_SESSION['client-id'] = $client_id;
         redirection();
       }
