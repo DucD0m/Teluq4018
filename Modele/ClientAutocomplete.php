@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../Configuration/config.php';
 require_once __DIR__ . "/../Controlleurs/ConnexionLireBD.php";
 
-$connexion_lire = ConnexionLireBD::connexion();
+//$connexion_lire = ConnexionLireBD::connexion();
 
 //$choix_liste = array();
 $choix_liste = array();
