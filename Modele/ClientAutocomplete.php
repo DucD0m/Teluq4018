@@ -5,6 +5,9 @@ require_once "../Controlleurs/ConnexionLireBD.php";
 $connexion_lire = ConnexionLireBD::connexion();
 
 $choix_liste = array();
+
+$_GET["vis-client"] = "Duc";
+
 $client = trim($_GET["vis-client"]);
 
 if($client != ""){
