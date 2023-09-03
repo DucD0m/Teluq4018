@@ -24,7 +24,7 @@ class GestionnaireControlleur {
       }
       else if(isset($_POST['visualiser-compte']) && $_POST['visualiser-compte'] === 'oui') {
         $_SESSION['page'] = "PageClient";
-
+        echo $_POST['vis-client'];exit;
         $client_id_pos = strpos($_POST['vis-client']," -");
         $client_id = substr($_POST['vis-client'],0,$client_id_pos);
         $_SESSION['client-id'] = $client_id;
