@@ -635,6 +635,9 @@ class PagePlans {
                     if($(this).val() == 'N/A') {
                       $(this).val(parseFloat(0).toFixed(2));
                     }
+                    else if(Number.isFinite(parseFloat($(this).val()))) {
+                      $(this).val().toFixed(2);
+                    }
                     else if($(this).val().indexOf("$") >= 0) {
                       let val = $(this).val();
               				val = parseFloat(val.replace('$','')).toFixed(2);
@@ -642,8 +645,13 @@ class PagePlans {
               					$(this).val(val);
               				}
                     }
+                    else {
+                      alert("Vous devez entrer un prix valide.");
+                      $(this).val('');
+                      validation = false;
+                    }
                 });
-                $('#formulaire-plans').submit();
+                if(validation === true) $('#formulaire-plans').submit();
               }
             });
           });
