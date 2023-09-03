@@ -546,18 +546,12 @@ class PageMenu {
                 $('#visualiser-form').submit();
               }
             });
-            // $('.vis-auto').click(function(){
-            //   if($('.vis-auto').attr('readonly') == 'readonly') {
-            //     $('.vis-auto').val('').change();
-            //     $('.vis-auto'). removeAttr('readonly');
-            //   }
-            // });
             $( document ).tooltip({
                classes: {
                  "ui-tooltip": "ui-corner-all"
                },
                position: {
-                 my: "left top-115", at: "left bottom", collision: "flipfit" 
+                 my: "left top-115", at: "left bottom", collision: "flipfit"
                }
              });
           });
