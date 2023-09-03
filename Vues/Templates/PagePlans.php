@@ -667,7 +667,10 @@ class PagePlans {
                       location.href = "http://10.0.1.18";
                     }
                 });
-                if(validation === true) $('#formulaire-plans').submit();
+                if(validation === true) {
+                  $('html').css('visibility','hidden');
+                  $('#formulaire-plans').submit();
+                }
               }
             });
           });
