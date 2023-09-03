@@ -90,7 +90,7 @@ class GestionnaireControlleur {
              $plan->set_prix($plan_prix);
              $update_plans = $plan->update_mysql($plan, $connexion_ecrire);
              // var_dump($plan);
-             // echo "<br>";
+             echo $update_plans."<br>";
            }
            exit;
            $_SESSION['message'] = "Les prix ont été modifiés avec succès.";

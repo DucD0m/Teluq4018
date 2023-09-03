@@ -76,7 +76,7 @@ class Plan implements Modele {
   public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     // Code
   }
-  public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
+  public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool|String {
     if(get_class($obj) === 'Plan') {
       $sql = $connexion_ecrire->prepare("UPDATE plans SET prix = :prix, prix_cours_groupe = :prix_cours_groupe WHERE id = :id");
       $sql->bindParam(':id', $obj->get_id(), PDO::PARAM_INT);
