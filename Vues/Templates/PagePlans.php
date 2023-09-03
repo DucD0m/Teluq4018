@@ -632,14 +632,14 @@ class PagePlans {
               if(validation === false) alert('Tous les champs doivent être remplis');
               else {
                 $('input[name^="plan"]').each(function(){
-                    if($(this).val() == 'N/A') {
+                    let val = $(this).val();
+                    if(val == 'N/A') {
                       $(this).val(parseFloat(0).toFixed(2));
                     }
-                    else if(Number.isFinite(parseFloat($(this).val()))) {
-                      $(this).val().toFixed(2);
+                    else if(Number.isFinite(parseFloat(val))) {
+                      $(this).val(val.toFixed(2));
                     }
-                    else if($(this).val().indexOf("$") >= 0) {
-                      let val = $(this).val();
+                    else if(val.indexOf("$") >= 0) {
               				val = parseFloat(val.replace('$','')).toFixed(2);
               				if(Number.isFinite(parseFloat(val))) {
               					$(this).val(val);
