@@ -541,14 +541,8 @@ class PageMenu {
           $( document ).ready(function() {
             $( ".vis-auto" ).autocomplete({
               source: "Modele/ClientAutocomplete.php",
-              open: function( event, ui ) {
-                var choix = '';
-              }
-              select: function( event, ui ) {
-                choix = $(this).val();
-              }
               close: function( event, ui ) {
-                if(choix != '') {
+                if($(this).val != '') {
                   $('#visualiser-form').removeAttr('onSubmit');
                   $('#visualiser-form').submit();
                 }
