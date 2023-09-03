@@ -81,7 +81,9 @@ class GestionnaireControlleur {
            unset($_POST['csrf_token']);
 
            foreach ($_POST as $prix) {
-             var_dump($prix);
+             echo $prix[0]."<br>";
+             echo $prix[1]."<br>";
+             echo $prix[2]."<br><br>";
              // $plan = new Plan();
              // $plan->select_mysql($prix[0],$connexion_lire);
              // $plan->set_prix_cours_groupe($prix[1]);
