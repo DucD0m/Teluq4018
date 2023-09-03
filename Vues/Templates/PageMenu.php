@@ -511,7 +511,7 @@ class PageMenu {
           </div>
           <i class="icons-sm fa-solid fa-user-pen"></i>
           <form>
-            <input id="vis-client" class="vis-auto" type="text" name="vis-client" placeholder="nom ou no. de téléphone">
+            <input id="vis-client" class="vis-auto" type="text" name="vis-client" placeholder="nom ou no. de téléphone" readonly="readonly">
           </form>
         </div>
 
@@ -539,7 +539,6 @@ class PageMenu {
         <script>
           $( document ).ready(function() {
             $( ".vis-auto" ).autocomplete({
-              //source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ],
               source: "Modele/ClientAutocomplete.php",
               close: function( event, ui ) {
                 $('.vis-auto').attr('readonly','readonly');
