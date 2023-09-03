@@ -1,6 +1,6 @@
 <?php
-require_once '../Configuration/config.php';
-require_once "../Controlleurs/ConnexionLireBD.php";
+require_once __DIR__ . '../Configuration/config.php';
+require_once __DIR__ . "../Controlleurs/ConnexionLireBD.php";
 
 $connexion_lire = ConnexionLireBD::connexion();
 
