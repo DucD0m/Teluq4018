@@ -22,10 +22,19 @@ class GestionnaireControlleur {
         unset($_SESSION['client-id']);
         redirection();
       }
+      else if(isset($_POST['visualiser-compte']) && $_POST['visualiser-compte'] === 'oui') {
+        $_SESSION['page'] = "PageClient";
+
+        $client_id_pos = strpos($_POST['vis-client']," -");
+        $client_id = substr($_POST['vis-client'],0,$client_id_pos);
+        $_SESSION['client-id'] = $client_id;
+        redirection();
+      }
       else if(isset($_POST['gestion-plans']) && $_POST['gestion-plans'] === 'oui') {
         $_SESSION['page'] = "PagePlans";
         redirection();
       }
+
 
       // Si le token csrf ne correspond pas.
       if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
