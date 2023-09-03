@@ -557,7 +557,7 @@ class PageMenu {
                  "ui-tooltip": "ui-corner-all"
                },
                position: {
-                 my: "left top-100", at: "left bottom", collision: "flipfit" 
+                 my: "left top-115", at: "left bottom", collision: "flipfit" 
                }
              });
           });
