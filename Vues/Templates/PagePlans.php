@@ -633,7 +633,7 @@ class PagePlans {
               else {
                 $('input[name^="plan"]').each(function(){
                     if($(this).val() == 'N/A') {
-                      $(this).val(0.00).toFixed(2);
+                      $(this).val(parseFloat(0).toFixed(2));
                     }
                     else if($(this).val().indexOf("$") >= 0) {
                       let val = $(this).val();
