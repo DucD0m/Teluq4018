@@ -542,8 +542,13 @@ class PageMenu {
             $( ".vis-auto" ).autocomplete({
               source: "Modele/ClientAutocomplete.php",
               close: function( event, ui ) {
-                $('#visualiser-form').removeAttr('onSubmit');
-                $('#visualiser-form').submit();
+                if (!ui.item) {
+                  $(this).val('');
+                }
+                if($(this).val != '') {
+                  $('#visualiser-form').removeAttr('onSubmit');
+                  $('#visualiser-form').submit();
+                }
               }
             });
             $( document ).tooltip({
