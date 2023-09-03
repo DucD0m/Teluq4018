@@ -555,6 +555,9 @@ class PageMenu {
             $( document ).tooltip({
                classes: {
                  "ui-tooltip": "ui-corner-all"
+               },
+               position: {
+                 my: "left top-30", at: "left bottom", collision: "flipfit" 
                }
              });
           });
