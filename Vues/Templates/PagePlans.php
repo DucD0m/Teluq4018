@@ -647,8 +647,7 @@ class PagePlans {
                     }
                     else {
                       alert("Vous devez entrer un prix valide.");
-                      $(this).val('');
-                      validation = false;
+                      location.href = "http://10.0.1.18";
                     }
                 });
                 if(validation === true) $('#formulaire-plans').submit();
