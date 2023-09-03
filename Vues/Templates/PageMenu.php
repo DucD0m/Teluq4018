@@ -542,8 +542,7 @@ class PageMenu {
             $( ".vis-auto" ).autocomplete({
               source: "Modele/ClientAutocomplete.php",
               select: function( event, ui ) {
-                if(ui.item.value != '')
-                  $('#vis-client').val(ui.item.value);
+                if(ui.item.value != '') {
                   $('#visualiser-form').removeAttr('onSubmit');
                   $('#visualiser-form').submit();
                 }
