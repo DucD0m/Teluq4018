@@ -633,7 +633,9 @@ class PagePlans {
               else {
                 $('input[name^="plan"]').each(function(){
                     let val = $(this).val();
-                    if(this.className == 'plan-id'){};
+                    if(this.className == 'plan-id'){
+                      // continue...
+                    }
                     else if(val == 'N/A') {
                       $(this).val(parseFloat(0).toFixed(2));
                     }
