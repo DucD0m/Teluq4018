@@ -632,9 +632,9 @@ class PagePlans {
               if(validation === false) alert('Tous les champs doivent être remplis');
               else {
                 $('input[name^="plan"]').each(function(){
-                    if(this.className == 'plan-id') continue;
                     let val = $(this).val();
-                    if(val == 'N/A') {
+                    if(this.className == 'plan-id'){};
+                    else if(val == 'N/A') {
                       $(this).val(parseFloat(0).toFixed(2));
                     }
                     else if(Number.isFinite(parseFloat(val))) {
