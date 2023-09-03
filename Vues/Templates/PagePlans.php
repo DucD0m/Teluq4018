@@ -629,8 +629,8 @@ class PagePlans {
                     //alert($(this).attr('id'));
                   }
               });
-              if(validation === false) alert('Tous les champs doivent être remplis');
-              else {
+
+              if(validation === true){
                 $('input[name^="plan"]').each(function(){
                     if($(this).val() == 'N/A') {
                       $(this).val(parseFloat(0).toFixed(2));
@@ -642,8 +642,10 @@ class PagePlans {
               					$(this).val(val);
               				}
                     }
+                    else validation = false;
                 });
-                $('#formulaire-plans').submit();
+                if(validation === false) alert('Tous les champs doivent être remplis');
+                else $('#formulaire-plans').submit();
               }
             });
           });
