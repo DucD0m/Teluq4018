@@ -543,6 +543,7 @@ class PageMenu {
               source: "Modele/ClientAutocomplete.php",
               select: function( event, ui ) {
                 if(ui.item.value != '') {
+                  $('#vis-client').val(ui.item.value);
                   $('#visualiser-form').removeAttr('onSubmit');
                   $('#visualiser-form').submit();
                 }
