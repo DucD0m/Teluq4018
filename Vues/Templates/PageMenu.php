@@ -2,7 +2,10 @@
 
 class PageMenu {
 
-  public function __construct(Int $id, String $message) {
+  public function __construct(Gestionnaire $obj) {
+
+    $prenom_utilisateur = $obj->get_prenom();
+    $nom_utilisateur = $obj->get_nom();
 ?>
 
     <!DOCTYPE HTML>
@@ -484,7 +487,7 @@ class PageMenu {
         </form>
 
         <div class="name">
-          Dominique Ducas
+          <?php echo $prenom_utilisateur." ".$nom_utilisateur; ?>
         </div>
 
         <div class="titre">

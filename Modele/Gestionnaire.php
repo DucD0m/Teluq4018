@@ -19,6 +19,17 @@ class Gestionnaire extends Personne implements Modele {
     $this->mot_passe = $mot_passe;
   }
 
+  public function select_personne_mysql(Int $id, Object $connexion_lire) : Object|Bool {
+    $resultat = parent::select_mysql($id, $connexion_lire);
+    $this->set_id($resultat->id);
+    $this->set_prenom($resultat->prenom);
+    $this->set_nom($resultat->nom);
+    $this->set_adresse($resultat->adresse);
+    $this->set_telephone($resultat->telephone);
+    $this->set_courriel($resultat->courriel);
+    return true;
+  }
+
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     // Code here
   }

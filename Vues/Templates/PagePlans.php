@@ -2,7 +2,10 @@
 
 class PagePlans {
 
-  public function __construct(array $plans) {
+  public function __construct(Gestionnaire $obj, array $plans) {
+
+    $prenom_utilisateur = $obj->get_prenom();
+    $nom_utilisateur = $obj->get_nom();
 ?>
 
     <!DOCTYPE HTML>
@@ -494,7 +497,7 @@ class PagePlans {
         </form>
 
         <div class="name">
-          Dominique Ducas - GESTIONNAIRE DE COMPTE
+          <?php echo $prenom_utilisateur." ".$nom_utilisateur." - GESTIONNAIRE DE COMPTE"; ?>
         </div>
 
         <div class="titre">

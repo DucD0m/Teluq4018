@@ -2,21 +2,24 @@
 
 class PageClient {
 
-  public function __construct(Client $obj, Plan $plan, array $plans) {
+  public function __construct(Gestionnaire $obj, Client $obj_client, Plan $plan, array $plans) {
 
-    $prenom = htmlentities($obj->get_prenom());
-    $nom = htmlentities($obj->get_nom());
-    $adresse = htmlentities($obj->get_adresse());
-    $telephone = $obj->get_telephone();
-    $courriel = htmlentities($obj->get_courriel());
-    $adhesion = htmlentities($obj->get_adhesion());
-    $plan_id = $obj->get_plan();
-    $renouvellement = htmlentities($obj->get_renouvellement());
-    $fin_abonnement = htmlentities($obj->get_fin_abonnement());
-    $fin_acces_appareils = htmlentities($obj->get_fin_acces_appareils());
-    $heures_specialistes = $obj->get_heures_specialistes();
-    $heures_specialistes_utilise = $obj->get_heures_specialistes_utilise();
-    $cours_groupe_semaine = $obj->get_cours_groupe_semaine();
+    $prenom_utilisateur = $obj->get_prenom();
+    $nom_utilisateur = $obj->get_nom();
+
+    $prenom_client = htmlentities($obj_client->get_prenom());
+    $nom_client = htmlentities($obj_client->get_nom());
+    $adresse = htmlentities($obj_client->get_adresse());
+    $telephone = $obj_client->get_telephone();
+    $courriel = htmlentities($obj_client->get_courriel());
+    $adhesion = htmlentities($obj_client->get_adhesion());
+    $plan_id = $obj_client->get_plan();
+    $renouvellement = htmlentities($obj_client->get_renouvellement());
+    $fin_abonnement = htmlentities($obj_client->get_fin_abonnement());
+    $fin_acces_appareils = htmlentities($obj_client->get_fin_acces_appareils());
+    $heures_specialistes = $obj_client->get_heures_specialistes();
+    $heures_specialistes_utilise = $obj_client->get_heures_specialistes_utilise();
+    $cours_groupe_semaine = $obj_client->get_cours_groupe_semaine();
 
     $plan_nom = $plan->get_nom();
     $date = strtotime('now');
@@ -538,14 +541,14 @@ class PageClient {
         </form>
 
         <div class="name">
-          Dominique Ducas - GESTIONNAIRE DE COMPTE
+          <?php echo $prenom_utilisateur." ".$nom_utilisateur." - GESTIONNAIRE DE COMPTE"; ?>
         </div>
 
         <div class="titre">
           COMPTE CLIENT
         </div>
 
-        <?php if($obj->get_id() > 0): ?>
+        <?php if($obj_client->get_id() > 0): ?>
           <button id="supprimer-client" title="Supprimer le compte client">
             <i class="fa-solid fa-trash"></i>
           </button>
@@ -553,8 +556,8 @@ class PageClient {
 
           <div class="demi-gauche">
               <form id="formulaire-gauche" action="#" method="post">
-                <input class="input-client" type="text" id="client-prenom" name="client-prenom" placeholder="prénom" value="<?php echo $prenom; ?>">
-                <input class="input-client" type="text" id="client-nom" name="cient-nom" placeholder="nom" value="<?php echo $nom;?>">
+                <input class="input-client" type="text" id="client-prenom" name="client-prenom" placeholder="prénom" value="<?php echo $prenom_client; ?>">
+                <input class="input-client" type="text" id="client-nom" name="cient-nom" placeholder="nom" value="<?php echo $nom_client;?>">
                 <input class="input-client" type="text" id="client-adresse" name="client-adresse" placeholder="adresse" value="<?php echo $adresse; ?>">
                 <input class="input-client" type="text" id="client-telephone" name="client-telephone" placeholder="téléphone (xxx) xxx-xxxx" value="<?php echo $telephone; ?>">
                 <input class="input-client" type="text" id="client-courriel" name="client-courriel" placeholder="courriel" value="<?php echo $courriel; ?>">
@@ -565,7 +568,7 @@ class PageClient {
 
           <div class="demi-droite">
 
-            <?php if($obj->get_id() > 0): ?>
+            <?php if($obj_client->get_id() > 0): ?>
               <div id="info-plan" class="info-plan">
                 <div>
                   Date d'adhésion: <span><?php echo $adhesion; ?></span>

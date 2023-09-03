@@ -13,6 +13,9 @@ class GestionnaireControlleur {
 
   public function afficherPage($connexion_lire, $connexion_ecrire, $connexion_effacer) {
 
+      $gestionnaire = new Gestionnaire();
+      $gestionnaire->select_personne_mysql($_SESSION['id'], $connexion_lire);
+
       if(isset($_POST['creer-compte']) && $_POST['creer-compte'] === 'oui') {
         $_SESSION['page'] = "PageClient";
         unset($_SESSION['client-id']);
@@ -102,16 +105,14 @@ class GestionnaireControlleur {
           $select_plan = $plan->select_mysql($client->get_plan(), $connexion_lire);
         }
         $plans = ListePlans::get_liste($connexion_lire);
-        $page = new PageClient($client, $plan, $plans);
+        $page = new PageClient($gestionnaire, $client, $plan, $plans);
       }
       else if(isset($_SESSION['page']) && $_SESSION['page'] === "PagePlans") {
         $plans = ListePlans::get_liste($connexion_lire);
-        $page = new PagePlans($plans);
+        $page = new PagePlans($gestionnaire, $plans);
       }
       else {
-        $gestionnaire_id = 1;
-        $message = "Test message";
-        $page = new PageMenu($gestionnaire_id, $message);
+        $page = new PageMenu($gestionnaire);
       }
   }
 }
