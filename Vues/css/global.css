@@ -55,7 +55,7 @@ tbody tr:nth-child(even) {
 }
 .disabled {
   pointer-events: none;
-  background-color: #EEE;
+  background-color: #EEE !important;
 }
 .icons {
   font-size: 7vw;
