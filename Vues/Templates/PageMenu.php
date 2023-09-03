@@ -549,7 +549,9 @@ class PageMenu {
             $( ".vis-auto" ).autocomplete({
               source: "Modele/ClientAutocomplete.php",
               change: function(event,ui){
-                $(this).val((ui.item ? ui.item.id : ""));
+                if (!ui.item) {
+                  $(this).val('');
+                }
               },
               close: function( event, ui ) {
                 $('.vis-auto').attr('readonly','readonly');
