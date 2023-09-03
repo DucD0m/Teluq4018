@@ -563,7 +563,7 @@ class PagePlans {
                     <input type="hidden" class="plan-id" id="plan-id<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_id; ?>">
                     <input class="<?php echo $disabled_prix_groupe; ?>" type="text" id="plan-prix-groupe<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix_cours_groupe; ?>">
                   </td>
-                  <td class="plans-tr-droite <?php echo $disabled_prix; ?>"><input type="text" id="plan-prix<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix; ?>"></td>
+                  <td class="plans-tr-droite"><input type="text" class="<?php echo $disabled_prix; ?>" id="plan-prix<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix; ?>"></td>
                 </tr>
                 <?php } ?>
 
