@@ -76,7 +76,18 @@ class GestionnaireControlleur {
       // IModification des plans
       else if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
          isset($_POST['formulaire-modifier-plans']) && $_POST['formulaire-modifier-plans'] === 'oui') {
-         var_dump($_POST);exit;
+           unset($_POST['formulaire-modifier-plans']);
+           unset($_POST['csrf_token']);
+           foreach ($_POST as $prix) {
+             $plan = new Plan();
+             $plan->select_mysql($prix[0],$connexion_lire);
+             $plan->set_prix_cours_groupe($prix_cours_groupe[1]);
+             $plan->set_prix($prix[2]);
+             $plan->update_mysql($plan, $connexion_ecrire);
+           }
+           
+           $_SESSION['message'] = "Les prix ont été modifiés avec succès.";
+           redirection();
       }
 
       if(isset($_SESSION['page']) && $_SESSION['page'] === "PageClient") {
