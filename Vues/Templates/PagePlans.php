@@ -541,10 +541,10 @@ class PagePlans {
                   <td><?php echo $p_acces_appareils; ?></td>
                   <td><?php echo $p_acces_cours_groupe; ?></td>
                   <td>
-                    <input type="hidden" id="plan-id<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>" value="<?php echo $p_id; ?>">
-                    <input type="text" id="plan-prix-groupe<?php echo $p_id; ?>" name="plan-prix-groupe<?php echo $p_id; ?>" value="<?php echo $p_prix_cours_groupe; ?>">
+                    <input type="hidden" id="plan-id<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_id; ?>">
+                    <input type="text" id="plan-prix-groupe<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix_cours_groupe; ?>">
                   </td>
-                  <td class="plans-tr-droite"><input type="text" id="plan-prix<?php echo $p_id; ?>" name="plan-prix<?php echo $p_id; ?>" value="<?php echo $p_prix; ?>"></td>
+                  <td class="plans-tr-droite"><input type="text" id="plan-prix<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix; ?>"></td>
                 </tr>
                 <?php } ?>
 
@@ -631,11 +631,11 @@ class PagePlans {
               });
               if(validation === false) alert('Tous les champs doivent être remplis');
               else {
-                $('input').each(function(){
+                $('input[name^="plan"]').each(function(){
                     if($(this).val() == 'N/A') {
                       $(this).val(0.00);
                     }
-                    else {
+                    else if(this.indexOf("$") >= 0) {
                       let val = $(this).val();
               				val = parseFloat(val.replace('$','')).toFixed(2);
               				if(Number.isFinite(parseFloat(val))) {
