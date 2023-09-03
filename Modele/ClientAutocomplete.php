@@ -26,5 +26,5 @@ $choix_liste = array("Volvo", "BMW", "Toyota");
 //   }
 
 	echo json_encode($choix_liste);
-}
+//}
 ?>
