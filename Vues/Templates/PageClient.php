@@ -515,12 +515,6 @@ class PageClient {
 
     <body>
 
-        <?php if(isset($_SESSION['message']) && ($_SESSION['message'] != '')): ?>
-          <script>
-            alert("<?php echo $_SESSION['message']; ?>");
-          </script>
-        <?php unset($_SESSION['message']); endif; ?>
-
         <form id="retour-form" class="hidden" action="http://10.0.1.18" method="post">
           <input type="hidden" id="retour-input" name="retour" value="oui">
           <button id="retour-menu" class="couleurs retour" type="submit" value="submit">
@@ -787,6 +781,15 @@ class PageClient {
               });
             });
           </script>
+
+          <?php if(isset($_SESSION['message']) && ($_SESSION['message'] != '')): ?>
+            <script>
+            $( document ).ready(function() {
+              alert("<?php echo $_SESSION['message']; ?>");
+            });
+            </script>
+          <?php unset($_SESSION['message']); endif; ?>
+          
     </body>
     </html>
 
