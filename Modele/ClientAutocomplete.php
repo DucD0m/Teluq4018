@@ -5,7 +5,8 @@
 //$connexion_lire = ConnexionLireBD::connexion();
 
 //$choix_liste = array();
-$choix_liste = array("Volvo", "BMW", "Toyota");
+$choix_liste = array();
+array_push($choix_liste,$_GET['term']);
 
 //$_GET["term"] = "Duc";
 
