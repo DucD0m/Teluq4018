@@ -635,7 +635,7 @@ class PagePlans {
                     if($(this).val() == 'N/A') {
                       $(this).val(0.00);
                     }
-                    else if(this.indexOf("$") >= 0) {
+                    else if($(this).val().indexOf("$") >= 0) {
                       let val = $(this).val();
               				val = parseFloat(val.replace('$','')).toFixed(2);
               				if(Number.isFinite(parseFloat(val))) {
