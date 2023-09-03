@@ -539,10 +539,11 @@ class PageMenu {
         <script>
           $( document ).ready(function() {
             $( ".vis-auto" ).autocomplete({
-              source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ],
+              //source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ],
+              source: "Modele/ClientAutocomplete.php",
               close: function( event, ui ) {
                 $('.vis-auto').attr('readonly','readonly');
-                location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/client.html";
+                //location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/client.html";
               }
             });
             $('.vis-auto').click(function(){

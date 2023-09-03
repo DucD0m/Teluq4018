@@ -1,0 +1,25 @@
+<?php
+require_once '../Configuration/config.php';
+require_once "../Controlleurs/ConnexionLireBD.php";
+
+$connexion_lire = ConnexionLireBD::connexion();
+
+$choix_liste = array();
+$client = trim($_GET["client"]);
+
+if($client != ""){
+	$sql = $connexion_lire->prepare("SELECT id, prenom, nom, telephone FROM personnes WHERE prenom LIKE CONCAT('%',:prenom,'%') OR nom LIKE CONCAT('%',:nom,'%') OR telephone LIKE CONCAT('%',:tel,'%') ORDER BY prenom ASC");
+  $sql->bindParam(':prenom', $client, PDO::PARAM_STR);
+  $sql->bindParam(':nom', $client, PDO::PARAM_STR);
+  $sql->bindParam(':tel', $client, PDO::PARAM_INT);
+  $sql->execute();
+  $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
+
+  foreach ($resultats as $resultat) {
+    $choix = $resultat->id." - ".$resultat->prenom." ".$resultat->nom." - ".$resultat->telephone;
+    array_push($choix_liste, $choix);
+  }
+
+	echo json_encode($choix_liste);
+}
+?>
