@@ -6,9 +6,9 @@ $connexion_lire = ConnexionLireBD::connexion();
 
 $choix_liste = array();
 
-$_GET["vis-client"] = "Duc";
+//$_GET["term"] = "Duc";
 
-$client = trim($_GET["vis-client"]);
+$client = trim($_GET["term"]);
 
 if($client != ""){
   $sql = $connexion_lire->prepare("SELECT id, prenom, nom, telephone FROM personnes WHERE prenom LIKE '%$client%' OR nom LIKE '%$client%' OR telephone LIKE '%$client%' ORDER BY prenom ASC");
