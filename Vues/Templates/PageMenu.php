@@ -511,7 +511,7 @@ class PageMenu {
           </div>
           <i class="icons-sm fa-solid fa-user-pen"></i>
           <form>
-            <input id="vis-client" class="vis-auto" type="text" name="vis-client" placeholder="nom ou no. de téléphone" readonly="readonly">
+            <input id="vis-client" class="vis-auto" type="text" name="vis-client" placeholder="nom ou no. de téléphone">
           </form>
         </div>
 
