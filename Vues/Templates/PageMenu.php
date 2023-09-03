@@ -510,7 +510,7 @@ class PageMenu {
             UN COMPTE<br>
           </div>
           <i class="icons-sm fa-solid fa-user-pen"></i>
-          <form id="visualiser-form" onSubmit="return false;">
+          <form id="visualiser-form" onSubmit="return false;" action="http://10.0.1.18" method="post">
             <input type="hidden" id="visualiser-compte" name="visualiser-compte" value="oui">
             <input id="vis-client" class="vis-auto" type="text" name="vis-client" placeholder="nom ou no. de téléphone" title="Vous devez choisir une suggestion proposée.">
           </form>
