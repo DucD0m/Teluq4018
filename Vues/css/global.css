@@ -53,6 +53,10 @@ tbody tr:nth-child(even) {
   border-right: #666 0.2vw solid;
   font-size: 1.3vw;
 }
+.disabled {
+  pointer-events: none;
+  background-color: #EEE;
+}
 .icons {
   font-size: 7vw;
   padding: 1vw;

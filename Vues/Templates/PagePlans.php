@@ -470,7 +470,7 @@ class PagePlans {
     </head>
 
     <body>
-      
+
         <?php if(isset($_SESSION['message']) && ($_SESSION['message'] != '')): ?>
           <script>
             alert("<?php echo $_SESSION['message']; ?>");
@@ -527,8 +527,14 @@ class PagePlans {
                   }
 
                   $p_prix = $p->get_prix();
-                  if($p_prix == 0) $p_prix = "N/A";
-                  else $p_prix = number_format($p_prix,2)."$";
+                  if($p_prix == 0) {
+                    $p_prix = "N/A";
+                    $disabled = "disabled";
+                  }
+                  else {
+                    $p_prix = number_format($p_prix,2)."$";
+                    $disabled = "";
+                  }
 
                   $p_acces_appareils = $p->get_acces_appareils();
                   if($p_acces_appareils == 1) $p_acces_appareils = "OUI";
@@ -549,9 +555,9 @@ class PagePlans {
                   <td><?php echo $p_acces_cours_groupe; ?></td>
                   <td>
                     <input type="hidden" class="plan-id" id="plan-id<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_id; ?>">
-                    <input type="text" id="plan-prix-groupe<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix_cours_groupe; ?>">
+                    <input class="<?php echo $disabled; ?>" type="text" id="plan-prix-groupe<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix_cours_groupe; ?>">
                   </td>
-                  <td class="plans-tr-droite"><input type="text" id="plan-prix<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix; ?>"></td>
+                  <td class="plans-tr-droite <?php echo $disabled; ?>"><input type="text" id="plan-prix<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix; ?>"></td>
                 </tr>
                 <?php } ?>
 

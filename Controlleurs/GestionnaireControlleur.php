@@ -73,7 +73,7 @@ class GestionnaireControlleur {
 
         redirection();
       }
-      // IModification des plans
+      // Modification des plans
       else if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
          isset($_POST['formulaire-modifier-plans']) && $_POST['formulaire-modifier-plans'] === 'oui') {
 
@@ -89,10 +89,7 @@ class GestionnaireControlleur {
              $plan->set_prix_cours_groupe($plan_prix_cours_groupe);
              $plan->set_prix($plan_prix);
              $update_plans = $plan->update_mysql($plan, $connexion_ecrire);
-             // var_dump($plan);
-             echo $update_plans."<br>";
            }
-           exit;
            $_SESSION['message'] = "Les prix ont été modifiés avec succès.";
            redirection();
       }
