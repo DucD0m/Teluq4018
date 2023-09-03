@@ -81,13 +81,14 @@ class GestionnaireControlleur {
            unset($_POST['csrf_token']);
 
            foreach ($_POST as $prix) {
-             $plan = new Plan();
-             $plan->select_mysql($prix[0],$connexion_lire);
-             $plan->set_prix_cours_groupe($prix[1]);
-             $plan->set_prix($prix[2]);
-             $plan->update_mysql($plan, $connexion_ecrire);
+             var_dump($prix);
+             // $plan = new Plan();
+             // $plan->select_mysql($prix[0],$connexion_lire);
+             // $plan->set_prix_cours_groupe($prix[1]);
+             // $plan->set_prix($prix[2]);
+             // $plan->update_mysql($plan, $connexion_ecrire);
            }
-
+           exit;
            $_SESSION['message'] = "Les prix ont été modifiés avec succès.";
            redirection();
       }
