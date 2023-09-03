@@ -542,11 +542,10 @@ class PageMenu {
             $( ".vis-auto" ).autocomplete({
               source: "Modele/ClientAutocomplete.php",
               select: function( event, ui ) {
-                alert(ui.item.value);
-                // if($(this).val != '') {
-                //   $('#visualiser-form').removeAttr('onSubmit');
-                //   $('#visualiser-form').submit();
-                // }
+                if(ui.item.value != '') {
+                  $('#visualiser-form').removeAttr('onSubmit');
+                  $('#visualiser-form').submit();
+                }
               }
             });
             $( document ).tooltip({
