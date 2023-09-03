@@ -471,6 +471,13 @@ class PageMenu {
         }
       </style> -->
 
+      <script>
+        function visualiser_client() {
+          let client = document.getElementById("vis-client");
+          if(client.value == '') return false;
+        }
+      </script>
+
     </head>
 
     <body>
@@ -510,7 +517,8 @@ class PageMenu {
             UN COMPTE<br>
           </div>
           <i class="icons-sm fa-solid fa-user-pen"></i>
-          <form>
+          <form id="visualiser-form" onSubmit="return visualiser_client();">
+            <input type="hidden" id="visualiser-compte" name="visualiser-compte" value="oui">
             <input id="vis-client" class="vis-auto" type="text" name="vis-client" placeholder="nom ou no. de téléphone">
           </form>
         </div>
@@ -540,6 +548,9 @@ class PageMenu {
           $( document ).ready(function() {
             $( ".vis-auto" ).autocomplete({
               source: "Modele/ClientAutocomplete.php",
+              change: function(event,ui){
+                $(this).val((ui.item ? ui.item.id : ""));
+              },
               close: function( event, ui ) {
                 $('.vis-auto').attr('readonly','readonly');
                 //location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/client.html";
