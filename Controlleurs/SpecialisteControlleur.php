@@ -29,7 +29,7 @@ class SpecialisteControlleur {
         $date_format = date_format($date_heure, "Y-m-d H:i:s");
 
         $client = new Client();
-        $client->select_mysql($client_id);
+        $client->select_mysql($client_id, $connexion_lire);
 
         // Vérifier si client a des heures specialiste disponible
         if($client->get_heures_specialistes_utilise() < $client->get_heures_specialistes()) {
