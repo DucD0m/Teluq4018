@@ -59,7 +59,7 @@ abstract class Personne implements Modele {
     }
   }
   public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    if(get_class($obj) === 'Client' || get_class($obj) === 'Gestionnaire' || get_class($obj) === 'Specialiste') {
+    if(get_class($obj) === 'Client') {
       $sql = $connexion_ecrire->prepare("INSERT INTO personnes (prenom, nom, adresse, telephone, courriel) VALUES (:prenom, :nom, :adresse, :telephone, :courriel)");
       $sql->bindParam(':prenom', $obj->get_prenom(), PDO::PARAM_STR);
       $sql->bindParam(':nom', $obj->get_nom(), PDO::PARAM_STR);
@@ -75,7 +75,7 @@ abstract class Personne implements Modele {
     }
   }
   public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    if((get_class($obj) === 'Client' || get_class($obj) === 'Gestionnaire' || get_class($obj) === 'Specialiste') && $obj->get_id() > 0) {
+    if((get_class($obj) === 'Client') && $obj->get_id() > 0) {
       $sql = $connexion_ecrire->prepare("UPDATE personnes SET prenom = :prenom, nom = :nom, adresse = :adresse, telephone = :telephone, courriel = :courriel WHERE id = :id");
       $sql->bindParam(':id', $obj->get_id(), PDO::PARAM_INT);
       $sql->bindParam(':prenom', $obj->get_prenom(), PDO::PARAM_STR);
@@ -91,7 +91,7 @@ abstract class Personne implements Modele {
     }
   }
   public function delete_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
-    if((get_class($obj) === 'Client' || get_class($obj) === 'Gestionnaire' || get_class($obj) === 'Specialiste') && $obj->get_id() > 0) {
+    if((get_class($obj) === 'Client') && $obj->get_id() > 0) {
       $sql = $connexion_effacer->prepare("DELETE FROM personnes WHERE id = :id");
       $sql->bindParam(':id', $obj->get_id(), PDO::PARAM_INT);
       $resultat = $sql->execute();

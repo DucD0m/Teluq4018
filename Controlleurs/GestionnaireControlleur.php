@@ -18,6 +18,13 @@ class GestionnaireControlleur {
       $gestionnaire->select_personne_mysql($_SESSION['id'], $connexion_lire);
       $date = date("Y-m-d",strtotime('now'));
 
+
+      /************************************************************************
+      *                                                                       *
+      *                  NAVIGATION BOUTONS MENU GESTIONNAIRE                 *
+      *                                                                       *
+      ************************************************************************/
+
       if(isset($_POST['creer-compte']) && $_POST['creer-compte'] === 'oui') {
         $_SESSION['page'] = "PageClient";
         unset($_SESSION['client-id']);
@@ -35,6 +42,12 @@ class GestionnaireControlleur {
         redirection();
       }
 
+
+      /************************************************************************
+      *                                                                       *
+      *            MODIFICATION BASE DE DONNEES GESTIONNAIRE                  *
+      *                                                                       *
+      ************************************************************************/
 
       // Si le token csrf ne correspond pas.
       if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
@@ -175,7 +188,7 @@ class GestionnaireControlleur {
            $client = new Client();
            $client->select_mysql($_POST['client-personne'], $connexion_lire);
 
-           $resultat_delete = $client->delete_personne_mysql($client, $connexion_ecrire);
+           $resultat_delete = $client->delete_personne_mysql($client, $connexion_effacer);
 
            if($resultat_delete > 0) {
              $_SESSION['message'] = "Le compte a été supprimé avec succès.";
@@ -210,6 +223,13 @@ class GestionnaireControlleur {
            redirection();
       }
 
+
+      /************************************************************************
+      *                                                                       *
+      *                       NAVIGATION PAGES                                *
+      *                                                                       *
+      ************************************************************************/
+      
       if(isset($_SESSION['page']) && $_SESSION['page'] === "PageClient") {
         $client = new Client();
         $plan = new Plan();

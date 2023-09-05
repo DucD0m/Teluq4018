@@ -165,13 +165,12 @@ class Client extends Personne implements Modele {
     }
   }
   public function delete_personne_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
+    // La clé étrangère est configuré "ON DELETE CASCADE". En effaçant la personne, on efface automatiquement le client.
     $resultat = parent::delete_mysql($obj, $connexion_effacer);
     return $resultat;
   }
   public function delete_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
-    // Code here
-    if(get_class($obj) === 'Client') echo get_class($obj);
-    else echo 'wrong type';
+    // Code lorsque requis...
   }
 }
 ?>
