@@ -145,7 +145,7 @@ class Client extends Personne implements Modele {
         fin_abonnement = :fin_abonnement,
         fin_acces_appareils = :fin_acces_appareils,
         heures_specialistes = :heures_specialistes,
-        heures_specialistes_utilise = :heures_specialistes_utilise
+        heures_specialistes_utilise = :heures_specialistes_utilise,
         cours_groupe_semaine = :cours_groupe_semaine,
         plan = :plan
         WHERE personne = :personne");
