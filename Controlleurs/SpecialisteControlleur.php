@@ -73,7 +73,10 @@ class SpecialisteControlleur {
             if($resultat_insertion > 0) {
               $_SESSION['message'] = "Le nouveau rendez-vous a été fixé avec succès.";
             }
-            else $_SESSION['message'] = "Il y a eu un problème avec la prise du rendez-vous. Veuillez vérifier et essayer de nouveau.";
+            else {
+              var_dump($_POST);exit;
+              $_SESSION['message'] = "Il y a eu un problème avec la prise du rendez-vous. Veuillez vérifier et essayer de nouveau.";
+            }
           }
         }
         else {
