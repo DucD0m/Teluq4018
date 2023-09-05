@@ -24,7 +24,7 @@ class Specialite implements Modele {
       $sql = $connexion_lire->prepare("SELECT * FROM specialites WHERE id = :id");
       $sql->bindParam(':id', $id, PDO::PARAM_INT);
       $sql->execute();
-      $specialiste = $sql->fetch(PDO::FETCH_OBJ);
+      $specialite = $sql->fetch(PDO::FETCH_OBJ);
 
       if($specialite) {
         $this->set_id($specialiste->id);
