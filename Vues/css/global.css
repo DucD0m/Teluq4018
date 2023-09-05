@@ -410,10 +410,11 @@ tbody tr:nth-child(even) {
 #rdv-heure {
   top: 31vw;
   width: 50.5vw;
+  color: #666;
 }
-/* #rdv-heure option:checked{
+#rdv-heure option:checked{
   color: #000;
-} */
+}
 #modifier-plans {
   position: relative;
   top: 1.5vw;

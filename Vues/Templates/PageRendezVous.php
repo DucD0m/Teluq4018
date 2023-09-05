@@ -20,7 +20,7 @@ class PageRendezVous {
       <meta charset="UTF-8">
 
       <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/cupertino/jquery-ui.css">
-      <link rel="stylesheet" href="Vues/css/global.css?v=3">
+      <link rel="stylesheet" href="Vues/css/global.css?v=4">
 
       <script
         src="https://code.jquery.com/jquery-3.7.0.min.js"
