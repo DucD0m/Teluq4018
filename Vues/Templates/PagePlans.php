@@ -683,7 +683,7 @@ class PagePlans {
                 }
                 else {
                   alert("Vous devez entrer un prix valide.");
-                  location.href = "<?php echo URL; ?>";
+                  //location.href = "<?php //echo URL; ?>";
                 }
               }
             });
