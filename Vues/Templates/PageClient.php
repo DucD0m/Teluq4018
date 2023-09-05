@@ -810,6 +810,7 @@ class PageClient {
                   $('#formulaire-droite :input').each(function(){
                       if($(this).val() === '') {
                         validation = false;
+                        alert($(this).attr('id'));
                       }
                   });
                   if(validation === false) alert('Tous les champs concernant le plan doivent être remplis');
