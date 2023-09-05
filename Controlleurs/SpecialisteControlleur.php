@@ -41,8 +41,8 @@ class SpecialisteControlleur {
 
           // Vérifier si le client ou le spécialiste à déjà un rendez-vous à ce moment.
           $liste_rdv_specialiste = ListeRendezVous::get_liste($specialiste, $connexion_lire);
-          var_dump($liste_rdv_specialiste);exit;
           $liste_rdv_client = ListeRendezVous::get_liste($client, $connexion_lire);
+          var_dump($liste_rdv_client);exit;
 
           foreach ($liste_rdv_specialiste as $rdv_specialiste) {
             if($rdv_specialiste->get_date_heure() == $date_heure) {
