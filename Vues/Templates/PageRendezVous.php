@@ -547,6 +547,7 @@ class PageRendezVous {
                   $('#rdv-client').val(rdv_specialiste_autocomplete);
                   //$('#rdv-client').attr('readonly','readonly');
                 }
+                else $('#rdv-client').val('').change();
               }
             });
             // $('#rdv-client').click(function(){
