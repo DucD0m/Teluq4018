@@ -520,7 +520,7 @@ class PageRendezVous {
         <form id="rendez-vous" action="<?php echo URL; ?>" method="post">
           <input id="rdv-client" class="rdv" type="text" name="rdv-client" placeholder="nom ou no. de téléphone du client" title="<?php echo $message_autocomplete; ?>">
           <input id="rdv-date" class="rdv" type="text" name="rdv-date" placeholder="date du rendez-vous" readonly="readonly">
-          <select id="rdv-heure" class="rdv">
+          <select id="rdv-heure" name="rdv-heure" class="rdv">
             <option value="">Heure du rendez-vous</option>
             <option value="8:00">8:00</option>
             <option value="9:00">9:00</option>
