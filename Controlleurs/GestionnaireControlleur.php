@@ -16,6 +16,7 @@ class GestionnaireControlleur {
 
       $gestionnaire = new Gestionnaire();
       $gestionnaire->select_personne_mysql($_SESSION['id'], $connexion_lire);
+      $date = date("Y-m-d",strtotime('now'));
 
       if(isset($_POST['creer-compte']) && $_POST['creer-compte'] === 'oui') {
         $_SESSION['page'] = "PageClient";
@@ -43,7 +44,6 @@ class GestionnaireControlleur {
       else if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
          isset($_POST['formulaire-nouveau-client']) && $_POST['formulaire-nouveau-client'] === 'oui') {
 
-        $date = date("Y-m-d",strtotime('now'));
         $plan = new Plan();
         $plan->select_mysql($_POST['plan-id'], $connexion_lire);
 
@@ -53,7 +53,6 @@ class GestionnaireControlleur {
         $client->set_adresse($_POST['nouveau-adresse']);
         $client->set_telephone(intval($_POST['nouveau-telephone']));
         $client->set_courriel($_POST['nouveau-courriel']);
-        //$client->set_personne() = 0;
         $client->set_adhesion($date);
         $client->set_renouvellement($date);
 
@@ -82,8 +81,90 @@ class GestionnaireControlleur {
           $_SESSION['message'] = "Le nouveau compte client a été créé avec succès.";
           $_SESSION['client-id'] = $resultat_insertion;
         }
+        else $_SESSION['message'] = "Il y a eu un problème avec la création du compte. Veuillez vérifier et essayer de nouveau.";
 
         redirection();
+      }
+      // Modification de la table personne d'un client (formulaire de gauche de la page client existant).
+      else if (isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
+         isset($_POST['formulaire-client-personne']) && $_POST['formulaire-client-personne'] === 'oui') {
+           $client = new Client();
+           $client->set_id($_POST['client-prenom']);
+           $client->set_prenom($_POST['client-prenom']);
+           $client->set_nom($_POST['client-nom']);
+           $client->set_adresse($_POST['client-adresse']);
+           $client->set_telephone(intval($_POST['client-telephone']));
+           $client->set_courriel($_POST['client-courriel']);
+
+           $resultat_update = $client->update_personne_mysql($client, $connexion_ecrire);
+
+           if($resultat_update > 0) {
+             $_SESSION['message'] = "La mise à jour des informations personnelles du client a été accomplie avec succès.";
+           }
+           else ($resultat_update > 0) {
+             $_SESSION['message'] = "Il y a eu un problème avec la lise à jour des informations personnelles. Veuillez vérifier et essayer de nouveau.";
+           }
+
+           $_SESSION['client-id'] = $client->get_id();
+           redirection();
+      }
+      // Modification de la table client (formulaire de droite de la page client existant).
+      else if (isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
+         isset($_POST['formulaire-client-plan']) && $_POST['formulaire-client-plan'] === 'oui') {
+
+           $plan = new Plan();
+           $plan->select_mysql($_POST['plan-id'], $connexion_lire);
+
+           $client = new Client();
+           $client->select_mysql($_POST['client-personne'], $connexion_lire);
+
+           // Si on ajoute des heures spécialistes à un abonnement en cours qui est à plus de trente jours du renouvellement.
+           if($date < strtotime($client->get_fin_abonnement()." -1 month") {
+             // On garde la même date de renouvelement.
+           }
+           // Si on prolonge un abonnement précédent qui vient à échéance d'ici 30jours.
+           else if(strtotime($client->get_fin_abonnement()) >= strtotime($date) && strtotime($date) >= strtotime($client->get_fin_abonnement()." -1 month")) {
+             // La date de fin d'abonnement devient la date de renouvellement.
+             $client->set_renouvellement(date("Y-m-d",strtotime($client->get_fin_abonnement())));
+           }
+           // Si on ajoute un nouvel abonnement après la date d'échéance de l'abonnement précédent.
+           else {
+             // La date de renouvellement est aujourd'hui.
+             $client->set_renouvellement($date);
+           }
+
+           if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') {
+             // On garde la même date de fin d'abonnement.
+           }
+           else {
+             $fin_abonnement = date("Y-m-d",strtotime($client->get_renouvellement()." +".$plan->get_duree()." months"));
+             $client->set_fin_abonnement($fin_abonnement);
+           }
+
+           if($plan->get_acces_appareils() == 1) {
+             $fin_acces_appareils = date("Y-m-d",strtotime($client->get_renouvellement()." +".$plan->get_duree()." months"));
+             $client->set_fin_acces_appareils($fin_acces_appareils);
+           }
+
+           // On ajoute les nouvelles heures spécialistes. On ne remet jamais le compteur à 0 ici. (Le compteur est remis à 0 lorsque le client
+           // utilise sa dernière heure.)
+           $somme_heures_specialistes = $client->get_heures_specialistes + intval($_POST['client-spec']);
+           $client->set_heures_specialistes($somme_heures_specialistes);
+           $client->set_cours_groupe_semaine(intval($_POST['client-groupes']));
+           $client->set_plan($_POST['plan-id']);
+
+           $resultat_update = $client->update_mysql($client, $connexion_ecrire);
+
+           if($resultat_update > 0) {
+             $_SESSION['message'] = "La mise à jour du plan du client a été accomplie avec succès.";
+           }
+           else ($resultat_update > 0) {
+             $_SESSION['message'] = "Il y a eu un problème avec la mise à jour du plan. Veuillez vérifier et essayer de nouveau.";
+           }
+
+           $_SESSION['client-id'] = $client->get_id();
+           redirection();
+
       }
       // Modification des plans
       else if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&

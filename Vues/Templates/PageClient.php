@@ -7,11 +7,13 @@ class PageClient {
     $prenom_utilisateur = $obj->get_prenom();
     $nom_utilisateur = $obj->get_nom();
 
+    $id_client = $obj_client->get_id();
     $prenom_client = htmlentities($obj_client->get_prenom());
     $nom_client = htmlentities($obj_client->get_nom());
     $adresse = htmlentities($obj_client->get_adresse());
     $telephone = $obj_client->get_telephone();
     $courriel = htmlentities($obj_client->get_courriel());
+    $personne_client = $obj_client->get_personne();
     $adhesion = htmlentities($obj_client->get_adhesion());
     $plan_id = $obj_client->get_plan();
     $renouvellement = htmlentities($obj_client->get_renouvellement());
@@ -548,7 +550,7 @@ class PageClient {
           COMPTE CLIENT
         </div>
 
-        <?php if($obj_client->get_id() > 0): ?>
+        <?php if($id_client > 0): ?>
           <button id="supprimer-client" title="Supprimer le compte client">
             <i class="fa-solid fa-trash"></i>
           </button>
@@ -556,11 +558,15 @@ class PageClient {
 
           <div class="demi-gauche">
               <form id="formulaire-gauche" action="#" method="post">
+                <?php if($id_client > 0): ?>
+                  <input type="hidden" id="client-id" name="client-id" value="<?php echo $id_client; ?>">
+                <?php endif; ?>
                 <input class="input-client" type="text" id="client-prenom" name="client-prenom" placeholder="prénom" value="<?php echo $prenom_client; ?>">
                 <input class="input-client" type="text" id="client-nom" name="cient-nom" placeholder="nom" value="<?php echo $nom_client;?>">
                 <input class="input-client" type="text" id="client-adresse" name="client-adresse" placeholder="adresse" value="<?php echo $adresse; ?>">
                 <input class="input-client" type="text" id="client-telephone" name="client-telephone" placeholder="téléphone (xxx) xxx-xxxx" value="<?php echo $telephone; ?>">
                 <input class="input-client" type="text" id="client-courriel" name="client-courriel" placeholder="courriel" value="<?php echo $courriel; ?>">
+                <input type="hidden" id="formulaire-client-personne" name="formulaire-client-personne" value="oui">
                 <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                 <input class="couleurs submit-client" id="maj-personne" type="submit" value="METTRE À JOUR" onclick="return false;">
               </form>
@@ -568,7 +574,7 @@ class PageClient {
 
           <div class="demi-droite">
 
-            <?php if($obj_client->get_id() > 0): ?>
+            <?php if($id_client > 0): ?>
               <div id="info-plan" class="info-plan">
                 <div>
                   Date d'adhésion: <span><?php echo $adhesion; ?></span>
@@ -609,6 +615,9 @@ class PageClient {
 
               <div class="modif-plan">
                 <form id="formulaire-droite" action="http://10.0.1.18" method="post">
+                  <?php if($id_client > 0 && $personne_client === $id_client): ?>
+                    <input type="hidden" id="client-personne" name="client-personne" value="<?php echo $personne_client; ?>">
+                  <?php endif; ?>
                   <select id="plan-id" name="plan-id">
                     <?php foreach ($plans as $p) {
                       $p_id = $p->get_id();
@@ -655,7 +664,8 @@ class PageClient {
                   <input class="nouveau-client" type="hidden" id="nouveau-adresse" name="nouveau-adresse" value="" disabled>
                   <input class="nouveau-client" type="hidden" id="nouveau-telephone" name="nouveau-telephone" value="" disabled>
                   <input class="nouveau-client" type="hidden" id="nouveau-courriel" name="nouveau-courriel" value="" disabled>
-                  <input class="nouveau-client" type="hidden" id="formulaire-nouveau-client" name="formulaire-nouveau-client" value="oui" disabled>
+                  <input class="nouveau-client" type="hidden" id="formulaire-nouveau-client" name="formulaire-nouveau-client" value="non" disabled>
+                  <input type="hidden" id="formulaire-client-plan" name="formulaire-client-plan" value="oui">
                   <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                   <input id="bouton-ajouter" type="submit" class="couleurs submit-client" value="AJOUTER" onclick="return false;">
                 </form>
@@ -688,13 +698,17 @@ class PageClient {
                 confirm('Êtes-vous certain de vouloir supprimer ce compte client?');
               });
 
-              // Active les champs hidden du formulaire pour les nouveaux clients.
+              // Active les champs hidden du formulaire pour les nouveaux clients et désactiver les hidden inputs
+              //qui identifient les formulaires pour les clients existants.
               if($('#nouveau-client').length){
               	$('#maj-personne').css('visibility','hidden');
+                $('#formulaire-client-personne').addAttr('disabled');
+                $('#formulaire-client-personne').val('non');
+                $('#formulaire-client-plan').addAttr('disabled');
+                $('#formulaire-client-plan').val('non');
                 $('.nouveau-client').removeAttr('disabled');
                 $('#formulaire-nouveau-client').val('oui');
               }
-              else $('#formulaire-nouveau-client').val('non');
 
               // Envoi des valeur du formulaire de gauche dans les champs hidden du formulaire de droite.
               $('.input-client').change(function(){

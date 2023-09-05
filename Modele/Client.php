@@ -139,9 +139,30 @@ class Client extends Personne implements Modele {
     return $resultat;
   }
   public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    // Code here
-    if(get_class($obj) === 'Client') echo get_class($obj);
-    else echo 'wrong type';
+    if(get_class($obj) === 'Client' && $obj->get_personne() > 0) {
+      $sql = $connexion_ecrire->prepare("UPDATE clients SET
+        renouvelement = :renouvelement,
+        fin_abonnement = :fin_abonnement,
+        fin_acces_appareils = :fin_acces_appareils,
+        heures_specialistes = :heures_specialistes,
+        heures_specialistes_utilise = :heures_specialistes_utilise
+        cours_groupe_semaine = :cours_groupe_semaine,
+        plan = :plan
+        WHERE personne = :personne");
+      $sql->bindParam(':personne', $obj->get_personne(), PDO::PARAM_INT);
+      $sql->bindParam(':renouvelement', $obj->get_renouvellement(), PDO::PARAM_STR);
+      $sql->bindParam(':fin_abonnement', $obj->get_fin_abonnement(), PDO::PARAM_STR);
+      $sql->bindParam(':fin_acces_appareils', $obj->get_fin_acces_appareils(), PDO::PARAM_STR);
+      $sql->bindParam(':heures_specialistes', $obj->get_heures_specialistes(), PDO::PARAM_INT);
+      $sql->bindParam(':heures_specialistes_utilise', $obj->get_heures_specialistes_utilise(), PDO::PARAM_INT);
+      $sql->bindParam(':cours_groupe_semaine', $obj->get_cours_groupe_semaine(), PDO::PARAM_INT);
+      $sql->bindParam(':plan', $obj->get_plan(), PDO::PARAM_INT);
+      $resultat = $sql->execute();
+      return $resultat;
+    }
+    else {
+      return false;
+    }
   }
   public function delete_personne_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
     $resultat = parent::delete_mysql($obj, $connexion_effacer);
