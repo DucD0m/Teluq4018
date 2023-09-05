@@ -488,7 +488,7 @@ class PageMenu {
           ARGENTÉ
         </div>
 
-        <form id="quitter-form" class="hidden" action="http://10.0.1.18" method="post">
+        <form id="quitter-form" class="hidden" action="<?php echo URL; ?>" method="post">
           <input type="hidden" id="quitter-input" name="quitter" value="oui">
           <button id="quitter" class="couleurs quitter" type="submit" value="submit">
             QUITTER <i class="fa-solid fa-person-running"></i>
@@ -504,7 +504,7 @@ class PageMenu {
         </div>
 
 
-        <form id="creer-form" class="hidden" action="http://10.0.1.18" method="post">
+        <form id="creer-form" class="hidden" action="<?php echo URL; ?>" method="post">
           <input type="hidden" id="creer-compte" name="creer-compte" value="oui">
           <button id="creer" class="couleurs menu menu1">
             CRÉER UN<br>
@@ -519,13 +519,13 @@ class PageMenu {
             UN COMPTE<br>
           </div>
           <i class="icons-sm fa-solid fa-user-pen"></i>
-          <form id="visualiser-form" onSubmit="return false;" action="http://10.0.1.18" method="post">
+          <form id="visualiser-form" onSubmit="return false;" action="<?php echo URL; ?>" method="post">
             <input type="hidden" id="visualiser-compte" name="visualiser-compte" value="oui">
             <input id="vis-client" class="vis-auto" type="text" name="vis-client" placeholder="nom ou no. de téléphone" title="Vous devez choisir une suggestion proposée.">
           </form>
         </div>
 
-        <form id="plans-form" class="hidden" action="http://10.0.1.18" method="post">
+        <form id="plans-form" class="hidden" action="<?php echo URL; ?>" method="post">
           <input type="hidden" id="gestion-plans" name="gestion-plans" value="oui">
           <button id="plans" class="couleurs menu menu3">
             GESTION<br>

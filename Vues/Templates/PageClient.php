@@ -528,14 +528,14 @@ class PageClient {
           </script>
         <?php unset($_SESSION['message']); endif; ?>
 
-        <form id="retour-form" class="hidden" action="http://10.0.1.18" method="post">
+        <form id="retour-form" class="hidden" action="<?php echo URL; ?>" method="post">
           <input type="hidden" id="retour-input" name="retour" value="oui">
           <button id="retour-menu" class="couleurs retour" type="submit" value="submit">
             <i class="fa-solid fa-backward"></i> MENU<br>
           </button>
         </form>
 
-        <form id="quitter-form" class="hidden" action="http://10.0.1.18" method="post">
+        <form id="quitter-form" class="hidden" action="<?php echo URL; ?>" method="post">
           <input type="hidden" id="quitter-input" name="quitter" value="oui">
           <button id="quitter" class="couleurs quitter" type="submit" value="submit">
             QUITTER <i class="fa-solid fa-person-running"></i>
@@ -551,7 +551,7 @@ class PageClient {
         </div>
 
         <?php if($id_client > 0 && $personne_client === $id_client): ?>
-          <form id="supprimer-form" class="hidden" action="http://10.0.1.18" method="post">
+          <form id="supprimer-form" class="hidden" action="<?php echo URL; ?>" method="post">
             <input type="hidden" id="formulaire-supprimer-client" name="formulaire-supprimer-client" value="oui">
             <input type="hidden" id="client-personne" name="client-personne" value="<?php echo $personne_client; ?>">
             <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
@@ -562,7 +562,7 @@ class PageClient {
         <?php endif; ?>
 
           <div class="demi-gauche">
-              <form id="formulaire-gauche" action="http://10.0.1.18" onSubmit="return false;" method="post">
+              <form id="formulaire-gauche" action="<?php echo URL; ?>" onSubmit="return false;" method="post">
                 <?php if($id_client > 0): ?>
                   <input type="hidden" id="client-id" name="client-id" value="<?php echo $id_client; ?>">
                 <?php endif; ?>
@@ -619,7 +619,7 @@ class PageClient {
 
 
               <div class="modif-plan">
-                <form id="formulaire-droite" action="http://10.0.1.18" onSubmit="return false;" method="post">
+                <form id="formulaire-droite" action="<?php echo URL; ?>" onSubmit="return false;" method="post">
                   <?php if($id_client > 0 && $personne_client === $id_client): ?>
                     <input type="hidden" id="client-personne" name="client-personne" value="<?php echo $personne_client; ?>">
                   <?php endif; ?>
