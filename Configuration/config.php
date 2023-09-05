@@ -1,4 +1,7 @@
 <?php
+// Configuration de l'url pour l'envoi des formulaires.
+define("URL", "http://10.0.1.18");
+
 // Configuration de la base de données.
 define("BASEDONNEES", "gym_argente");
 define("SERVERNAME", "localhost");

@@ -505,7 +505,7 @@ class PagePlans {
         </div>
 
         <div id="plans-liste">
-          <form id="formulaire-plans" action="http://10.0.1.18" method="post">
+          <form id="formulaire-plans" action="http://10.0.1.18" onSubmit="return false;" method="post">
             <table id="plans-table">
               <thead>
                 <tr>
@@ -675,11 +675,12 @@ class PagePlans {
                     else {
                       validation = false;
                       alert("Vous devez entrer un prix valide.");
-                      location.href = "http://10.0.1.18";
+                      location.href = <?php echo URL; ?>;
                     }
                 });
                 if(validation === true) {
                   $('html').css('visibility','hidden');
+                  $('#formulaire-plans').removeAttr('onSubmit');
                   $('#formulaire-plans').submit();
                 }
               }
