@@ -6,7 +6,7 @@ class PageRendezVous {
 
     $prenom_utilisateur = htmlentities($obj->get_prenom());
     $nom_utilisateur = htmlentities($obj->get_nom());
-    $nom_specialite = htmlentities($obj_specialite->get_nom());
+    $nom_specialite = htmlentities(strtoupper($obj_specialite->get_nom()));
 
     $message_autocomplete = "Vous devez choisir une suggestion proposée. Seulement les clients ayant des heures disponibles sont affichés.";
 ?>
