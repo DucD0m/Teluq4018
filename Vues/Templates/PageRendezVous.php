@@ -578,7 +578,7 @@ class PageRendezVous {
                "ui-tooltip": "ui-corner-all"
              },
              position: {
-               my: "left top-150", at: "left bottom", collision: "flipfit"
+               my: "right top-15", at: "right top", collision: "flipfit"
              }
            });
         </script>
