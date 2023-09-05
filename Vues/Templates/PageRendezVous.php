@@ -543,16 +543,18 @@ class PageRendezVous {
                 }
               },
               close: function( event, ui ) {
-                $('#rdv-client').val(rdv_specialiste_autocomplete);
-                $('#rdv-client').attr('readonly','readonly');
+                if(rdv_specialiste_autocomplete != '') {
+                  $('#rdv-client').val(rdv_specialiste_autocomplete);
+                  //$('#rdv-client').attr('readonly','readonly');
+                }
               }
             });
-            $('#rdv-client').click(function(){
-              if($('#rdv-client').attr('readonly') == 'readonly') {
-                $('#rdv-client').val('').change();
-                $('#rdv-client'). removeAttr('readonly');
-              }
-            });
+            // $('#rdv-client').click(function(){
+            //   if($('#rdv-client').attr('readonly') == 'readonly') {
+            //     $('#rdv-client').val('').change();
+            //     $('#rdv-client'). removeAttr('readonly');
+            //   }
+            // });
             $( function() {
               $( "#rdv-date" ).datepicker({
                 minDate: 0,
