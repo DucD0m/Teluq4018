@@ -8,20 +8,13 @@ $choix_liste = array();
 
 $client = trim($_GET["term"]);
 
-if($client == 'Tous') {
-  $where = "(prenom LIKE CONCAT('%',:prenom,'%') OR nom LIKE CONCAT('%',:nom,'%') OR telephone LIKE CONCAT('%',:tel,'%'))";
-}
-else {
-  $where = "1";
-}
-
 if(isset($_GET["rdv_specialiste"]) && $_GET["rdv_specialiste"] == 'oui') {
   $and_where = " AND c.heures_specialistes_utilise < c.heures_specialistes ";
 }
 else $and_where = "";
 
 if($client != ""){
-	$sql = $connexion_lire->prepare("SELECT id, prenom, nom, telephone FROM personnes p JOIN clients c ON p.id = c.personne WHERE $where $and_where ORDER BY prenom ASC");
+	$sql = $connexion_lire->prepare("SELECT id, prenom, nom, telephone FROM personnes p JOIN clients c ON p.id = c.personne WHERE (prenom LIKE CONCAT('%',:prenom,'%') OR nom LIKE CONCAT('%',:nom,'%') OR telephone LIKE CONCAT('%',:tel,'%')) $and_where ORDER BY prenom ASC");
   $sql->bindParam(':prenom', $client, PDO::PARAM_STR);
   $sql->bindParam(':nom', $client, PDO::PARAM_STR);
   $sql->bindParam(':tel', $client, PDO::PARAM_INT);
