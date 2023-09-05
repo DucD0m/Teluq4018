@@ -702,9 +702,9 @@ class PageClient {
               // qui identifient les formulaires pour les clients existants.
               if($('#nouveau-client').length){
               	$('#maj-personne').css('visibility','hidden');
-                $('#formulaire-client-personne').addAttr('disabled');
+                $('#formulaire-client-personne').attr('disabled','disabled');
                 $('#formulaire-client-personne').val('non');
-                $('#formulaire-client-plan').addAttr('disabled');
+                $('#formulaire-client-plan').attr('disabled','disabled');
                 $('#formulaire-client-plan').val('non');
                 $('.nouveau-client').removeAttr('disabled');
                 $('#formulaire-nouveau-client').val('oui');
