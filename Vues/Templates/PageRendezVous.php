@@ -614,6 +614,10 @@ class PageRendezVous {
             }
           });
 
+          $('input, select').click(function(){
+            $(this).css('background-color','#FFF');
+          });
+
           $( document ).tooltip({
              classes: {
                "ui-tooltip": "ui-corner-all"

@@ -17,6 +17,7 @@ class SpecialisteControlleur {
     $specialite = new Specialite();
     $specialite->select_mysql($specialiste->get_specialite(), $connexion_lire);
 
+    // On valide le token csrf, le formulaire et les entrées de l'utilisateur.
     if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
        isset($_POST['formulaire-rendez-vous-specialiste']) && $_POST['formulaire-rendez-vous-specialiste'] === 'oui' &&
        isset($_POST['rdv-client']) && $_POST['rdv-client'] != '' &&
@@ -28,7 +29,6 @@ class SpecialisteControlleur {
 
         $date_heure = $_POST['rdv-date']." ".$_POST['rdv-heure'];
         $date_format = date_format(date_create($_POST['rdv-date']." ".$_POST['rdv-heure']), "Y-m-d H:i:s");
-        //echo $date_format;
 
         $client = new Client();
         $client->select_mysql($client_id, $connexion_lire);
@@ -46,7 +46,6 @@ class SpecialisteControlleur {
           $liste_rdv_client = ListeRendezVous::get_liste($client, $connexion_lire);
 
           foreach ($liste_rdv_specialiste as $rdv_specialiste) {
-            //echo "<br>".$rdv_specialiste->get_date_heure();exit;
             if($rdv_specialiste->get_date_heure() == $date_format) {
               $rdv_specialiste_verification = true;
             }
