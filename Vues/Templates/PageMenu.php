@@ -521,7 +521,7 @@ class PageMenu {
           <i class="icons-sm fa-solid fa-user-pen"></i>
           <form id="visualiser-form" onSubmit="return false;" action="<?php echo URL; ?>" method="post">
             <input type="hidden" id="visualiser-compte" name="visualiser-compte" value="oui">
-            <input id="vis-client" class="vis-auto" type="text" name="vis-client" placeholder="nom ou no. de téléphone" title="Vous devez choisir une suggestion proposée. Entrez 'Tous' pour la liste complète.">
+            <input id="vis-client" class="vis-auto" type="text" name="vis-client" placeholder="nom ou no. de téléphone" title="Vous devez choisir une suggestion proposée.">
           </form>
         </div>
 
