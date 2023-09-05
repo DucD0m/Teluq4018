@@ -674,15 +674,21 @@ class PagePlans {
                     }
                     else {
                       validation = false;
-                      alert("Vous devez entrer un prix valide.");
-                      location.href = "<?php echo URL; ?>";
+                      $(this).css('background-color','orange');
                     }
                 });
                 if(validation === true) {
                   $('html').css('visibility','hidden');
                   $('#formulaire-plans').submit();
                 }
+                else {
+                  alert("Vous devez entrer un prix valide.");
+                  location.href = "<?php echo URL; ?>";
+                }
               }
+            });
+            $('input').click(function(){
+              $(this).css('background-color','#FFF');
             });
           });
         </script>
