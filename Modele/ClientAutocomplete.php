@@ -22,7 +22,8 @@ if($client != ""){
   $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
 
   foreach ($resultats as $resultat) {
-    $choix = $resultat->id." - ".$resultat->prenom." ".$resultat->nom." - ".$resultat->telephone;
+    $telephone = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $resultat->telephone)
+    $choix = $resultat->id." - ".$resultat->prenom." ".$resultat->nom." - ".$telephone;
     array_push($choix_liste, $choix);
   }
 
