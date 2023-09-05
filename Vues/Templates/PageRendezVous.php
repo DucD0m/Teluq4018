@@ -531,14 +531,19 @@ class PageRendezVous {
 
         <script>
           $( document ).ready(function() {
+
+            var rdv_specialiste_autocomplete = '';
+
             $( "#rdv-client" ).autocomplete({
               source: "Modele/ClientAutocomplete.php?rdv_specialiste=oui",
               select: function( event, ui ) {
                 if(ui.item.value != '') {
-                  $('#rdv-client').val(ui.item.value);
+                  //$('#rdv-client').val(ui.item.value);
+                  rdv_specialiste_autocomplete = ui.item.value;
                 }
               },
               close: function( event, ui ) {
+                $('#rdv-client').val(rdv_specialiste_autocomplete);
                 $('#rdv-client').attr('readonly','readonly');
               }
             });
