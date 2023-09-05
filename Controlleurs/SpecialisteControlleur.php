@@ -45,13 +45,13 @@ class SpecialisteControlleur {
           $liste_rdv_client = ListeRendezVous::get_liste($client, $connexion_lire);
 
           foreach ($liste_rdv_specialiste as $rdv_specialiste) {
-            if($rdv_specialiste->get_date_heure() == $date_format) {
+            if($rdv_specialiste->get_date_heure() == $date_heure) {
               $rdv_specialiste_verification = true;
             }
           }
 
           foreach ($liste_rdv_client as $rdv_client) {
-            if($rdv_client->get_date_heure() == $date_format) {
+            if($rdv_client->get_date_heure() == $date_heure) {
               $rdv_client_verification = true;
             }
           }
