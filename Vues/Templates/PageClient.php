@@ -699,7 +699,7 @@ class PageClient {
               });
 
               // Active les champs hidden du formulaire pour les nouveaux clients et désactiver les hidden inputs
-              //qui identifient les formulaires pour les clients existants.
+              // qui identifient les formulaires pour les clients existants.
               if($('#nouveau-client').length){
               	$('#maj-personne').css('visibility','hidden');
                 $('#formulaire-client-personne').addAttr('disabled');
@@ -790,18 +790,48 @@ class PageClient {
 
               $('#bouton-ajouter').click(function(){
                 let validation = true;
-                $('input').each(function(){
+
+                if($('#nouveau-client').length) {
+                  $('input').each(function(){
+                      if($(this).val() === '') {
+                        validation = false;
+                        //alert($(this).attr('id'));
+                      }
+                  });
+                  if(validation === false) alert('Tous les champs doivent être remplis');
+                  else {
+                    let nouveau_tel = $('#nouveau-telephone').val();
+                    nouveau_tel = nouveau_tel.replace(' ','').replace('(','').replace(')','').replace('-','');
+                    $('#nouveau-telephone').val(nouveau_tel);
+                    $('#formulaire-droite').submit();
+                  }
+                }
+                else {
+                  $('#formulaire-droite :input').each(function(){
+                      if($(this).val() === '') {
+                        validation = false;
+                      }
+                  });
+                  if(validation === false) alert('Tous les champs concernant le plan doivent être remplis');
+                  else {
+                    $('#formulaire-droite').submit();
+                  }
+                }
+              });
+
+              $('#maj-personne').click(function(){
+                let validation = true;
+                $("#formulaire-gauche :input").each(function(){
                     if($(this).val() === '') {
                       validation = false;
-                      //alert($(this).attr('id'));
                     }
                 });
-                if(validation === false) alert('Tous les champs doivent être remplis');
+                if(validation === false) alert('Les champs prénom, nom, adresse, téléphone et courriel doivent être remplis');
                 else {
-                  let nouveau_tel = $('#nouveau-telephone').val();
+                  let nouveau_tel = $('#client-telephone').val();
                   nouveau_tel = nouveau_tel.replace(' ','').replace('(','').replace(')','').replace('-','');
-                  $('#nouveau-telephone').val(nouveau_tel);
-                  $('#formulaire-droite').submit();
+                  $('#client-telephone').val(nouveau_tel);
+                  $('#formulaire-gauche').submit();
                 }
               });
             });
