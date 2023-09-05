@@ -17,7 +17,7 @@ class SpecialisteControlleur {
     $specialite->select_mysql($specialiste->get_specialite(), $connexion_lire);
 
     if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
-       isset($_POST['formulaire-rendez-vous-specialiste']) && $_POST['formulaire-rendez-vous-specialiste'] === 'oui' && 
+       isset($_POST['formulaire-rendez-vous-specialiste']) && $_POST['formulaire-rendez-vous-specialiste'] === 'oui' &&
        isset($_POST['rdv-client']) && $_POST['rdv-client'] != '' &&
        isset($_POST['rdv-date']) && isset($_POST['rdv-heure']) &&
        date_format(date_create($_POST['rdv-date']." ".$_POST['rdv-heure']), "Y-m-d H:i")) {
@@ -25,7 +25,7 @@ class SpecialisteControlleur {
         $client_id_pos = strpos($_POST['rdv-client']," -");
         $client_id = substr($_POST['rdv-client'],0,$client_id_pos);
 
-        $date_heure = $_POST['rdv-date']." ".$_POST['rdv-heure'];
+        $date_heure = date_create($_POST['rdv-date']." ".$_POST['rdv-heure']);
         $date_format = date_format($date_heure, "Y-m-d H:i:s");
 
         $client = new Client();
@@ -85,7 +85,6 @@ class SpecialisteControlleur {
         redirection();
     }
     else if(!empty($_POST)) {
-        var_dump($_POST);exit;
         $_SESSION['message'] = "Il y a eu un problème. Le rendez-vous n'a pas été fixé. Veuillez vérifier et essayer de nouveau.";
         $page = new PageRendezVous($specialiste, $specialite);
     }
