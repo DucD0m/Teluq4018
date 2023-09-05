@@ -801,7 +801,7 @@ class PageClient {
                   $('input').each(function(){
                       if($(this).val() === '') {
                         validation = false;
-                        //alert($(this).attr('id'));
+                        $(this).css('background-color','orange');
                       }
                   });
                   if(validation === false) alert('Tous les champs doivent être remplis');
@@ -821,7 +821,8 @@ class PageClient {
                   $('#formulaire-droite :input').each(function(){
                       if($(this).val() === '' && $(this).prop('disabled') === false) {
                         validation = false;
-                        alert($(this).attr('id'));
+                        //alert($(this).attr('id'));
+                        $(this).css('background-color','orange');
                       }
                   });
                   if(validation === false) alert('Tous les champs concernant le plan doivent être remplis');
@@ -839,6 +840,7 @@ class PageClient {
                 $("#formulaire-gauche :input").each(function(){
                     if($(this).val() === '') {
                       validation = false;
+                      $(this).css('background-color','orange');
                     }
                 });
                 if(validation === false) alert('Les champs prénom, nom, adresse, téléphone et courriel doivent être remplis');
