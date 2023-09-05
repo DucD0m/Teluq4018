@@ -604,8 +604,7 @@ class PageRendezVous {
             });
             if(validation === false) alert('Tous les champs sont requis.');
             else {
-              console.log('rdv submit');
-              $('#rdv-fixer').submit();
+              $('#rendez-vous').submit();
             }
           });
 
