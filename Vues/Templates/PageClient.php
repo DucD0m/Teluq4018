@@ -562,7 +562,7 @@ class PageClient {
                   <input type="hidden" id="client-id" name="client-id" value="<?php echo $id_client; ?>">
                 <?php endif; ?>
                 <input class="input-client" type="text" id="client-prenom" name="client-prenom" placeholder="prénom" value="<?php echo $prenom_client; ?>">
-                <input class="input-client" type="text" id="client-nom" name="cient-nom" placeholder="nom" value="<?php echo $nom_client;?>">
+                <input class="input-client" type="text" id="client-nom" name="client-nom" placeholder="nom" value="<?php echo $nom_client;?>">
                 <input class="input-client" type="text" id="client-adresse" name="client-adresse" placeholder="adresse" value="<?php echo $adresse; ?>">
                 <input class="input-client" type="text" id="client-telephone" name="client-telephone" placeholder="téléphone (xxx) xxx-xxxx" value="<?php echo $telephone; ?>">
                 <input class="input-client" type="text" id="client-courriel" name="client-courriel" placeholder="courriel" value="<?php echo $courriel; ?>">
