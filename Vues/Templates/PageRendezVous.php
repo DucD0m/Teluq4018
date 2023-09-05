@@ -499,7 +499,7 @@ class PageRendezVous {
         </form>
 
         <div class="name">
-          <?php echo $prenom_utilisateur." ".$nom_utilisateur." - ".$nom_specialite; ?>
+          <?php echo $prenom_utilisateur." ".$nom_utilisateur." - ".strtoupper($nom_specialite); ?>
         </div>
 
         <div class="titre">
