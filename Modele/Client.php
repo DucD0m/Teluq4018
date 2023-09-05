@@ -85,22 +85,26 @@ class Client extends Personne implements Modele {
       $sql->execute();
       $client = $sql->fetch(PDO::FETCH_OBJ);
 
-      $this->set_id($client->id);
-      $this->set_prenom($client->prenom);
-      $this->set_nom($client->nom);
-      $this->set_adresse($client->adresse);
-      $this->set_telephone(intval($client->telephone));
-      $this->set_courriel($client->courriel);
-      $this->set_personne($client->personne);
-      $this->set_adhesion($client->adhesion);
-      $this->set_renouvellement($client->renouvellement);
-      $this->set_fin_abonnement($client->fin_abonnement);
-      $this->set_fin_acces_appareils($client->fin_acces_appareils);
-      $this->set_heures_specialistes($client->heures_specialistes);
-      $this->set_heures_specialistes_utilise($client->heures_specialistes_utilise);
-      $this->set_cours_groupe_semaine($client->cours_groupe_semaine);
-      $this->set_plan($client->plan);
-      return true;
+      if($client) {
+        $this->set_id($client->id);
+        $this->set_prenom($client->prenom);
+        $this->set_nom($client->nom);
+        $this->set_adresse($client->adresse);
+        $this->set_telephone(intval($client->telephone));
+        $this->set_courriel($client->courriel);
+        $this->set_personne($client->personne);
+        $this->set_adhesion($client->adhesion);
+        $this->set_renouvellement($client->renouvellement);
+        $this->set_fin_abonnement($client->fin_abonnement);
+        $this->set_fin_acces_appareils($client->fin_acces_appareils);
+        $this->set_heures_specialistes($client->heures_specialistes);
+        $this->set_heures_specialistes_utilise($client->heures_specialistes_utilise);
+        $this->set_cours_groupe_semaine($client->cours_groupe_semaine);
+        $this->set_plan($client->plan);
+
+        return true;
+      }
+      else return false;
     }
     else {
       return false;

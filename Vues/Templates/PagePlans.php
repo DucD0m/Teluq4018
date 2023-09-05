@@ -4,8 +4,8 @@ class PagePlans {
 
   public function __construct(Gestionnaire $obj, array $plans) {
 
-    $prenom_utilisateur = $obj->get_prenom();
-    $nom_utilisateur = $obj->get_nom();
+    $prenom_utilisateur = htmlentities($obj->get_prenom());
+    $nom_utilisateur = htmlentities($obj->get_nom());
 ?>
 
     <!DOCTYPE HTML>
@@ -520,7 +520,6 @@ class PagePlans {
               <tbody>
                 <?php foreach ($plans as $p) {
                   $p_id = $p->get_id();
-
                   $p_nom = htmlentities($p->get_nom());
                   $p_duree = $p->get_duree();
                   if(strpos($p->get_nom(),"Spécialiste") >= 0 && strpos($p->get_nom(),"Spécialiste") != '') {

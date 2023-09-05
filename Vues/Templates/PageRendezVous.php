@@ -2,7 +2,11 @@
 
 class PageRendezVous {
 
-  public function __construct(Int $id, String $message) {
+  public function __construct(Specialiste $obj, Specialite $obj_specialite, String $message) {
+
+    $prenom_utilisateur = htmlentities($obj->get_prenom());
+    $nom_utilisateur = htmlentities($obj->get_nom());
+    $nom_specialite = htmlentities($obj_specialite->get_nom());
 ?>
 
     <!DOCTYPE HTML>
@@ -14,7 +18,7 @@ class PageRendezVous {
       <meta charset="UTF-8">
 
       <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/cupertino/jquery-ui.css">
-      <link rel="stylesheet" href="Vues/css/global.css">
+      <link rel="stylesheet" href="Vues/css/global.css?v=1">
 
       <script
         src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -487,7 +491,7 @@ class PageRendezVous {
           QUITTER <i class="fa-solid fa-person-running"></i>
         </button>
 
-        <form id="quitter-form" class="hidden" action="http://10.0.1.18" method="post">
+        <form id="quitter-form" class="hidden" action="<?php echo URL; ?>" method="post">
           <input type="hidden" id="quitter-input" name="quitter" value="oui">
           <button id="quitter" class="couleurs quitter" type="submit" value="submit">
             QUITTER <i class="fa-solid fa-person-running"></i>
@@ -495,15 +499,15 @@ class PageRendezVous {
         </form>
 
         <div class="name">
-          Dominique Ducas - PHYSIOTHÉRAPEUTE
+          <?php echo $prenom_utilisateur." ".$nom_utilisateur." - ".$nom_specialite; ?>
         </div>
 
         <div class="titre">
           NOUVEAU RENDEZ-VOUS
         </div>
 
-        <form id="rendez-vous" action="http://10.0.1.18" method="post">
-          <input id="rdv-client" class="rdv" type="text" name="rdv-client" placeholder="nom ou no. de téléphone du client">
+        <form id="rendez-vous" action="<?php echo URL; ?>" method="post">
+          <input id="rdv-client" class="rdv" type="text" name="rdv-client" placeholder="nom ou no. de téléphone du client" title="Vous devez choisir une suggestion proposée.">
           <input id="rdv-date" class="rdv" type="text" name="rdv-date" placeholder="date du rendez-vous" readonly="readonly">
           <select id="rdv-heure" class="rdv">
             <option value="8:00">8:00</option>
@@ -520,13 +524,18 @@ class PageRendezVous {
             <option value="19:00">19:00</option>
             <option value="20:00">20:00</option>
           </select>
-          <input id="rdv-fixer" class="couleurs rdv" type="submit" value="FIXER LE RENDEZ-VOUS">
+          <input id="rdv-fixer" class="couleurs rdv" type="submit" value="FIXER LE RENDEZ-VOUS" onclick="return false;">
         </form>
 
         <script>
           $( document ).ready(function() {
             $( "#rdv-client" ).autocomplete({
-              source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ],
+              source: "Modele/ClientAutocomplete.php?rdv_specialiste=oui",
+              select: function( event, ui ) {
+                if(ui.item.value != '') {
+                  $('#rdv-client').val(ui.item.value);
+                }
+              },
               close: function( event, ui ) {
                 $('#rdv-client').attr('readonly','readonly');
               }
@@ -562,6 +571,14 @@ class PageRendezVous {
               initStatus: 'Choisir la date', isRTL: false};
             $.datepicker.setDefaults($.datepicker.regional['fr']);
           });
+          $( document ).tooltip({
+             classes: {
+               "ui-tooltip": "ui-corner-all"
+             },
+             position: {
+               my: "left top-115", at: "left bottom", collision: "flipfit"
+             }
+           });
         </script>
 
     </body>

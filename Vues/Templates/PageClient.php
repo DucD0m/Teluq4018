@@ -4,8 +4,8 @@ class PageClient {
 
   public function __construct(Gestionnaire $obj, Client $obj_client, Plan $plan, array $plans) {
 
-    $prenom_utilisateur = $obj->get_prenom();
-    $nom_utilisateur = $obj->get_nom();
+    $prenom_utilisateur = htmlentities($obj->get_prenom());
+    $nom_utilisateur = htmlentities($obj->get_nom());
 
     $id_client = $obj_client->get_id();
     $prenom_client = htmlentities($obj_client->get_prenom());
@@ -23,7 +23,7 @@ class PageClient {
     $heures_specialistes_utilise = $obj_client->get_heures_specialistes_utilise();
     $cours_groupe_semaine = $obj_client->get_cours_groupe_semaine();
 
-    $plan_nom = $plan->get_nom();
+    $plan_nom = htmlentities($plan->get_nom());
     $date = strtotime('now');
 
 ?>

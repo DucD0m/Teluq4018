@@ -2,12 +2,19 @@
 require_once "Vues/Templates/PageRendezVous.php";
 require_once "Modele/Client.php";
 require_once "Modele/Specialiste.php";
+require_once "Modele/Specialite.php";
 require_once "Modele/RendezVous.php";
 require_once "Controlleurs/fonctions_php.php";
 
 class SpecialisteControlleur {
 
   public function afficherPage($connexion_lire, $connexion_ecrire, $connexion_effacer) {
+
+    $specialiste = new Specialiste();
+    $specialiste->select_mysql($_SESSION['id'], $connexion_lire);
+
+    $specialite = new Specialite();
+    $specialite->select_mysql($specialiste->get_specialite(), $connexion_lire);
 
     if(isset($_POST['rdv-client']) && $_POST['rdv-client'] > 0 &&
        isset($_POST['rdv-date']) && format_date($_POST['rdv-date'], "yy-mm-dd") &&
@@ -28,9 +35,7 @@ class SpecialisteControlleur {
         $rendez_vous = new RendezVous();
         //redirection();
     }
-    $specialiste_id = 1;
-    $message = "Test message";
-    $page = new PageRendezVous($specialiste_id, $message);
+    $page = new PageRendezVous($specialiste, $specialite);
   }
 }
 ?>

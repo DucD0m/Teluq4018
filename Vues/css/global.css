@@ -309,7 +309,6 @@ tbody tr:nth-child(even) {
   border-radius: 2.5vw;
   border: #666 0.1vw solid;
   text-align: center;
-  color: #666;
   font-size: 1.3vw;
 }
 .retour {

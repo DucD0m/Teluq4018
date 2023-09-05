@@ -20,16 +20,32 @@ class Specialite implements Modele {
   }
 
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
-    // Code here
+    if($id > 0) {
+      $sql = $connexion_lire->prepare("SELECT * FROM specialites WHERE id = :id");
+      $sql->bindParam(':id', $id, PDO::PARAM_INT);
+      $sql->execute();
+      $specialiste = $sql->fetch(PDO::FETCH_OBJ);
+
+      if($specialite) {
+        $this->set_id($specialiste->id);
+        $this->set_nom($specialiste->nom);
+
+        return true;
+      }
+      else return false;
+    }
+    else {
+      return false;
+    }
   }
   public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    // Code here
+    // Code ici lorsque requis...
   }
   public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    // Code here
+    // Code ici lorsque requis...
   }
   public function delete_mysql(Object $obj, Object $connexion_effacer) :Int|Bool {
-    // Code here
+    // Code ici lorsque requis...
   }
 }
 ?>
