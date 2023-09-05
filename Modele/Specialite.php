@@ -27,8 +27,8 @@ class Specialite implements Modele {
       $specialite = $sql->fetch(PDO::FETCH_OBJ);
 
       if($specialite) {
-        $this->set_id($specialiste->id);
-        $this->set_nom($specialiste->nom);
+        $this->set_id($specialite->id);
+        $this->set_nom($specialite->nom);
 
         return true;
       }
