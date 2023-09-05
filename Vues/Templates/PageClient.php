@@ -795,11 +795,7 @@ class PageClient {
 
               $('#bouton-ajouter').click(function(){
                 let validation = true;
-
-                if($('#client-payer').val() == 0) {
-                  validation = false;
-                  alert("Svp vérifier le plan choisi, le nombre d'heures avec un spécialiste et le nombre de cours de groupe et recommencer.");
-                }
+                let message_zero = "Svp vérifier le plan choisi, le nombre d'heures avec un spécialiste et le nombre de cours de groupe et recommencer.";
 
                 if($('#nouveau-client').length) {
                   $('input').each(function(){
@@ -810,10 +806,15 @@ class PageClient {
                   });
                   if(validation === false) alert('Tous les champs doivent être remplis');
                   else {
-                    let nouveau_tel = $('#nouveau-telephone').val();
-                    nouveau_tel = nouveau_tel.replace(' ','').replace('(','').replace(')','').replace('-','');
-                    $('#nouveau-telephone').val(nouveau_tel);
-                    $('#formulaire-droite').submit();
+                    if($('#client-payer').val() == 0) {
+                      alert(message_zero);
+                    }
+                    else {
+                      let nouveau_tel = $('#nouveau-telephone').val();
+                      nouveau_tel = nouveau_tel.replace(' ','').replace('(','').replace(')','').replace('-','');
+                      $('#nouveau-telephone').val(nouveau_tel);
+                      $('#formulaire-droite').submit();
+                    }
                   }
                 }
                 else {
@@ -825,7 +826,10 @@ class PageClient {
                   });
                   if(validation === false) alert('Tous les champs concernant le plan doivent être remplis');
                   else {
-                    $('#formulaire-droite').submit();
+                    if($('#client-payer').val() == 0) {
+                      alert(message_zero);
+                    }
+                    else $('#formulaire-droite').submit();
                   }
                 }
               });
