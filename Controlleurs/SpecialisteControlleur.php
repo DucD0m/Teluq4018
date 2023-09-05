@@ -16,7 +16,9 @@ class SpecialisteControlleur {
     $specialite = new Specialite();
     $specialite->select_mysql($specialiste->get_specialite(), $connexion_lire);
 
-    if(isset($_POST['rdv-client']) && $_POST['rdv-client'] != '' &&
+    if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
+       isset($_POST['formulaire-rendez-vous-specialiste']) && $_POST['formulaire-rendez-vous-specialiste'] === 'oui' && 
+       isset($_POST['rdv-client']) && $_POST['rdv-client'] != '' &&
        isset($_POST['rdv-date']) && isset($_POST['rdv-heure']) &&
        date_format(date_create($_POST['rdv-date']." ".$_POST['rdv-heure']), "Y-m-d H:i")) {
 
