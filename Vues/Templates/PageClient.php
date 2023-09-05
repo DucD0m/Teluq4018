@@ -851,6 +851,10 @@ class PageClient {
                   $('#formulaire-gauche').submit();
                 }
               });
+
+              $('input').click(function(){
+                $(this).css('background-color','#FFF');
+              });
             });
           </script>
 
