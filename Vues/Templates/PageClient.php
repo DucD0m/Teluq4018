@@ -795,7 +795,7 @@ class PageClient {
 
               $('#bouton-ajouter').click(function(){
                 let validation = true;
-                let message_zero = "Svp vérifier le plan choisi, le nombre d'heures avec un spécialiste et le nombre de cours de groupe et recommencer.";
+                let message_zero = "Svp vérifier le plan choisi, le nombre d'heures avec un spécialiste et le nombre de cours de groupe avant de poursuivre.";
 
                 if($('#nouveau-client').length) {
                   $('input').each(function(){
