@@ -596,7 +596,6 @@ class PageRendezVous {
           });
 
           $('#rdv-fixer').click(function(){
-            console.log('fixer click');
             let validation = true;
             $("input").each(function(){
                 if($(this).val() === '') {
@@ -606,6 +605,7 @@ class PageRendezVous {
             });
             if(validation === false) alert('Tous les champs sont requis.');
             else {
+              console.log('fixer submit');
               $('#rdv-fixer').submit();
             }
           });
