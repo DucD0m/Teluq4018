@@ -484,6 +484,15 @@ class PageRendezVous {
     </head>
 
     <body>
+
+        <?php if(isset($_SESSION['message']) && ($_SESSION['message'] != '')): ?>
+          <script>
+          $( document ).ready(function() {
+            alert("<?php echo $_SESSION['message']; ?>");
+          });
+          </script>
+        <?php unset($_SESSION['message']); endif; ?>
+        
         <div class='couleurs logo'>
           GY<i class="fa-solid fa-dumbbell"></i><br>
           ARGENTÉ
@@ -526,6 +535,7 @@ class PageRendezVous {
             <option value="19:00">19:00</option>
             <option value="20:00">20:00</option>
           </select>
+          <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
           <input id="rdv-fixer" class="couleurs rdv" type="submit" value="FIXER LE RENDEZ-VOUS" onclick="return false;">
         </form>
 
@@ -550,18 +560,21 @@ class PageRendezVous {
                 else $('#rdv-client').val('').change();
               }
             });
+
             $('#rdv-client').click(function(){
               if($('#rdv-client').attr('readonly') == 'readonly') {
                 $('#rdv-client').val('').change();
                 $('#rdv-client'). removeAttr('readonly');
               }
             });
+
             $( function() {
               $( "#rdv-date" ).datepicker({
                 minDate: 0,
                 dateFormat: "yy-mm-dd"
               });
             });
+
             $.datepicker.regional['fr'] = {clearText: 'Effacer', clearStatus: '',
               closeText: 'Fermer', closeStatus: 'Fermer sans modifier',
               prevText: '<Préc', prevStatus: 'Voir le mois précédent',
@@ -581,6 +594,21 @@ class PageRendezVous {
               initStatus: 'Choisir la date', isRTL: false};
             $.datepicker.setDefaults($.datepicker.regional['fr']);
           });
+
+          $('#rdv-fixer').click(function(){
+            let validation = true;
+            $("input").each(function(){
+                if($(this).val() === '') {
+                  validation = false;
+                  $(this).css('background-color','orange');
+                }
+            });
+            if(validation === false) alert('Tous les champs sont requis.');
+            else {
+              $('#rdv-fixer').submit();
+            }
+          });
+
           $( document ).tooltip({
              classes: {
                "ui-tooltip": "ui-corner-all"

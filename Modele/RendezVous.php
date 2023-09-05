@@ -27,16 +27,27 @@ class RendezVous implements Modele {
   }
 
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
-    // Code here
+    // Code ici lorsque requis...
   }
   public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    // Code here
+    if(get_class($obj) === 'RendezVous') {
+      $sql = $connexion_ecrire->prepare("INSERT INTO rendez_vous (date_heure, client, specialiste) VALUES (:date_heure, :client, :specialiste)");
+      $sql->bindParam(':date_heure', $obj->get_date_heure(), PDO::PARAM_STR);
+      $sql->bindParam(':client', $obj->get_client(), PDO::PARAM_INT);
+      $sql->bindParam(':specialiste', $obj->get_specialiste(), PDO::PARAM_INT);
+      $sql->execute();
+      $insert_id = $connexion_ecrire->lastInsertId();
+      return (Int)$insert_id;
+    }
+    else {
+      return false;
+    }
   }
   public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    // Code here
+    // Code ici lorsque requis...
   }
   public function delete_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
-    // Code here
+    // Code ici lorsque requis...
   }
 }
 ?>

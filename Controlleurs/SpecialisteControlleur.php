@@ -16,26 +16,77 @@ class SpecialisteControlleur {
     $specialite = new Specialite();
     $specialite->select_mysql($specialiste->get_specialite(), $connexion_lire);
 
-    if(isset($_POST['rdv-client']) && $_POST['rdv-client'] > 0 &&
-       isset($_POST['rdv-date']) && format_date($_POST['rdv-date'], "yy-mm-dd") &&
-       isset($_POST['rdv-heure']) && format_date($_POST['rdv-heure'], "hh-mm")) {
+    if(isset($_POST['rdv-client']) && $_POST['rdv-client'] != '' &&
+       isset($_POST['rdv-date']) && date_format($_POST['rdv-date'], "Y-m-d") &&
+       isset($_POST['rdv-heure']) && date_format($_POST['rdv-heure'], "H:i")) {
 
-        $client_id = $_POST['rdv-client'];
-        $date = $_POST['rdv-date'];
-        $heure = $_POST['rdv-heure'];
-        // Vérifier si client a des heures specialiste disponible
+        $client_id_pos = strpos($_POST['rdv-client']," -");
+        $client_id = substr($_POST['rdv-client'],0,$client_id_pos);
+
+        $date_heure = $_POST['rdv-date']." "$_POST['rdv-heure'];
+        $date_format = date_format($date_heure, "Y-m-d H:i:s");
+
         $client = new Client();
         $client->select_mysql($client_id);
-        if($client->get_heures_specialistes() >= 1) {
 
+        // Vérifier si client a des heures specialiste disponible
+        if($client->get_heures_specialistes_utilise() < $client->get_heures_specialistes()) {
+
+          $_SESSION['message'] = "";
+
+          $rdv_specialiste_verification = false;
+          $rdv_client_verification = false;
+
+          // Vérifier si le client ou le spécialiste à déjà un rendez-vous à ce moment.
+          $liste_rdv_specialiste = ListeRendezVous::get_liste($specialiste, $connexion_lire);
+          $liste_rdv_client = ListeRendezVous::get_liste($client, $connexion_lire);
+
+          foreach ($liste_rdv_specialiste as $rdv_specialiste) {
+            if($rdv_specialiste->get_date_heure() == $date_format) {
+              $rdv_specialiste_verification = true;
+            }
+          }
+
+          foreach ($liste_rdv_client as $rdv_client) {
+            if($rdv_client->get_date_heure() == $date_format) {
+              $rdv_client_verification = true;
+            }
+          }
+
+          if($rdv_specialiste_verification === true) {
+            $_SESSION['message'] .= "Le spécialiste a déjà un rendez-vous à ce moment.";
+          }
+
+          if($rdv_client_verification === true) {
+            $_SESSION['message'] .= "Le client a déjà un rendez-vous à ce moment.";
+          }
+
+          if($rdv_specialiste_verification === false && $rdv_client_verification === false) {
+
+            $rendez_vous = new RendezVous();
+            $rendez_vous->set_date_heure($date_format);
+            $rendez_vous->set_client($client->get_personne());
+            $rendez_vous->set_specialiste($specialiste->get_specialiste_id());
+
+            $resultat_insertion = $rendez_vous->insert_mysql($rendez_vous, $connexion_ecrire);
+
+            if($resultat_insertion > 0) {
+              $_SESSION['message'] = "Le nouveau rendez-vous a été fixé avec succès.";
+            }
+            else $_SESSION['message'] = "Il y a eu un problème avec la prise du rendez-vous. Veuillez vérifier et essayer de nouveau.";
+          }
         }
         else {
-          $message = "Le rendez-vous ne peut être fixé. La banque d'heures du client est vide.";
+          $_SESSION['message'] = "Le rendez-vous ne peut être fixé. La banque d'heures du client est vide.";
         }
-        $rendez_vous = new RendezVous();
-        //redirection();
+
+        redirection();
     }
-    $page = new PageRendezVous($specialiste, $specialite);
+    else if(!empty($_POST)) {
+        $_SESSION['message'] = "Il y a eu un problème. Le rendez-vous n'a pas été fixé. Veuillez vérifier et essayer de nouveau.";
+        $page = new PageRendezVous($specialiste, $specialite);
+    }
+    else $page = new PageRendezVous($specialiste, $specialite);
   }
 }
 ?>
