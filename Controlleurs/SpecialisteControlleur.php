@@ -18,7 +18,7 @@ class SpecialisteControlleur {
 
     if(isset($_POST['rdv-client']) && $_POST['rdv-client'] != '' &&
        isset($_POST['rdv-date']) && isset($_POST['rdv-heure']) &&
-       date_format(date_create($_POST['rdv-date']." ".$_POST['rdv-heure']), "Y-m-d H:i:s")) {
+       date_format(date_create($_POST['rdv-date']." ".$_POST['rdv-heure']), "Y-m-d H:i")) {
 
         $client_id_pos = strpos($_POST['rdv-client']," -");
         $client_id = substr($_POST['rdv-client'],0,$client_id_pos);
