@@ -2,7 +2,7 @@
 
 class PageRendezVous {
 
-  public function __construct(Specialiste $obj, Specialite $obj_specialite, String $message) {
+  public function __construct(Specialiste $obj, Specialite $obj_specialite) {
 
     $prenom_utilisateur = htmlentities($obj->get_prenom());
     $nom_utilisateur = htmlentities($obj->get_nom());
