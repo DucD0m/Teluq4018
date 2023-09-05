@@ -29,11 +29,13 @@ else if(isset($_SESSION['err_mdp_temps']) && $temps >= $_SESSION['err_mdp_temps'
   unset($_SESSION['err_mdp_temps']);
 }
 
+// Navigation boutons quitter.
 if(isset($_POST['quitter']) && $_POST['quitter'] === "oui") {
   Authentification::quitter();
   redirection();
 }
 
+// Navigation bouton menu.
 if(isset($_POST['retour']) && $_POST['retour'] === "oui") {
   unset($_SESSION['page']);
   redirection();

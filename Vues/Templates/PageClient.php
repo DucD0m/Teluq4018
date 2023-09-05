@@ -562,7 +562,7 @@ class PageClient {
         <?php endif; ?>
 
           <div class="demi-gauche">
-              <form id="formulaire-gauche" action="<?php echo URL; ?>" onSubmit="return false;" method="post">
+              <form id="formulaire-gauche" action="<?php echo URL; ?>" method="post">
                 <?php if($id_client > 0): ?>
                   <input type="hidden" id="client-id" name="client-id" value="<?php echo $id_client; ?>">
                 <?php endif; ?>
@@ -619,7 +619,7 @@ class PageClient {
 
 
               <div class="modif-plan">
-                <form id="formulaire-droite" action="<?php echo URL; ?>" onSubmit="return false;" method="post">
+                <form id="formulaire-droite" action="<?php echo URL; ?>" method="post">
                   <?php if($id_client > 0 && $personne_client === $id_client): ?>
                     <input type="hidden" id="client-personne" name="client-personne" value="<?php echo $personne_client; ?>">
                   <?php endif; ?>
@@ -808,7 +808,6 @@ class PageClient {
                     let nouveau_tel = $('#nouveau-telephone').val();
                     nouveau_tel = nouveau_tel.replace(' ','').replace('(','').replace(')','').replace('-','');
                     $('#nouveau-telephone').val(nouveau_tel);
-                    $('#formulaire-droite').removeAttr('onSubmit');
                     $('#formulaire-droite').submit();
                   }
                 }
@@ -821,7 +820,6 @@ class PageClient {
                   });
                   if(validation === false) alert('Tous les champs concernant le plan doivent être remplis');
                   else {
-                    $('#formulaire-droite').removeAttr('onSubmit');
                     $('#formulaire-droite').submit();
                   }
                 }
@@ -839,7 +837,6 @@ class PageClient {
                   let nouveau_tel = $('#client-telephone').val();
                   nouveau_tel = nouveau_tel.replace(' ','').replace('(','').replace(')','').replace('-','');
                   $('#client-telephone').val(nouveau_tel);
-                  $('#formulaire-gauche').removeAttr('onSubmit');
                   $('#formulaire-gauche').submit();
                 }
               });

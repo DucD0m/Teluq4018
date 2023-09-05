@@ -482,14 +482,14 @@ class PagePlans {
           </script>
         <?php unset($_SESSION['message']); endif; ?>
 
-        <form id="retour-form" class="hidden" action="http://10.0.1.18" method="post">
+        <form id="retour-form" class="hidden" action="<?php echo URL; ?>" method="post">
           <input type="hidden" id="retour-input" name="retour" value="oui">
           <button id="retour-menu" class="couleurs retour" type="submit" value="submit">
             <i class="fa-solid fa-backward"></i> MENU<br>
           </button>
         </form>
 
-        <form id="quitter-form" class="hidden" action="http://10.0.1.18" method="post">
+        <form id="quitter-form" class="hidden" action="<?php echo URL; ?>" method="post">
           <input type="hidden" id="quitter-input" name="quitter" value="oui">
           <button id="quitter" class="couleurs quitter" type="submit" value="submit">
             QUITTER <i class="fa-solid fa-person-running"></i>
@@ -505,7 +505,7 @@ class PagePlans {
         </div>
 
         <div id="plans-liste">
-          <form id="formulaire-plans" action="http://10.0.1.18" method="post">
+          <form id="formulaire-plans" action="<?php echo URL; ?>" method="post">
             <table id="plans-table">
               <thead>
                 <tr>
@@ -675,7 +675,7 @@ class PagePlans {
                     else {
                       validation = false;
                       alert("Vous devez entrer un prix valide.");
-                      location.href = "http://10.0.1.18";
+                      location.href = "<?php echo URL; ?>";
                     }
                 });
                 if(validation === true) {
