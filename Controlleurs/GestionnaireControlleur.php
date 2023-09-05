@@ -150,7 +150,7 @@ class GestionnaireControlleur {
 
            // On ajoute les nouvelles heures spécialistes. On ne remet jamais le compteur à 0 ici. (Le compteur est remis à 0 lorsque le client
            // utilise sa dernière heure.)
-           $somme_heures_specialistes = $client->get_heures_specialistes + intval($_POST['client-spec']);
+           $somme_heures_specialistes = $client->get_heures_specialistes() + intval($_POST['client-spec']);
            $client->set_heures_specialistes($somme_heures_specialistes);
            $client->set_cours_groupe_semaine(intval($_POST['client-groupes']));
            $client->set_plan($_POST['plan-id']);
