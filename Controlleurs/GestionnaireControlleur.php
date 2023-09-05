@@ -101,7 +101,7 @@ class GestionnaireControlleur {
            if($resultat_update > 0) {
              $_SESSION['message'] = "La mise à jour des informations personnelles du client a été accomplie avec succès.";
            }
-           else ($resultat_update > 0) {
+           else {
              $_SESSION['message'] = "Il y a eu un problème avec la lise à jour des informations personnelles. Veuillez vérifier et essayer de nouveau.";
            }
 
@@ -158,7 +158,7 @@ class GestionnaireControlleur {
            if($resultat_update > 0) {
              $_SESSION['message'] = "La mise à jour du plan du client a été accomplie avec succès.";
            }
-           else ($resultat_update > 0) {
+           else {
              $_SESSION['message'] = "Il y a eu un problème avec la mise à jour du plan. Veuillez vérifier et essayer de nouveau.";
            }
 
