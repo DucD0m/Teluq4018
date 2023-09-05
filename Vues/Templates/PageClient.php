@@ -550,10 +550,15 @@ class PageClient {
           COMPTE CLIENT
         </div>
 
-        <?php if($id_client > 0): ?>
-          <button id="supprimer-client" title="Supprimer le compte client">
-            <i class="fa-solid fa-trash"></i>
-          </button>
+        <?php if($id_client > 0 && $personne_client === $id_client): ?>
+          <form id="supprimer-form" class="hidden" action="http://10.0.1.18" method="post">
+            <input type="hidden" id="formulaire-supprimer-client" name="formulaire-supprimer-client" value="oui">
+            <input type="hidden" id="client-personne" name="client-personne" value="<?php echo $personne_client; ?>">
+            <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+            <button id="supprimer-client" title="Supprimer le compte client">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </form>
         <?php endif; ?>
 
           <div class="demi-gauche">

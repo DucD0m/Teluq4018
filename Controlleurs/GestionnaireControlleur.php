@@ -167,7 +167,27 @@ class GestionnaireControlleur {
 
            $_SESSION['client-id'] = $client->get_id();
            redirection();
+      }
+      // Supprimer un compte client.
+      else if (isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
+         isset($_POST['formulaire-supprimer-client']) && $_POST['formulaire-supprimer-client'] === 'oui') {
 
+           $client = new Client();
+           $client->select_mysql($_POST['client-personne'], $connexion_lire);
+
+           $resultat_delete = $client->delete_personne_mysql($client, $connexion_ecrire);
+
+           if($resultat_delete > 0) {
+             $_SESSION['message'] = "Le compte a été supprimé avec succès.";
+             unset($_SESSION['client-id']);
+             unset($_SESSION['page']);
+           }
+           else {
+             $_SESSION['message'] = "Il y a eu un problème. Le compte n'a pas été supprimé. Veuillez vérifier et essayer de nouveau.";
+             $_SESSION['client-id'] = $client->get_id();
+           }
+
+           redirection();
       }
       // Modification des plans
       else if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
