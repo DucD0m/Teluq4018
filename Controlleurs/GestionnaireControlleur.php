@@ -88,7 +88,10 @@ class GestionnaireControlleur {
       // Modification de la table personne d'un client (formulaire de gauche de la page client existant).
       else if (isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
          isset($_POST['formulaire-client-personne']) && $_POST['formulaire-client-personne'] === 'oui') {
+
            $client = new Client();
+           $client->select_mysql($_POST['client-id'], $connexion_lire);
+
            $client->set_id(intval($_POST['client-prenom']));
            $client->set_prenom($_POST['client-prenom']);
            $client->set_nom($_POST['client-nom']);
