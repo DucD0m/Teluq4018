@@ -41,6 +41,7 @@ class SpecialisteControlleur {
 
           // Vérifier si le client ou le spécialiste à déjà un rendez-vous à ce moment.
           $liste_rdv_specialiste = ListeRendezVous::get_liste($specialiste, $connexion_lire);
+          var_dump($liste_rdv_specialiste);exit;
           $liste_rdv_client = ListeRendezVous::get_liste($client, $connexion_lire);
 
           foreach ($liste_rdv_specialiste as $rdv_specialiste) {
@@ -74,6 +75,18 @@ class SpecialisteControlleur {
 
             if($resultat_insertion > 0) {
               $_SESSION['message'] = "Le nouveau rendez-vous a été fixé avec succès.";
+
+              $heures_specialistes_utilise = $client->get_heures_specialistes_utilise() + 1;
+              $client->set_heures_specialistes_utilise($heures_specialistes_utilise);
+
+              $resultat_update = $client->update_mysql($client, $connexion_ecrire);
+
+              if($resultat_update > 0) {
+                $_SESSION['message'] .= "La mise à jour des heures spécialistes du client a été accomplie avec succès.";
+              }
+              else {
+                $_SESSION['message'] .= "Il y a eu un problème avec la mise à jour des heures spécialistes du client. Veuillez vérifier et essayer de nouveau.";
+              }
             }
             else $_SESSION['message'] = "Il y a eu un problème avec la prise du rendez-vous. Veuillez vérifier et essayer de nouveau.";
           }
