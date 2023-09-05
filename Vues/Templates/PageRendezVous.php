@@ -20,7 +20,7 @@ class PageRendezVous {
       <meta charset="UTF-8">
 
       <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/cupertino/jquery-ui.css">
-      <link rel="stylesheet" href="Vues/css/global.css?v=4">
+      <link rel="stylesheet" href="Vues/css/global.css?v=5">
 
       <script
         src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -595,6 +595,10 @@ class PageRendezVous {
               dateFormat: 'dd/mm/yy', firstDay: 0,
               initStatus: 'Choisir la date', isRTL: false};
             $.datepicker.setDefaults($.datepicker.regional['fr']);
+
+          $('#rdv-heure').change(function(){
+              $(this).css('color','#000');
+          });
 
           $('#rdv-fixer').click(function(){
             let validation = true;

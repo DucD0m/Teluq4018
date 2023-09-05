@@ -412,9 +412,6 @@ tbody tr:nth-child(even) {
   width: 50.5vw;
   color: #666;
 }
-#rdv-heure option:checked{
-  color: #000;
-}
 #modifier-plans {
   position: relative;
   top: 1.5vw;
