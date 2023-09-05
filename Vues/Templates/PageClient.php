@@ -796,6 +796,11 @@ class PageClient {
               $('#bouton-ajouter').click(function(){
                 let validation = true;
 
+                if($('#client-payer').val() == 0) {
+                  validation = false;
+                  alert("Svp vérifier le plan choisi, le nombre d'heures avec un spécialiste et le nombre de cours de groupe et recommencer.");
+                }
+
                 if($('#nouveau-client').length) {
                   $('input').each(function(){
                       if($(this).val() === '') {
