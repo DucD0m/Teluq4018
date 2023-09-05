@@ -505,7 +505,7 @@ class PagePlans {
         </div>
 
         <div id="plans-liste">
-          <form id="formulaire-plans" action="http://10.0.1.18" onSubmit="return false;" method="post">
+          <form id="formulaire-plans" action="http://10.0.1.18" method="post">
             <table id="plans-table">
               <thead>
                 <tr>
@@ -680,7 +680,6 @@ class PagePlans {
                 });
                 if(validation === true) {
                   $('html').css('visibility','hidden');
-                  $('#formulaire-gauche').removeAttr('onSubmit');
                   $('#formulaire-plans').submit();
                 }
               }
