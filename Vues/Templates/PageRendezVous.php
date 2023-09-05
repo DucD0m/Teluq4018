@@ -593,7 +593,6 @@ class PageRendezVous {
               dateFormat: 'dd/mm/yy', firstDay: 0,
               initStatus: 'Choisir la date', isRTL: false};
             $.datepicker.setDefaults($.datepicker.regional['fr']);
-          });
 
           $('#rdv-fixer').click(function(){
             let validation = true;
@@ -617,6 +616,7 @@ class PageRendezVous {
                my: "right top-200", at: "right bottom", collision: "flipfit"
              }
            });
+          });
         </script>
 
     </body>
