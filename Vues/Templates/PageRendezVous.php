@@ -492,7 +492,7 @@ class PageRendezVous {
           });
           </script>
         <?php unset($_SESSION['message']); endif; ?>
-        
+
         <div class='couleurs logo'>
           GY<i class="fa-solid fa-dumbbell"></i><br>
           ARGENTÉ
@@ -596,6 +596,7 @@ class PageRendezVous {
           });
 
           $('#rdv-fixer').click(function(){
+            console.log('fixer click');
             let validation = true;
             $("input").each(function(){
                 if($(this).val() === '') {
