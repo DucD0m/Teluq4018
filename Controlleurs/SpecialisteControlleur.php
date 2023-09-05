@@ -17,8 +17,8 @@ class SpecialisteControlleur {
     $specialite->select_mysql($specialiste->get_specialite(), $connexion_lire);
 
     if(isset($_POST['rdv-client']) && $_POST['rdv-client'] != '' &&
-       isset($_POST['rdv-date']) && date_format($_POST['rdv-date'], "Y-m-d") &&
-       isset($_POST['rdv-heure']) && date_format($_POST['rdv-heure'], "H:i")) {
+       isset($_POST['rdv-date']) && isset($_POST['rdv-heure']) &&
+       date_format(date_create($_POST['rdv-date']." ".$_POST['rdv-heure']), "Y-m-d H:i:s")) {
 
         $client_id_pos = strpos($_POST['rdv-client']," -");
         $client_id = substr($_POST['rdv-client'],0,$client_id_pos);
