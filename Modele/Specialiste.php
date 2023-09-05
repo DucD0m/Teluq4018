@@ -11,7 +11,7 @@ class Specialiste extends Personne implements Modele {
   public function get_specialiste_id() : Int {
     return $this->specialiste_id;
   }
-  public function set_personne(Int $specialiste_id) {
+  public function set_specialiste_id(Int $specialiste_id) {
     $this->specialiste_id = $specialiste_id;
   }
   public function get_personne() : Int {
