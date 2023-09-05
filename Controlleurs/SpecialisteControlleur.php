@@ -4,6 +4,7 @@ require_once "Modele/Client.php";
 require_once "Modele/Specialiste.php";
 require_once "Modele/Specialite.php";
 require_once "Modele/RendezVous.php";
+require_once "Modele/ListeRendezVous.php";
 require_once "Controlleurs/fonctions_php.php";
 
 class SpecialisteControlleur {
