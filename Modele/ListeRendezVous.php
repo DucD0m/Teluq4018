@@ -15,7 +15,7 @@ class ListeRendezVous {
       }
       else if(get_class($obj) === 'Specialiste') {
         $sql = $connexion_lire->prepare("SELECT * FROM rendez_vous WHERE specialiste = :specialiste");
-        $sql->bindParam(':specialiste', $obj->get_id(), PDO::PARAM_INT);
+        $sql->bindParam(':specialiste', $obj->get_specialiste_id(), PDO::PARAM_INT);
       }
 
       $sql->execute();
@@ -28,7 +28,7 @@ class ListeRendezVous {
         $rdv->set_specialiste($resultat->specialiste);
         array_push(self::$liste, $rdv);
       }
-      
+
       return self::$liste;
     }
 

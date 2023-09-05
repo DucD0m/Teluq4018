@@ -26,7 +26,8 @@ class SpecialisteControlleur {
         $client_id_pos = strpos($_POST['rdv-client']," -");
         $client_id = substr($_POST['rdv-client'],0,$client_id_pos);
 
-        $date_heure = $_POST['rdv-date']." ".$_POST['rdv-heure'].":00";
+        $date_heure = $_POST['rdv-date']." ".$_POST['rdv-heure'];
+        $date_format = date_format(date_create($_POST['rdv-date']." ".$_POST['rdv-heure']), "Y-m-d H:i:s");
 
         $client = new Client();
         $client->select_mysql($client_id, $connexion_lire);
@@ -42,7 +43,6 @@ class SpecialisteControlleur {
           // Vérifier si le client ou le spécialiste à déjà un rendez-vous à ce moment.
           $liste_rdv_specialiste = ListeRendezVous::get_liste($specialiste, $connexion_lire);
           $liste_rdv_client = ListeRendezVous::get_liste($client, $connexion_lire);
-          var_dump($liste_rdv_client);exit;
 
           foreach ($liste_rdv_specialiste as $rdv_specialiste) {
             if($rdv_specialiste->get_date_heure() == $date_heure) {
