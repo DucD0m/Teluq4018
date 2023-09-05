@@ -605,7 +605,6 @@ class PageRendezVous {
             });
             if(validation === false) alert('Tous les champs sont requis.');
             else {
-              console.log('fixer submit');
               $('#rdv-fixer').submit();
             }
           });
