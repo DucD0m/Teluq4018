@@ -27,7 +27,6 @@ class SpecialisteControlleur {
         $client_id = substr($_POST['rdv-client'],0,$client_id_pos);
 
         $date_heure = $_POST['rdv-date']." ".$_POST['rdv-heure'].":00";
-        $date_format = date_format(date_create($date_heure), "Y-m-d H:i:s");
 
         $client = new Client();
         $client->select_mysql($client_id, $connexion_lire);
@@ -45,13 +44,13 @@ class SpecialisteControlleur {
           $liste_rdv_client = ListeRendezVous::get_liste($client, $connexion_lire);
 
           foreach ($liste_rdv_specialiste as $rdv_specialiste) {
-            if($rdv_specialiste->get_date_heure() == $date_format) {
+            if($rdv_specialiste->get_date_heure() == $date_heure) {
               $rdv_specialiste_verification = true;
             }
           }
 
           foreach ($liste_rdv_client as $rdv_client) {
-            if($rdv_client->get_date_heure() == $date_format) {
+            if($rdv_client->get_date_heure() == $date_heure) {
               $rdv_client_verification = true;
             }
           }
@@ -67,7 +66,7 @@ class SpecialisteControlleur {
           if($rdv_specialiste_verification === false && $rdv_client_verification === false) {
 
             $rendez_vous = new RendezVous();
-            $rendez_vous->set_date_heure($date_format);
+            $rendez_vous->set_date_heure($date_heure);
             $rendez_vous->set_client($client->get_personne());
             $rendez_vous->set_specialiste($specialiste->get_specialiste_id());
 

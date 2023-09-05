@@ -35,9 +35,8 @@ class RendezVous implements Modele {
       $sql->bindParam(':date_heure', $obj->get_date_heure(), PDO::PARAM_STR);
       $sql->bindParam(':client', $obj->get_client(), PDO::PARAM_INT);
       $sql->bindParam(':specialiste', $obj->get_specialiste(), PDO::PARAM_INT);
-      $sql->execute();
-      $insert_id = $connexion_ecrire->lastInsertId();
-      return (Int)$insert_id;
+      $resultat = $sql->execute();
+      return $resultat;
     }
     else {
       return false;
