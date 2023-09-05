@@ -808,7 +808,7 @@ class PageClient {
                 }
                 else {
                   $('#formulaire-droite :input').each(function(){
-                      if($(this).val() === '') {
+                      if($(this).val() === '' && $(this).prop('disabled') === false) {
                         validation = false;
                         alert($(this).attr('id'));
                       }
