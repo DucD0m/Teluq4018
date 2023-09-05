@@ -47,13 +47,13 @@ class SpecialisteControlleur {
 
           foreach ($liste_rdv_specialiste as $rdv_specialiste) {
             //echo "<br>".$rdv_specialiste->get_date_heure();exit;
-            if($rdv_specialiste->get_date_heure() == $date_heure) {
+            if($rdv_specialiste->get_date_heure() == $date_format) {
               $rdv_specialiste_verification = true;
             }
           }
 
           foreach ($liste_rdv_client as $rdv_client) {
-            if($rdv_client->get_date_heure() == $date_heure) {
+            if($rdv_client->get_date_heure() == $date_format) {
               $rdv_client_verification = true;
             }
           }
