@@ -141,7 +141,7 @@ class Client extends Personne implements Modele {
   public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     if(get_class($obj) === 'Client' && $obj->get_personne() > 0) {
       $sql = $connexion_ecrire->prepare("UPDATE clients SET
-        renouvelement = :renouvelement,
+        renouvellement = :renouvellement,
         fin_abonnement = :fin_abonnement,
         fin_acces_appareils = :fin_acces_appareils,
         heures_specialistes = :heures_specialistes,
@@ -150,7 +150,7 @@ class Client extends Personne implements Modele {
         plan = :plan
         WHERE personne = :personne");
       $sql->bindParam(':personne', $obj->get_personne(), PDO::PARAM_INT);
-      $sql->bindParam(':renouvelement', $obj->get_renouvellement(), PDO::PARAM_STR);
+      $sql->bindParam(':renouvellement', $obj->get_renouvellement(), PDO::PARAM_STR);
       $sql->bindParam(':fin_abonnement', $obj->get_fin_abonnement(), PDO::PARAM_STR);
       $sql->bindParam(':fin_acces_appareils', $obj->get_fin_acces_appareils(), PDO::PARAM_STR);
       $sql->bindParam(':heures_specialistes', $obj->get_heures_specialistes(), PDO::PARAM_INT);
