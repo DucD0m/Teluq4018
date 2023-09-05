@@ -137,10 +137,12 @@ class GestionnaireControlleur {
 
            if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') {
              // On garde la même date de fin d'abonnement.
+             // On affiche l'ancien plan.
            }
            else {
              $fin_abonnement = date("Y-m-d",strtotime($client->get_renouvellement()." +".$plan->get_duree()." months"));
              $client->set_fin_abonnement($fin_abonnement);
+             $client->set_plan($_POST['plan-id']);
            }
 
            if($plan->get_acces_appareils() == 1) {
@@ -153,7 +155,6 @@ class GestionnaireControlleur {
            $somme_heures_specialistes = $client->get_heures_specialistes() + intval($_POST['client-spec']);
            $client->set_heures_specialistes($somme_heures_specialistes);
            $client->set_cours_groupe_semaine(intval($_POST['client-groupes']));
-           $client->set_plan($_POST['plan-id']);
 
            $resultat_update = $client->update_mysql($client, $connexion_ecrire);
 
