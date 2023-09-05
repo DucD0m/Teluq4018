@@ -28,6 +28,7 @@ class SpecialisteControlleur {
 
         $date_heure = $_POST['rdv-date']." ".$_POST['rdv-heure'];
         $date_format = date_format(date_create($_POST['rdv-date']." ".$_POST['rdv-heure']), "Y-m-d H:i:s");
+        echo $date_format;exit;
 
         $client = new Client();
         $client->select_mysql($client_id, $connexion_lire);
