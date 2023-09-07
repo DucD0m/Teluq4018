@@ -525,7 +525,7 @@ class PageNotifications {
                     <i class="fa-solid fa-eye"></i>
                   </button>
 
-              <?php else if($type_id === 2 && $notification_vu === 0): ?>
+              <?php elseif($type_id === 2 && $notification_vu === 0): ?>
                 <div class="notif-details notif-bordure-30">
                   <button class="notif-vu" title="Marquer comme vu">
                     <i class="fa-solid fa-eye"></i>
@@ -536,7 +536,7 @@ class PageNotifications {
                   <button class="invisible notif-vu" title="Marquer comme vu">
                     <i class="fa-solid fa-eye"></i>
                   </button>
-                  
+
               <?php endif; ?>
 
 
