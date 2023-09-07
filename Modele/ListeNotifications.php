@@ -59,7 +59,7 @@ class ListeNotifications {
     foreach ($resultats as $resultat) {
 
       $sql = $connexion_ecrire->prepare("SELECT id FROM notifications WHERE client = :client");
-      $sql->bindParam('client', $resultat->personne, PDO::PARAM_INT);
+      $sql->bindParam(':client', $resultat->personne, PDO::PARAM_INT);
       $sql->execute();
       $notifications = $sql->fetchAll(PDO::FETCH_OBJ);
 
