@@ -54,13 +54,13 @@ class ListeNotifications {
 
     $sql = $connexion_ecrire->prepare("SELECT personne FROM clients WHERE fin_abonnement BETWEEN CURDATE() AND DATE_ADD(NOW(), INTERVAL +30 DAY)");
     $sql->execute();
-    $resultats = $sql->fetchAll();
+    $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
 
     //var_dump($resultats);exit;
 
     foreach ($resultats as $resultat) {
 
-      echo $resultat->personne."<br>";
+      //echo $resultat->personne."<br>";
 
       $sql = $connexion_ecrire->prepare("SELECT id FROM notifications WHERE client = :client");
       $sql->bindParam(':client', $resultat->personne, PDO::PARAM_INT);
