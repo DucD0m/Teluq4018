@@ -27,7 +27,7 @@ class ListeNotifications {
       $client->select_mysql($resultat->client, $connexion_lire);
 
       $plan = new Plan();
-      $plan->select_mysql($plan->client, $connexion_lire);
+      $plan->select_mysql($resultat->plan, $connexion_lire);
 
       $item = array($notification, $client, $plan);
 
