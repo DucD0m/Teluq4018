@@ -262,11 +262,15 @@ class GestionnaireControlleur {
         $notifications_30jours = ListeNotifications::get_liste(2,$connexion_lire);
 
         if(isset($_SESSION['page']) && $_SESSION['page'] === "PageNotifications") {
-          if(isset($_SESSION['type_notifications']) && intval($_SESSION['type_notifications']) > 0) {
-            $type_int = intval($_SESSION['type_notifications']);
+          if(isset($_SESSION['type_notifications']) && $_SESSION['type_notifications'] === "1") {
             $type_notifications = new TypeNotification();
-            $type_notifications->select_mysql($type_int, $connexion_lire);
+            $type_notifications->select_mysql(1, $connexion_lire);
             $page = new PageNotifications($gestionnaire, $type_notifications, $notifications_expires);
+          }
+          else if(isset($_SESSION['type_notifications']) && $_SESSION['type_notifications'] === "2") {
+            $type_notifications = new TypeNotification();
+            $type_notifications->select_mysql(2, $connexion_lire);
+            $page = new PageNotifications($gestionnaire, $type_notifications, $notifications_30jours);
           }
           else {
             unset($_SESSION['page']);
