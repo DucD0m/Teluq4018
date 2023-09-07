@@ -9,7 +9,14 @@ class ListeNotifications {
 
     self::$liste = array();
 
-    $sql = $connexion_lire->prepare("SELECT * FROM notifications WHERE type = :type order by vu DESC, date_heure DESC");
+    $sql = $connexion_lire->prepare("SELECT n.id, pe.prenom, pe.nom, pe.telephone, pl.nom, c.fin_abonnement 
+      FROM notifications n
+      JOIN clients c ON n.client = c.personne
+      JOIN personnes pe ON pe.id = c.personne
+      JOIN plans pl ON pl.id = c.plan
+      WHERE n.type = :type
+      ORDER BY n.vu DESC, n.date_heure DESC");
+
     $sql->bindParam('type', $type, PDO::PARAM_INT);
     $sql->execute();
     $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
