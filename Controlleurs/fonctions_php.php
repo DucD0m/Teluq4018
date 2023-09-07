@@ -2,7 +2,7 @@
 
 function redirection() {
   // POST REDIRECT GET pattern
-  header('Location: http://10.0.1.18', true, 303);
+  header('Location: ' . URL . '', true, 303);
   exit;
 }
 
