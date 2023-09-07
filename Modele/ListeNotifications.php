@@ -56,6 +56,8 @@ class ListeNotifications {
     $sql->execute();
     $resultats = $sql->fetchAll();
 
+    var_dump($resultats);exit;
+
     foreach ($resultats as $resultat) {
 
       $sql = $connexion_ecrire->prepare("SELECT id FROM notifications WHERE client = :client");
