@@ -508,242 +508,60 @@ class PageNotifications {
           <?php echo "NOTIFICATIONS - ".$type_nom; ?>
         </div>
 
-        <?php
-          foreach ($items as $item) {
-            $notification_vu = intval($item[0]->get_vu());
-            $client_prenom = htmlentities($item[1]->get_prenom());
-            $client_nom = htmlentities($item[1]->get_nom());
-            $client_telephone = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', htmlentities(strval($item[1]->get_telephone())));
-            $client_fin_abonnement = htmlentities($item[1]->get_fin_abonnement());
-            $plan_nom = htmlentities($item[2]->get_nom());
-        ?>
-            <div id="notif-cadre">
+        <div id="notif-cadre">
+            <?php
+              foreach ($items as $item) {
+                $notification_vu = intval($item[0]->get_vu());
+                $client_prenom = htmlentities($item[1]->get_prenom());
+                $client_nom = htmlentities($item[1]->get_nom());
+                $client_telephone = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', htmlentities(strval($item[1]->get_telephone())));
+                $client_fin_abonnement = htmlentities($item[1]->get_fin_abonnement());
+                $plan_nom = htmlentities($item[2]->get_nom());
+            ?>
 
-              <?php if($type_id === 1 && $notification_vu === 0): ?>
-                <div class="notif-details notif-bordure-ex">
-                  <button class="notif-vu" title="Marquer comme vu">
-                    <i class="fa-solid fa-eye"></i>
-                  </button>
+                  <?php if($type_id === 1 && $notification_vu === 0): ?>
+                    <div class="notif-details notif-bordure-ex">
+                      <button class="notif-vu" title="Marquer comme vu">
+                        <i class="fa-solid fa-eye"></i>
+                      </button>
 
-              <?php elseif($type_id === 2 && $notification_vu === 0): ?>
-                <div class="notif-details notif-bordure-30">
-                  <button class="notif-vu" title="Marquer comme vu">
-                    <i class="fa-solid fa-eye"></i>
-                  </button>
+                  <?php elseif($type_id === 2 && $notification_vu === 0): ?>
+                    <div class="notif-details notif-bordure-30">
+                      <button class="notif-vu" title="Marquer comme vu">
+                        <i class="fa-solid fa-eye"></i>
+                      </button>
 
-              <?php else: ?>
-                <div class="notif-details">
-                  <button class="invisible notif-vu" title="Marquer comme vu">
-                    <i class="fa-solid fa-eye"></i>
-                  </button>
+                  <?php else: ?>
+                    <div class="notif-details">
+                      <button class="invisible notif-vu" title="Marquer comme vu">
+                        <i class="fa-solid fa-eye"></i>
+                      </button>
 
-              <?php endif; ?>
+                  <?php endif; ?>
 
 
-                <div class="notif-infos" title="Visualiser le compte client">
-                  <div class="notif-client">
-                    <?php echo $client_prenom." ".$client_nom; ?><br>
-                    <?php echo $client_telephone; ?>
+                    <div class="notif-infos" title="Visualiser le compte client">
+                      <div class="notif-client">
+                        <?php echo $client_prenom." ".$client_nom; ?><br>
+                        <?php echo $client_telephone; ?>
+                      </div>
+                      <div class="notif-plan">
+                        <?php echo $plan_nom; ?><br>
+                        Fin de l'abonnement:&nbsp;
+                        <?php if($type_id === 1): ?>
+                          <span class="notif-date-ex"><?php echo $client_fin_abonnement; ?></span>
+                        <?php elseif($type_id === 2): ?>
+                          <span class="notif-date-30"><?php echo $client_fin_abonnement; ?></span>
+                        <?php else: ?>
+                          <span><?php echo $client_fin_abonnement; ?></span>
+                        <?php endif; ?>
+                      </div>
+                    </div>
+                    <button class="notif-supprimer" title="Supprimer la notification">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
                   </div>
-                  <div class="notif-plan">
-                    <?php echo $plan_nom; ?><br>
-                    Fin de l'abonnement:&nbsp;
-                    <?php if($type_id === 1): ?>
-                      <span class="notif-date-ex"><?php echo $client_fin_abonnement; ?></span>
-                    <?php elseif($type_id === 2): ?>
-                      <span class="notif-date-30"><?php echo $client_fin_abonnement; ?></span>
-                    <?php else: ?>
-                      <span><?php echo $client_fin_abonnement; ?></span>
-                    <?php endif; ?>
-                  </div>
-                </div>
-                <button class="notif-supprimer" title="Supprimer la notification">
-                  <i class="fa-solid fa-trash"></i>
-                </button>
-              </div>
-          <?php } ?>
-
-          <div class="notif-details notif-bordure-30">
-            <button class="notif-vu" title="Marquer comme vu">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="notif-infos" title="Visualiser le compte client">
-              <div class="notif-client">
-                Dominique Ducas<br>
-                555-555-5555
-              </div>
-              <div class="notif-plan">
-                Trimestriel avec appareils<br>
-                Fin de l'abonnement: <span class="notif-date-30">09 octobre 2023</span>
-              </div>
-            </div>
-            <button class="notif-supprimer" title="Supprimer la notification">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-          <div class="notif-details notif-bordure-30">
-            <button class="notif-vu" title="Marquer comme vu">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="notif-infos" title="Visualiser le compte client">
-              <div class="notif-client">
-                Dominique Ducas<br>
-                555-555-5555
-              </div>
-              <div class="notif-plan">
-                Trimestriel avec appareils<br>
-                Fin de l'abonnement: <span class="notif-date-30">09 octobre 2023</span>
-              </div>
-            </div>
-            <button class="notif-supprimer" title="Supprimer la notification">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-          <div class="notif-details notif-bordure-30">
-            <button class="notif-vu" title="Marquer comme vu">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="notif-infos" title="Visualiser le compte client">
-              <div class="notif-client">
-                Dominique Ducas<br>
-                555-555-5555
-              </div>
-              <div class="notif-plan">
-                Trimestriel avec appareils<br>
-                Fin de l'abonnement: <span class="notif-date-30">09 octobre 2023</span>
-              </div>
-            </div>
-            <button class="notif-supprimer" title="Supprimer la notification">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-          <div class="notif-details">
-            <button class="invisible notif-vu" title="Marquer comme vu">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="notif-infos" title="Visualiser le compte client">
-              <div class="notif-client">
-                Dominique Ducas<br>
-                555-555-5555
-              </div>
-              <div class="notif-plan">
-                Trimestriel avec appareils<br>
-                Fin de l'abonnement: <span class="notif-date-ex">09 octobre 2023</span>
-              </div>
-            </div>
-            <button class="notif-supprimer" title="Supprimer la notification">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-          <div class="notif-details">
-            <button class="invisible notif-vu" title="Marquer comme vu">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="notif-infos" title="Visualiser le compte client">
-              <div class="notif-client">
-                Dominique Ducas<br>
-                555-555-5555
-              </div>
-              <div class="notif-plan">
-                Trimestriel avec appareils<br>
-                Fin de l'abonnement: <span class="notif-date-30">09 octobre 2023</span>
-              </div>
-            </div>
-            <button class="notif-supprimer" title="Supprimer la notification">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-          <div class="notif-details">
-            <button class="invisible notif-vu" title="Marquer comme vu">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="notif-infos" title="Visualiser le compte client">
-              <div class="notif-client">
-                Dominique Ducas<br>
-                555-555-5555
-              </div>
-              <div class="notif-plan">
-                Trimestriel avec appareils<br>
-                Fin de l'abonnement: <span class="notif-date-30">09 octobre 2023</span>
-              </div>
-            </div>
-            <button class="notif-supprimer" title="Supprimer la notification">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-          <div class="notif-details">
-            <button class="invisible notif-vu" title="Marquer comme vu">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="notif-infos" title="Visualiser le compte client">
-              <div class="notif-client">
-                Dominique Ducas<br>
-                555-555-5555
-              </div>
-              <div class="notif-plan">
-                Trimestriel avec appareils<br>
-                Fin de l'abonnement: <span class="notif-date-30">09 octobre 2023</span>
-              </div>
-            </div>
-            <button class="notif-supprimer" title="Supprimer la notification">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-          <div class="notif-details">
-            <button class="invisible notif-vu" title="Marquer comme vu">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="notif-infos" title="Visualiser le compte client">
-              <div class="notif-client">
-                Dominique Ducas<br>
-                555-555-5555
-              </div>
-              <div class="notif-plan">
-                Trimestriel avec appareils<br>
-                Fin de l'abonnement: <span class="notif-date-30">09 octobre 2023</span>
-              </div>
-            </div>
-            <button class="notif-supprimer" title="Supprimer la notification">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-          <div class="notif-details">
-            <button class="invisible notif-vu" title="Marquer comme vu">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="notif-infos" title="Visualiser le compte client">
-              <div class="notif-client">
-                Dominique Ducas<br>
-                555-555-5555
-              </div>
-              <div class="notif-plan">
-                Trimestriel avec appareils<br>
-                Fin de l'abonnement: <span class="notif-date-30">09 octobre 2023</span>
-              </div>
-            </div>
-            <button class="notif-supprimer" title="Supprimer la notification">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-          <div class="notif-details">
-            <button class="invisible notif-vu" title="Marquer comme vu">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="notif-infos" title="Visualiser le compte client">
-              <div class="notif-client">
-                Dominique Ducas<br>
-                555-555-5555
-              </div>
-              <div class="notif-plan">
-                Trimestriel avec appareils<br>
-                Fin de l'abonnement: <span class="notif-date-30">09 octobre 2023</span>
-              </div>
-            </div>
-            <button class="notif-supprimer" title="Supprimer la notification">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-
+              <?php } ?>
 
         </div>
 
