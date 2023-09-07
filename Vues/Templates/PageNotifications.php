@@ -547,7 +547,14 @@ class PageNotifications {
                   </div>
                   <div class="notif-plan">
                     <?php echo $plan_nom; ?><br>
-                    Fin de l'abonnement: <span class="notif-date-ex"><?php echo $client_fin_abonnement; ?></span>
+                    Fin de l'abonnement:&nbsp;
+                    <?php if($type_id === 1): ?>
+                      <span class="notif-date-ex"><?php echo $client_fin_abonnement; ?></span>
+                    <?php elseif($type_id === 2): ?>
+                      <span class="notif-date-30"><?php echo $client_fin_abonnement; ?></span>
+                    <?php else: ?>
+                      <span><?php echo $client_fin_abonnement; ?></span>
+                    <?php endif; ?>
                   </div>
                 </div>
                 <button class="notif-supprimer" title="Supprimer la notification">
