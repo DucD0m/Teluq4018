@@ -71,8 +71,8 @@ class Notification implements Modele {
       if(!$client) {
         $sql = $connexion_ecrire->prepare("INSERT INTO notifications (date_heure, type, client, vu) VALUES (:date_heure, :type, :client, 0)");
         $sql->bindParam(':date_heure', $notification_date_heure, PDO::PARAM_STR);
-        $sql->bindParam(':type', $notification_type, PDO::PARAM_STR);
-        $sql->bindParam(':client', $notification_client, PDO::PARAM_STR);
+        $sql->bindParam(':type', $notification_type, PDO::PARAM_INT);
+        $sql->bindParam(':client', $notification_client, PDO::PARAM_INT);
         $resultat = $sql->execute();
         return $resultat;
       }
