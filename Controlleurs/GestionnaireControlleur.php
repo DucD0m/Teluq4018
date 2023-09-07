@@ -261,7 +261,7 @@ class GestionnaireControlleur {
         $notifications_expires = ListeNotifications::get_liste(1,$connexion_lire);
         $notifications_30jours = ListeNotifications::get_liste(2,$connexion_lire);
 
-        var_dump($notifications_30jours[0][1]);exit;
+        echo($notifications_30jours[0][1]->get_prenom());exit;
 
         if(isset($_SESSION['page']) && $_SESSION['page'] === "PageNotifications") {
           if(isset($_SESSION['type_notifications']) && intval($_SESSION['type_notifications']) > 0) {
