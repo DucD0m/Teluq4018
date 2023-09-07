@@ -40,7 +40,7 @@ class ListeNotifications {
       $notifications = $sql->fetchAll(PDO::FETCH_OBJ);
 
       // S'il n'y a pas de notifications pour cette personne:
-      if(count($notifications == 0)) {
+      if(!$notifications)) {
         $notification = new Notification();
         $notification->set_date_heure($date_heure);
         $notification->set_type(1);
@@ -76,7 +76,7 @@ class ListeNotifications {
       $notifications = $sql->fetchAll(PDO::FETCH_OBJ);
 
       // S'il n'y a pas de notifications pour cette personne:
-      if(count($notifications == 0)) {
+      if(!$notifications)) {
         $notification = new Notification();
         $notification->set_date_heure($date_heure);
         $notification->set_type(2);
