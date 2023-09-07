@@ -250,7 +250,9 @@ class GestionnaireControlleur {
         $notifications_expires = ListeNotifications::get_liste(1,$connexion_lire);
         $notifications_30jours = ListeNotifications::get_liste(2,$connexion_lire);
         $nombre_expires = count($notifications_expires);
+        echo $nombre_expires."<br>";
         $nombre_30jours = count($notifications_30jours);
+        echo $nombre_30jours."<br>";exit;
         $page = new PageMenu($gestionnaire, $nombre_expires, $nombre_30jours);
       }
   }
