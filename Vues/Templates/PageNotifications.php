@@ -546,7 +546,7 @@ class PageNotifications {
                     <?php echo $client_telephone; ?>
                   </div>
                   <div class="notif-plan">
-                    <?php echo $client_plan; ?><br>
+                    <?php echo $plan_nom; ?><br>
                     Fin de l'abonnement: <span class="notif-date-ex"><?php echo $client_fin_abonnement; ?></span>
                   </div>
                 </div>
