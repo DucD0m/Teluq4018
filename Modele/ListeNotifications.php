@@ -7,6 +7,8 @@ class ListeNotifications {
 
   public static function get_liste($type, $connexion_lire) {
 
+    self::$liste = array();
+
     $sql = $connexion_lire->prepare("SELECT * FROM notifications WHERE type = :type order by vu DESC, date_heure DESC");
     $sql->bindParam('type', $type, PDO::PARAM_INT);
     $sql->execute();
