@@ -41,16 +41,84 @@ class Notification implements Modele {
   }
 
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
-    // Code here
+    if($id > 0) {
+      $sql = $connexion_lire->prepare("SELECT * FROM notifications WHERE id = :id");
+      $sql->bindParam(':id', $id, PDO::PARAM_INT);
+      $sql->execute();
+      $notification = $sql->fetch(PDO::FETCH_OBJ);
+      $this->set_id($notification->id);
+      $this->set_date_heure($notification->date_heure);
+      $this->set_type($notification->type);
+      $this->set_client($notification->client);
+      $this->set_vu($notification->vu);
+      return true;
+    }
+    else {
+      return false;
+    }
   }
   public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    // Code here
+    if(get_class($obj) === 'Notification') {
+
+      $notification_date_heure = $obj->get_date_heure();
+      $notification_type = $obj->get_type();
+      $notification_client = $obj->get_client();
+
+      $sql = $connexion_ecrire->prepare("SELECT client FROM notifications WHERE client = :client");
+      $sql->bindParam(':client', $notification_client, PDO::PARAM_INT);
+      $sql->execute();
+      $client = $sql->fetch(PDO::FETCH_OBJ);
+      if(!$client) {
+        $sql = $connexion_ecrire->prepare("INSERT INTO notifications (date_heure, type, client, vu) VALUES (:date_heure, :type, :client, 0)");
+        $sql->bindParam(':date_heure', $notification_date_heure, PDO::PARAM_STR);
+        $sql->bindParam(':type', $notification_type, PDO::PARAM_STR);
+        $sql->bindParam(':client', $notification_client, PDO::PARAM_STR);
+        $resultat = $sql->execute();
+        return $resultat;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      return false;
+    }
   }
   public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    // Code here
+    if(get_class($obj) === 'Notification') {
+
+      $notification_id = $obj->get_id();
+      $notification_date_heure = $obj->get_date_heure();
+      $notification_type = $obj->get_type();
+      $notification_client = $obj->get_client();
+      $notification_vu = $obj->get_vu();
+
+      $sql = $connexion_ecrire->prepare("UPDATE notifications SET date_heure = :date_heure, type = :type, client = :client, vu = :vu WHERE id = :id");
+      $sql->bindParam(':id', $notification_id, PDO::PARAM_INT);
+      $sql->bindParam(':date_heure', $notification_date_heure, PDO::PARAM_STR);
+      $sql->bindParam(':type', $notification_type, PDO::PARAM_INT);
+      $sql->bindParam(':client', $notification_client, PDO::PARAM_INT);
+      $sql->bindParam(':vu', $notification_vu, PDO::PARAM_INT);
+      $resultat = $sql->execute();
+      return $resultat;
+    }
+    else {
+      return false;
+    }
   }
   public function delete_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
-    // Code here
+    if((get_class($obj) === 'Notification') && $obj->get_id() > 0) {
+
+      $notification_id = $obj->get_id();
+
+      $sql = $connexion_effacer->prepare("DELETE FROM notifications WHERE id = :id");
+      $sql->bindParam(':id', $notification_id, PDO::PARAM_INT);
+      $resultat = $sql->execute();
+      return $resultat;
+    }
+    else{
+      return false;
+    }
   }
 }
 ?>

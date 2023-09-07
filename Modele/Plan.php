@@ -74,14 +74,19 @@ class Plan implements Modele {
     }
   }
   public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    // Code
+    // Code lorsque requis...
   }
   public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     if(get_class($obj) === 'Plan') {
+
+      $plan_id = $obj->get_id();
+      $plan_prix = $obj->get_prix();
+      $plan_prix_cours_groupe = $obj->get_prix_cours_groupe();
+
       $sql = $connexion_ecrire->prepare("UPDATE plans SET prix = :prix, prix_cours_groupe = :prix_cours_groupe WHERE id = :id");
-      $sql->bindParam(':id', $obj->get_id(), PDO::PARAM_INT);
-      $sql->bindParam(':prix', $obj->get_prix(), PDO::PARAM_STR);
-      $sql->bindParam(':prix_cours_groupe', $obj->get_prix_cours_groupe(), PDO::PARAM_STR);
+      $sql->bindParam(':id', $plan_id, PDO::PARAM_INT);
+      $sql->bindParam(':prix', $plan_prix, PDO::PARAM_STR);
+      $sql->bindParam(':prix_cours_groupe', $plan_prix_cours_groupe, PDO::PARAM_STR);
       $resultat = $sql->execute();
       return $resultat;
     }
@@ -90,7 +95,7 @@ class Plan implements Modele {
     }
   }
   public function delete_mysql(Object $obj, Object $connexion_effacer) :Int|Bool {
-    // Code
+    // Code lorsque requis...
   }
 }
 ?>

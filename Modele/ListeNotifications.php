@@ -1,45 +1,80 @@
 <?php
-class NotificationUtilitaires {
+require_once "Notification.php";
+
+class ListeNotifications {
 
   private $liste = array();
 
-  public function getListe($type) {
-    $sql = $lecteur->prepare("SELECT * FROM notifications WHERE type = :type order by vu DESC, date_heure DESC");
+  public static function get_liste($type, $connexion_lire) {
+
+    $sql = $connexion_lire->prepare("SELECT * FROM notifications WHERE type = :type order by vu DESC, date_heure DESC");
     $sql->bindParam('type', $type, PDO::PARAM_INT);
     $sql->execute();
-    $resultat = $sql->fetchAll();
-    $this->liste = $resultat;
-    return $this->liste;
-  }
-
-  public function genererNotifications() {
-    $sql = $lecteur->prepare("SELECT personne FROM clients WHERE fin_abonnement > CURDATE()");
-    $sql->execute();
-    $resultat = $sql->fetchAll();
-
-    foreach ($resultat as $r) {
-      $sql = $lecteur->prepare("INSERT INTO notifications(type,client) VALUES (1, :client)");
-      $sql->bindParam('client', $r, PDO::PARAM_INT);
-      $sql->execute();
+    $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
+    foreach ($resultats as $resultat) {
+      $notification = new Notification();
+      $notification->set_id($resultat->id);
+      $notification->set_date_heure($resultat->date_heure);
+      $notification->set_type($resultat->type);
+      $notification->set_client($resultat->client);
+      $notification->set_vu($resultat->vu);
+      array_push(self::$liste, $notification);
     }
 
-    $sql = $lecteur->prepare("SELECT personne FROM clients WHERE fin_abonnement BETWEEN DATE_ADD(NOW(), INTERVAL -30 DAY) AND CURDATE()");
-    $sql->execute();
-    $resultat = $sql->fetchAll();
+    return self::$liste;
+  }
 
-    foreach ($resultat as $r) {
-      $sql = $lecteur->prepare("INSERT INTO notifications(type,client) VALUES (2, :client)");
-      $sql->bindParam('client', $r, PDO::PARAM_INT);
+  public static function mise_a_jour_bd($connexion_ecrire, $connexion_effacer) {
+
+    $date_heure = date("Y-m-d H:i:s");
+
+    $sql = $connexion_ecrire->prepare("SELECT personne FROM clients WHERE fin_abonnement < CURDATE()");
+    $sql->execute();
+    $resultats = $sql->fetchAll();
+
+    foreach ($resultats as $resultat) {
+
+      $sql = $connexion_ecrire->prepare("SELECT id FROM notifications WHERE client = :client");
+      $sql->bindParam('client', $resultat->personne, PDO::PARAM_INT);
       $sql->execute();
+      $notifications = $sql->fetchAll(PDO::FETCH_OBJ);
+
+      foreach ($notifications as $notification) {
+        $n = new Notification();
+        $n->select_mysql($notification->id, $connexion_effacer);
+        $n->delete_mysql($n, $connexion_effacer);
+      }
+
+      $notification = new Notification();
+      $notification->set_date_heure($date_heure);
+      $notification->set_type(1);
+      $notification->set_client($resultat->personne);
+      $notification->insert_mysql($notification, $connexion_ecrire);
+    }
+
+    $sql = $connexion_ecrire->prepare("SELECT personne FROM clients WHERE fin_abonnement BETWEEN DATE_ADD(NOW(), INTERVAL -30 DAY) AND CURDATE()");
+    $sql->execute();
+    $resultats = $sql->fetchAll();
+
+    foreach ($resultats as $resultat) {
+
+      $sql = $connexion_ecrire->prepare("SELECT id FROM notifications WHERE client = :client");
+      $sql->bindParam('client', $resultat->personne, PDO::PARAM_INT);
+      $sql->execute();
+      $notifications = $sql->fetchAll(PDO::FETCH_OBJ);
+
+      foreach ($notifications as $notification) {
+        $n = new Notification();
+        $n->select_mysql($notification->id, $connexion_effacer);
+        $n->delete_mysql($n, $connexion_effacer);
+      }
+
+      $notification = new Notification();
+      $notification->set_date_heure($date_heure);
+      $notification->set_type(2);
+      $notification->set_client($resultat->personne);
+      $notification->insert_mysql($notification, $connexion_ecrire);
     }
   }
-
-  public function marquerVu($id) {
-    $sql = $lecteur->prepare("UPDATE notifications SET vu = 1 WHERE id = :id");
-    $sql->bindParam('id', $id, PDO::PARAM_INT);
-    $sql->execute();
-    return $sql;
-  }
-
 }
 ?>
