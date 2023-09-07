@@ -509,7 +509,7 @@ class PageNotifications {
         </div>
 
         <?php
-          foreach ($item as $item) {
+          foreach ($items as $item) {
             $client_prenom = htmlentities($item[1]->get_prenom());
             $client_nom = htmlentities($item[1]->get_nom());
             $client_telephone = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', intval($item[1]->get_telephone()));
