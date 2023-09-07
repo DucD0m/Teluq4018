@@ -9,10 +9,9 @@ class ListeNotifications {
 
     self::$liste = array();
 
-    $sql = $connexion_lire->prepare("SELECT n.id, pe.prenom, pe.nom, pe.telephone, pl.nom, c.fin_abonnement 
+    $sql = $connexion_lire->prepare("SELECT n.id AS notification, c.personne AS client, pl.id AS plan
       FROM notifications n
       JOIN clients c ON n.client = c.personne
-      JOIN personnes pe ON pe.id = c.personne
       JOIN plans pl ON pl.id = c.plan
       WHERE n.type = :type
       ORDER BY n.vu DESC, n.date_heure DESC");
@@ -22,12 +21,17 @@ class ListeNotifications {
     $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
     foreach ($resultats as $resultat) {
       $notification = new Notification();
-      $notification->set_id($resultat->id);
-      $notification->set_date_heure($resultat->date_heure);
-      $notification->set_type($resultat->type);
-      $notification->set_client($resultat->client);
-      $notification->set_vu($resultat->vu);
-      array_push(self::$liste, $notification);
+      $notification->select_mysql($resultat->notification, $connexion_lire);
+
+      $client = new Client();
+      $client->select_mysql($resultat->client, $connexion_lire);
+
+      $plan = new Plan();
+      $plan->select_mysql($plan->client, $connexion_lire);
+
+      $item = array($notification, $client, $plan);
+
+      array_push(self::$liste, $item);
     }
 
     return self::$liste;
