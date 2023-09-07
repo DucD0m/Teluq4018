@@ -510,17 +510,36 @@ class PageNotifications {
 
         <?php
           foreach ($items as $item) {
+            $notification_vu = intval($item[0]->get_vu());
             $client_prenom = htmlentities($item[1]->get_prenom());
             $client_nom = htmlentities($item[1]->get_nom());
             $client_telephone = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', htmlentities(strval($item[1]->get_telephone())));
-            $client_plan = htmlentities($item[2]->get_nom());
             $client_fin_abonnement = htmlentities($item[1]->get_fin_abonnement());
+            $plan_nom = htmlentities($item[2]->get_nom());
         ?>
             <div id="notif-cadre">
-              <div class="notif-details notif-bordure-ex">
-                <button class="notif-vu" title="Marquer comme vu">
-                  <i class="fa-solid fa-eye"></i>
-                </button>
+
+              <?php if($type_id === 1 && $notification_vu === 0): ?>
+                <div class="notif-details notif-bordure-ex">
+                  <button class="notif-vu" title="Marquer comme vu">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+
+              <?php else if($type_id === 2 && $notification_vu === 0): ?>
+                <div class="notif-details notif-bordure-30">
+                  <button class="notif-vu" title="Marquer comme vu">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+
+              <?php else: ?>
+                <div class="notif-details">
+                  <button class="invisible notif-vu" title="Marquer comme vu">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                  
+              <?php endif; ?>
+
+
                 <div class="notif-infos" title="Visualiser le compte client">
                   <div class="notif-client">
                     <?php echo $client_prenom." ".$client_nom; ?><br>
