@@ -523,7 +523,7 @@ class PageNotifications {
                 </button>
                 <div class="notif-infos" title="Visualiser le compte client">
                   <div class="notif-client">
-                    <?php echo $client_prenom." ".$client_nom.; ?><br>
+                    <?php echo $client_prenom." ".$client_nom; ?><br>
                     <?php echo $client_telephone; ?>
                   </div>
                   <div class="notif-plan">
