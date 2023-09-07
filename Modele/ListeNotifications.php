@@ -52,7 +52,7 @@ class ListeNotifications {
       $notification->insert_mysql($notification, $connexion_ecrire);
     }
 
-    $sql = $connexion_ecrire->prepare("SELECT personne FROM clients WHERE fin_abonnement BETWEEN DATE_ADD(NOW(), INTERVAL -30 DAY) AND CURDATE()");
+    $sql = $connexion_ecrire->prepare("SELECT personne FROM clients WHERE fin_abonnement BETWEEN CURDATE() AND DATE_ADD(NOW(), INTERVAL +30 DAY)");
     $sql->execute();
     $resultats = $sql->fetchAll();
 
