@@ -2,10 +2,13 @@
 
 class PageMenu {
 
-  public function __construct(Gestionnaire $obj) {
+  public function __construct(Gestionnaire $obj, $nb_expires, $nb_30jours) {
 
-    $prenom_utilisateur = $obj->get_prenom();
-    $nom_utilisateur = $obj->get_nom();
+    $prenom_utilisateur = htmlentities($obj->get_prenom());
+    $nom_utilisateur = htmlentities($obj->get_nom());
+
+    $nombre_expires = intval($nb_expires);
+    $nombre_30jours = intval($nb_30jours);
 ?>
 
     <!DOCTYPE HTML>
@@ -539,10 +542,10 @@ class PageMenu {
             NOTIFICATIONS
           </div>
           <button id="notif-30" class="couleurs notif-btn notif-btn1">
-            30 JOURS <span class="pastille pastille-30" title="Vous avez de nouveaux avis 30 jours">1</span>
+            30 JOURS <span class="pastille pastille-30" title="Vous avez de nouveaux avis 30 jours"><?php echo $nombre_30jours; ?></span>
           </button>
           <button id="notif-ex" class="couleurs notif-btn notif-btn2">
-            EXPIRÉS <span class="pastille pastille-ex" title="Vous avez de nouveaux abonements expirés">1</span>
+            EXPIRÉS <span class="pastille pastille-ex" title="Vous avez de nouveaux abonements expirés"><?php echo $nombre_expires; ?></span>
           </button>
         </div>
 

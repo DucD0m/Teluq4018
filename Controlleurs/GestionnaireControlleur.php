@@ -229,7 +229,7 @@ class GestionnaireControlleur {
       *                       NAVIGATION PAGES                                *
       *                                                                       *
       ************************************************************************/
-      
+
       if(isset($_SESSION['page']) && $_SESSION['page'] === "PageClient") {
         $client = new Client();
         $plan = new Plan();
@@ -245,7 +245,12 @@ class GestionnaireControlleur {
         $page = new PagePlans($gestionnaire, $plans);
       }
       else {
-        $page = new PageMenu($gestionnaire);
+        $mise_a_jour_notifications = ListeNotifications::mise_a_jour_bd($connexion_ecrire, $connexion_effacer);
+        $notifications_expires = ListeNotifications::get_liste(1,$connexion_lire);
+        $notifications_30jours = ListeNotifications::get_liste(2,$connexion_lire);
+        $nombre_expires = count($notifications_expires);
+        $nombre_30jours = count($notifications_30jours);
+        $page = new PageMenu($gestionnaire, $nombre_expires, $nombre_30jours);
       }
   }
 }
