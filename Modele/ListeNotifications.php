@@ -28,13 +28,13 @@ class ListeNotifications {
 
     $date_heure = date("Y-m-d H:i:s");
 
-    $sql = $connexion_ecrire->prepare("SELECT personne FROM clients WHERE fin_abonnement < CURDATE()");
+    $sql = $connexion_lire->prepare("SELECT personne FROM clients WHERE fin_abonnement < CURDATE()");
     $sql->execute();
-    $resultats = $sql->fetchAll();
+    $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
 
     foreach ($resultats as $resultat) {
 
-      $sql = $connexion_ecrire->prepare("SELECT id FROM notifications WHERE client = :client");
+      $sql = $connexion_lire->prepare("SELECT id FROM notifications WHERE client = :client");
       $sql->bindParam(':client', $resultat->personne, PDO::PARAM_INT);
       $sql->execute();
       $notifications = $sql->fetchAll(PDO::FETCH_OBJ);
@@ -58,20 +58,20 @@ class ListeNotifications {
           if($n_type !== 1) {
             $n->set_date_heure($date_heure);
             $n->set_type(1);
-            $n->update_mysql($n, $connexion_effacer);
+            $n->update_mysql($n, $connexion_ecrire);
           }
         }
       }
     }
 
-    $sql = $connexion_ecrire->prepare("SELECT personne FROM clients WHERE fin_abonnement BETWEEN CURDATE() AND DATE_ADD(NOW(), INTERVAL +30 DAY)");
+    $sql = $connexion_lire->prepare("SELECT personne FROM clients WHERE fin_abonnement BETWEEN CURDATE() AND DATE_ADD(NOW(), INTERVAL +30 DAY)");
     $sql->execute();
     $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
 
     foreach ($resultats as $resultat) {
 
-      $sql = $connexion_ecrire->prepare("SELECT id FROM notifications WHERE client = :client");
-      $sql->bindParam('client', $resultat->personne, PDO::PARAM_INT);
+      $sql = $connexion_lire->prepare("SELECT id FROM notifications WHERE client = :client");
+      $sql->bindParam(':client', $resultat->personne, PDO::PARAM_INT);
       $sql->execute();
       $notifications = $sql->fetchAll(PDO::FETCH_OBJ);
 
@@ -94,7 +94,7 @@ class ListeNotifications {
           if($n_type !== 2) {
             $n->set_date_heure($date_heure);
             $n->set_type(2);
-            $n->update_mysql($n, $connexion_effacer);
+            $n->update_mysql($n, $connexion_ecrire);
           }
         }
       }
