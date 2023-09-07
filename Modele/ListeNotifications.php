@@ -24,7 +24,7 @@ class ListeNotifications {
     return self::$liste;
   }
 
-  public static function mise_a_jour_bd($connexion_ecrire, $connexion_effacer) {
+  public static function mise_a_jour_bd($connexion_lire, $connexion_ecrire) {
 
     $date_heure = date("Y-m-d H:i:s");
 
@@ -39,45 +39,65 @@ class ListeNotifications {
       $sql->execute();
       $notifications = $sql->fetchAll(PDO::FETCH_OBJ);
 
-      foreach ($notifications as $notification) {
-        $n = new Notification();
-        $n->select_mysql($notification->id, $connexion_effacer);
-        $n->delete_mysql($n, $connexion_effacer);
+      // S'il n'y a pas de notifications pour cette personne:
+      if(count($notifications == 0)) {
+        $notification = new Notification();
+        $notification->set_date_heure($date_heure);
+        $notification->set_type(1);
+        $notification->set_client($resultat->personne);
+        $notification->insert_mysql($notification, $connexion_ecrire);
       }
 
-      $notification = new Notification();
-      $notification->set_date_heure($date_heure);
-      $notification->set_type(1);
-      $notification->set_client($resultat->personne);
-      $notification->insert_mysql($notification, $connexion_ecrire);
+      // Sinon on vérifie s'il y a déjà des notifications existantes et on met à jour. En principe, il ne devrait y avoir qu'une seule
+      // notification par compte client.
+      else {
+        foreach ($notifications as $notification) {
+          $n = new Notification();
+          $n->select_mysql($notification->id, $connexion_lire);
+          $n_type = $n->get_type();
+          if($n_type !== 1) {
+            $n->set_date_heure($date_heure);
+            $n->set_type(1);
+            $n->update_mysql($n, $connexion_effacer);
+          }
+        }
+      }
     }
 
     $sql = $connexion_ecrire->prepare("SELECT personne FROM clients WHERE fin_abonnement BETWEEN CURDATE() AND DATE_ADD(NOW(), INTERVAL +30 DAY)");
     $sql->execute();
     $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
 
-    //var_dump($resultats);exit;
-
     foreach ($resultats as $resultat) {
 
-      //echo $resultat->personne."<br>";
-
       $sql = $connexion_ecrire->prepare("SELECT id FROM notifications WHERE client = :client");
-      $sql->bindParam(':client', $resultat->personne, PDO::PARAM_INT);
+      $sql->bindParam('client', $resultat->personne, PDO::PARAM_INT);
       $sql->execute();
       $notifications = $sql->fetchAll(PDO::FETCH_OBJ);
 
-      foreach ($notifications as $notification) {
-        $n = new Notification();
-        $n->select_mysql($notification->id, $connexion_effacer);
-        $n->delete_mysql($n, $connexion_effacer);
+      // S'il n'y a pas de notifications pour cette personne:
+      if(count($notifications == 0)) {
+        $notification = new Notification();
+        $notification->set_date_heure($date_heure);
+        $notification->set_type(2);
+        $notification->set_client($resultat->personne);
+        $notification->insert_mysql($notification, $connexion_ecrire);
       }
 
-      $notification = new Notification();
-      $notification->set_date_heure($date_heure);
-      $notification->set_type(2);
-      $notification->set_client($resultat->personne);
-      $notification->insert_mysql($notification, $connexion_ecrire);
+      // Sinon on vérifie s'il y a déjà des notifications existantes et on met à jour. En principe, il ne devrait y avoir qu'une seule
+      // notification par compte client.
+      else {
+        foreach ($notifications as $notification) {
+          $n = new Notification();
+          $n->select_mysql($notification->id, $connexion_lire);
+          $n_type = $n->get_type();
+          if($n_type !== 2) {
+            $n->set_date_heure($date_heure);
+            $n->set_type(2);
+            $n->update_mysql($n, $connexion_effacer);
+          }
+        }
+      }
     }
   }
 }
