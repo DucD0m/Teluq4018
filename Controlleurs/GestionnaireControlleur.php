@@ -7,6 +7,7 @@ require_once "Modele/Client.php";
 require_once "Modele/Plan.php";
 require_once "Modele/ListePlans.php";
 require_once "Modele/Notification.php";
+require_once "Modele/ListeNotifications.php";
 require_once "Controlleurs/Authentification.php";
 require_once "Controlleurs/fonctions_php.php";
 
