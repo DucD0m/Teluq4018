@@ -60,6 +60,8 @@ class ListeNotifications {
 
     foreach ($resultats as $resultat) {
 
+      echo $resultat->personne."<br>";
+
       $sql = $connexion_ecrire->prepare("SELECT id FROM notifications WHERE client = :client");
       $sql->bindParam(':client', $resultat->personne, PDO::PARAM_INT);
       $sql->execute();
