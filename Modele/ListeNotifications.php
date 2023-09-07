@@ -56,7 +56,7 @@ class ListeNotifications {
     $sql->execute();
     $resultats = $sql->fetchAll();
 
-    var_dump($resultats);exit;
+    //var_dump($resultats);exit;
 
     foreach ($resultats as $resultat) {
 
