@@ -512,7 +512,7 @@ class PageNotifications {
           foreach ($items as $item) {
             $client_prenom = htmlentities($item[1]->get_prenom());
             $client_nom = htmlentities($item[1]->get_nom());
-            $client_telephone = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', htmlentities(trval($item[1]->get_telephone())));
+            $client_telephone = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', htmlentities(strval($item[1]->get_telephone())));
             $client_plan = htmlentities($item[2]->get_nom());
             $client_fin_abonnement = htmlentities($item[1]->get_fin_abonnement());
         ?>
