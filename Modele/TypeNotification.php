@@ -20,16 +20,27 @@ class TypeNotification implements Modele {
   }
 
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
-    // Code here
+    if($id > 0) {
+      $sql = $connexion_lire->prepare("SELECT * FROM types_notifications WHERE id = :id");
+      $sql->bindParam(':id', $id, PDO::PARAM_INT);
+      $sql->execute();
+      $types_notifications = $sql->fetch(PDO::FETCH_OBJ);
+      $this->set_id($types_notifications->id);
+      $this->set_nom($types_notifications->nom);
+      return true;
+    }
+    else {
+      return false;
+    }
   }
   public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    // Code here
+    // Code lorsque requis...
   }
   public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    // Code here
+    // Code lorsque requis...
   }
   public function delete_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
-    // Code here
+    // Code lorsque requis...
   }
 }
 ?>
