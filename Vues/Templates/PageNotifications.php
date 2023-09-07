@@ -2,7 +2,7 @@
 
 class PageNotifications {
 
-  public function __construct(Gestionnaire $obj, TypeNotification $obj_type_notifications, array $notifications) {
+  public function __construct(Gestionnaire $obj, TypeNotification $obj_type_notifications, array $items) {
 
     $prenom_utilisateur = htmlentities($obj->get_prenom());
     $nom_utilisateur = htmlentities($obj->get_nom());
@@ -34,6 +34,8 @@ class PageNotifications {
       </script>
 
       <script src="https://kit.fontawesome.com/4d2a9d3318.js" crossorigin="anonymous"></script>
+
+      <script src="Vues/javascript/global.js"></script>
 
       <!-- <style>
         html {
@@ -506,25 +508,34 @@ class PageNotifications {
           <?php echo "NOTIFICATIONS - ".$type_nom; ?>
         </div>
 
-        <div id="notif-cadre">
-          <div class="notif-details notif-bordure-ex">
-            <button class="notif-vu" title="Marquer comme vu">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <div class="notif-infos" title="Visualiser le compte client">
-              <div class="notif-client">
-                Dominique Ducas<br>
-                555-555-5555
+        <?php
+          foreach ($item as $item) {
+            $client_prenom = htmlentities($item[1]->get_prenom());
+            $client_nom = htmlentities($item[1]->get_nom());
+            $client_telephone = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', intval($item[1]->get_telephone()));
+            $client_plan = htmlentities($item[2]->get_nom());
+            $client_fin_abonnement = htmlentities($item[1]->get_fin_abonnement());
+        ?>
+            <div id="notif-cadre">
+              <div class="notif-details notif-bordure-ex">
+                <button class="notif-vu" title="Marquer comme vu">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+                <div class="notif-infos" title="Visualiser le compte client">
+                  <div class="notif-client">
+                    <?php echo $client_prenom." ".$client_nom.; ?><br>
+                    <?php echo $client_telephone; ?>
+                  </div>
+                  <div class="notif-plan">
+                    <?php echo $client_plan; ?><br>
+                    Fin de l'abonnement: <span class="notif-date-ex"><?php echo $client_fin_abonnement; ?></span>
+                  </div>
+                </div>
+                <button class="notif-supprimer" title="Supprimer la notification">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
               </div>
-              <div class="notif-plan">
-                Trimestriel avec appareils<br>
-                Fin de l'abonnement: <span class="notif-date-ex">09 octobre 2023</span>
-              </div>
-            </div>
-            <button class="notif-supprimer" title="Supprimer la notification">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
+          <?php } ?>
 
           <div class="notif-details notif-bordure-30">
             <button class="notif-vu" title="Marquer comme vu">
