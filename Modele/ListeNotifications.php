@@ -3,7 +3,7 @@ require_once "Notification.php";
 
 class ListeNotifications {
 
-  private $liste = array();
+  private static $liste = array();
 
   public static function get_liste($type, $connexion_lire) {
 
