@@ -229,10 +229,40 @@ class GestionnaireControlleur {
              $plan->select_mysql($plan_id,$connexion_lire);
              $plan->set_prix_cours_groupe($plan_prix_cours_groupe);
              $plan->set_prix($plan_prix);
-             $update_plans = $plan->update_mysql($plan, $connexion_ecrire);
+             $resultat_update = $plan->update_mysql($plan, $connexion_ecrire);
            }
-           $_SESSION['message'] = "Les prix ont été modifiés avec succès.";
+           if($resultat_update > 0) $_SESSION['message'] = "Les prix ont été modifiés avec succès.";
+           else $_SESSION['message'] = "Il y a eu un problème avec la modification des prix. Veuillez vérifier et essayer de nouveau";
            redirection();
+      }
+      // Marquer une notification comme vue.
+      else if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
+         isset($_POST['formulaire-notification-vu']) && $_POST['formulaire-notification-vu'] === 'oui' &&
+         isset($_POST['notification-vu-id']) && intval($_POST['notification-vu-id']) > 0) {
+
+         $id = intval($_POST['notification-vu-id']);
+
+         $notification = new Notification();
+         $resultat_select = $notification->select_mysql($id, $connexion_lire);
+
+         $notification->set_vu(1);
+         $resultat_update = $notification->update_mysql($notification, $connexion_ecrire);
+
+         redirection();
+      }
+      // Supprimer une notification.
+      else if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
+         isset($_POST['formulaire-notification-supprimer']) && $_POST['formulaire-notification-supprimer'] === 'oui' &&
+         isset($_POST['notification-supprimer-id']) && intval($_POST['notification-supprimer-id']) > 0) {
+
+         $id = intval($_POST['notification-supprimer-id']);
+
+         $notification = new Notification();
+         $resultat_select = $notification->select_mysql($id, $connexion_lire);
+
+         $resultat_delete = $notification->delete_mysql($notification, $connexion_effacer);
+
+         redirection();
       }
 
 
