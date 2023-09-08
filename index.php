@@ -31,7 +31,7 @@ else if(isset($_SESSION['err_mdp_temps']) && $temps >= $_SESSION['err_mdp_temps'
 
 // Navigation boutons quitter.
 if(isset($_POST['quitter']) && $_POST['quitter'] === "oui") {
-  //Authentification::quitter();
+  Authentification::quitter();
   redirection();
 }
 
