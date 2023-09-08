@@ -14,7 +14,7 @@ class ListeNotifications {
       JOIN clients c ON n.client = c.personne
       JOIN plans pl ON pl.id = c.plan
       WHERE n.type = :type AND n.vu != 2
-      ORDER BY n.vu ASC, n.date_heure ASC");
+      ORDER BY n.vu ASC, c.fin_abonnement DESC");
 
     $sql->bindParam('type', $type, PDO::PARAM_INT);
     $sql->execute();
