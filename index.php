@@ -9,14 +9,6 @@ require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 require_once "Controlleurs/fonctions_php.php";
 
-// Redirection du traffic http vers https.
-if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
-    die('You must use the https protocol.');
-    header('HTTP/1.1 301 Moved Permanently');
-    header('Location: ' . URL);
-    exit;
-}
-
 session_start();
 
 $connexion_lire;
