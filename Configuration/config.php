@@ -1,6 +1,6 @@
 <?php
 // Configuration de l'url pour l'envoi des formulaires.
-define("URL", "http://10.0.1.18");
+define("URL", "https://inf4018.dominiqueducas.ca");
 
 // Configuration de la base de données.
 define("BASEDONNEES", "gym_argente");
@@ -37,13 +37,16 @@ ini_set('display_errors','On'); // DEV
 ini_set('display_startup_errors','On'); // DEV
 // ini_set('display_startup_errors','Off'); // PROD
 ini_set('log_errors','On');
-ini_set('error_log','/var/www/html/PHP-logs/php_error.log');
+
+// Ajuster pour google cloud
+//ini_set('error_log','/var/www/html/PHP-logs/php_error.log');
+
 ini_set('ignore_repeated_errors','Off');
 
 
 // PHP general settings
 // doc_root                       = /path/DocumentRoot/PHP-scripts/
-ini_set('open_basedir','/var/www/html/');
+ini_set('open_basedir','/var/www/dominiqueducas.ca/public_html');
 
 // Enlever commentaires et indiquer le path pour activer cette option.
 // ini_set('include_path','/path/PHP-pear/');
@@ -77,7 +80,8 @@ ini_set('file_uploads','Off');
 // PHP session handling
 
 // Les permissions doivent être ajustées pour permettre l'écriture au groupe du serveur web. (www-data).
-ini_set('session.save_path','/var/www/html/PHP-session/');
+// Ajuster pour google cloud
+//ini_set('session.save_path','/var/www/html/PHP-session/');
 
 ini_set('session.name', 'ab19b0956c3dc02dbca4c1d13ac00cea6b5c7a8f4c9db8ffd99ea5d577063e4a');
 //session.auto_start               = Off
@@ -94,10 +98,7 @@ ini_set('session.use_trans_sid','0');
 ini_set('session.use_cookies','1');
 ini_set('session.use_only_cookies','1');
 ini_set('session.cookie_lifetime','14400');
-
-// Configurer quand le certificat SSL sera activé.
-//ini_set('session.cookie_secure','1');
-
+ini_set('session.cookie_secure','1');
 ini_set('session.cookie_httponly','1');
 ini_set('session.cookie_samesite','Strict');
 ini_set('session.cache_expire','30');
@@ -112,7 +113,7 @@ ini_set('session.sid_bits_per_character','6'); //PHP 7.2+
 
 
 // Some more security paranoid checks
-ini_set('session.referer_check','/var/www/html/');
+ini_set('session.referer_check','/var/www/dominiqueducas.ca/public_html');
 ini_set('memory_limit','50M');
 // post_max_size           = 20M
 ini_set('max_execution_time','60');
@@ -122,7 +123,7 @@ ini_set('html_errors','Off');
 
 
 
-// Configuration des permissions de /var/www/html
+// Configuration des permissions de /var/www/dominiqueducas.ca/public_html
 // drwxr-s--- 9 root www-data  4096 Aug 28 09:56 ./
 // drwxr-x--- 3 root www-data  4096 May  3 09:10 ../
 // drwxr-s--- 2 root www-data  4096 Aug 28 09:59 Configuration/
