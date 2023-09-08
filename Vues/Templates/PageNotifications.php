@@ -19,7 +19,7 @@ class PageNotifications {
       <meta charset="UTF-8">
 
       <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/cupertino/jquery-ui.css">
-      <link rel="stylesheet" href="Vues/css/global.css?v3">
+      <link rel="stylesheet" href="Vues/css/global.css?v4">
 
       <script
         src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -587,7 +587,7 @@ class PageNotifications {
               }
               else {
               ?>
-              <div>Il n'y aucune notification pour le moment.</div>
+              <div id="aucune-notifications">Il n'y aucune notification pour le moment.</div>
               <?php } ?>
         </div>
 

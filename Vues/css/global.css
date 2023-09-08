@@ -352,6 +352,11 @@ tbody tr:nth-child(even) {
   border: none;
   text-align: center;
 }
+#aucune-notifications {
+  text-align: center;
+  margin-top: 10vw;
+  color: #666;
+}
 #notif-cadre {
   position: absolute;
   top: 10vw;
