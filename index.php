@@ -1,13 +1,4 @@
 <?php
-// Redirection du traffic http vers https.
-if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
-    // $location = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-    // header('HTTP/1.1 301 Moved Permanently');
-    // header('Location: ' . $location);
-    // exit;
-    die('Vous devez utiliser le protocol https.');
-}
-
 require_once "Configuration/config.php";
 require_once "Vues/Templates/PageIndex.php";
 require_once "Controlleurs/ConnexionLireBD.php";
@@ -17,6 +8,13 @@ require_once "Controlleurs/Authentification.php";
 require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 require_once "Controlleurs/fonctions_php.php";
+
+// Redirection du traffic http vers https.
+if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
+    header('HTTP/1.1 301 Moved Permanently');
+    header('Location: ' . URL);
+    exit;
+}
 
 session_start();
 
