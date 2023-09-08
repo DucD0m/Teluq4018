@@ -215,6 +215,9 @@ tbody tr:nth-child(even) {
   border: #666 0.1vw solid;
   border-radius: 1vw;
 }
+.notif-details form {
+  display: inline-block;
+}
 .notif-infos {
   position: relative;
   top: 0.5vw;
