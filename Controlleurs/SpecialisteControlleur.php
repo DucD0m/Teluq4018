@@ -58,11 +58,11 @@ class SpecialisteControlleur {
           }
 
           if($rdv_specialiste_verification === true) {
-            $_SESSION['message'] .= "Le spécialiste a déjà un rendez-vous à ce moment.";
+            $_SESSION['message'] .= "Le spécialiste a déjà un rendez-vous à ce moment.\n\n";
           }
 
           if($rdv_client_verification === true) {
-            $_SESSION['message'] .= "Le client a déjà un rendez-vous à ce moment.";
+            $_SESSION['message'] .= "Le client a déjà un rendez-vous à ce moment.\n\n";
           }
 
           if($rdv_specialiste_verification === false && $rdv_client_verification === false) {
