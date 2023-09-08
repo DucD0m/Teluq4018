@@ -13,7 +13,7 @@ class ListeNotifications {
       FROM notifications n
       JOIN clients c ON n.client = c.personne
       JOIN plans pl ON pl.id = c.plan
-      WHERE n.type = :type
+      WHERE n.type = :type AND n.vu != 2
       ORDER BY n.vu DESC, n.date_heure DESC");
 
     $sql->bindParam('type', $type, PDO::PARAM_INT);
@@ -71,6 +71,7 @@ class ListeNotifications {
           if($n_type !== 1) {
             $n->set_date_heure($date_heure);
             $n->set_type(1);
+            $n->set_vu(0);
             $n->update_mysql($n, $connexion_ecrire);
           }
         }
@@ -107,6 +108,7 @@ class ListeNotifications {
           if($n_type !== 2) {
             $n->set_date_heure($date_heure);
             $n->set_type(2);
+            $n->set_vu(0);
             $n->update_mysql($n, $connexion_ecrire);
           }
         }

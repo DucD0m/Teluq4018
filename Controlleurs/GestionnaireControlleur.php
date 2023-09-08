@@ -260,7 +260,8 @@ class GestionnaireControlleur {
          $notification = new Notification();
          $resultat_select = $notification->select_mysql($id, $connexion_lire);
 
-         $resultat_delete = $notification->delete_mysql($notification, $connexion_effacer);
+         $notification->set_vu(2);
+         $resultat_update = $notification->update_mysql($notification, $connexion_ecrire);
 
          redirection();
       }
