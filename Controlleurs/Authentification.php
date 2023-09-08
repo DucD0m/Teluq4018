@@ -68,8 +68,6 @@ class Authentification {
 
   public static function quitter() {
 
-    // session_start();
-
     $_SESSION = array();
 
     if (ini_get("session.use_cookies")) {
@@ -81,7 +79,6 @@ class Authentification {
     }
 
     session_destroy();
-
   }
 }
 ?>
