@@ -560,7 +560,7 @@ class PageMenu {
 
         <script>
           $( document ).ready(function() {
-            $( "#vis-auto" ).autocomplete({
+            $( ".vis-auto" ).autocomplete({
               source: "Modele/ClientAutocomplete.php",
               select: function( event, ui ) {
                 if(ui.item.value != '') {
