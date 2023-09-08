@@ -570,9 +570,6 @@ class PageMenu {
                 }
               }
             });
-            $( "#vis-auto" ).click(function(){
-              $('#vis-client').val('');
-            });
             $( document ).tooltip({
                classes: {
                  "ui-tooltip": "ui-corner-all"
