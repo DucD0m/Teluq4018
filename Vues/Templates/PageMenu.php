@@ -560,7 +560,7 @@ class PageMenu {
 
         <script>
           $( document ).ready(function() {
-            $( ".vis-auto" ).autocomplete({
+            $( "#vis-auto" ).autocomplete({
               source: "Modele/ClientAutocomplete.php",
               select: function( event, ui ) {
                 if(ui.item.value != '') {
@@ -569,6 +569,9 @@ class PageMenu {
                   $('#visualiser-form').submit();
                 }
               }
+            });
+            $( "#vis-auto" ).click(function(){
+              $('#vis-client').val('');
             });
             $( document ).tooltip({
                classes: {
