@@ -68,8 +68,8 @@ class Authentification {
 
   public static function quitter() {
 
-    // session_start();
-    //
+    session_start();
+
     $_SESSION = array();
     //
     // if (ini_get("session.use_cookies")) {
