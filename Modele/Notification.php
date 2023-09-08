@@ -7,7 +7,7 @@ class Notification implements Modele {
   private String $date_heure = "";
   private Int $type = 0;
   private Int $client = 0;
-  private Int $vu = 0;
+  private Int $vu = 0; // 0 = non vu, 1 = vu, 2 = non visible. 
 
   public function get_id() : Int {
     return $this->id;

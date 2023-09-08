@@ -250,7 +250,7 @@ class GestionnaireControlleur {
 
          redirection();
       }
-      // Supprimer une notification.
+      // Supprimer une notification
       else if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
          isset($_POST['formulaire-notification-supprimer']) && $_POST['formulaire-notification-supprimer'] === 'oui' &&
          isset($_POST['notification-supprimer-id']) && intval($_POST['notification-supprimer-id']) > 0) {
