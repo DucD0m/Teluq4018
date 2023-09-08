@@ -7,6 +7,8 @@ class ListeRendezVous {
 
   public static function get_liste(Object $obj, $connexion_lire)  {
 
+    self::$liste = array();
+
     if((get_class($obj) === 'Client' || get_class($obj) === 'Specialiste') && $obj->get_id() > 0) {
 
       if(get_class($obj) === 'Client') {
