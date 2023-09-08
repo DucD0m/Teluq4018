@@ -510,6 +510,7 @@ class PageNotifications {
 
         <div id="notif-cadre">
             <?php
+            if($items) {
               foreach ($items as $item) {
                 $notification_id = intval($item[0]->get_id());
                 $notification_vu = intval($item[0]->get_vu());
@@ -582,8 +583,12 @@ class PageNotifications {
                       </button>
                     </form>
                   </div>
+              <?php }
+              }
+              else {
+              ?>
+              <div>Il n'y aucune notification pour le moment.</div>
               <?php } ?>
-
         </div>
 
         <script>
