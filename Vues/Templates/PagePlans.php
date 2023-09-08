@@ -484,14 +484,14 @@ class PagePlans {
 
         <form id="retour-form" class="hidden" action="<?php echo URL; ?>" method="post">
           <input type="hidden" id="retour-input" name="retour" value="oui">
-          <button id="retour-menu" class="couleurs retour" type="submit" value="submit">
+          <button id="retour-menu" class="couleurs retour" type="submit">
             <i class="fa-solid fa-backward"></i> MENU<br>
           </button>
         </form>
 
         <form id="quitter-form" class="hidden" action="<?php echo URL; ?>" method="post">
           <input type="hidden" id="quitter-input" name="quitter" value="oui">
-          <button id="quitter" class="couleurs quitter" type="submit" value="submit">
+          <button id="quitter" class="couleurs quitter" type="submit">
             QUITTER <i class="fa-solid fa-person-running"></i>
           </button>
         </form>
