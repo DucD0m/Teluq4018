@@ -145,8 +145,8 @@ class GestionnaireControlleur {
            $client = new Client();
            $client->select_mysql($_POST['client-personne'], $connexion_lire);
 
-           // Si on ajoute des heures spécialistes à un abonnement en cours qui est à plus de trente jours du renouvellement.
-           if($date < strtotime($client->get_fin_abonnement()." -1 month")) {
+           // Si on ajoute des heures spécialistes à un abonnement. On ne change pas la date de renouvellement.
+           if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '')) {
              // On garde la même date de renouvelement.
            }
            // Si on prolonge un abonnement précédent qui vient à échéance d'ici 30jours.

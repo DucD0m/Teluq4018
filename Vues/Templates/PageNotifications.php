@@ -566,11 +566,11 @@ class PageNotifications {
                         <?php echo $plan_nom; ?><br>
                         Fin de l'abonnement:&nbsp;
                         <?php if($type_id === 1): ?>
-                          <span class="notif-date-ex"><?php echo $client_fin_abonnement; ?></span>
+                          <span class="notif-date-ex"><?php echo date_francais($client_fin_abonnement, "j F Y"); ?></span>
                         <?php elseif($type_id === 2): ?>
-                          <span class="notif-date-30"><?php echo $client_fin_abonnement; ?></span>
+                          <span class="notif-date-30"><?php echo date_francais($client_fin_abonnement, "j F Y"); ?></span>
                         <?php else: ?>
-                          <span><?php echo $client_fin_abonnement; ?></span>
+                          <span><?php echo date_francais($client_fin_abonnement, "j F Y"); ?></span>
                         <?php endif; ?>
                       </div>
                     </div>
