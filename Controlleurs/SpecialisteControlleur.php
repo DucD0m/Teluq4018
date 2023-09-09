@@ -93,6 +93,10 @@ class SpecialisteControlleur {
           }
         }
         else {
+          // Si le client a utilisé toutes ses heures spécialistes. On remeà zéro.
+          $client->set_heures_specialistes(0);
+          $client->set_heures_specialistes_utilise(0);
+          $client->update_mysql($client, $connexion_ecrire);
           $_SESSION['message'] = "Le rendez-vous ne peut être fixé. La banque d'heures du client est vide.";
         }
 
