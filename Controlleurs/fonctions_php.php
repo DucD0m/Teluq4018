@@ -7,7 +7,7 @@ function redirection() {
 }
 
 // Conversion des dates en français.
-public static function date_francais($date, $format)
+function date_francais($date, $format)
 {
     $anglais_jours = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
     $francais_jours = array('lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche');
