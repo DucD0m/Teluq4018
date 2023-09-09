@@ -1,4 +1,5 @@
 <?php declare(strict_types=1);
+require_once "Controlleurs/fonctions_php.php";
 
 class PageClient {
 
@@ -568,40 +569,40 @@ class PageClient {
             <?php if($id_client > 0): ?>
               <div id="info-plan" class="info-plan">
                 <div>
-                  Date d'adhésion: <span><?php echo $adhesion; ?></span>
+                  Date d'adhésion: <span><?php echo date_francais($adhesion, "j F Y"); ?></span>
                 </div>
                 <div>
                   Plan: <span><?php echo $plan_nom; ?></span>
                 </div>
                 <div>
-                  Date de renouvellement: <span><?php echo $renouvellement; ?></span>
+                  Date de renouvellement: <span><?php echo date_francais($renouvellement, "j F Y"); ?></span>
                 </div>
 
                 <?php if($date > strtotime($fin_abonnement)): ?>
                   <div>
-                    Fin de l'abonnement: <span class="notif-date-ex"><?php echo $fin_abonnement; ?></span>
+                    Fin de l'abonnement: <span class="notif-date-ex"><?php echo date_francais($fin_abonnement, "j F Y"); ?></span>
                   </div>
                 <?php elseif($date >= strtotime($fin_abonnement." -29 days") && $date <= strtotime($fin_abonnement)): ?>
                   <div>
-                    Fin de l'abonnement: <span class="notif-date-30"><?php echo $fin_abonnement; ?></span>
+                    Fin de l'abonnement: <span class="notif-date-30"><?php echo date_francais($fin_abonnement, "j F Y"); ?></span>
                   </div>
                 <?php else: ?>
                   <div>
-                    Fin de l'abonnement: <span class="notif-date-ok"><?php echo $fin_abonnement; ?></span>
+                    Fin de l'abonnement: <span class="notif-date-ok"><?php echo date_francais($fin_abonnement, "j F Y"); ?></span>
                   </div>
                 <?php endif; ?>
 
                 <?php if($date > strtotime($fin_acces_appareils)): ?>
                   <div>
-                    Fin de l'accès aux appareils: <span class="notif-date-ex"><?php echo $fin_acces_appareils; ?></span>
+                    Fin de l'accès aux appareils: <span class="notif-date-ex"><?php echo date_francais($fin_acces_appareils, "j F Y"); ?></span>
                   </div>
                 <?php elseif($date >= strtotime($fin_acces_appareils." -29 days") && $date <= strtotime($fin_acces_appareils)): ?>
                   <div>
-                    Fin de l'accès aux appareils: <span class="notif-date-30"><?php echo $fin_acces_appareils; ?></span>
+                    Fin de l'accès aux appareils: <span class="notif-date-30"><?php echo date_francais($fin_acces_appareils, "j F Y"); ?></span>
                   </div>
                 <?php else: ?>
                   <div>
-                    Fin de l'accès aux appareils: <span class="notif-date-ok"><?php echo $fin_acces_appareils; ?></span>
+                    Fin de l'accès aux appareils: <span class="notif-date-ok"><?php echo date_francais($fin_acces_appareils, "j F Y"); ?></span>
                   </div>
                 <?php endif; ?>
 
