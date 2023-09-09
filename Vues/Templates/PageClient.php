@@ -635,7 +635,6 @@ class PageClient {
 
                   <?php if($date < strtotime($fin_abonnement." -1 month")): ?>
                     <div id="options-texte">Les autre options seront disponible à moins de 30 jours du renouvellement.</div>
-                    <input type="hidden" id="client-groupes" name="client-groupes" value="<?php echo $cours_groupe_semaine; ?>">
                   <?php else: ?>
                     <label id="client-groupes-label" for="client-groupes">
                       Nombre de cours de groupes par semaine:
@@ -671,7 +670,7 @@ class PageClient {
                 let nom = $("#plan-id option:selected").text();
                 if (nom.indexOf("Spécialiste") >= 0){
                   $('#client-groupes, #client-groupes-label').css('visibility','hidden');
-                  //$('#client-groupes').val(0);
+                  $('#client-groupes').val(0);
                 }
                 else $('#client-groupes, #client-groupes-label').css('visibility','visible');
               }
