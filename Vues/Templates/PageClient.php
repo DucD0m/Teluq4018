@@ -865,6 +865,9 @@ class PageClient {
               $('input').click(function(){
                 $(this).css('background-color','#FFF');
               });
+
+              // Pour ajuster la couleur du select à l'ouverture de la page dans FireFox.
+              $('input').css('background-color','#FFF');
             });
           </script>
 
