@@ -9,7 +9,7 @@ $choix_liste = array();
 $client = trim($_GET["term"]);
 
 if(isset($_GET["rdv_specialiste"]) && $_GET["rdv_specialiste"] == 'oui') {
-  $and_where = " AND c.heures_specialistes_utilise < c.heures_specialistes ";
+  $and_where = " AND c.heures_specialistes_utilise <= c.heures_specialistes ";
 }
 else $and_where = "";
 
