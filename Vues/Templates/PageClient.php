@@ -37,7 +37,7 @@ class PageClient {
       <meta charset="UTF-8">
 
       <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/cupertino/jquery-ui.css">
-      <link rel="stylesheet" href="Vues/css/global.css">
+      <link rel="stylesheet" href="Vues/css/global.css?v=6">
 
       <script
         src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -576,12 +576,35 @@ class PageClient {
                 <div>
                   Date de renouvellement: <span><?php echo $renouvellement; ?></span>
                 </div>
-                <div>
-                  Fin de l'abonnement: <span><?php echo $fin_abonnement; ?></span>
-                </div>
-                <div>
-                  Fin de l'accès aux appareils: <span><?php echo $fin_acces_appareils; ?></span>
-                </div>
+
+                <?php if($date > strtotime($fin_abonnement)): ?>
+                  <div>
+                    Fin de l'abonnement: <span class=".notif-date-ex"><?php echo $fin_abonnement; ?></span>
+                  </div>
+                <?php elseif($date >= strtotime($fin_abonnement." -29 days") && $date <= strtotime($fin_abonnement)): ?>
+                  <div>
+                    Fin de l'abonnement: <span class=".notif-date-30"><?php echo $fin_abonnement; ?></span>
+                  </div>
+                <?php else: ?>
+                  <div>
+                    Fin de l'abonnement: <span class=".notif-date-ok"><?php echo $fin_abonnement; ?></span>
+                  </div>
+                <?php endif; ?>
+
+                <?php if($date > strtotime($fin_acces_appareils)): ?>
+                  <div>
+                    Fin de l'accès aux appareils: <span class=".notif-date-ex"><?php echo $fin_acces_appareils; ?></span>
+                  </div>
+                <?php elseif($date >= strtotime($fin_acces_appareils." -29 days") && $date <= strtotime($fin_acces_appareils)): ?>
+                  <div>
+                    Fin de l'accès aux appareils: <span class=".notif-date-30"><?php echo $fin_acces_appareils; ?></span>
+                  </div>
+                <?php else: ?>
+                  <div>
+                    Fin de l'accès aux appareils: <span class=".notif-date-ok"><?php echo $fin_acces_appareils; ?></span>
+                  </div>
+                <?php endif; ?>
+
                 <div>
                   Heures avec spécialistes achetées: <span><?php echo $heures_specialistes; ?></span>
                 </div>
@@ -615,7 +638,7 @@ class PageClient {
                       $p_nom = htmlentities($p->get_nom());
                       $p_prix = $p->get_prix();
                       $p_prix_cours_groupe = $p->get_prix_cours_groupe();
-                      if($date < strtotime($fin_abonnement." -1 month") && strpos($p->get_nom(),"Spécialiste") == '') continue;
+                      if($date < strtotime($fin_abonnement." -29 days") && strpos($p->get_nom(),"Spécialiste") == '') continue;
                     ?>
                       <option
                         data-prix="<?php echo $p_prix; ?>"
@@ -633,7 +656,7 @@ class PageClient {
 
                   </select>
 
-                  <?php if($date < strtotime($fin_abonnement." -1 month")): ?>
+                  <?php if($date < strtotime($fin_abonnement." -29 days")): ?>
                     <div id="options-texte">Les autre options seront disponible à moins de 30 jours du renouvellement.</div>
                   <?php else: ?>
                     <label id="client-groupes-label" for="client-groupes">

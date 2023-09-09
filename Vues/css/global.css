@@ -207,6 +207,9 @@ tbody tr:nth-child(even) {
 .notif-date-30 {
   color: orange;
 }
+.notif-date-ok {
+  color: green;
+}
 .notif-details {
   width: 70vw;
   height: 5vw;
