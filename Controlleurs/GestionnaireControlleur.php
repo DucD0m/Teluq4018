@@ -179,7 +179,10 @@ class GestionnaireControlleur {
            // utilise sa dernière heure.)
            $somme_heures_specialistes = $client->get_heures_specialistes() + intval($_POST['client-spec']);
            $client->set_heures_specialistes($somme_heures_specialistes);
-           $client->set_cours_groupe_semaine(intval($_POST['client-groupes']));
+           if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') {
+             // On garde le même nombre de cours de groupe.
+           }
+           else $client->set_cours_groupe_semaine(intval($_POST['client-groupes']));
 
            $resultat_update = $client->update_mysql($client, $connexion_ecrire);
 
