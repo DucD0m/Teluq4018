@@ -579,29 +579,29 @@ class PageClient {
 
                 <?php if($date > strtotime($fin_abonnement)): ?>
                   <div>
-                    Fin de l'abonnement: <span class=".notif-date-ex"><?php echo $fin_abonnement; ?></span>
+                    Fin de l'abonnement: <span class="notif-date-ex"><?php echo $fin_abonnement; ?></span>
                   </div>
                 <?php elseif($date >= strtotime($fin_abonnement." -29 days") && $date <= strtotime($fin_abonnement)): ?>
                   <div>
-                    Fin de l'abonnement: <span class=".notif-date-30"><?php echo $fin_abonnement; ?></span>
+                    Fin de l'abonnement: <span class="notif-date-30"><?php echo $fin_abonnement; ?></span>
                   </div>
                 <?php else: ?>
                   <div>
-                    Fin de l'abonnement: <span class=".notif-date-ok"><?php echo $fin_abonnement; ?></span>
+                    Fin de l'abonnement: <span class="notif-date-ok"><?php echo $fin_abonnement; ?></span>
                   </div>
                 <?php endif; ?>
 
                 <?php if($date > strtotime($fin_acces_appareils)): ?>
                   <div>
-                    Fin de l'accès aux appareils: <span class=".notif-date-ex"><?php echo $fin_acces_appareils; ?></span>
+                    Fin de l'accès aux appareils: <span class="notif-date-ex"><?php echo $fin_acces_appareils; ?></span>
                   </div>
                 <?php elseif($date >= strtotime($fin_acces_appareils." -29 days") && $date <= strtotime($fin_acces_appareils)): ?>
                   <div>
-                    Fin de l'accès aux appareils: <span class=".notif-date-30"><?php echo $fin_acces_appareils; ?></span>
+                    Fin de l'accès aux appareils: <span class="notif-date-30"><?php echo $fin_acces_appareils; ?></span>
                   </div>
                 <?php else: ?>
                   <div>
-                    Fin de l'accès aux appareils: <span class=".notif-date-ok"><?php echo $fin_acces_appareils; ?></span>
+                    Fin de l'accès aux appareils: <span class="notif-date-ok"><?php echo $fin_acces_appareils; ?></span>
                   </div>
                 <?php endif; ?>
 
