@@ -867,7 +867,7 @@ class PageClient {
               });
 
               // Pour ajuster la couleur du select à l'ouverture de la page dans FireFox.
-              $('#rdv-heure').css('background-color','#FFF');
+              $('#rdv-heure').css('background-color','white');
             });
           </script>
 
