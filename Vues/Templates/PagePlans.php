@@ -138,7 +138,6 @@ class PagePlans {
                     }
                     else if(val == '$') {
                       validation = false;
-                      $(this).val('');
                       $(this).css('background-color','orange');
                     }
                     else if(val.indexOf("$") >= 0) {
