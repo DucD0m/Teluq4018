@@ -354,7 +354,7 @@ class PageClient {
 
                 if($('#nouveau-client').length) {
                   $('input').each(function(){
-                      if($(this).val() === '') {
+                      if($(this).val() === '' && $(this).attr('id') != 'client-payer') {
                         validation = false;
                         $(this).css('background-color','orange');
                       }
@@ -376,7 +376,6 @@ class PageClient {
                   $('#formulaire-droite :input').each(function(){
                       if($(this).val() === '' && $(this).prop('disabled') === false) {
                         validation = false;
-                        //alert($(this).attr('id'));
                         $(this).css('background-color','orange');
                       }
                   });
