@@ -136,6 +136,11 @@ class PagePlans {
                     else if(Number.isFinite(parseFloat(val))) {
                       $(this).val(parseFloat(val).toFixed(2));
                     }
+                    else if(val == '$') {
+                      validation = false;
+                      $(this).val('');
+                      $(this).css('background-color','orange');
+                    }
                     else if(val.indexOf("$") >= 0) {
               				val = parseFloat(val.replace('$','')).toFixed(2);
               				if(Number.isFinite(parseFloat(val))) {
