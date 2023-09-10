@@ -221,6 +221,20 @@ tbody tr:nth-child(even) {
 .notif-details form {
   display: inline-block;
 }
+.notif-infos {
+  position: relative;
+  top: 0.5vw;
+  display: inline-block;
+  width: 50vw;
+  text-align: left;
+  font-size: 1.5vw;
+  line-height: 1.9vw;
+  color: #666;
+  cursor: pointer;
+}
+.notif-infos:hover {
+  color: #87CEFA;
+}
 .notif-plan {
   display: inline-block;
   width: 28vw;
@@ -353,20 +367,6 @@ tbody tr:nth-child(even) {
   width: 72vw;
   height: 65vh;
   overflow: scroll;
-}
-#notif-infos {
-  position: relative;
-  top: 0.5vw;
-  display: inline-block;
-  width: 50vw;
-  text-align: left;
-  font-size: 1.5vw;
-  line-height: 1.9vw;
-  color: #666;
-  cursor: pointer;
-}
-#notif-infos:hover {
-  color: #87CEFA;
 }
 #nouveau-client {
   font-size: 1.5vw;

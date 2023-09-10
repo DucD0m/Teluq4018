@@ -91,10 +91,10 @@ class PageNotifications {
                   <?php endif; ?>
 
 
-                    <div id="notif-infos" title="Visualiser le compte client">
-                      <form id="visualiser-form" class="hidden" action="<?php echo URL; ?>" method="post">
-                        <input type="hidden" id="visualiser-compte" name="visualiser-compte" value="oui">
-                        <input id="vis-client" type="hidden" name="vis-client"  value="<?php echo $client_personne; ?> -">
+                    <div class="notif-infos" title="Visualiser le compte client">
+                      <form id="visualiser-form<?php echo $notification_id; ?>" class="hidden" action="<?php echo URL; ?>" method="post">
+                        <input type="hidden" id="visualiser-compte<?php echo $notification_id; ?>" name="visualiser-compte" value="oui">
+                        <input id="vis-client<?php echo $notification_id; ?>" type="hidden" name="vis-client"  value="<?php echo $client_personne; ?> -">
                       </form>
                       <div class="notif-client">
                         <?php echo $client_prenom." ".$client_nom; ?><br>
@@ -136,8 +136,8 @@ class PageNotifications {
                  "ui-tooltip": "ui-corner-all"
                }
             });
-            $('#notif-infos').click(function(){
-              $('#visualiser-form').submit();
+            $('.notif-infos').click(function(){
+              $(this).closest("form").submit();
             });
             $('.notif-supprimer').click(function(){
               let confirmation;
