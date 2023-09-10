@@ -13,7 +13,6 @@ class PageClient {
     $nom_client = htmlentities($obj_client->get_nom());
     $adresse = htmlentities($obj_client->get_adresse());
     $telephone = $obj_client->get_telephone();
-    if($telephone === 0) $telephone = '';
     $courriel = htmlentities($obj_client->get_courriel());
     $personne_client = $obj_client->get_personne();
     $adhesion = htmlentities($obj_client->get_adhesion());
