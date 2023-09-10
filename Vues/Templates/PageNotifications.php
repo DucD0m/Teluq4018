@@ -137,7 +137,7 @@ class PageNotifications {
                }
             });
             $('.notif-infos').click(function(){
-              $(this).closest("form").submit();
+              $(this).children('form').submit();
             });
             $('.notif-supprimer').click(function(){
               let confirmation;
