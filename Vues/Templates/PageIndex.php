@@ -39,13 +39,10 @@ class PageIndex {
     </head> -->
 
     <body>
-        <?php
-          require_once "body.php";
-        ?>
-        <!-- <div class='couleurs logo'>
+        <div class='couleurs logo'>
           GY<i class="fa-solid fa-dumbbell"></i><br>
           ARGENTÉ
-        </div> -->
+        </div>
 
         <div class="titre">
           SYSTÈME DE GESTION

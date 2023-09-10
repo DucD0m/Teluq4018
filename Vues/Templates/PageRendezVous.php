@@ -15,7 +15,7 @@ class PageRendezVous {
     <html lang='fr'>
 
     <head>
-      
+
       <?php
         require_once "head.html";
       ?>
