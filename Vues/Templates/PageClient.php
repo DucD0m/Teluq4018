@@ -264,21 +264,21 @@ class PageClient {
               });
 
               $('#client-prenom').change(function(){
-                if($('#client-prenom').val().length > 4) {
+                if($('#client-prenom').val().length > 48) {
                   alert('Le prenom doit contenir au maximum 48 caractères. Veuillez essayer de nouveau.');
                   $('#client-prenom').val('');
                 }
               });
 
               $('#client-nom').change(function(){
-                if($('#client-nom').val().length > 4) {
+                if($('#client-nom').val().length > 48) {
                   alert('Le nom doit contenir au maximum 48 caractères. Veuillez essayer de nouveau.');
                   $('#client-nom').val('');
                 }
               });
 
               $('#client-adresse').change(function(){
-                if($('#client-adresse').val().length > 4) {
+                if($('#client-adresse').val().length > 256) {
                   alert("L'adresse doit contenir au maximum 256 caractères. Veuillez essayer de nouveau.");
                   $('#client-adresse').val('');
                 }
