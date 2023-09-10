@@ -142,8 +142,8 @@ class PageRendezVous {
             let rdv = $('#rdv-date').val() + " " + $('#rdv-heure').val();
             let rdv_date = new Date(rdv);
             let now = new Date();
-            console.log(rdv_date.getTime());
-            console.log(now.getTime());
+            alert(rdv_date.getTime());
+            alert(now.getTime());
 
             $("#rendez-vous").children().each(function(){
                 if($(this).val() === '') {
