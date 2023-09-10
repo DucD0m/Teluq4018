@@ -109,7 +109,7 @@ class PageRendezVous {
 
             $( function() {
               $( "#rdv-date" ).datepicker({
-                minDate: 0,
+                minDate: 1,
                 dateFormat: "yy-mm-dd"
               });
             });
@@ -139,11 +139,6 @@ class PageRendezVous {
 
           $('#rdv-fixer').click(function(){
             let validation = true;
-            let rdv = $('#rdv-date').val() + " " + $('#rdv-heure').val();
-            let rdv_date = new Date(rdv);
-            let now = new Date();
-            alert(rdv_date.getTime());
-            alert(now.getTime());
 
             $("#rendez-vous").children().each(function(){
                 if($(this).val() === '') {
