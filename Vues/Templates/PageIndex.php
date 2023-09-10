@@ -39,7 +39,7 @@ class PageIndex {
           SYSTÈME DE GESTION
         </div>
 
-        <form action="<?php echo URL; ?>" method="post">
+        <form id="auth-formulaire" action="<?php echo URL; ?>" method="post">
           <input class="auth auth-courriel" type="text" id="auth-email" name="auth-courriel" placeholder="courriel">
           <input class="auth auth-mdp" type="password" id="auth-mdp" name="auth-mdp" placeholder="mot de passe">
           <input class="auth auth-mdp-changer" type="password" id="auth-mdp-changer" name="auth-mdp-changer" placeholder="nouveau mot de passe" disabled>
@@ -83,7 +83,9 @@ class PageIndex {
                     && $('#auth-mdp-changer').val() !== $('#auth-mdp-confirmer').val()) {
                       alert('La confirmation du nouveau mot de passe ne correspond pas. Veuillez essayer de nouveau.');
                     }
-                else $( "#auth-soumettre" ).submit();
+                else {
+                  $( "#auth-formulaire" ).submit();
+                }
               });
             });
         </script>
