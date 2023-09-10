@@ -10,6 +10,7 @@ class Authentification {
     $pepper = PEPPER;
     $pwd = $mot_passe;
     $pwd_peppered = hash_hmac("sha256", $pwd, $pepper);
+    $message_erreur = "Svp vérifier vos informations et esseyer de nouveau.";
 
     $sql = $connexion_lire->prepare('SELECT g.personne, g.mot_passe
       FROM gestionnaires g
@@ -56,11 +57,11 @@ class Authentification {
     // Compter le nombre d'erreurs de mots de passe. Protection contre le "Brute Force".
     if(!isset($_SESSION['auth']) && !isset($_SESSION['erreurs_mdp'])) {
       $_SESSION['erreurs_mdp'] = 1;
-      $_SESSION['message'] = "Svp vérifier vos informations et esseyer de nouveau.";
+      $_SESSION['message'] = $message_erreur;
     }
     else if(!isset($_SESSION['auth']) && isset($_SESSION['erreurs_mdp'])) {
       $_SESSION['erreurs_mdp'] = $_SESSION['erreurs_mdp'] + 1;
-      $_SESSION['message'] = "Svp vérifier vos informations et esseyer de nouveau.";
+      $_SESSION['message'] = $message_erreur;
       if($_SESSION['erreurs_mdp'] === 5) {
         $_SESSION['err_mdp_temps'] = strtotime('now');
       }
