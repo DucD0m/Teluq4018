@@ -44,6 +44,7 @@ class PageIndex {
 
         <script>
             $( "#changer-mdp" ).click(function(){
+              $('#changer-mdp').text('Annuler Changement');
               $('#auth-mdp-changer').css('display','inline-block');
               $('#auth-mdp-confirmer').css('display','inline-block');
               $('#auth-mdp-changer').removeAttr('disabled');
