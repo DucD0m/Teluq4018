@@ -44,12 +44,23 @@ class PageIndex {
 
         <script>
             $( "#changer-mdp" ).click(function(){
-              $('#changer-mdp').text('Annuler Changement');
+              $('#changer-mdp').text('ANNULER<br>CHANGEMENT');
+              $('#changer-mdp').attr('id','annuler-mdp');
               $('#auth-mdp-changer').css('display','inline-block');
               $('#auth-mdp-confirmer').css('display','inline-block');
               $('#auth-mdp-changer').removeAttr('disabled');
               $('#auth-mdp-confirmer').removeAttr('disabled');
               $('#auth-soumettre').css('top','45vw');
+            });
+
+            $( "#annuler-mdp" ).click(function(){
+              $('#annuler-mdp').text('CHANGER<br>MOT DE PASSE');
+              $('#annuler-mdp').attr('id','changer-mdp');
+              $('#auth-mdp-changer').css('display','none');
+              $('#auth-mdp-confirmer').css('display','none');
+              $('#auth-mdp-changer').prop('disabled','true');
+              $('#auth-mdp-confirmer').prop('disabled','true');
+              $('#auth-soumettre').css('top','30vw');
             });
         </script>
 
