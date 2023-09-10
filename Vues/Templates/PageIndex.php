@@ -78,7 +78,7 @@ class PageIndex {
               $('#auth-soumettre').click(function(){
                 let validation = true;
                 $("#auth-formulaire").children().each(function(){
-                    if($(this).val() === '') {
+                    if($(this).val() === '' && $(this).prop('disabled') === false) {
                       validation = false;
                       $(this).css('background-color','orange');
                     }
