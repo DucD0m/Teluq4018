@@ -1,3 +1,4 @@
+?>
 <head>
   <title>Gym Argenté</title>
 
@@ -20,3 +21,4 @@
 
   <script src="https://kit.fontawesome.com/4d2a9d3318.js" crossorigin="anonymous"></script>
 </head>
+<?php
