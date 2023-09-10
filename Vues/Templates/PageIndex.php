@@ -39,6 +39,15 @@ class PageIndex {
     </head> -->
 
     <body>
+
+        <?php if(isset($_SESSION['message']) && ($_SESSION['message'] != '')): ?>
+          <script>
+          $( document ).ready(function() {
+            alert("<?php echo $_SESSION['message']; ?>");
+          });
+          </script>
+        <?php unset($_SESSION['message']); endif; ?>
+
         <div class='couleurs logo'>
           GY<i class="fa-solid fa-dumbbell"></i><br>
           ARGENTÉ
@@ -54,17 +63,8 @@ class PageIndex {
           <input id="auth-soumettre" class="auth auth-submit couleurs" type="submit" value="OUVRIR UNE SESSION">
         </form>
 
-        <script>
-          // $( document ).ready(function() {
-          //   $('#auth-soumettre').click(function(){
-          //     if($('#auth-mdp').val() === "gestionnaire") location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/gestionnaire.html";
-          //     else if($('#auth-mdp').val() === "specialiste") location.href = "file:///Users/dominiqueducas/Desktop/Gym_Argente/Vue/templates/specialiste.html";
-          //     else alert("Svp vérifier vos informations d'identification");
-          //   });
-          // });
-        </script>
-
     </body>
+    
     </html>
 
 <?php

@@ -56,9 +56,11 @@ class Authentification {
     // Compter le nombre d'erreurs de mots de passe. Protection contre le "Brute Force".
     if(!isset($_SESSION['auth']) && !isset($_SESSION['erreurs_mdp'])) {
       $_SESSION['erreurs_mdp'] = 1;
+      $_SESSION['message'] = "Svp vérifier vos informations et esseyer de nouveau.";
     }
     else if(!isset($_SESSION['auth']) && isset($_SESSION['erreurs_mdp'])) {
       $_SESSION['erreurs_mdp'] = $_SESSION['erreurs_mdp'] + 1;
+      $_SESSION['message'] = "Svp vérifier vos informations et esseyer de nouveau.";
       if($_SESSION['erreurs_mdp'] === 5) {
         $_SESSION['err_mdp_temps'] = strtotime('now');
       }
