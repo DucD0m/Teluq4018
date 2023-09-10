@@ -1,3 +1,4 @@
+<!-- Patron de conception composite-->
 <?php if(isset($_SESSION['message']) && ($_SESSION['message'] != '')): ?>
   <script>
   $( document ).ready(function() {
