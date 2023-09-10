@@ -363,6 +363,9 @@ tbody tr:nth-child(even) {
   border: none;
   text-align: center;
 }
+#annuler-mdp {
+  display: none;
+}
 #aucune-notifications {
   text-align: center;
   margin-top: 10vw;

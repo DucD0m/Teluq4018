@@ -30,6 +30,11 @@ class PageIndex {
           MOT DE PASSE
         </button>
 
+        <button id="annuler-mdp" class="couleurs quitter">
+          ANNULER<br>
+          CHANGEMENT
+        </button>
+
         <div class="titre">
           SYSTÈME DE GESTION
         </div>
@@ -44,8 +49,8 @@ class PageIndex {
 
         <script>
             $( "#changer-mdp" ).click(function(){
-              $('#changer-mdp').text('ANNULER<br>CHANGEMENT');
-              $('#changer-mdp').attr('id','annuler-mdp');
+              $('#changer-mdp').css('display','none');
+              $('#annuler-mdp').css('display','inline-block');
               $('#auth-mdp-changer').css('display','inline-block');
               $('#auth-mdp-confirmer').css('display','inline-block');
               $('#auth-mdp-changer').removeAttr('disabled');
@@ -54,8 +59,8 @@ class PageIndex {
             });
 
             $( "#annuler-mdp" ).click(function(){
-              $('#annuler-mdp').text('CHANGER<br>MOT DE PASSE');
-              $('#annuler-mdp').attr('id','changer-mdp');
+              $('#annuler-mdp').css('display','none');
+              $('#changer-mdp').css('display','inline-block');
               $('#auth-mdp-changer').css('display','none');
               $('#auth-mdp-confirmer').css('display','none');
               $('#auth-mdp-changer').prop('disabled','true');
