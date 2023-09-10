@@ -46,6 +46,8 @@ class PageIndex {
             $( "#changer-mdp" ).click(function(){
               $('#auth-mdp-changer').css('display','inline-block');
               $('#auth-mdp-confirmer').css('display','inline-block');
+              $('#auth-mdp-changer').removeAttr('disabled');
+              $('#auth-mdp-confirmer').removeAttr('disabled');
               $('#auth-soumettre').css('top','45vw');
             });
         </script>
