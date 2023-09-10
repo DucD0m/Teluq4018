@@ -47,6 +47,7 @@ class PageNotifications {
               foreach ($items as $item) {
                 $notification_id = intval($item[0]->get_id());
                 $notification_vu = intval($item[0]->get_vu());
+                $client_personne = intval($item[1]->get_personne());
                 $client_prenom = htmlentities($item[1]->get_prenom());
                 $client_nom = htmlentities($item[1]->get_nom());
                 $client_telephone = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', htmlentities(strval($item[1]->get_telephone())));
@@ -90,7 +91,11 @@ class PageNotifications {
                   <?php endif; ?>
 
 
-                    <div class="notif-infos" title="Visualiser le compte client">
+                    <div id="notif-infos" title="Visualiser le compte client">
+                      <form id="visualiser-form" class="hidden" action="<?php echo URL; ?>" method="post">
+                        <input type="hidden" id="visualiser-compte" name="visualiser-compte" value="oui">
+                        <input id="vis-client" type="hidden" name="vis-client"  value="<?php echo $client_personne; ?> -">
+                      </form>
                       <div class="notif-client">
                         <?php echo $client_prenom." ".$client_nom; ?><br>
                         <?php echo $client_telephone; ?>
@@ -130,6 +135,9 @@ class PageNotifications {
                classes: {
                  "ui-tooltip": "ui-corner-all"
                }
+            });
+            $('#notif-infos').click(function(){
+              $('#visualiser-form').submit();
             });
             $('.notif-supprimer').click(function(){
               let confirmation;
