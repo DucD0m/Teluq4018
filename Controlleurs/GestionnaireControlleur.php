@@ -35,9 +35,15 @@ class GestionnaireControlleur {
       }
       else if(isset($_POST['visualiser-compte']) && $_POST['visualiser-compte'] === 'oui') {
         $_SESSION['page'] = "PageClient";
+        unset($_SESSION['client-id']);
+        
         $client_id_pos = strpos($_POST['vis-client']," -");
         $client_id = substr($_POST['vis-client'],0,$client_id_pos);
-        $_SESSION['client-id'] = $client_id;
+
+        if(intval($client_id) > 0) {
+          $_SESSION['client-id'] = $client_id;
+        }
+
         redirection();
       }
       else if(isset($_POST['gestion-plans']) && $_POST['gestion-plans'] === 'oui') {
