@@ -48,24 +48,28 @@ class PageIndex {
         </form>
 
         <script>
-            $( "#changer-mdp" ).click(function(){
-              $('#changer-mdp').css('display','none');
-              $('#annuler-mdp').css('display','inline-block');
-              $('#auth-mdp-changer').css('display','inline-block');
-              $('#auth-mdp-confirmer').css('display','inline-block');
-              $('#auth-mdp-changer').removeAttr('disabled');
-              $('#auth-mdp-confirmer').removeAttr('disabled');
-              $('#auth-soumettre').css('top','45vw');
-            });
+            $( document ).ready(function() {
+              $( "#changer-mdp" ).click(function(){
+                $('#changer-mdp').css('display','none');
+                $('#annuler-mdp').css('display','inline-block');
+                $('#auth-mdp-changer').css('display','inline-block');
+                $('#auth-mdp-confirmer').css('display','inline-block');
+                $('#auth-mdp-changer').removeAttr('disabled');
+                $('#auth-mdp-confirmer').removeAttr('disabled');
+                $('#auth-soumettre').css('top','45vw');
+                $('#auth-soumettre').val('CHANGER LE MOT DE PASSE');
+              });
 
-            $( "#annuler-mdp" ).click(function(){
-              $('#annuler-mdp').css('display','none');
-              $('#changer-mdp').css('display','inline-block');
-              $('#auth-mdp-changer').css('display','none');
-              $('#auth-mdp-confirmer').css('display','none');
-              $('#auth-mdp-changer').prop('disabled','true');
-              $('#auth-mdp-confirmer').prop('disabled','true');
-              $('#auth-soumettre').css('top','30vw');
+              $( "#annuler-mdp" ).click(function(){
+                $('#annuler-mdp').css('display','none');
+                $('#changer-mdp').css('display','inline-block');
+                $('#auth-mdp-changer').css('display','none');
+                $('#auth-mdp-confirmer').css('display','none');
+                $('#auth-mdp-changer').prop('disabled','true');
+                $('#auth-mdp-confirmer').prop('disabled','true');
+                $('#auth-soumettre').css('top','30vw');
+                $('#auth-soumettre').val('OUVRIR UNE SESSION');
+              });
             });
         </script>
 
