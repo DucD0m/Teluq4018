@@ -107,7 +107,7 @@ class PagePlans {
                 <?php } ?>
               </tbody>
             </table>
-            
+
             <input type="hidden" id="formulaire-modifier-plans" name="formulaire-modifier-plans" value="oui">
             <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <input type="submit" id="modifier-plans" class="couleurs" value="METTRE À JOUR" onclick="return false;">
@@ -121,7 +121,6 @@ class PagePlans {
               $('input').each(function(){
                   if($(this).val() === '') {
                     validation = false;
-                    //alert($(this).attr('id'));
                   }
               });
               if(validation === false) alert('Tous les champs doivent être remplis');
