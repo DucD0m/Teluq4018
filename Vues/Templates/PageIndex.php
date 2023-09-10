@@ -56,6 +56,8 @@ class PageIndex {
                 $('#auth-mdp-confirmer').css('display','inline-block');
                 $('#auth-mdp-changer').removeAttr('disabled');
                 $('#auth-mdp-confirmer').removeAttr('disabled');
+                $('#auth-mdp-changer').val('');
+                $('#auth-mdp-confirmer').val('');
                 $('#auth-soumettre').css('top','45vw');
                 $('#auth-soumettre').val('CHANGER LE MOT DE PASSE');
               });
@@ -65,6 +67,8 @@ class PageIndex {
                 $('#changer-mdp').css('display','inline-block');
                 $('#auth-mdp-changer').css('display','none');
                 $('#auth-mdp-confirmer').css('display','none');
+                $('#auth-mdp-changer').val('');
+                $('#auth-mdp-confirmer').val('');
                 $('#auth-mdp-changer').prop('disabled','true');
                 $('#auth-mdp-confirmer').prop('disabled','true');
                 $('#auth-soumettre').css('top','30vw');
@@ -74,6 +78,8 @@ class PageIndex {
               $( "#auth-soumettre" ).click(function(){
                 if($('#auth-mdp-changer').prop('disabled') === false
                     && $('#auth-mdp-confirmer').prop('disabled') === false
+                    && $('#auth-mdp-changer').val() != ''
+                    && $('#auth-mdp-confirmer').val() != ''
                     && $('#auth-mdp-changer').val() !== $('#auth-mdp-confirmer').val()) {
                       alert('La confirmation du nouveau mot de passe ne correspond pas. Veuillez essayer de nouveau.');
                     }
