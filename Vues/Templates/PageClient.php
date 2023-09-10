@@ -34,7 +34,7 @@ class PageClient {
 
     <head>
       <?php
-        require_once "head.html";
+        require "Composantes/head.html";
       ?>
       <!-- <title>Gym Argenté</title>
 
@@ -67,27 +67,17 @@ class PageClient {
 
     <body>
 
-        <?php if(isset($_SESSION['message']) && ($_SESSION['message'] != '')): ?>
-          <script>
-          $( document ).ready(function() {
-            alert("<?php echo $_SESSION['message']; ?>");
-          });
-          </script>
-        <?php unset($_SESSION['message']); endif; ?>
+        <?php
+          require "Composantes/message.php";
+        ?>
 
-        <form id="retour-form" class="hidden" action="<?php echo URL; ?>" method="post">
-          <input type="hidden" id="retour-input" name="retour" value="oui">
-          <button id="retour-menu" class="couleurs retour" type="submit" value="submit">
-            <i class="fa-solid fa-backward"></i> MENU<br>
-          </button>
-        </form>
+        <?php
+          require "Composantes/retour.php";
+        ?>
 
-        <form id="quitter-form" class="hidden" action="<?php echo URL; ?>" method="post">
-          <input type="hidden" id="quitter-input" name="quitter" value="oui">
-          <button id="quitter" class="couleurs quitter" type="submit" value="submit">
-            QUITTER <i class="fa-solid fa-person-running"></i>
-          </button>
-        </form>
+        <?php
+          require "Composantes/quitter.php";
+        ?>
 
         <div class="name">
           <?php echo $prenom_utilisateur." ".$nom_utilisateur." - GESTIONNAIRE DE COMPTE"; ?>

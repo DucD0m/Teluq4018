@@ -22,6 +22,7 @@ $temps = strtotime('-5 minutes');
 
 
 if(isset($_SESSION['err_mdp_temps']) && $temps < $_SESSION['err_mdp_temps']) {
+  unset($_SESSION['message']);
   die("Vous avez atteint le nombre maximum de 5 essais pour vous authentifier. Vous devez maintenant attendre 5 minutes avant de pouvoir essayer de nouveau.");
 }
 else if(isset($_SESSION['err_mdp_temps']) && $temps >= $_SESSION['err_mdp_temps']) {

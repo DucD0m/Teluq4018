@@ -17,7 +17,7 @@ class PageRendezVous {
     <head>
 
       <?php
-        require_once "head.html";
+        require "Composantes/head.html";
       ?>
       <!-- <title>Gym Argenté</title>
 
@@ -51,29 +51,17 @@ class PageRendezVous {
 
     <body>
 
-        <?php if(isset($_SESSION['message']) && ($_SESSION['message'] != '')): ?>
-          <script>
-          $( document ).ready(function() {
-            alert("<?php echo $_SESSION['message']; ?>");
-          });
-          </script>
-        <?php unset($_SESSION['message']); endif; ?>
+        <?php
+          require "Composantes/message.php";
+        ?>
 
-        <div class='couleurs logo'>
-          GY<i class="fa-solid fa-dumbbell"></i><br>
-          ARGENTÉ
-        </div>
+        <?php
+          require "Composantes/logo.html";
+        ?>
 
-        <button id="quitter" class="couleurs quitter">
-          QUITTER <i class="fa-solid fa-person-running"></i>
-        </button>
-
-        <form id="quitter-form" class="hidden" action="<?php echo URL; ?>" method="post">
-          <input type="hidden" id="quitter-input" name="quitter" value="oui">
-          <button id="quitter" class="couleurs quitter" type="submit">
-            QUITTER <i class="fa-solid fa-person-running"></i>
-          </button>
-        </form>
+        <?php
+          require "Composantes/quitter.php";
+        ?>
 
         <div class="name">
           <?php echo $prenom_utilisateur." ".$nom_utilisateur." - ".$nom_specialite; ?>
