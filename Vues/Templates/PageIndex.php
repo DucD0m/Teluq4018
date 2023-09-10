@@ -92,6 +92,13 @@ class PageIndex {
                         $('#auth-mdp-confirmer').val('');
                         alert('La confirmation du nouveau mot de passe ne correspond pas. Veuillez essayer de nouveau.');
                       }
+                  else if($('#auth-mdp-changer').prop('disabled') === false
+                      && $('#auth-mdp-confirmer').prop('disabled') === false
+                      && $('#auth-mdp-changer').val().length < 8) {
+                        $('#auth-mdp-changer').val('');
+                        $('#auth-mdp-confirmer').val('');
+                        alert('Le nouveau mot de passe doit contenir au moins 8 caractères.');
+                      }
                   else {
                     $( "#auth-formulaire" ).submit();
                   }
