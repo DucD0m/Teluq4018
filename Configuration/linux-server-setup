@@ -1,0 +1,190 @@
+// Ubuntu 22.04 LTS
+
+sudo apt install apache2
+sudo apt install mysql-server
+sudo apt install apparmor-profiles
+sudo apt install libapache2-mod-apparmor
+sudo apt-get install apparmor-utils
+sudo aa-enforce /etc/apparmor.d/usr.sbin.apache2
+sudo aa-enforce /etc/apparmor.d/*
+sudo aa-status
+sudo chgrp www-data www
+sudo chmod 750 www // Enlever les permissions others
+umask 0027 // Pour utilisateur actuel.
+sudo -s
+chgrp www-data html
+chmod 2750 html
+chgrp www-data index.html
+chmod 640 index.html
+umask 0027 // Pour sudo et root
+
+sudo mysql
+CREATE USER 'dom'@'localhost' IDENTIFIED BY 'Jaimemysql8!!';
+CREATE USER 'lecteur'@'localhost' IDENTIFIED BY 'Jaimelire8!!';
+CREATE USER 'ecrivain'@'localhost' IDENTIFIED BY 'Jaimeecrire8!!';
+CREATE USER 'effaceur'@'localhost' IDENTIFIED BY 'Jaimeeffacer8!!';
+
+GRANT ALL PRIVILEGES ON *.* TO 'dom'@'localhost' WITH GRANT OPTION;
+GRANT SELECT ON gym_argente.* TO 'lecteur'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON gym_argente.* TO 'ecrivain'@'localhost';
+GRANT SELECT, DELETE ON gym_argente.* TO 'effaceur'@'localhost';
+exit
+
+sudo mysql_secure_installation
+
+sudo apt install clamav clamav-daemon
+clamscan --version
+sudo systemctl stop clamav-freshclam
+sudo freshclam // update clam av database
+sudo systemctl start clamav-freshclam
+sudo clamscan --infected --remove --recursive www/
+
+sudo -s
+mkdir -p /var/www/dominiqueducas.ca/public_html
+chgrp www-data dominiqueducas.ca/
+chmod 2750 dominiqueducas.ca/
+chgrp www-data public_html/
+chmod 2750 public_html/
+chmod 640 index.html
+
+cd /etc/apache2/sites-available/
+nano dominiqueducas.ca.conf
+
+<VirtualHost *:80>
+    ServerName dominiqueducas.ca
+    ServerAlias inf4018.dominiqueducas.ca
+    Redirect / https://inf4018.dominiqueducas.ca
+</VirtualHost>
+
+<VirtualHost *:443>
+
+ ServerName dominiqueducas.ca
+
+ ServerAlias inf4018.dominiqueducas.ca
+
+ ServerAdmin domupnorth@hotmail.com
+
+ DocumentRoot /var/www/dominiqueducas.ca/public_html
+
+
+ <Directory /var/www/dominiqueducas.ca/public_html>
+
+  Options -Indexes +FollowSymLinks
+
+  AllowOverride All
+
+ </Directory>
+
+
+ ErrorLog ${APACHE_LOG_DIR}/dominiqueducas.ca-error.log
+
+ CustomLog ${APACHE_LOG_DIR}/dominiqueducas.ca-access.log combined
+
+ RewriteEngine on
+ RewriteCond %{SERVER_NAME} =inf4018.dominiqueducas.ca [OR]
+ RewriteCond %{SERVER_NAME} =dominiqueducas.ca
+ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+</VirtualHost>
+
+sudo a2ensite dominiqueducas.ca
+sudo a2dissite 000-default.conf // disable default site
+sudo systemctl restart apache2
+sudo apache2ctl configtest
+sudo systemctl restart apache2
+
+// Let's Encrypt certbot SSL certificate
+sudo apt install certbot python3-certbot-apache
+sudo certbot --apache
+systemctl status certbot.timer
+certbot renew --dry-run
+
+
+// installation php
+apt install php libapache2-mod-php php-mysql
+
+// installation apache mod_security
+apt install libapache2-mod-security2
+a2enmod security2
+systemctl restart apache2
+systemctl status apache2
+nano /etc/apache2/mods-enabled/security2.conf // uncomment-> IncludeOptional /etc/modsecurity/*.conf
+mv /etc/modsecurity/modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf
+nano /etc/modsecurity/modsecurity.conf
+
+// Changer les lignes suivantes:
+SecRuleEngine On
+SecAuditLogParts ABCEFHJKZ
+
+wget https://github.com/coreruleset/coreruleset/archive/v3.3.0.tar.gz
+tar xvf v3.3.0.tar.gz
+mkdir /etc/apache2/modsecurity-crs/
+mv coreruleset-3.3.0/ /etc/apache2/modsecurity-crs
+cd /etc/apache2/modsecurity-crs/coreruleset-3.3.0/
+mv crs-setup.conf.example crs-setup.conf
+nano /etc/apache2/mods-enabled/security2.conf
+
+// Ajouter les lignes suivantes
+IncludeOptional /etc/apache2/modsecurity-crs/coreruleset-3.3.0/crs-setup.conf
+IncludeOptional /etc/apache2/modsecurity-crs/coreruleset-3.3.0/rules/*.conf
+
+// Mettre cette ligne en commentaire
+IncludeOptional /usr/share/modsecurity-crs/*.load
+
+apache2ctl -t
+systemctl restart apache2
+
+//Tests
+curl http://localhost/index.html?exec=/bin/bash
+curl localhost?doc=/bin/ls
+
+tail /var/log/apache2/modsec_audit.log
+
+nano /etc/logrotate.d/modsec
+
+// Ajouter les lignes suivantes
+/var/log/apache2/modsec_audit.log
+{
+        rotate 31
+        daily
+        missingok
+        compress
+        delaycompress
+        notifempty
+}
+
+// installation apache mod_evasive
+apt -y install libapache2-mod-evasive
+
+nano /etc/apache2/mods-available/evasive.conf
+// Configurer comme suit:
+<IfModule mod_evasive20.c>
+    DOSHashTableSize    3097
+    DOSPageCount        4
+    DOSSiteCount        50
+    DOSPageInterval     1
+    DOSSiteInterval     1
+    DOSBlockingPeriod   10
+
+    #DOSEmailNotify      you@yourdomain.com
+    #DOSSystemCommand    "su - someuser -c '/sbin/... %s ...'"
+    DOSLogDir           "/var/log/mod_evasive"
+    DOSWhitelist    127.0.0.1
+    DOSWhitelist    127.0.0.*
+</IfModule>
+
+mkdir /var/log/mod-evasive
+chgrp www-data /var/log/mod-evasive
+systemctl reload apache2
+
+// installation AIDE IDS
+apt install aide
+nano /etc/aide/aide.conf
+aideinit
+cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db
+sudo aide --config=/etc/aide/aide.conf
+aide --check
+
+// Cacher la version Apache et Ubuntu sur message 403 forbidden
+nano /etc/apache2/conf-enabled/security.conf
+ServerTokens Prod // Change to this value
+ServerSignature Off // Change to this value
