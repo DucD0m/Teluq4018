@@ -72,7 +72,7 @@ class PageClient {
             <input type="hidden" id="formulaire-supprimer-client" name="formulaire-supprimer-client" value="oui">
             <input type="hidden" id="client-personne" name="client-personne" value="<?php echo $personne_client; ?>">
             <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-            <button id="supprimer-client" title="Supprimer le compte client">
+            <button id="supprimer-client" title="Supprimer le compte client" onclick="return false;">
               <i class="fa-solid fa-trash"></i>
             </button>
           </form>
@@ -240,7 +240,8 @@ class PageClient {
                });
 
               $('#supprimer-client').click(function(){
-                confirm('Êtes-vous certain de vouloir supprimer ce compte client?');
+                let confirmation = confirm('Êtes-vous certain de vouloir supprimer ce compte client?');
+                if(confirmation) $('#supprimer-form').submit();
               });
 
               // Active les champs hidden du formulaire pour les nouveaux clients et désactiver les hidden inputs
