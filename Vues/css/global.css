@@ -21,6 +21,14 @@ tbody tr:nth-child(even) {
 .auth-mdp {
   top: 22.5vw;
 }
+.auth-mdp-changer {
+  top: 30vw;
+  display: none;
+}
+.auth-mdp-changer {
+  top: 37.5vw;
+  display: none;
+}
 .auth-submit {
   top: 30vw;
   border: none;
