@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+require_once "Vues/Templates/Composantes.php";
+
 class PageIndex {
 
   public function __construct() {
@@ -11,18 +13,18 @@ class PageIndex {
 
     <head>
       <?php
-        require "Composantes/head.html";
+        Composantes::get_head();
       ?>
     </head>
 
     <body>
 
         <?php
-          require "Composantes/message.php";
+          Composantes::get_message();
         ?>
 
         <?php
-          require "Composantes/logo.html";
+          Composantes::get_logo();
         ?>
 
         <button id="changer-mdp" class="couleurs quitter">
