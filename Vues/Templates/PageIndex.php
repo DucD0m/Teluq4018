@@ -88,9 +88,9 @@ class PageIndex {
                   if($('#auth-mdp-changer').prop('disabled') === false
                       && $('#auth-mdp-confirmer').prop('disabled') === false
                       && $('#auth-mdp-changer').val() !== $('#auth-mdp-confirmer').val()) {
-                        alert('La confirmation du nouveau mot de passe ne correspond pas. Veuillez essayer de nouveau.');
                         $('#auth-mdp-changer').val('');
                         $('#auth-mdp-confirmer').val('');
+                        alert('La confirmation du nouveau mot de passe ne correspond pas. Veuillez essayer de nouveau.');
                       }
                   else {
                     $( "#auth-formulaire" ).submit();
