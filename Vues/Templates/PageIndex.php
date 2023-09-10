@@ -83,7 +83,7 @@ class PageIndex {
                     && $('#auth-mdp-changer').val() !== $('#auth-mdp-confirmer').val()) {
                       alert('La confirmation du nouveau mot de passe ne correspond pas. Veuillez essayer de nouveau.');
                     }
-                else alert('submit');
+                else $( "#auth-soumettre" ).submit();
               });
             });
         </script>
