@@ -9,9 +9,11 @@ class PageIndex {
     <!DOCTYPE HTML>
     <html lang='fr'>
 
-    <?php
-      require_once "head.html";
-    ?>
+    <head>
+      <?php
+        require_once "head.html";
+      ?>
+    </head>
 
     <!-- <head>
       <title>Gym Argenté</title>
