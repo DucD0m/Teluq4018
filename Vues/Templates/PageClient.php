@@ -263,6 +263,27 @@ class PageClient {
                 else if($(this).attr('id') == 'client-courriel') $('#nouveau-courriel').val($('#client-courriel').val());
               });
 
+              $('#client-prenom').change(function(){
+                if($('#client-prenom').val().length > 4) {
+                  alert('Le prenom doit contenir au maximum 48 caractères. Veuillez essayer de nouveau.');
+                  $('#client-prenom').val('');
+                }
+              });
+
+              $('#client-nom').change(function(){
+                if($('#client-nom').val().length > 4) {
+                  alert('Le nom doit contenir au maximum 48 caractères. Veuillez essayer de nouveau.');
+                  $('#client-nom').val('');
+                }
+              });
+
+              $('#client-adresse').change(function(){
+                if($('#client-adresse').val().length > 4) {
+                  alert("L'adresse doit contenir au maximum 256 caractères. Veuillez essayer de nouveau.");
+                  $('#client-adresse').val('');
+                }
+              });
+
               // Change le format du numéro de téléphone
               $('#client-telephone').change(function(){
                 let tel = formatTelephone($('#client-telephone').val());
