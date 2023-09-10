@@ -24,6 +24,8 @@ class SpecialisteControlleur {
        isset($_POST['rdv-date']) && isset($_POST['rdv-heure']) &&
        date_format(date_create($_POST['rdv-date']." ".$_POST['rdv-heure']), "Y-m-d H:i")) {
 
+        $validation = true;
+
         $client_id_pos = strpos($_POST['rdv-client']," -");
         $client_id = substr($_POST['rdv-client'],0,$client_id_pos);
 
@@ -31,7 +33,7 @@ class SpecialisteControlleur {
         $date_format = date_format(date_create($_POST['rdv-date']." ".$_POST['rdv-heure']), "Y-m-d H:i:s");
 
         $client = new Client();
-        $client->select_mysql($client_id, $connexion_lire);
+        $validation = $client->select_mysql($client_id, $connexion_lire);
 
         // Vérifier si client a des heures specialiste disponible
         if($client->get_heures_specialistes_utilise() < $client->get_heures_specialistes()) {
@@ -72,8 +74,12 @@ class SpecialisteControlleur {
             $rendez_vous->set_client($client->get_personne());
             $rendez_vous->set_specialiste($specialiste->get_specialiste_id());
 
-            $resultat_insertion = $rendez_vous->insert_mysql($rendez_vous, $connexion_ecrire);
+            $resultat_insertion = 0;
 
+            if($validation === true) {
+              $resultat_insertion = $rendez_vous->insert_mysql($rendez_vous, $connexion_ecrire);
+            }
+            
             if($resultat_insertion > 0) {
               $_SESSION['message'] = "Le nouveau rendez-vous a été fixé avec succès.";
 
