@@ -139,6 +139,12 @@ class PageRendezVous {
 
           $('#rdv-fixer').click(function(){
             let validation = true;
+            let rdv = $('#rdv-date').val() + " " + $('#rdv-heure').val();
+            let rdv_date = new Date(rdv);
+            let now = new Date();
+            console.log(rdv_date.getTime());
+            console.log(now.getTime());
+
             $("#rendez-vous").children().each(function(){
                 if($(this).val() === '') {
                   validation = false;
