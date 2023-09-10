@@ -75,18 +75,31 @@ class PageIndex {
                 $('#auth-soumettre').val('OUVRIR UNE SESSION');
               });
 
-              $( "#auth-soumettre" ).click(function(){
-                if($('#auth-mdp-changer').prop('disabled') === false
-                    && $('#auth-mdp-confirmer').prop('disabled') === false
-                    && $('#auth-mdp-changer').val() != ''
-                    && $('#auth-mdp-confirmer').val() != ''
-                    && $('#auth-mdp-changer').val() !== $('#auth-mdp-confirmer').val()) {
-                      alert('La confirmation du nouveau mot de passe ne correspond pas. Veuillez essayer de nouveau.');
+              $('#auth-soumettre').click(function(){
+                let validation = true;
+                $("#auth-formulaire").children().each(function(){
+                    if($(this).val() === '') {
+                      validation = false;
+                      $(this).css('background-color','orange');
                     }
+                });
+                if(validation === false) alert('Tous les champs sont requis.');
                 else {
-                  $( "#auth-formulaire" ).submit();
+                  if($('#auth-mdp-changer').prop('disabled') === false
+                      && $('#auth-mdp-confirmer').prop('disabled') === false
+                      && $('#auth-mdp-changer').val() !== $('#auth-mdp-confirmer').val()) {
+                        alert('La confirmation du nouveau mot de passe ne correspond pas. Veuillez essayer de nouveau.');
+                      }
+                  else {
+                    $( "#auth-formulaire" ).submit();
+                  }
                 }
               });
+
+              $('input, select').click(function(){
+                $(this).css('background-color','#FFF');
+              });
+
             });
         </script>
 
