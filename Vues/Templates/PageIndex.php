@@ -44,7 +44,7 @@ class PageIndex {
           <input class="auth auth-mdp" type="password" id="auth-mdp" name="auth-mdp" placeholder="mot de passe">
           <input class="auth auth-mdp-changer" type="password" id="auth-mdp-changer" name="auth-mdp-changer" placeholder="nouveau mot de passe" disabled>
           <input class="auth auth-mdp-confirmer" type="password" id="auth-mdp-confirmer" name="auth-mdp-confirmer" placeholder="confirmer le nouveau mot de passe" disabled>
-          <input id="auth-soumettre" class="auth auth-submit couleurs" type="submit" value="OUVRIR UNE SESSION">
+          <input id="auth-soumettre" class="auth auth-submit couleurs" type="submit" value="OUVRIR UNE SESSION" onclick="return false;">
         </form>
 
         <script>
@@ -69,6 +69,15 @@ class PageIndex {
                 $('#auth-mdp-confirmer').prop('disabled','true');
                 $('#auth-soumettre').css('top','30vw');
                 $('#auth-soumettre').val('OUVRIR UNE SESSION');
+              });
+
+              $( "#auth-soumettre" ).click(function(){
+                if($('#auth-mdp-changer').prop('disabled') === false
+                    && $('#auth-mdp-confirmer').prop('disabled') === false
+                    && $('#auth-mdp-changer').val() !== $('#auth-mdp-confirmer').val()) {
+                      alert('La confirmation du nouveau mot de passe ne correspond pas. Veuillez essayer de nouveau.');
+                    }
+                else alert('submit');
               });
             });
         </script>

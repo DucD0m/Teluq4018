@@ -55,6 +55,18 @@ isset($_SESSION['id']) && $_SESSION['id'] > 0){
   $utilisateur->afficherPage($connexion_lire, $connexion_ecrire, $connexion_effacer);
 }
 
+// Changement de mot de passe
+// else if(isset($_POST['auth-courriel']) && $_POST['auth-courriel'] != '' && isset($_POST['auth-mdp']) && $_POST['auth-mdp'] != ''
+//   && isset($_POST['auth-mdp-changer']) && $_POST['auth-mdp-changer'] != '' && isset($_POST['auth-mdp-confirmer']) && $_POST['auth-mdp-confirmer'] != ''
+//   && $_POST['auth-mdp-changer'] === $_POST['auth-mdp-confirmer']) {
+//
+//   $courriel = $_POST['auth-courriel'];
+//   $mot_passe = $_POST['auth-mdp'];
+//   $nouveau_mot_passe = $_POST['auth-mdp-changer'];
+//   $changement = Authentification::set_mot_passe($courriel, $mot_passe, $nouveau_mot_passe, $connexion_ecrire);
+//   redirection();
+// }
+
 // Authentification
 else if(isset($_POST['auth-courriel']) && $_POST['auth-courriel'] != '' && isset($_POST['auth-mdp']) && $_POST['auth-mdp'] != ''){
 
