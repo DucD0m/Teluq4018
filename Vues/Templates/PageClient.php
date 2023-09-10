@@ -8,21 +8,21 @@ class PageClient {
     $prenom_utilisateur = htmlentities($obj->get_prenom());
     $nom_utilisateur = htmlentities($obj->get_nom());
 
-    $id_client = $obj_client->get_id();
+    $id_client = intval($obj_client->get_id());
     $prenom_client = htmlentities($obj_client->get_prenom());
     $nom_client = htmlentities($obj_client->get_nom());
     $adresse = htmlentities($obj_client->get_adresse());
-    $telephone = $obj_client->get_telephone();
+    $telephone = intval($obj_client->get_telephone());
     $courriel = htmlentities($obj_client->get_courriel());
-    $personne_client = $obj_client->get_personne();
+    $personne_client = intval($obj_client->get_personne());
     $adhesion = htmlentities($obj_client->get_adhesion());
-    $plan_id = $obj_client->get_plan();
+    $plan_id = intval($obj_client->get_plan());
     $renouvellement = htmlentities($obj_client->get_renouvellement());
     $fin_abonnement = htmlentities($obj_client->get_fin_abonnement());
     $fin_acces_appareils = htmlentities($obj_client->get_fin_acces_appareils());
-    $heures_specialistes = $obj_client->get_heures_specialistes();
-    $heures_specialistes_utilise = $obj_client->get_heures_specialistes_utilise();
-    $cours_groupe_semaine = $obj_client->get_cours_groupe_semaine();
+    $heures_specialistes = intval($obj_client->get_heures_specialistes());
+    $heures_specialistes_utilise = intval($obj_client->get_heures_specialistes_utilise());
+    $cours_groupe_semaine = intval($obj_client->get_cours_groupe_semaine());
 
     $plan_nom = htmlentities($plan->get_nom());
     $date = strtotime('now');
@@ -165,10 +165,10 @@ class PageClient {
                   <?php endif; ?>
                   <select id="plan-id" name="plan-id">
                     <?php foreach ($plans as $p) {
-                      $p_id = $p->get_id();
+                      $p_id = intval($p->get_id());
                       $p_nom = htmlentities($p->get_nom());
-                      $p_prix = $p->get_prix();
-                      $p_prix_cours_groupe = $p->get_prix_cours_groupe();
+                      $p_prix = floatval($p->get_prix());
+                      $p_prix_cours_groupe = floatval($p->get_prix_cours_groupe());
                       if($date < strtotime($fin_abonnement." -29 days") && strpos($p->get_nom(),"Spécialiste") == '') continue;
                     ?>
                       <option

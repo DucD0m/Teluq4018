@@ -54,9 +54,9 @@ class PagePlans {
               </thead>
               <tbody>
                 <?php foreach ($plans as $p) {
-                  $p_id = $p->get_id();
+                  $p_id = intval($p->get_id());
                   $p_nom = htmlentities($p->get_nom());
-                  $p_duree = $p->get_duree();
+                  $p_duree = intval($p->get_duree());
                   if(strpos($p->get_nom(),"Spécialiste") >= 0 && strpos($p->get_nom(),"Spécialiste") != '') {
                     if($p_duree > 1) $type_duree = "heures";
                     else $type_duree = "heure";
@@ -65,7 +65,7 @@ class PagePlans {
                     $type_duree = "mois";
                   }
 
-                  $p_prix = $p->get_prix();
+                  $p_prix = floatval($p->get_prix());
                   if($p_prix == 0) {
                     $p_prix = "N/A";
                     $disabled_prix = "disabled";
@@ -75,15 +75,15 @@ class PagePlans {
                     $disabled_prix = "";
                   }
 
-                  $p_acces_appareils = $p->get_acces_appareils();
+                  $p_acces_appareils = intval($p->get_acces_appareils());
                   if($p_acces_appareils == 1) $p_acces_appareils = "OUI";
                   else $p_acces_appareils = "NON";
 
-                  $p_acces_cours_groupe = $p->get_acces_cours_groupe();
+                  $p_acces_cours_groupe = intval($p->get_acces_cours_groupe());
                   if($p_acces_cours_groupe == 1) $p_acces_cours_groupe = "OUI";
                   else $p_acces_cours_groupe = "NON";
 
-                  $p_prix_cours_groupe = $p->get_prix_cours_groupe();
+                  $p_prix_cours_groupe = floatval($p->get_prix_cours_groupe());
                   if($p_prix_cours_groupe == 0) {
                     $p_prix_cours_groupe = "N/A";
                     $disabled_prix_groupe = "disabled";

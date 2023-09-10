@@ -87,7 +87,6 @@ class PageRendezVous {
               source: "Modele/ClientAutocomplete.php?rdv_specialiste=oui",
               select: function( event, ui ) {
                 if(ui.item.value != '') {
-                  //$('#rdv-client').val(ui.item.value);
                   rdv_specialiste_autocomplete = ui.item.value;
                 }
               },

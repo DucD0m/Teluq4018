@@ -50,7 +50,7 @@ class PageNotifications {
                 $client_personne = intval($item[1]->get_personne());
                 $client_prenom = htmlentities($item[1]->get_prenom());
                 $client_nom = htmlentities($item[1]->get_nom());
-                $client_telephone = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', htmlentities(strval($item[1]->get_telephone())));
+                $client_telephone = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', strval(intval($item[1]->get_telephone())));
                 $client_fin_abonnement = htmlentities($item[1]->get_fin_abonnement());
                 $plan_nom = htmlentities($item[2]->get_nom());
             ?>
