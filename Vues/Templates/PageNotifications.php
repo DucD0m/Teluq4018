@@ -48,7 +48,7 @@ class PageNotifications {
         ?>
 
         <?php
-          require "Composantes/quitter.php";
+          require "Composantes/retour.php";
         ?>
 
         <?php
