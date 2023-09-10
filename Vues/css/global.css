@@ -25,7 +25,7 @@ tbody tr:nth-child(even) {
   top: 30vw;
   display: none;
 }
-.auth-mdp-changer {
+.auth-mdp-confirmer {
   top: 37.5vw;
   display: none;
 }
