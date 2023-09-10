@@ -17,28 +17,6 @@ class PageNotifications {
       <?php
         require "Composantes/head.html";
       ?>
-      <!-- <title>Gym Argenté</title>
-
-      <meta charset="UTF-8">
-
-      <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/cupertino/jquery-ui.css">
-      <link rel="stylesheet" href="Vues/css/global.css?v4">
-
-      <script
-        src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-        crossorigin="anonymous">
-      </script>
-
-      <script
-        src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
-        integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
-        crossorigin="anonymous">
-      </script>
-
-      <script src="https://kit.fontawesome.com/4d2a9d3318.js" crossorigin="anonymous"></script>
-
-      <script src="Vues/javascript/global.js"></script> -->
     </head>
 
     <body>

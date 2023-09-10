@@ -15,26 +15,6 @@ class PagePlans {
       <?php
         require "Composantes/head.html";
       ?>
-      <!-- <title>Gym Argenté</title>
-
-      <meta charset="UTF-8">
-
-      <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/cupertino/jquery-ui.css">
-      <link rel="stylesheet" href="Vues/css/global.css?v2">
-
-      <script
-        src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-        crossorigin="anonymous">
-      </script>
-
-      <script
-        src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
-        integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
-        crossorigin="anonymous">
-      </script>
-
-      <script src="https://kit.fontawesome.com/4d2a9d3318.js" crossorigin="anonymous"></script> -->
     </head>
 
     <body>
@@ -125,72 +105,9 @@ class PagePlans {
                   <td class="plans-tr-droite"><input type="text" class="<?php echo $disabled_prix; ?>" id="plan-prix<?php echo $p_id; ?>" name="plan<?php echo $p_id; ?>[]" value="<?php echo $p_prix; ?>"></td>
                 </tr>
                 <?php } ?>
-
-
-                <!-- <tr>
-                  <td class="plans-tr-gauche">Mensuel sans appareils</td>
-                  <td>1 mois</td>
-                  <td>NON</td>
-                  <td>OUI</td>
-                  <td><input type="text" id="plan-prix-groupe2" name="plan-prix-groupe2" value="50.00$"></td>
-                  <td class="plans-tr-droite"><input type="text" id="plan-prix2" name="plan-prix2" value="N/A" disabled></td>
-                </tr>
-
-                <tr>
-                  <td class="plans-tr-gauche">Trimestriel avec appareils</td>
-                  <td>3 mois</td>
-                  <td>OUI</td>
-                  <td>OUI</td>
-                  <td><input type="text" id="plan-prix-groupe3" name="plan-prix-groupe3" value="60.00$"></td>
-                  <td class="plans-tr-droite"><input type="text" id="plan-prix3" name="plan-prix3" value="220.00$"></td>
-                </tr>
-
-                <tr>
-                  <td class="plans-tr-gauche">Trimestriel sans appareils</td>
-                  <td>3 mois</td>
-                  <td>NON</td>
-                  <td>OUI</td>
-                  <td><input type="text" id="plan-prix-groupe4" name="plan-prix-groupe4" value="135.00$"></td>
-                  <td class="plans-tr-droite"><input type="text" id="plan-prix4" name="plan-prix4" value="N/A" disabled></td>
-                </tr>
-
-                <tr>
-                  <td class="plans-tr-gauche">Annuel avec appareils</td>
-                  <td>12 mois</td>
-                  <td>OUI</td>
-                  <td>OUI</td>
-                  <td><input type="text" id="plan-prix-groupe5" name="plan-prix-groupe5" value="200.00$"></td>
-                  <td class="plans-tr-droite"><input type="text" id="plan-prix5" name="plan-prix5" value="800.00$"></td>
-                </tr>
-
-                <tr>
-                  <td class="plans-tr-gauche">Annuel sans appareils</td>
-                  <td>12 mois</td>
-                  <td>NON</td>
-                  <td>OUI</td>
-                  <td><input type="text" id="plan-prix-groupe6" name="plan-prix-groupe6" value="500.00$"></td>
-                  <td class="plans-tr-droite"><input type="text" id="plan-prix6" name="plan-prix6" value="N/A" disabled></td>
-                </tr>
-
-                <tr>
-                  <td class="plans-tr-gauche">Spécialistes 1 heure</td>
-                  <td>1 heure</td>
-                  <td>NON</td>
-                  <td>NON</td>
-                  <td><input type="text" id="plan-prix-groupe7" name="plan-prix-groupe7" value="N/A" disabled></td>
-                  <td class="plans-tr-droite"><input type="text" id="plan-prix7" name="plan-prix7" value="75.00$"></td>
-                </tr>
-
-                <tr>
-                  <td class="plans-tr-gauche">Spécialistes 10 heure ou plus</td>
-                  <td>10 heures</td>
-                  <td>NON</td>
-                  <td>NON</td>
-                  <td><input type="text" id="plan-prix-groupe8" name="plan-prix-groupe8" value="N/A" disabled></td>
-                  <td class="plans-tr-droite"><input type="text" id="plan-prix8" name="plan-prix8" value="65.00$"></td>
-                </tr> -->
               </tbody>
             </table>
+            
             <input type="hidden" id="formulaire-modifier-plans" name="formulaire-modifier-plans" value="oui">
             <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <input type="submit" id="modifier-plans" class="couleurs" value="METTRE À JOUR" onclick="return false;">
