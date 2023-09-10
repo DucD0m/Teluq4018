@@ -10,7 +10,7 @@ class Authentification {
     $pepper = PEPPER;
     $pwd = $mot_passe;
     $pwd_peppered = hash_hmac("sha256", $pwd, $pepper);
-    $message_erreur = "Svp vérifier vos informations et esseyer de nouveau.";
+    $message_erreur = "Veuillez vérifier vos informations et essayer de nouveau.";
 
     $sql = $connexion_lire->prepare('SELECT g.personne, g.mot_passe
       FROM gestionnaires g
