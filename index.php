@@ -10,7 +10,9 @@ header("Content-Type: text/html; charset=UTF-8"); // Previent certains XSS
 // Charge seulement des documents de la même origine. COEP policy. Va de pair avec CORS et COOP.
 // Mettre l'attribut crossorigin ou crossorigin="anonymous" pour autoriser les ressources. Par exemple jQuery.
 header("Cross-Origin-Embedder-Policy: require-corp");
-header("Cross-Origin-Resource-Policy: same-site"); 
+
+header("Cross-Origin-Resource-Policy: same-site");
+header("HTTP Cross-Origin-Opener-Policy: same-origin"); 
 
 require_once "Configuration/config.php";
 require_once "Vues/Templates/PageIndex.php";
