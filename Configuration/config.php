@@ -25,6 +25,24 @@ define("PEPPER", "9bcf59c3d7751c9d3cdef0c98d32d233146c40819af6df132e28ad7e40c579
 
 
 
+// Recommendations OWASP HTTP Security Response Headers Cheat Sheet 2023-09-10
+header("Strict-Transport-Security: max-age=86400; includeSubDomains"); // HSTS Développement
+//header("Strict-Transport-Security: max-age=31536000; includeSubDomains"); // HSTS Production
+header("X-Frame-Options: DENY"); // Ne permet pas l'affichage de la page dans un iframe.
+header("X-Content-Type-Options: nosniff"); // Bloque MIME type sniffing.
+header("Referrer-Policy: strict-origin-when-cross-origin"); // Limite l'information REFERRER
+header("Content-Type: text/html; charset=UTF-8"); // Previent certains XSS
+
+// Charge seulement des documents de la même origine. COEP policy. Va de pair avec CORS et COOP.
+// Mettre l'attribut crossorigin ou crossorigin="anonymous" pour autoriser les ressources. Par exemple jQuery.
+header("Cross-Origin-Embedder-Policy: require-corp");
+
+header("Cross-Origin-Resource-Policy: same-site");
+header("Permissions-Policy: geolocation=(), camera=(), microphone=()"); // L'application ne peut pas utiliser les ressources =().
+header("Permissions-Policy: interest-cohort=()"); // Augmente la protection de la vie privéé de l'utilisateur.
+
+
+
 // Configuration PHP selon les recommendations OWASP
 // Seulement les champs modifiables avec ini_set sont configurés.
 // Configuer php.ini pour les autres.

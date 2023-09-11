@@ -1,18 +1,4 @@
 <?php
-// Recommendations OWASP HTTP Security Response Headers Cheat Sheet 2023-09-10
-header("Strict-Transport-Security: max-age=86400; includeSubDomains"); // HSTS Développement
-header("Strict-Transport-Security: max-age=31536000; includeSubDomains"); // HSTS Production
-header("X-Frame-Options: DENY"); // Ne permet pas l'affichage de la page dans un iframe.
-header("X-Content-Type-Options: nosniff"); // Bloque MIME type sniffing.
-header("Referrer-Policy: strict-origin-when-cross-origin"); // Limite l'information REFERRER
-header("Content-Type: text/html; charset=UTF-8"); // Previent certains XSS
-
-// Charge seulement des documents de la même origine. COEP policy. Va de pair avec CORS et COOP.
-// Mettre l'attribut crossorigin ou crossorigin="anonymous" pour autoriser les ressources. Par exemple jQuery.
-header("Cross-Origin-Embedder-Policy: require-corp");
-
-header("Cross-Origin-Resource-Policy: same-site");
-header("HTTP Cross-Origin-Opener-Policy: same-origin"); 
 
 require_once "Configuration/config.php";
 require_once "Vues/Templates/PageIndex.php";
