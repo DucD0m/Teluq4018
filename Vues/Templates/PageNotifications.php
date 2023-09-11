@@ -60,7 +60,7 @@ class PageNotifications {
                       <form id="notif-vu-form<?php echo $notification_id; ?>" class="hidden" action="<?php echo URL; ?>" method="post">
                         <input type="hidden" id="formulaire-notification-vu<?php echo $notification_id; ?>" name="formulaire-notification-vu" value="oui">
                         <input type="hidden" id="notification-vu-id<?php echo $notification_id; ?>" name="notification-vu-id" value="<?php echo $notification_id; ?>">
-                        <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                        <input type="hidden" id="csrf_token-vu-<?php echo $notification_id; ?>" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <button class="notif-vu" title="Marquer comme vu" type="submit">
                           <i class="fa-solid fa-eye"></i>
                         </button>
@@ -71,7 +71,7 @@ class PageNotifications {
                       <form id="notif-vu-form<?php echo $notification_id; ?>" class="hidden" action="<?php echo URL; ?>" method="post">
                         <input type="hidden" id="formulaire-notification-vu<?php echo $notification_id; ?>" name="formulaire-notification-vu" value="oui">
                         <input type="hidden" id="notification-vu-id<?php echo $notification_id; ?>" name="notification-vu-id" value="<?php echo $notification_id; ?>">
-                        <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                        <input type="hidden" id="csrf_token-vu-<?php echo $notification_id; ?>" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <button class="notif-vu" title="Marquer comme vu" type="submit">
                           <i class="fa-solid fa-eye"></i>
                         </button>
@@ -82,7 +82,7 @@ class PageNotifications {
                       <form id="notif-vu-form<?php echo $notification_id; ?>" class="hidden" action="<?php echo URL; ?>" method="post">
                         <input type="hidden" id="formulaire-notification-vu<?php echo $notification_id; ?>" name="formulaire-notification-vu" value="oui">
                         <input type="hidden" id="notification-vu-id<?php echo $notification_id; ?>" name="notification-vu-id" value="<?php echo $notification_id; ?>">
-                        <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                        <input type="hidden" id="csrf_token-vu-<?php echo $notification_id; ?>" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <button class="invisible notif-vu" title="Marquer comme vu" type="submit">
                           <i class="fa-solid fa-eye"></i>
                         </button>
@@ -115,7 +115,7 @@ class PageNotifications {
                     <form id="notif-supprimer-form<?php echo $notification_id; ?>" class="hidden" action="<?php echo URL; ?>" method="post">
                       <input type="hidden" id="formulaire-notification-supprimer<?php echo $notification_id; ?>" name="formulaire-notification-supprimer" value="oui">
                       <input type="hidden" id="notification-supprimer-id<?php echo $notification_id; ?>" name="notification-supprimer-id" value="<?php echo $notification_id; ?>">
-                      <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                      <input type="hidden" id="csrf_token-sup-<?php echo $notification_id; ?>" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                       <button class="notif-supprimer" title="Supprimer la notification" type="submit" onclick="return false;">
                         <i class="fa-solid fa-trash"></i>
                       </button>
