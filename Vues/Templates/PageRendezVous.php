@@ -159,7 +159,7 @@ class PageRendezVous {
                "ui-tooltip": "ui-corner-all"
              },
              position: {
-               my: "right top-200", at: "right bottom", collision: "flipfit"
+               my: "right top-150", at: "right bottom", collision: "flipfit"
              }
            });
           });
