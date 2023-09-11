@@ -64,7 +64,7 @@ else if(isset($_POST['auth-courriel']) && $_POST['auth-courriel'] != '' && isset
   $courriel = $_POST['auth-courriel'];
   $mot_passe = $_POST['auth-mdp'];
   $nouveau_mot_passe = $_POST['auth-mdp-changer'];
-  $changement = Authentification::set_mot_passe($courriel, $mot_passe, $nouveau_mot_passe, $connexion_ecrire);
+  $changement = Authentification::set_mot_passe($courriel, $mot_passe, $nouveau_mot_passe, $connexion_lire);
   redirection();
 }
 

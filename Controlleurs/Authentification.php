@@ -1,5 +1,6 @@
 <?php
 require_once "Configuration/config.php";
+require_once "Controlleurs/ConnexionEcrireBD.php";
 require_once "Controlleurs/GestionnaireControlleur.php";
 require_once "Controlleurs/SpecialisteControlleur.php";
 
@@ -69,7 +70,7 @@ class Authentification {
 
   }
 
-  public static function set_mot_passe($courriel, $mot_passe, $nouveau_mot_passe, $connexion_ecrire) {
+  public static function set_mot_passe($courriel, $mot_passe, $nouveau_mot_passe, $connexion_lire) {
 
     $pepper = PEPPER;
     $pwd = $mot_passe;
@@ -87,6 +88,8 @@ class Authentification {
 
     $pwd_hashed = $resultat->mot_passe;
     if (password_verify($pwd_peppered, $pwd_hashed)) {
+
+      $connexion_ecrire = ConnexionEcrireBD::connexion();
 
       $validation = true;
       $message_validation = "";
@@ -148,6 +151,8 @@ class Authentification {
       foreach($resultats as $resultat) {
         $pwd_hashed = $resultat->mot_passe;
         if (password_verify($pwd_peppered, $pwd_hashed)) {
+
+          $connexion_ecrire = ConnexionEcrireBD::connexion();
 
           $validation = true;
           $message_validation = "";
