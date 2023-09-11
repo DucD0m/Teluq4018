@@ -89,6 +89,7 @@ class Authentification {
     $pwd_hashed = $resultat->mot_passe;
     if (password_verify($pwd_peppered, $pwd_hashed)) {
 
+      $verify = true;
       $connexion_ecrire = ConnexionEcrireBD::connexion();
 
       $validation = true;
@@ -152,6 +153,7 @@ class Authentification {
         $pwd_hashed = $resultat->mot_passe;
         if (password_verify($pwd_peppered, $pwd_hashed)) {
 
+          $verify = true;
           $connexion_ecrire = ConnexionEcrireBD::connexion();
 
           $validation = true;
@@ -204,11 +206,11 @@ class Authentification {
     }
 
     // Compter le nombre d'erreurs de mots de passe. Protection contre le "Brute Force".
-    if(!isset($_SESSION['auth']) && !isset($_SESSION['erreurs_mdp'])) {
+    if(!$verify && !isset($_SESSION['erreurs_mdp'])) {
       $_SESSION['erreurs_mdp'] = 1;
       $_SESSION['message'] = $message_erreur;
     }
-    else if(!isset($_SESSION['auth']) && isset($_SESSION['erreurs_mdp'])) {
+    else if(!$verify && isset($_SESSION['erreurs_mdp'])) {
       $_SESSION['erreurs_mdp'] = $_SESSION['erreurs_mdp'] + 1;
       $_SESSION['message'] = $message_erreur;
       if($_SESSION['erreurs_mdp'] === 5) {
