@@ -87,32 +87,52 @@ class Authentification {
 
     $pwd_hashed = $resultat->mot_passe;
     if (password_verify($pwd_peppered, $pwd_hashed)) {
-      $mdp = $nouveau_mot_passe;
-      $mdp_peppered = hash_hmac("sha256", $mdp, $pepper);
-      $mdp_hashed = password_hash($mdp_peppered, PASSWORD_ARGON2ID);
 
-      $gestionnaire = new Gestionnaire();
-      $resultat_select = $gestionnaire->select_mysql($resultat->personne);
+      $validation = true;
+      $message_validation = "";
 
-      if($resultat_select === true) {
-        $gestionnaire->set_mot_passe($mdp_hashed);
-        $resultat_update = $gestionnaire->update_mysql($gestionnaire, $connexion_ecrire);
+      if(strlen($nouveau_mot_passe) < 8) $validation = false;
+      $message_validation .= "Le mot de passe doit contenir au moins 8 caractères. ";
 
-        if($resultat_update > 0) {
-          $_SESSION['message'] = "Le mot de passe a été mis à jour avec succès.";
+      if(!preg_match('/[a-z]/', $nouveau_mot_passe)) $validation = false;
+      $message_validation .= "Le mot de passe doit contenir au moins une lettre minuscule. ";
+
+      if(!preg_match('/[A-Z]/', $nouveau_mot_passe)) $validation = false;
+      $message_validation .= "Le mot de passe doit contenir au moins une lettre majuscule. ";
+
+      if(!preg_match('/\d/', $nouveau_mot_passe)) $validation = false;
+      $message_validation .= "Le mot de passe doit contenir au moins un chiffre. ";
+
+      if(!preg_match('/[^a-zA-Z\d]/', $nouveau_mot_passe)) $validation = false;
+      $message_validation .= "Le mot de passe doit contenir au moins un caractère spécial. ";
+
+      if($validation) {
+        $mdp = $nouveau_mot_passe;
+        $mdp_peppered = hash_hmac("sha256", $mdp, $pepper);
+        $mdp_hashed = password_hash($mdp_peppered, PASSWORD_ARGON2ID);
+
+        $gestionnaire = new Gestionnaire();
+        $resultat_select = $gestionnaire->select_mysql($resultat->personne);
+
+        if($resultat_select === true) {
+          $gestionnaire->set_mot_passe($mdp_hashed);
+          $resultat_update = $gestionnaire->update_mysql($gestionnaire, $connexion_ecrire);
+
+          if($resultat_update > 0) {
+            $_SESSION['message'] = "Le mot de passe a été mis à jour avec succès.";
+          }
+          else {
+            $_SESSION['message'] = "Il y a eu un problème avec la mise à jour du mot de passe. Veuillez vérifier et essayer de nouveau.";
+          }
         }
         else {
-          $_SESSION['message'] = "Il y a eu un problème avec la mise à jour du mot de passe. Veuillez vérifier et essayer de nouveau.";
+          $_SESSION['message'] = "Le compte du gestionnaire n'a pu être récupéré. Veuillez vérifier et essayer de nouveau.";
         }
-      }
-      else {
-        $_SESSION['message'] = "Le compte du gestionnaire n'a pu être récupéré. Veuillez vérifier et essayer de nouveau.";
-      }
 
-      unset($_SESSION['erreurs_mdp']);
-      unset($_SESSION['err_mdp_temps']);
+        unset($_SESSION['erreurs_mdp']);
+        unset($_SESSION['err_mdp_temps']);
+      }
     }
-
     else {
       $sql = $connexion_lire->prepare('SELECT s.id, s.mot_passe
         FROM specialistes s
@@ -128,30 +148,52 @@ class Authentification {
       foreach($resultats as $resultat) {
         $pwd_hashed = $resultat->mot_passe;
         if (password_verify($pwd_peppered, $pwd_hashed)) {
-          $mdp = $nouveau_mot_passe;
-          $mdp_peppered = hash_hmac("sha256", $mdp, $pepper);
-          $mdp_hashed = password_hash($mdp_peppered, PASSWORD_ARGON2ID);
 
-          $specialiste = new Specialiste();
-          $resultat_select = $specialiste->select_mysql($resultat->id);
+          $validation = true;
+          $message_validation = "";
 
-          if($resultat_select === true) {
-            $specialiste->set_mot_passe($mdp_hashed);
-            $resultat_update = $specialiste->update_mysql($specialiste, $connexion_ecrire);
+          if(strlen($nouveau_mot_passe) < 8) $validation = false;
+          $message_validation .= "Le mot de passe doit contenir au moins 8 caractères. ";
 
-            if($resultat_update > 0) {
-              $_SESSION['message'] = "Le mot de passe a été mis à jour avec succès.";
+          if(!preg_match('/[a-z]/', $nouveau_mot_passe)) $validation = false;
+          $message_validation .= "Le mot de passe doit contenir au moins une lettre minuscule. ";
+
+          if(!preg_match('/[A-Z]/', $nouveau_mot_passe)) $validation = false;
+          $message_validation .= "Le mot de passe doit contenir au moins une lettre majuscule. ";
+
+          if(!preg_match('/\d/', $nouveau_mot_passe)) $validation = false;
+          $message_validation .= "Le mot de passe doit contenir au moins un chiffre. ";
+
+          if(!preg_match('/[^a-zA-Z\d]/', $nouveau_mot_passe)) $validation = false;
+          $message_validation .= "Le mot de passe doit contenir au moins un caractère spécial. ";
+
+          if($validation) {
+            $mdp = $nouveau_mot_passe;
+            $mdp_peppered = hash_hmac("sha256", $mdp, $pepper);
+            $mdp_hashed = password_hash($mdp_peppered, PASSWORD_ARGON2ID);
+
+            $specialiste = new Specialiste();
+            $resultat_select = $specialiste->select_mysql($resultat->id);
+
+            if($resultat_select === true) {
+              $specialiste->set_mot_passe($mdp_hashed);
+              $resultat_update = $specialiste->update_mysql($specialiste, $connexion_ecrire);
+
+              if($resultat_update > 0) {
+                $_SESSION['message'] = "Le mot de passe a été mis à jour avec succès.";
+              }
+              else {
+                $_SESSION['message'] = "Il y a eu un problème avec la mise à jour du mot de passe. Veuillez vérifier et essayer de nouveau.";
+              }
             }
             else {
-              $_SESSION['message'] = "Il y a eu un problème avec la mise à jour du mot de passe. Veuillez vérifier et essayer de nouveau.";
+              $_SESSION['message'] = "Le compte du gestionnaire n'a pu être récupéré. Veuillez vérifier et essayer de nouveau.";
             }
-          }
-          else {
-            $_SESSION['message'] = "Le compte du gestionnaire n'a pu être récupéré. Veuillez vérifier et essayer de nouveau.";
-          }
 
-          unset($_SESSION['erreurs_mdp']);
-          unset($_SESSION['err_mdp_temps']);
+            unset($_SESSION['erreurs_mdp']);
+            unset($_SESSION['err_mdp_temps']);
+          }
+          else $_SESSION['message'] = $message_validation;
         }
       }
     }
