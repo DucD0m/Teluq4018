@@ -77,17 +77,17 @@ class PageMenu {
           <div class="notif">
             NOTIFICATIONS
           </div>
-          <form id="notifications-form" class="hidden" action="<?php echo URL; ?>" method="post">
-            <input type="hidden" id="gestion-notifications" name="gestion-notifications" value="oui">
-            <input type="hidden" id="type-notifications" name="type-notifications" value="2">
+          <form id="notifications-form2" class="hidden" action="<?php echo URL; ?>" method="post">
+            <input type="hidden" id="gestion-notifications2" name="gestion-notifications" value="oui">
+            <input type="hidden" id="type-notifications2" name="type-notifications" value="2">
             <button id="notif-30" class="couleurs notif-btn notif-btn1">
               30 JOURS <span class="pastille pastille-30" title="Vous avez de nouveaux avis 30 jours"><?php echo $nombre_30jours; ?></span>
             </button>
           </form>
 
-          <form id="notifications-form" class="hidden" action="<?php echo URL; ?>" method="post">
-            <input type="hidden" id="gestion-notifications" name="gestion-notifications" value="oui">
-            <input type="hidden" id="type-notifications" name="type-notifications" value="1">
+          <form id="notifications-form1" class="hidden" action="<?php echo URL; ?>" method="post">
+            <input type="hidden" id="gestion-notifications1" name="gestion-notifications" value="oui">
+            <input type="hidden" id="type-notifications1" name="type-notifications" value="1">
             <button id="notif-ex" class="couleurs notif-btn notif-btn2">
               EXPIRÉS <span class="pastille pastille-ex" title="Vous avez de nouveaux abonements expirés"><?php echo $nombre_expires; ?></span>
             </button>
