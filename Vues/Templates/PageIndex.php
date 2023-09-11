@@ -107,7 +107,7 @@ class PageIndex {
                     		alert('Le nouveau mot de passe doit contenir au moins 8 caractères.');
                     	} else {
                     		if (mot_passe.match(nombre) && mot_passe.match(minuscule) && mot_passe.match(majuscule) && mot_passe.match(caracteres)) {
-                    			alert('submit nouveau pwd');
+                    			$( "#auth-formulaire" ).submit();
                     		}
                     		else {
                           $('#auth-mdp-changer').val('');
