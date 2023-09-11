@@ -97,7 +97,7 @@ class Authentification {
       // Une personne pourrait avoir plus d'une spécialité. Le même courriel est utilisé.
       // Le mot de passe doit être différent pour chacune des spécialitées.
       foreach($resultats as $resultat) {
-        //$pwd_hashed = $resultat->mot_passe;
+        $pwd_hashed = $resultat->mot_passe;
         if (password_verify($pwd_peppered, $pwd_hashed)) {
           $verify = true;
           $_SESSION['auth'] = 'Specialiste';
@@ -162,7 +162,7 @@ class Authentification {
       // Une personne pourrait avoir plus d'une spécialité. Le même courriel est utilisé.
       // Le mot de passe doit être différent pour chacune des spécialitées.
       foreach($resultats as $resultat) {
-        //$pwd_hashed = $resultat->mot_passe;
+        $pwd_hashed = $resultat->mot_passe;
         if (password_verify($pwd_peppered, $pwd_hashed)) {
 
           $verify = true;
