@@ -19,6 +19,19 @@ class Authentification {
     return $resultat;
   }
 
+  private static function sql_specialiste($courriel, $connexion_lire) {
+    $sql = $connexion_lire->prepare('SELECT s.id, s.mot_passe
+      FROM specialistes s
+      JOIN personnes p ON s.personne = p.id
+      WHERE p.courriel = :courriel');
+
+    $sql->bindParam(':courriel', $courriel, PDO::PARAM_STR);
+    $sql->execute();
+    $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
+
+    return $resultats;
+  }
+
   private static function erreurs_mdp() {
     // Compter le nombre d'erreurs de mots de passe. Protection contre le "Brute Force".
     if(!$verify && !isset($_SESSION['erreurs_mdp'])) {
@@ -54,14 +67,8 @@ class Authentification {
     }
 
     else {
-      $sql = $connexion_lire->prepare('SELECT s.id, s.mot_passe
-        FROM specialistes s
-        JOIN personnes p ON s.personne = p.id
-        WHERE p.courriel = :courriel');
 
-      $sql->bindParam(':courriel', $courriel, PDO::PARAM_STR);
-      $sql->execute();
-      $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
+      $resultats = self::sql_specialiste($courriel, $connexion_lire);
 
       // Une personne pourrait avoir plus d'une spécialité. Le même courriel est utilisé.
       // Le mot de passe doit être différent pour chacune des spécialitées.
@@ -87,14 +94,7 @@ class Authentification {
     $pwd_peppered = hash_hmac("sha256", $pwd, $pepper);
     $message_erreur = "Veuillez vérifier vos informations et essayer de nouveau.";
 
-    $sql = $connexion_lire->prepare('SELECT g.personne, g.mot_passe
-      FROM gestionnaires g
-      JOIN personnes p ON g.personne = p.id
-      WHERE p.courriel = :courriel');
-
-    $sql->bindParam(':courriel', $courriel, PDO::PARAM_STR);
-    $sql->execute();
-    $resultat = $sql->fetch(PDO::FETCH_OBJ);
+    $resultat = self::sql_gestionnaire($courriel, $connexion_lire);
 
     $pwd_hashed = $resultat->mot_passe;
     if (password_verify($pwd_peppered, $pwd_hashed)) {
@@ -149,14 +149,8 @@ class Authentification {
       else $_SESSION['message'] = $message_validation;
     }
     else {
-      $sql = $connexion_lire->prepare('SELECT s.id, s.mot_passe
-        FROM specialistes s
-        JOIN personnes p ON s.personne = p.id
-        WHERE p.courriel = :courriel');
-
-      $sql->bindParam(':courriel', $courriel, PDO::PARAM_STR);
-      $sql->execute();
-      $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
+      
+      $resultats = self::sql_specialiste($courriel, $connexion_lire);
 
       // Une personne pourrait avoir plus d'une spécialité. Le même courriel est utilisé.
       // Le mot de passe doit être différent pour chacune des spécialitées.
