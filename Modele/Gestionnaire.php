@@ -31,13 +31,46 @@ class Gestionnaire extends Personne implements Modele {
   }
 
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
-    // Code ici lorsque requis...
+    if($id > 0) {
+      $sql = $connexion_lire->prepare("SELECT * FROM personnes p JOIN gestionnaires g ON p.id = g.personne WHERE g.personne = :id");
+      $sql->bindParam(':id', $id, PDO::PARAM_INT);
+      $sql->execute();
+      $gestionnaire = $sql->fetch(PDO::FETCH_OBJ);
+
+      if($gestionnaire) {
+        $this->set_id($gestionnaire->id);
+        $this->set_prenom($gestionnaire->prenom);
+        $this->set_nom($gestionnaire->nom);
+        $this->set_adresse($gestionnaire->adresse);
+        $this->set_telephone(intval($gestionnaire->telephone));
+        $this->set_courriel($gestionnaire->courriel);
+        $this->set_personne($gestionnaire->personne);
+        $this->set_mot_passe($gestionnaire->mot_passe);
+
+        return true;
+      }
+      else return false;
+    }
+    else {
+      return false;
+    }
   }
   public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     // Code ici lorsque requis...
   }
   public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    // Code ici lorsque requis...
+    if(get_class($obj) === 'Gestionnaire' && $obj->get_personne() > 0) {
+      $sql = $connexion_ecrire->prepare("UPDATE gestionnaires SET
+        mot_passe = :mot_passe
+        WHERE personne = :personne");
+      $sql->bindParam(':personne', $obj->get_personne(), PDO::PARAM_INT);
+      $sql->bindParam(':mot_passe', $obj->get_mot_passe(), PDO::PARAM_STR);
+      $resultat = $sql->execute();
+      return $resultat;
+    }
+    else {
+      return false;
+    }
   }
   public function delete_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
     // Code ici lorsque requis...

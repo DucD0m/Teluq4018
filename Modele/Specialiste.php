@@ -63,7 +63,18 @@ class Specialiste extends Personne implements Modele {
     // Code ici lorsque requis...
   }
   public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    // Code ici lorsque requis...
+    if(get_class($obj) === 'Specialiste' && $obj->get_specialiste_id() > 0) {
+      $sql = $connexion_ecrire->prepare("UPDATE specialistes SET
+        mot_passe = :mot_passe
+        WHERE id = :id");
+      $sql->bindParam(':id', $obj->get_specialiste_id(), PDO::PARAM_INT);
+      $sql->bindParam(':mot_passe', $obj->get_mot_passe(), PDO::PARAM_STR);
+      $resultat = $sql->execute();
+      return $resultat;
+    }
+    else {
+      return false;
+    }
   }
   public function delete_mysql(Object $obj, Object $connexion_effacer) :Int|Bool {
     // Code ici lorsque requis...

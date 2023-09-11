@@ -69,6 +69,107 @@ class Authentification {
 
   }
 
+  public static function set_mot_passe($courriel, $mot_passe, $nouveau_mot_passe, $connexion_ecrire) {
+
+    $pepper = PEPPER;
+    $pwd = $mot_passe;
+    $pwd_peppered = hash_hmac("sha256", $pwd, $pepper);
+    $message_erreur = "Veuillez vérifier vos informations et essayer de nouveau.";
+
+    $sql = $connexion_lire->prepare('SELECT g.personne, g.mot_passe
+      FROM gestionnaires g
+      JOIN personnes p ON g.personne = p.id
+      WHERE p.courriel = :courriel');
+
+    $sql->bindParam(':courriel', $courriel, PDO::PARAM_STR);
+    $sql->execute();
+    $resultat = $sql->fetch(PDO::FETCH_OBJ);
+
+    $pwd_hashed = $resultat->mot_passe;
+    if (password_verify($pwd_peppered, $pwd_hashed)) {
+      $mdp = $nouveau_mot_passe;
+      $mdp_peppered = hash_hmac("sha256", $mdp, $pepper);
+      $mdp_hashed = password_hash($mdp_peppered, PASSWORD_ARGON2ID);
+
+      $gestionnaire = new Gestionnaire();
+      $resultat_select = $gestionnaire->select_mysql($resultat->personne);
+
+      if($resultat_select === true) {
+        $gestionnaire->set_mot_passe($mdp_hashed);
+        $resultat_update = $gestionnaire->update_mysql($gestionnaire, $connexion_ecrire);
+
+        if($resultat_update > 0) {
+          $_SESSION['message'] = "Le mot de passe a été mis à jour avec succès.";
+        }
+        else {
+          $_SESSION['message'] = "Il y a eu un problème avec la mise à jour du mot de passe. Veuillez vérifier et essayer de nouveau.";
+        }
+      }
+      else {
+        $_SESSION['message'] = "Le compte du gestionnaire n'a pu être récupéré. Veuillez vérifier et essayer de nouveau.";
+      }
+
+      unset($_SESSION['erreurs_mdp']);
+      unset($_SESSION['err_mdp_temps']);
+    }
+
+    else {
+      $sql = $connexion_lire->prepare('SELECT s.id, s.mot_passe
+        FROM specialistes s
+        JOIN personnes p ON s.personne = p.id
+        WHERE p.courriel = :courriel');
+
+      $sql->bindParam(':courriel', $courriel, PDO::PARAM_STR);
+      $sql->execute();
+      $resultats = $sql->fetchAll(PDO::FETCH_OBJ);
+
+      // Une personne pourrait avoir plus d'une spécialité. Le même courriel est utilisé.
+      // Le mot de passe doit être différent pour chacune des spécialitées.
+      foreach($resultats as $resultat) {
+        $pwd_hashed = $resultat->mot_passe;
+        if (password_verify($pwd_peppered, $pwd_hashed)) {
+          $mdp = $nouveau_mot_passe;
+          $mdp_peppered = hash_hmac("sha256", $mdp, $pepper);
+          $mdp_hashed = password_hash($mdp_peppered, PASSWORD_ARGON2ID);
+
+          $specialiste = new Specialiste();
+          $resultat_select = $specialiste->select_mysql($resultat->id);
+
+          if($resultat_select === true) {
+            $specialiste->set_mot_passe($mdp_hashed);
+            $resultat_update = $specialiste->update_mysql($specialiste, $connexion_ecrire);
+
+            if($resultat_update > 0) {
+              $_SESSION['message'] = "Le mot de passe a été mis à jour avec succès.";
+            }
+            else {
+              $_SESSION['message'] = "Il y a eu un problème avec la mise à jour du mot de passe. Veuillez vérifier et essayer de nouveau.";
+            }
+          }
+          else {
+            $_SESSION['message'] = "Le compte du gestionnaire n'a pu être récupéré. Veuillez vérifier et essayer de nouveau.";
+          }
+
+          unset($_SESSION['erreurs_mdp']);
+          unset($_SESSION['err_mdp_temps']);
+        }
+      }
+    }
+
+    // Compter le nombre d'erreurs de mots de passe. Protection contre le "Brute Force".
+    if(!isset($_SESSION['auth']) && !isset($_SESSION['erreurs_mdp'])) {
+      $_SESSION['erreurs_mdp'] = 1;
+      $_SESSION['message'] = $message_erreur;
+    }
+    else if(!isset($_SESSION['auth']) && isset($_SESSION['erreurs_mdp'])) {
+      $_SESSION['erreurs_mdp'] = $_SESSION['erreurs_mdp'] + 1;
+      $_SESSION['message'] = $message_erreur;
+      if($_SESSION['erreurs_mdp'] === 5) {
+        $_SESSION['err_mdp_temps'] = strtotime('now');
+      }
+    }
+  }
+
   public static function quitter() {
 
     $_SESSION = array();
