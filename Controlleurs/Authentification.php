@@ -190,7 +190,7 @@ class Authentification {
               }
             }
             else {
-              $_SESSION['message'] = "Le compte du gestionnaire n'a pu être récupéré. Veuillez vérifier et essayer de nouveau.";
+              $_SESSION['message'] = "Le compte du specialiste n'a pu être récupéré. Veuillez vérifier et essayer de nouveau.";
             }
 
             unset($_SESSION['erreurs_mdp']);
