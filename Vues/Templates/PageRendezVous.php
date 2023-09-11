@@ -8,7 +8,6 @@ class PageRendezVous {
     $nom_utilisateur = htmlentities($obj->get_nom());
     $nom_specialite = htmlentities(strtoupper($obj_specialite->get_nom()));
 
-    $message_autocomplete = "Vous devez choisir une suggestion proposée. Seulement les clients ayant des heures disponibles sont affichés.";
 ?>
 
     <!DOCTYPE HTML>
@@ -52,7 +51,7 @@ class PageRendezVous {
         </div>
 
         <form id="rendez-vous" action="<?php echo URL; ?>" method="post">
-          <input id="rdv-client" class="rdv" type="text" name="rdv-client" placeholder="nom ou no. de téléphone du client" title="<?php echo $message_autocomplete; ?>">
+          <input id="rdv-client" class="rdv" type="text" name="rdv-client" placeholder="nom ou no. de téléphone du client" title="Vous devez choisir une suggestion proposée.">
           <input id="rdv-date" class="rdv" type="text" name="rdv-date" placeholder="date du rendez-vous" readonly="readonly">
           <select id="rdv-heure" name="rdv-heure" class="rdv">
             <option value="">heure du rendez-vous</option>
