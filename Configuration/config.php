@@ -32,12 +32,12 @@ header("X-Frame-Options: DENY"); // Ne permet pas l'affichage de la page dans un
 header("X-Content-Type-Options: nosniff"); // Bloque MIME type sniffing.
 header("Referrer-Policy: strict-origin-when-cross-origin"); // Limite l'information REFERRER
 header("Content-Type: text/html; charset=UTF-8"); // Previent certains XSS
+header("Cross-Origin-Resource-Policy: same-site");
 
 // Charge seulement des documents de la même origine. COEP policy. Va de pair avec CORS et COOP.
 // Mettre l'attribut crossorigin ou crossorigin="anonymous" pour autoriser les ressources. Par exemple jQuery.
 header("Cross-Origin-Embedder-Policy: require-corp");
 
-header("Cross-Origin-Resource-Policy: same-site");
 header("Permissions-Policy: geolocation=(), camera=(), microphone=()"); // L'application ne peut pas utiliser les ressources =().
 header("Permissions-Policy: interest-cohort=()"); // Augmente la protection de la vie privéé de l'utilisateur.
 
