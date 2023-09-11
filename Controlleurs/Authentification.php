@@ -115,7 +115,7 @@ class Authentification {
         $mdp_hashed = password_hash($mdp_peppered, PASSWORD_ARGON2ID);
 
         $gestionnaire = new Gestionnaire();
-        $resultat_select = $gestionnaire->select_mysql($resultat->personne);
+        $resultat_select = $gestionnaire->select_mysql($resultat->personne, $connexion_lire);
 
         if($resultat_select === true) {
           $gestionnaire->set_mot_passe($mdp_hashed);
@@ -178,7 +178,7 @@ class Authentification {
             $mdp_hashed = password_hash($mdp_peppered, PASSWORD_ARGON2ID);
 
             $specialiste = new Specialiste();
-            $resultat_select = $specialiste->select_mysql($resultat->id);
+            $resultat_select = $specialiste->select_mysql($resultat->id, $connexion_lire);
 
             if($resultat_select === true) {
               $specialiste->set_mot_passe($mdp_hashed);
