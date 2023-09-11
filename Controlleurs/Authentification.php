@@ -32,7 +32,9 @@ class Authentification {
     return $resultats;
   }
 
-  private static function erreurs_mdp() {
+  private static function erreurs_mdp($verify) {
+    $message_erreur = "Veuillez vérifier vos informations et essayer de nouveau.";
+
     // Compter le nombre d'erreurs de mots de passe. Protection contre le "Brute Force".
     if(!$verify && !isset($_SESSION['erreurs_mdp'])) {
       $_SESSION['erreurs_mdp'] = 1;
@@ -52,7 +54,6 @@ class Authentification {
     $pepper = PEPPER;
     $pwd = $mot_passe;
     $pwd_peppered = hash_hmac("sha256", $pwd, $pepper);
-    $message_erreur = "Veuillez vérifier vos informations et essayer de nouveau.";
 
     $resultat = self::sql_gestionnaire($courriel, $connexion_lire);
 
@@ -84,7 +85,7 @@ class Authentification {
         }
       }
     }
-    self::erreurs_mdp();
+    self::erreurs_mdp($verify);
   }
 
   public static function set_mot_passe($courriel, $mot_passe, $nouveau_mot_passe, $connexion_lire) {
@@ -149,7 +150,7 @@ class Authentification {
       else $_SESSION['message'] = $message_validation;
     }
     else {
-      
+
       $resultats = self::sql_specialiste($courriel, $connexion_lire);
 
       // Une personne pourrait avoir plus d'une spécialité. Le même courriel est utilisé.
@@ -209,7 +210,7 @@ class Authentification {
         }
       }
     }
-    self::erreurs_mdp();
+    self::erreurs_mdp($verify);
   }
 
   public static function quitter() {
