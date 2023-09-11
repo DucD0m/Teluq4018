@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 require_once "Controlleurs/fonctions_php.php";
+require_once "Vues/Templates/Composantes.php";
 
 class PageClient {
 
@@ -35,7 +36,7 @@ class PageClient {
     <head>
 
       <?php
-        require "Composantes/head.html";
+        Composantes::get_head();
       ?>
 
       <script>
@@ -48,15 +49,15 @@ class PageClient {
     <body>
 
         <?php
-          require "Composantes/message.php";
+          Composantes::get_message();
         ?>
 
         <?php
-          require "Composantes/retour.php";
+          Composantes::get_retour();
         ?>
 
         <?php
-          require "Composantes/quitter.php";
+          Composantes::get_quitter();
         ?>
 
         <div class="name">
