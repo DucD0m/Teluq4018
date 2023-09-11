@@ -6,8 +6,11 @@ header("X-Frame-Options: DENY"); // Ne permet pas l'affichage de la page dans un
 header("X-Content-Type-Options: nosniff"); // Bloque MIME type sniffing.
 header("Referrer-Policy: strict-origin-when-cross-origin"); // Limite l'information REFERRER
 header("Content-Type: text/html; charset=UTF-8"); // Previent certains XSS
-header("HTTP Cross-Origin-Opener-Policy: same-origin"); // Isole la navigation au document du site seulement. COOP policy. Va de pair avec CORS et COEP.
-header("Cross-Origin-Embedder-Policy: require-corp"); // Charge seulement des documents de la même origine. COEP policy. Va de pair avec CORS et COOP.
+
+// Charge seulement des documents de la même origine. COEP policy. Va de pair avec CORS et COOP.
+// Mettre l'attribut crossorigin ou crossorigin="anonymous" pour autoriser les ressources. Par exemple jQuery.
+header("Cross-Origin-Embedder-Policy: require-corp");
+header("Cross-Origin-Resource-Policy: same-site"); 
 
 require_once "Configuration/config.php";
 require_once "Vues/Templates/PageIndex.php";
