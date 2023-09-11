@@ -93,12 +93,29 @@ class PageIndex {
                         alert('La confirmation du nouveau mot de passe ne correspond pas. Veuillez essayer de nouveau.');
                       }
                   else if($('#auth-mdp-changer').prop('disabled') === false
-                      && $('#auth-mdp-confirmer').prop('disabled') === false
-                      && $('#auth-mdp-changer').val().length < 8) {
+                      && $('#auth-mdp-confirmer').prop('disabled') === false ) {
+
+                    	let nombre = /([0-9])/;
+                    	let minuscule = /([a-z])/;
+                      let majuscule = /([A-Z])/;
+                    	let caracteres = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
+	                    let mot_passe = $('#auth-mdp-changer').val().trim();
+
+                      if (mot_passe.length < 8) {
                         $('#auth-mdp-changer').val('');
                         $('#auth-mdp-confirmer').val('');
-                        alert('Le nouveau mot de passe doit contenir au moins 8 caractères.');
-                      }
+                    		alert('Le nouveau mot de passe doit contenir au moins 8 caractères.');
+                    	} else {
+                    		if (mot_passe.match(nombre) && mot_passe.match(minuscule) && mot_passe.match(majuscule) && mot_passe.match(caracteres)) {
+                    			alert('submit nouveau pwd');
+                    		}
+                    		else {
+                          $('#auth-mdp-changer').val('');
+                          $('#auth-mdp-confirmer').val('');
+                    		  alert('Le nouveau mot de passe doit contenir au moins un chiffre, une lettre minuscule, une lettre majuscule et un caratère spécial.');
+                    		}
+                    	}
+                  }
                   else {
                     $( "#auth-formulaire" ).submit();
                   }
