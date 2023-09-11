@@ -71,7 +71,7 @@ class PageClient {
           <form id="supprimer-form" class="hidden" action="<?php echo URL; ?>" method="post">
             <input type="hidden" id="formulaire-supprimer-client" name="formulaire-supprimer-client" value="oui">
             <input type="hidden" id="client-personne" name="client-personne" value="<?php echo $personne_client; ?>">
-            <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+            <input type="hidden" id="csrf_token1" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <button id="supprimer-client" title="Supprimer le compte client" onclick="return false;">
               <i class="fa-solid fa-trash"></i>
             </button>
@@ -89,7 +89,7 @@ class PageClient {
                 <input class="input-client" type="text" id="client-telephone" name="client-telephone" placeholder="téléphone (xxx) xxx-xxxx" value="<?php echo $telephone; ?>">
                 <input class="input-client" type="text" id="client-courriel" name="client-courriel" placeholder="courriel" value="<?php echo $courriel; ?>">
                 <input type="hidden" id="formulaire-client-personne" name="formulaire-client-personne" value="oui">
-                <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                <input type="hidden" id="csrf_token2" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                 <input class="couleurs submit-client" id="maj-personne" type="submit" value="METTRE À JOUR" onclick="return false;">
               </form>
           </div>
@@ -161,7 +161,7 @@ class PageClient {
               <div class="modif-plan">
                 <form id="formulaire-droite" action="<?php echo URL; ?>" method="post">
                   <?php if($id_client > 0 && $personne_client === $id_client): ?>
-                    <input type="hidden" id="client-personne" name="client-personne" value="<?php echo $personne_client; ?>">
+                    <input type="hidden" id="client-personne2" name="client-personne" value="<?php echo $personne_client; ?>">
                   <?php endif; ?>
                   <select id="plan-id" name="plan-id">
                     <?php foreach ($plans as $p) {
@@ -211,7 +211,7 @@ class PageClient {
                   <input class="nouveau-client" type="hidden" id="nouveau-courriel" name="nouveau-courriel" value="" disabled>
                   <input class="nouveau-client" type="hidden" id="formulaire-nouveau-client" name="formulaire-nouveau-client" value="non" disabled>
                   <input type="hidden" id="formulaire-client-plan" name="formulaire-client-plan" value="oui">
-                  <input type="hidden" id="csrf_token" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                  <input type="hidden" id="csrf_token3" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                   <input id="bouton-ajouter" type="submit" class="couleurs submit-client" value="AJOUTER" onclick="return false;">
                 </form>
               </div>
