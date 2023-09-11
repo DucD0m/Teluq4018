@@ -16,7 +16,7 @@ class Authentification {
     $sql->execute();
     $resultat = $sql->fetch(PDO::FETCH_OBJ);
 
-    return $resulat;
+    return $resultat;
   }
 
   private static function erreurs_mdp() {
