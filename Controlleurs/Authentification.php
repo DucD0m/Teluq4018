@@ -6,6 +6,8 @@ require_once "Controlleurs/SpecialisteControlleur.php";
 
 class Authentification {
 
+  private static $pepper = PEPPER;
+
   private static function sql_gestionnaire($courriel, $connexion_lire) {
     $sql = $connexion_lire->prepare('SELECT g.personne, g.mot_passe
       FROM gestionnaires g
@@ -32,6 +34,28 @@ class Authentification {
     return $resultats;
   }
 
+  private static function validation($nouveau_mot_passe) {
+    $validation = true;
+    $message_validation = "";
+
+    if(strlen($nouveau_mot_passe) < 8) $validation = false;
+    $message_validation .= "Le mot de passe doit contenir au moins 8 caractères. ";
+
+    if(!preg_match('/[a-z]/', $nouveau_mot_passe)) $validation = false;
+    $message_validation .= "Le mot de passe doit contenir au moins une lettre minuscule. ";
+
+    if(!preg_match('/[A-Z]/', $nouveau_mot_passe)) $validation = false;
+    $message_validation .= "Le mot de passe doit contenir au moins une lettre majuscule. ";
+
+    if(!preg_match('/\d/', $nouveau_mot_passe)) $validation = false;
+    $message_validation .= "Le mot de passe doit contenir au moins un chiffre. ";
+
+    if(!preg_match('/[^a-zA-Z\d]/', $nouveau_mot_passe)) $validation = false;
+    $message_validation .= "Le mot de passe doit contenir au moins un caractère spécial. ";
+
+    return array('validation'=>$validation, 'message_validation'=>$message_validation);
+  }
+
   private static function erreurs_mdp($verify) {
     $message_erreur = "Veuillez vérifier vos informations et essayer de nouveau.";
 
@@ -51,9 +75,8 @@ class Authentification {
 
   public static function get_utilisateur($courriel, $mot_passe, $connexion_lire) {
 
-    $pepper = PEPPER;
     $pwd = $mot_passe;
-    $pwd_peppered = hash_hmac("sha256", $pwd, $pepper);
+    $pwd_peppered = hash_hmac("sha256", $pwd, self::$pepper);
 
     $resultat = self::sql_gestionnaire($courriel, $connexion_lire);
 
@@ -74,7 +97,7 @@ class Authentification {
       // Une personne pourrait avoir plus d'une spécialité. Le même courriel est utilisé.
       // Le mot de passe doit être différent pour chacune des spécialitées.
       foreach($resultats as $resultat) {
-        $pwd_hashed = $resultat->mot_passe;
+        //$pwd_hashed = $resultat->mot_passe;
         if (password_verify($pwd_peppered, $pwd_hashed)) {
           $verify = true;
           $_SESSION['auth'] = 'Specialiste';
@@ -90,38 +113,21 @@ class Authentification {
 
   public static function set_mot_passe($courriel, $mot_passe, $nouveau_mot_passe, $connexion_lire) {
 
-    $pepper = PEPPER;
     $pwd = $mot_passe;
-    $pwd_peppered = hash_hmac("sha256", $pwd, $pepper);
-    $message_erreur = "Veuillez vérifier vos informations et essayer de nouveau.";
+    $pwd_peppered = hash_hmac("sha256", $pwd, self::$pepper);
 
     $resultat = self::sql_gestionnaire($courriel, $connexion_lire);
 
     $pwd_hashed = $resultat->mot_passe;
+
     if (password_verify($pwd_peppered, $pwd_hashed)) {
 
       $verify = true;
       $connexion_ecrire = ConnexionEcrireBD::connexion();
 
-      $validation = true;
-      $message_validation = "";
+      $validation_array = self::validation($nouveau_mot_passe);
 
-      if(strlen($nouveau_mot_passe) < 8) $validation = false;
-      $message_validation .= "Le mot de passe doit contenir au moins 8 caractères. ";
-
-      if(!preg_match('/[a-z]/', $nouveau_mot_passe)) $validation = false;
-      $message_validation .= "Le mot de passe doit contenir au moins une lettre minuscule. ";
-
-      if(!preg_match('/[A-Z]/', $nouveau_mot_passe)) $validation = false;
-      $message_validation .= "Le mot de passe doit contenir au moins une lettre majuscule. ";
-
-      if(!preg_match('/\d/', $nouveau_mot_passe)) $validation = false;
-      $message_validation .= "Le mot de passe doit contenir au moins un chiffre. ";
-
-      if(!preg_match('/[^a-zA-Z\d]/', $nouveau_mot_passe)) $validation = false;
-      $message_validation .= "Le mot de passe doit contenir au moins un caractère spécial. ";
-
-      if($validation) {
+      if($validation_array['validation']) {
         $mdp = $nouveau_mot_passe;
         $mdp_peppered = hash_hmac("sha256", $mdp, $pepper);
         $mdp_hashed = password_hash($mdp_peppered, PASSWORD_ARGON2ID);
@@ -156,31 +162,15 @@ class Authentification {
       // Une personne pourrait avoir plus d'une spécialité. Le même courriel est utilisé.
       // Le mot de passe doit être différent pour chacune des spécialitées.
       foreach($resultats as $resultat) {
-        $pwd_hashed = $resultat->mot_passe;
+        //$pwd_hashed = $resultat->mot_passe;
         if (password_verify($pwd_peppered, $pwd_hashed)) {
 
           $verify = true;
           $connexion_ecrire = ConnexionEcrireBD::connexion();
 
-          $validation = true;
-          $message_validation = "";
+          $validation_array = self::validation($nouveau_mot_passe);
 
-          if(strlen($nouveau_mot_passe) < 8) $validation = false;
-          $message_validation .= "Le mot de passe doit contenir au moins 8 caractères. ";
-
-          if(!preg_match('/[a-z]/', $nouveau_mot_passe)) $validation = false;
-          $message_validation .= "Le mot de passe doit contenir au moins une lettre minuscule. ";
-
-          if(!preg_match('/[A-Z]/', $nouveau_mot_passe)) $validation = false;
-          $message_validation .= "Le mot de passe doit contenir au moins une lettre majuscule. ";
-
-          if(!preg_match('/\d/', $nouveau_mot_passe)) $validation = false;
-          $message_validation .= "Le mot de passe doit contenir au moins un chiffre. ";
-
-          if(!preg_match('/[^a-zA-Z\d]/', $nouveau_mot_passe)) $validation = false;
-          $message_validation .= "Le mot de passe doit contenir au moins un caractère spécial. ";
-
-          if($validation) {
+          if($validation_array['validation']) {
             $mdp = $nouveau_mot_passe;
             $mdp_peppered = hash_hmac("sha256", $mdp, $pepper);
             $mdp_hashed = password_hash($mdp_peppered, PASSWORD_ARGON2ID);
