@@ -153,7 +153,7 @@ class Authentification {
         unset($_SESSION['erreurs_mdp']);
         unset($_SESSION['err_mdp_temps']);
       }
-      else $_SESSION['message'] = $message_validation;
+      else $_SESSION['message'] = $validation_array['message_validation'];
     }
     else {
 
@@ -196,7 +196,7 @@ class Authentification {
             unset($_SESSION['erreurs_mdp']);
             unset($_SESSION['err_mdp_temps']);
           }
-          else $_SESSION['message'] = $message_validation;
+          else $_SESSION['message'] = $validation_array['message_validation'];
         }
       }
     }
