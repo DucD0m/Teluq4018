@@ -136,6 +136,7 @@ class Authentification {
         unset($_SESSION['erreurs_mdp']);
         unset($_SESSION['err_mdp_temps']);
       }
+      else $_SESSION['message'] = $message_validation;
     }
     else {
       $sql = $connexion_lire->prepare('SELECT s.id, s.mot_passe
