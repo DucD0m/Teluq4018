@@ -1,7 +1,5 @@
 <?php declare(strict_types=1);
 
-require_once "Vues/Templates/Composantes.php";
-
 class PageNotifications {
 
   public function __construct(Gestionnaire $obj, TypeNotification $obj_type_notifications, array $items) {
@@ -17,22 +15,22 @@ class PageNotifications {
 
     <head>
       <?php
-        Composantes::get_head();
+        require "Composantes/head.html";
       ?>
     </head>
 
     <body>
 
         <?php
-          Composantes::get_message();
+          require "Composantes/message.php";
         ?>
 
         <?php
-          Composantes::get_retour();
+          require "Composantes/retour.php";
         ?>
 
         <?php
-          Composantes::get_quitter();
+          require "Composantes/quitter.php";
         ?>
 
         <div class="name">

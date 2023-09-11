@@ -1,7 +1,5 @@
 <?php declare(strict_types=1);
 
-require_once "Vues/Templates/Composantes.php";
-
 class PageMenu {
 
   public function __construct(Gestionnaire $obj, $nb_expires, $nb_30jours) {
@@ -18,22 +16,22 @@ class PageMenu {
 
     <head>
       <?php
-        Composantes::get_head();
+        require "Composantes/head.html";
       ?>
     </head>
 
     <body>
 
         <?php
-          Composantes::get_message();
+          require "Composantes/message.php";
         ?>
 
         <?php
-          Composantes::get_logo();
+          require "Composantes/logo.html";
         ?>
 
         <?php
-          Composantes::get_quitter();
+          require "Composantes/quitter.php";
         ?>
 
         <div class="name">

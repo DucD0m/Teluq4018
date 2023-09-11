@@ -1,7 +1,5 @@
 <?php declare(strict_types=1);
 
-require_once "Vues/Templates/Composantes.php";
-
 class PageRendezVous {
 
   public function __construct(Specialiste $obj, Specialite $obj_specialite) {
@@ -19,7 +17,7 @@ class PageRendezVous {
     <head>
 
       <?php
-        Composantes::get_head();
+        require "Composantes/head.html";
       ?>
 
       <style>
@@ -34,15 +32,15 @@ class PageRendezVous {
     <body>
 
         <?php
-          Composantes::get_message();
+          require "Composantes/message.php";
         ?>
 
         <?php
-          Composantes::get_logo();
+          require "Composantes/logo.html";
         ?>
 
         <?php
-          Composantes::get_quitter();
+          require "Composantes/quitter.php";
         ?>
 
         <div class="name">
