@@ -6,13 +6,7 @@ require_once "Controlleurs/SpecialisteControlleur.php";
 
 class Authentification {
 
-  public static function get_utilisateur($courriel, $mot_passe, $connexion_lire) {
-
-    $pepper = PEPPER;
-    $pwd = $mot_passe;
-    $pwd_peppered = hash_hmac("sha256", $pwd, $pepper);
-    $message_erreur = "Veuillez vérifier vos informations et essayer de nouveau.";
-
+  private static function sql_gestionnaire($courriel, $connexion_lire) {
     $sql = $connexion_lire->prepare('SELECT g.personne, g.mot_passe
       FROM gestionnaires g
       JOIN personnes p ON g.personne = p.id
@@ -22,8 +16,36 @@ class Authentification {
     $sql->execute();
     $resultat = $sql->fetch(PDO::FETCH_OBJ);
 
+    return $resultat;
+  }
+
+  private static function erreurs_mdp() {
+    // Compter le nombre d'erreurs de mots de passe. Protection contre le "Brute Force".
+    if(!$verify && !isset($_SESSION['erreurs_mdp'])) {
+      $_SESSION['erreurs_mdp'] = 1;
+      $_SESSION['message'] = $message_erreur;
+    }
+    else if(!$verify && isset($_SESSION['erreurs_mdp'])) {
+      $_SESSION['erreurs_mdp'] = $_SESSION['erreurs_mdp'] + 1;
+      $_SESSION['message'] = $message_erreur;
+      if($_SESSION['erreurs_mdp'] === 5) {
+        $_SESSION['err_mdp_temps'] = strtotime('now');
+      }
+    }
+  }
+
+  public static function get_utilisateur($courriel, $mot_passe, $connexion_lire) {
+
+    $pepper = PEPPER;
+    $pwd = $mot_passe;
+    $pwd_peppered = hash_hmac("sha256", $pwd, $pepper);
+    $message_erreur = "Veuillez vérifier vos informations et essayer de nouveau.";
+
+    $resultat = sql_gestionnaire($courriel, $connexion_lire);
+
     $pwd_hashed = $resultat->mot_passe;
     if (password_verify($pwd_peppered, $pwd_hashed)) {
+      $verify = true;
       $_SESSION['auth'] = 'Gestionnaire';
       $_SESSION['id'] = $resultat->personne;
       $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -46,6 +68,7 @@ class Authentification {
       foreach($resultats as $resultat) {
         $pwd_hashed = $resultat->mot_passe;
         if (password_verify($pwd_peppered, $pwd_hashed)) {
+          $verify = true;
           $_SESSION['auth'] = 'Specialiste';
           $_SESSION['id'] = $resultat->id;
           $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -54,20 +77,7 @@ class Authentification {
         }
       }
     }
-
-    // Compter le nombre d'erreurs de mots de passe. Protection contre le "Brute Force".
-    if(!isset($_SESSION['auth']) && !isset($_SESSION['erreurs_mdp'])) {
-      $_SESSION['erreurs_mdp'] = 1;
-      $_SESSION['message'] = $message_erreur;
-    }
-    else if(!isset($_SESSION['auth']) && isset($_SESSION['erreurs_mdp'])) {
-      $_SESSION['erreurs_mdp'] = $_SESSION['erreurs_mdp'] + 1;
-      $_SESSION['message'] = $message_erreur;
-      if($_SESSION['erreurs_mdp'] === 5) {
-        $_SESSION['err_mdp_temps'] = strtotime('now');
-      }
-    }
-
+    self::erreurs_mdp();
   }
 
   public static function set_mot_passe($courriel, $mot_passe, $nouveau_mot_passe, $connexion_lire) {
@@ -77,14 +87,7 @@ class Authentification {
     $pwd_peppered = hash_hmac("sha256", $pwd, $pepper);
     $message_erreur = "Veuillez vérifier vos informations et essayer de nouveau.";
 
-    $sql = $connexion_lire->prepare('SELECT g.personne, g.mot_passe
-      FROM gestionnaires g
-      JOIN personnes p ON g.personne = p.id
-      WHERE p.courriel = :courriel');
-
-    $sql->bindParam(':courriel', $courriel, PDO::PARAM_STR);
-    $sql->execute();
-    $resultat = $sql->fetch(PDO::FETCH_OBJ);
+    $resultat = sql_gestionnaire($courriel, $connexion_lire);
 
     $pwd_hashed = $resultat->mot_passe;
     if (password_verify($pwd_peppered, $pwd_hashed)) {
@@ -205,19 +208,7 @@ class Authentification {
         }
       }
     }
-
-    // Compter le nombre d'erreurs de mots de passe. Protection contre le "Brute Force".
-    if(!$verify && !isset($_SESSION['erreurs_mdp'])) {
-      $_SESSION['erreurs_mdp'] = 1;
-      $_SESSION['message'] = $message_erreur;
-    }
-    else if(!$verify && isset($_SESSION['erreurs_mdp'])) {
-      $_SESSION['erreurs_mdp'] = $_SESSION['erreurs_mdp'] + 1;
-      $_SESSION['message'] = $message_erreur;
-      if($_SESSION['erreurs_mdp'] === 5) {
-        $_SESSION['err_mdp_temps'] = strtotime('now');
-      }
-    }
+    self::erreurs_mdp();
   }
 
   public static function quitter() {
