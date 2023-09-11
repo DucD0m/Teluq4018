@@ -6,6 +6,19 @@ require_once "Controlleurs/SpecialisteControlleur.php";
 
 class Authentification {
 
+  private static function sql_gestionnaire($courriel, $connexion_lire) {
+    $sql = $connexion_lire->prepare('SELECT g.personne, g.mot_passe
+      FROM gestionnaires g
+      JOIN personnes p ON g.personne = p.id
+      WHERE p.courriel = :courriel');
+
+    $sql->bindParam(':courriel', $courriel, PDO::PARAM_STR);
+    $sql->execute();
+    $resultat = $sql->fetch(PDO::FETCH_OBJ);
+
+    return $resulat;
+  }
+
   private static function erreurs_mdp() {
     // Compter le nombre d'erreurs de mots de passe. Protection contre le "Brute Force".
     if(!$verify && !isset($_SESSION['erreurs_mdp'])) {
@@ -28,14 +41,7 @@ class Authentification {
     $pwd_peppered = hash_hmac("sha256", $pwd, $pepper);
     $message_erreur = "Veuillez vérifier vos informations et essayer de nouveau.";
 
-    $sql = $connexion_lire->prepare('SELECT g.personne, g.mot_passe
-      FROM gestionnaires g
-      JOIN personnes p ON g.personne = p.id
-      WHERE p.courriel = :courriel');
-
-    $sql->bindParam(':courriel', $courriel, PDO::PARAM_STR);
-    $sql->execute();
-    $resultat = $sql->fetch(PDO::FETCH_OBJ);
+    $resultat = self::sql_gestionnaire($courriel, $connexion_lire);
 
     $pwd_hashed = $resultat->mot_passe;
     if (password_verify($pwd_peppered, $pwd_hashed)) {
