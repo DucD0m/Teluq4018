@@ -95,26 +95,26 @@ class PageIndex {
                   else if($('#auth-mdp-changer').prop('disabled') === false
                       && $('#auth-mdp-confirmer').prop('disabled') === false ) {
 
-                    	let nombre = /([0-9])/;
-                    	let minuscule = /([a-z])/;
-                      let majuscule = /([A-Z])/;
-                    	let caracteres = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
-	                    let mot_passe = $('#auth-mdp-changer').val().trim();
-
-                      if (mot_passe.length < 8) {
-                        $('#auth-mdp-changer').val('');
-                        $('#auth-mdp-confirmer').val('');
-                    		alert('Le nouveau mot de passe doit contenir au moins 8 caractères.');
-                    	} else {
-                    		if (mot_passe.match(nombre) && mot_passe.match(minuscule) && mot_passe.match(majuscule) && mot_passe.match(caracteres)) {
+                    	// let nombre = /([0-9])/;
+                    	// let minuscule = /([a-z])/;
+                      // let majuscule = /([A-Z])/;
+                    	// let caracteres = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
+	                    // let mot_passe = $('#auth-mdp-changer').val().trim();
+                      //
+                      // if (mot_passe.length < 8) {
+                      //   $('#auth-mdp-changer').val('');
+                      //   $('#auth-mdp-confirmer').val('');
+                    	// 	alert('Le nouveau mot de passe doit contenir au moins 8 caractères.');
+                    	// } else {
+                    	// 	if (mot_passe.match(nombre) && mot_passe.match(minuscule) && mot_passe.match(majuscule) && mot_passe.match(caracteres)) {
                     			$( "#auth-formulaire" ).submit();
-                    		}
-                    		else {
-                          $('#auth-mdp-changer').val('');
-                          $('#auth-mdp-confirmer').val('');
-                    		  alert('Le nouveau mot de passe doit contenir au moins un chiffre, une lettre minuscule, une lettre majuscule et un caratère spécial.');
-                    		}
-                    	}
+                    	// 	}
+                    	// 	else {
+                      //     $('#auth-mdp-changer').val('');
+                      //     $('#auth-mdp-confirmer').val('');
+                    	// 	  alert('Le nouveau mot de passe doit contenir au moins un chiffre, une lettre minuscule, une lettre majuscule et un caratère spécial.');
+                    	// 	}
+                    	// }
                   }
                   else {
                     $( "#auth-formulaire" ).submit();
