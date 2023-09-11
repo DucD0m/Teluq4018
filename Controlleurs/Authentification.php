@@ -129,7 +129,7 @@ class Authentification {
 
       if($validation_array['validation']) {
         $mdp = $nouveau_mot_passe;
-        $mdp_peppered = hash_hmac("sha256", $mdp, $pepper);
+        $mdp_peppered = hash_hmac("sha256", $mdp, self::$pepper);
         $mdp_hashed = password_hash($mdp_peppered, PASSWORD_ARGON2ID);
 
         $gestionnaire = new Gestionnaire();
