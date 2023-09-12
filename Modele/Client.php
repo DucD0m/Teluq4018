@@ -27,8 +27,9 @@ class Client extends Personne implements Modele {
     return $this->adhesion;
   }
   public function set_adhesion(String $adhesion) {
-    if(date_format($adhesion,"Y-m-d")) {
-      $this->adhesion = date_format($adhesion,"Y-m-d");
+    $date = date_create($adhesion);
+    if(date_format($date,"Y-m-d")) {
+      $this->adhesion = date_format($date,"Y-m-d");
       return true;
     }
     else return false;
@@ -37,8 +38,9 @@ class Client extends Personne implements Modele {
     return $this->renouvellement;
   }
   public function set_renouvellement(String $renouvellement) {
-    if(date_format($renouvellement,"Y-m-d")) {
-      $this->renouvellement = date_format($renouvellement,"Y-m-d");
+    $date = date_create($renouvellement);
+    if(date_format($date,"Y-m-d")) {
+      $this->renouvellement = date_format($date,"Y-m-d");
       return true;
     }
     else return false;
@@ -47,8 +49,9 @@ class Client extends Personne implements Modele {
     return $this->fin_abonnement;
   }
   public function set_fin_abonnement(String $fin_abonnement) {
-    if(date_format($fin_abonnement,"Y-m-d")) {
-      $this->fin_abonnement = date_format($fin_abonnement,"Y-m-d");
+    $date = date_create($fin_abonnement);
+    if(date_format($date,"Y-m-d")) {
+      $this->fin_abonnement = date_format($date,"Y-m-d");
       return true;
     }
     else return false;
@@ -57,8 +60,9 @@ class Client extends Personne implements Modele {
     return $this->fin_acces_appareils;
   }
   public function set_fin_acces_appareils(String $fin_acces_appareils) {
-    if(date_format($fin_acces_appareils,"Y-m-d")) {
-      $this->fin_acces_appareils = date_format($fin_acces_appareils,"Y-m-d");
+    $date = date_create($fin_acces_appareils);
+    if(date_format($date,"Y-m-d")) {
+      $this->fin_acces_appareils = date_format($date,"Y-m-d");
       return true;
     }
     else return false;
@@ -87,7 +91,7 @@ class Client extends Personne implements Modele {
     return $this->cours_groupe_semaine;
   }
   public function set_cours_groupe_semaine(Int $cours_groupe_semaine) {
-    if($cours_groupe_semaine >=0 && $cours_groupe_semaine <=255) {
+    if($cours_groupe_semaine >= 0 && $cours_groupe_semaine <= 255) {
       $this->cours_groupe_semaine = $cours_groupe_semaine;
       return true;
     }
@@ -128,7 +132,7 @@ class Client extends Personne implements Modele {
 
       if($client) {
         $validation = true;
-        
+
         $validation = $this->set_id($client->id);
         $validation = $this->set_prenom($client->prenom);
         $validation = $this->set_nom($client->nom);
