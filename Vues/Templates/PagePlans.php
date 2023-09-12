@@ -123,7 +123,7 @@ class PagePlans {
                     validation = false;
                   }
               });
-              if(validation === false) alert('Tous les champs doivent être remplis');
+              if(validation === false) alert('Tous les champs doivent être remplis.');
               else {
                 $('input[name^="plan"]').each(function(){
                     let val = $(this).val();
@@ -133,7 +133,7 @@ class PagePlans {
                     else if(val == 'N/A') {
                       $(this).val(parseFloat(0).toFixed(2));
                     }
-                    else if(Number.isFinite(parseFloat(val))) {
+                    else if(Number.isFinite(parseFloat(val)) && val >= 0 && val < 1000) {
                       $(this).val(parseFloat(val).toFixed(2));
                     }
                     else if(val == '$') {
@@ -156,7 +156,7 @@ class PagePlans {
                   $('#formulaire-plans').submit();
                 }
                 else {
-                  alert("Vous devez entrer un prix valide.");
+                  alert("Vous devez entrer un prix valide entre 0.00 et 1000.00$.");
                 }
               }
             });
