@@ -228,11 +228,17 @@ class GestionnaireControlleur {
       else if (isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
          isset($_POST['formulaire-supprimer-client']) && $_POST['formulaire-supprimer-client'] === 'oui') {
 
+           $validation = true;
+
            $client = new Client();
-           $client->select_mysql($_POST['client-personne'], $connexion_lire);
+           $validation = $client->select_mysql($_POST['client-personne'], $connexion_lire);
 
-           $resultat_delete = $client->delete_personne_mysql($client, $connexion_effacer);
+           $resultat_delete = 0;
 
+           if($validation) {
+             $resultat_delete = $client->delete_personne_mysql($client, $connexion_effacer);
+           }
+           
            if($resultat_delete > 0) {
              $_SESSION['message'] = "Le compte a été supprimé avec succès.";
              unset($_SESSION['client-id']);
