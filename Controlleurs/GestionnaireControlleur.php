@@ -89,7 +89,9 @@ class GestionnaireControlleur {
         if(!$client->set_adhesion($date)) $validation = false;
         if(!$client->set_renouvellement($date)) $validation = false;
 
-        if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') if(!$client->set_fin_abonnement($date)) $validation = false;
+        if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') {
+          if(!$client->set_fin_abonnement($date)) $validation = false;
+        }
         else {
           $fin_abonnement = date("Y-m-d",strtotime("+".$plan->get_duree()." months"));
           if(!$client->set_fin_abonnement($fin_abonnement)) $validation = false;
