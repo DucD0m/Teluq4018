@@ -265,10 +265,9 @@ class GestionnaireControlleur {
              $validation = true;
 
              $plan = new Plan();
-             $plan_id = $prix[0];
-             $plan_prix_cours_groupe = $prix[1];
-             //$plan_prix = $prix[2];
-             $plan_prix = 99999.99;
+             $plan_id = intval($prix[0]);
+             $plan_prix_cours_groupe = floatval($prix[1]);
+             $plan_prix = floatval($prix[2]);
              $validation = $plan->select_mysql($plan_id,$connexion_lire);
              if(!$plan->set_prix_cours_groupe($plan_prix_cours_groupe)) $validation = false;
              if(!$plan->set_prix($plan_prix)) $validation = false;
