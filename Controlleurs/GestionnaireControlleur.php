@@ -81,34 +81,38 @@ class GestionnaireControlleur {
         $validation = $plan->select_mysql($_POST['plan-id'], $connexion_lire);
 
         $client = new Client();
-        $client->set_prenom($_POST['nouveau-prenom']);
-        $client->set_nom($_POST['nouveau-nom']);
-        $client->set_adresse($_POST['nouveau-adresse']);
-        $client->set_telephone(intval($_POST['nouveau-telephone']));
-        $client->set_courriel($_POST['nouveau-courriel']);
-        $client->set_adhesion($date);
-        $client->set_renouvellement($date);
+        $validation = $client->set_prenom($_POST['nouveau-prenom']);
+        $validation = $client->set_nom($_POST['nouveau-nom']);
+        $validation = $client->set_adresse($_POST['nouveau-adresse']);
+        $validation = $client->set_telephone(intval($_POST['nouveau-telephone']));
+        $validation = $client->set_courriel($_POST['nouveau-courriel']);
+        $validation = $client->set_adhesion($date);
+        $validation = $client->set_renouvellement($date);
 
-        if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') $client->set_fin_abonnement($date);
+        if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') $validation = $client->set_fin_abonnement($date);
         else {
           $fin_abonnement = date("Y-m-d",strtotime("+".$plan->get_duree()." months"));
-          $client->set_fin_abonnement($fin_abonnement);
+          $validation = $client->set_fin_abonnement($fin_abonnement);
         }
 
         if($plan->get_acces_appareils() == 1) {
           $fin_acces_appareils = date("Y-m-d",strtotime("+".$plan->get_duree()." months"));
-          $client->set_fin_acces_appareils($fin_acces_appareils);
+          $validation = $client->set_fin_acces_appareils($fin_acces_appareils);
         }
         else {
-          $client->set_fin_acces_appareils($date);
+          $validation = $client->set_fin_acces_appareils($date);
         }
 
-        $client->set_heures_specialistes(intval($_POST['client-spec']));
-        $client->set_heures_specialistes_utilise(0);
-        $client->set_cours_groupe_semaine(intval($_POST['client-groupes']));
-        $client->set_plan($_POST['plan-id']);
+        $validation = $client->set_heures_specialistes(intval($_POST['client-spec']));
+        $validation = $client->set_heures_specialistes_utilise(0);
+        $validation = $client->set_cours_groupe_semaine(intval($_POST['client-groupes']));
+        $validation = $client->set_plan($_POST['plan-id']);
 
-        $resultat_insertion = $client->insert_mysql($client, $connexion_ecrire);
+        $resultat_insertion = 0;
+        
+        if($validation) {
+          $resultat_insertion = $client->insert_mysql($client, $connexion_ecrire);
+        }
 
         if($resultat_insertion > 0) {
           $_SESSION['message'] = "Le nouveau compte client a été créé avec succès.";

@@ -20,31 +20,51 @@ abstract class Personne implements Modele {
     return $this->prenom;
   }
   public function set_prenom(String $prenom) {
-    $this->prenom = $prenom;
+    if(strlen($prenom) > 0 && strlen($prenom) <= 48) {
+      $this->prenom = $prenom;
+      return true;
+    }
+    else return false;
   }
   public function get_nom() : String {
     return $this->nom;
   }
   public function set_nom(String $nom) {
-    $this->nom = $nom;
+    if(strlen($nom) > 0 && strlen($nom) <= 48) {
+      $this->nom = $nom;
+      return true;
+    }
+    else return false;
   }
   public function get_adresse() : String {
     return $this->adresse;
   }
   public function set_adresse(String $adresse) {
-    $this->adresse = $adresse;
+    if(strlen($nom) > 0 && strlen($nom) <= 256) {
+      $this->adresse = $adresse;
+      return true;
+    }
+    else return false;
   }
   public function get_telephone() : Int {
     return $this->telephone;
   }
   public function set_telephone(Int $telephone) {
-    $this->telephone = $telephone;
+    if($telephone >= 1000000000 && $telephone <= 9999999999) {
+      $this->telephone = $telephone;
+      return true;
+    }
+    else return false;
   }
   public function get_courriel() : String {
     return $this->courriel;
   }
   public function set_courriel(String $courriel) {
-    $this->courriel = $courriel;
+    if (filter_var($courriel, FILTER_VALIDATE_EMAIL)) {
+      $this->courriel = $courriel;
+      return true;
+    }
+    else return false;
   }
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     if($id > 0) {

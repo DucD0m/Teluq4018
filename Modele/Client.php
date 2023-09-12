@@ -17,66 +17,107 @@ class Client extends Personne implements Modele {
     return $this->personne;
   }
   public function set_personne(Int $personne) {
-    $this->personne = $personne;
+    if($personne > 0) {
+      $this->personne = $personne;
+      return true;
+    }
+    else return false;
   }
   public function get_adhesion() : String {
     return $this->adhesion;
   }
   public function set_adhesion(String $adhesion) {
-    $this->adhesion = $adhesion;
+    if(date_format($adhesion,"Y-m-d")) {
+      $this->adhesion = date_format($adhesion,"Y-m-d");
+      return true;
+    }
+    else return false;
   }
   public function get_renouvellement() : String {
     return $this->renouvellement;
   }
   public function set_renouvellement(String $renouvellement) {
-    $this->renouvellement = $renouvellement;
+    if(date_format($renouvellement,"Y-m-d")) {
+      $this->renouvellement = date_format($renouvellement,"Y-m-d");
+      return true;
+    }
+    else return false;
   }
   public function get_fin_abonnement() : String {
     return $this->fin_abonnement;
   }
   public function set_fin_abonnement(String $fin_abonnement) {
-    $this->fin_abonnement = $fin_abonnement;
+    if(date_format($fin_abonnement,"Y-m-d")) {
+      $this->fin_abonnement = date_format($fin_abonnement,"Y-m-d");
+      return true;
+    }
+    else return false;
   }
   public function get_fin_acces_appareils() : String {
     return $this->fin_acces_appareils;
   }
   public function set_fin_acces_appareils(String $fin_acces_appareils) {
-    $this->fin_acces_appareils = $fin_acces_appareils;
+    if(date_format($fin_acces_appareils,"Y-m-d")) {
+      $this->fin_acces_appareils = date_format($fin_acces_appareils,"Y-m-d");
+      return true;
+    }
+    else return false;
   }
   public function get_heures_specialistes() : Int {
     return $this->heures_specialistes;
   }
   public function set_heures_specialistes(Int $heures_specialistes) {
-    $this->heures_specialistes = $heures_specialistes;
+    if($heures_specialistes >= 0 && $heures_specialistes <= 65535) {
+      $this->heures_specialistes = $heures_specialistes;
+      return true;
+    }
+    else return false;
   }
   public function get_heures_specialistes_utilise() : Int {
     return $this->heures_specialistes_utilise;
   }
   public function set_heures_specialistes_utilise(Int $heures_specialistes_utilise) {
-    $this->heures_specialistes_utilise = $heures_specialistes_utilise;
+    if($heures_specialistes_utilise >= 0 && $heures_specialistes_utilise <= 65535) {
+      $this->heures_specialistes_utilise = $heures_specialistes_utilise;
+      return true;
+    }
+    else return false;
   }
   public function get_cours_groupe_semaine() : Int {
     return $this->cours_groupe_semaine;
   }
   public function set_cours_groupe_semaine(Int $cours_groupe_semaine) {
-    $this->cours_groupe_semaine = $cours_groupe_semaine;
+    if($cours_groupe_semaine >=0 && $cours_groupe_semaine <=255) {
+      $this->cours_groupe_semaine = $cours_groupe_semaine;
+      return true;
+    }
+    else return false;
   }
   public function get_plan() : Int {
     return $this->plan;
   }
   public function set_plan(Int $plan) {
-    $this->plan = $plan;
+    if($plan > 0) {
+      $this->plan = $plan;
+      return true;
+    }
+    else return false;
   }
 
   public function select_personne_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     $resultat = parent::select_mysql($id, $connexion_lire);
-    $this->set_id($resultat->id);
-    $this->set_prenom($resultat->prenom);
-    $this->set_nom($resultat->nom);
-    $this->set_adresse($resultat->adresse);
-    $this->set_telephone($resultat->telephone);
-    $this->set_courriel($resultat->courriel);
-    return true;
+
+    if($resultat) {
+      $validation = true;
+      $validation = $this->set_id($resultat->id);
+      $validation = $this->set_prenom($resultat->prenom);
+      $validation = $this->set_nom($resultat->nom);
+      $validation = $this->set_adresse($resultat->adresse);
+      $validation = $this->set_telephone($resultat->telephone);
+      $validation = $this->set_courriel($resultat->courriel);
+      return $validation;
+    }
+    else return false;
   }
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
     if($id > 0) {
@@ -86,23 +127,25 @@ class Client extends Personne implements Modele {
       $client = $sql->fetch(PDO::FETCH_OBJ);
 
       if($client) {
-        $this->set_id($client->id);
-        $this->set_prenom($client->prenom);
-        $this->set_nom($client->nom);
-        $this->set_adresse($client->adresse);
-        $this->set_telephone(intval($client->telephone));
-        $this->set_courriel($client->courriel);
-        $this->set_personne($client->personne);
-        $this->set_adhesion($client->adhesion);
-        $this->set_renouvellement($client->renouvellement);
-        $this->set_fin_abonnement($client->fin_abonnement);
-        $this->set_fin_acces_appareils($client->fin_acces_appareils);
-        $this->set_heures_specialistes($client->heures_specialistes);
-        $this->set_heures_specialistes_utilise($client->heures_specialistes_utilise);
-        $this->set_cours_groupe_semaine($client->cours_groupe_semaine);
-        $this->set_plan($client->plan);
+        $validation = true;
+        
+        $validation = $this->set_id($client->id);
+        $validation = $this->set_prenom($client->prenom);
+        $validation = $this->set_nom($client->nom);
+        $validation = $this->set_adresse($client->adresse);
+        $validation = $this->set_telephone(intval($client->telephone));
+        $validation = $this->set_courriel($client->courriel);
+        $validation = $this->set_personne($client->personne);
+        $validation = $this->set_adhesion($client->adhesion);
+        $validation = $this->set_renouvellement($client->renouvellement);
+        $validation = $this->set_fin_abonnement($client->fin_abonnement);
+        $validation = $this->set_fin_acces_appareils($client->fin_acces_appareils);
+        $validation = $this->set_heures_specialistes($client->heures_specialistes);
+        $validation = $this->set_heures_specialistes_utilise($client->heures_specialistes_utilise);
+        $validation = $this->set_cours_groupe_semaine($client->cours_groupe_semaine);
+        $validation = $this->set_plan($client->plan);
 
-        return true;
+        return $validation;
       }
       else return false;
     }
