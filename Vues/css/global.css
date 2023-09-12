@@ -1,15 +1,5 @@
 html {
   font-family: arial;
-  width: 100vw;
-  height: 180vw;
-  overflow-y: overlay;
-  /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-/* Hide scrollbar for Chrome, Safari and Opera */
-html::-webkit-scrollbar {
-  display: none;
 }
 tbody tr:nth-child(even) {
   background-color: #eee;
@@ -392,6 +382,16 @@ tbody tr:nth-child(even) {
   width: 72vw;
   height: 65vh;
   overflow: scroll;
+}
+#notif-cadre, #plan-liste {
+  overflow-y: overlay;
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+#notif-cadre::-webkit-scrollbar, #plan-liste::-webkit-scrollbar {
+  display: none;
 }
 #nouveau-client {
   font-size: 1.5vw;
