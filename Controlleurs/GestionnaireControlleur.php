@@ -142,7 +142,7 @@ class GestionnaireControlleur {
            $resultat_update = 0;
 
            if($validation) {
-             $resultat_update = $client->update_personne_mysql($client, $connexion_ecrire);
+             $resultat_update = $client->update_personne_mysql($connexion_ecrire);
            }
 
            if($resultat_update > 0) {
@@ -211,7 +211,7 @@ class GestionnaireControlleur {
            $resultat_update = 0;
 
            if($validation) {
-             $resultat_update = $client->update_mysql($client, $connexion_ecrire);
+             $resultat_update = $client->update_mysql($connexion_ecrire);
            }
 
            if($resultat_update > 0) {
@@ -236,7 +236,7 @@ class GestionnaireControlleur {
            $resultat_delete = 0;
 
            if($validation) {
-             $resultat_delete = $client->delete_personne_mysql($client, $connexion_effacer);
+             $resultat_delete = $client->delete_personne_mysql($connexion_effacer);
            }
 
            if($resultat_delete > 0) {
@@ -275,7 +275,7 @@ class GestionnaireControlleur {
              $resultat_update = 0;
 
              if($validation) {
-               $resultat_update = $plan->update_mysql($plan, $connexion_ecrire);
+               $resultat_update = $plan->update_mysql($connexion_ecrire);
              }
 
              if($resultat_update > 0) {
@@ -302,7 +302,7 @@ class GestionnaireControlleur {
          $resultat_update = 0;
 
          if($validation) {
-           $resultat_update = $notification->update_mysql($notification, $connexion_ecrire);
+           $resultat_update = $notification->update_mysql($connexion_ecrire);
          }
 
          if($resultat_update > 0) {
@@ -330,7 +330,7 @@ class GestionnaireControlleur {
          $resultat_update = 0;
 
          if($validation) {
-           $resultat_update = $notification->update_mysql($notification, $connexion_ecrire);
+           $resultat_update = $notification->update_mysql($connexion_ecrire);
          }
 
          if($resultat_update > 0) {

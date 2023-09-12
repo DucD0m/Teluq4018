@@ -137,7 +137,7 @@ class Authentification {
 
         if($resultat_select === true) {
           $gestionnaire->set_mot_passe($mdp_hashed);
-          $resultat_update = $gestionnaire->update_mysql($gestionnaire, $connexion_ecrire);
+          $resultat_update = $gestionnaire->update_mysql($connexion_ecrire);
 
           if($resultat_update > 0) {
             $_SESSION['message'] = "Le mot de passe a été mis à jour avec succès.";
@@ -180,7 +180,7 @@ class Authentification {
 
             if($resultat_select === true) {
               $specialiste->set_mot_passe($mdp_hashed);
-              $resultat_update = $specialiste->update_mysql($specialiste, $connexion_ecrire);
+              $resultat_update = $specialiste->update_mysql($connexion_ecrire);
 
               if($resultat_update > 0) {
                 $_SESSION['message'] = "Le mot de passe a été mis à jour avec succès.";

@@ -64,7 +64,7 @@ abstract class Personne implements Modele {
     return $this->courriel;
   }
   public function set_courriel(String $courriel) {
-    if (filter_var($courriel, FILTER_VALIDATE_EMAIL)) {
+    if (filter_var($courriel, FILTER_VALIDATE_EMAIL) && strlen($courriel) > 0 && strlen($courriel) <= 96) {
       $this->courriel = $courriel;
       return true;
     }
@@ -102,15 +102,15 @@ abstract class Personne implements Modele {
       return false;
     }
   }
-  public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    if((get_class($obj) === 'Client') && $obj->get_id() > 0) {
+  public function update_mysql(Object $connexion_ecrire) : Int|Bool {
+    if($this->get_id() > 0) {
       $sql = $connexion_ecrire->prepare("UPDATE personnes SET prenom = :prenom, nom = :nom, adresse = :adresse, telephone = :telephone, courriel = :courriel WHERE id = :id");
-      $sql->bindParam(':id', $obj->get_id(), PDO::PARAM_INT);
-      $sql->bindParam(':prenom', $obj->get_prenom(), PDO::PARAM_STR);
-      $sql->bindParam(':nom', $obj->get_nom(), PDO::PARAM_STR);
-      $sql->bindParam(':adresse', $obj->get_adresse(), PDO::PARAM_STR);
-      $sql->bindParam(':telephone', $obj->get_telephone(), PDO::PARAM_INT);
-      $sql->bindParam(':courriel', $obj->get_courriel(), PDO::PARAM_STR);
+      $sql->bindParam(':id', $this->get_id(), PDO::PARAM_INT);
+      $sql->bindParam(':prenom', $this->get_prenom(), PDO::PARAM_STR);
+      $sql->bindParam(':nom', $this->get_nom(), PDO::PARAM_STR);
+      $sql->bindParam(':adresse', $this->get_adresse(), PDO::PARAM_STR);
+      $sql->bindParam(':telephone', $this->get_telephone(), PDO::PARAM_INT);
+      $sql->bindParam(':courriel', $this->get_courriel(), PDO::PARAM_STR);
       $resultat = $sql->execute();
       return $resultat;
     }
@@ -118,10 +118,10 @@ abstract class Personne implements Modele {
       return false;
     }
   }
-  public function delete_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
-    if((get_class($obj) === 'Client') && $obj->get_id() > 0) {
+  public function delete_mysql(Object $connexion_effacer) : Int|Bool {
+    if($this->get_id() > 0) {
       $sql = $connexion_effacer->prepare("DELETE FROM personnes WHERE id = :id");
-      $sql->bindParam(':id', $obj->get_id(), PDO::PARAM_INT);
+      $sql->bindParam(':id', $this->get_id(), PDO::PARAM_INT);
       $resultat = $sql->execute();
       return $resultat;
     }

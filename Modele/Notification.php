@@ -112,14 +112,14 @@ class Notification implements Modele {
       return false;
     }
   }
-  public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    if(get_class($obj) === 'Notification') {
+  public function update_mysql(Object $connexion_ecrire) : Int|Bool {
+    if($this->get_id() > 0) {
 
-      $notification_id = $obj->get_id();
-      $notification_date_heure = $obj->get_date_heure();
-      $notification_type = $obj->get_type();
-      $notification_client = $obj->get_client();
-      $notification_vu = $obj->get_vu();
+      $notification_id = $this->get_id();
+      $notification_date_heure = $this->get_date_heure();
+      $notification_type = $this->get_type();
+      $notification_client = $this->get_client();
+      $notification_vu = $this->get_vu();
 
       $sql = $connexion_ecrire->prepare("UPDATE notifications SET date_heure = :date_heure, type = :type, client = :client, vu = :vu WHERE id = :id");
       $sql->bindParam(':id', $notification_id, PDO::PARAM_INT);
@@ -134,10 +134,10 @@ class Notification implements Modele {
       return false;
     }
   }
-  public function delete_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
-    if((get_class($obj) === 'Notification') && $obj->get_id() > 0) {
+  public function delete_mysql(Object $connexion_effacer) : Int|Bool {
+    if($this->get_id() > 0) {
 
-      $notification_id = $obj->get_id();
+      $notification_id = $this->get_id();
 
       $sql = $connexion_effacer->prepare("DELETE FROM notifications WHERE id = :id");
       $sql->bindParam(':id', $notification_id, PDO::PARAM_INT);

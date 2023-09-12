@@ -72,7 +72,7 @@ class ListeNotifications {
             $n->set_date_heure($date_heure);
             $n->set_type(1);
             $n->set_vu(0);
-            $n->update_mysql($n, $connexion_ecrire);
+            $n->update_mysql($connexion_ecrire);
           }
         }
       }
@@ -109,7 +109,7 @@ class ListeNotifications {
             $n->set_date_heure($date_heure);
             $n->set_type(2);
             $n->set_vu(0);
-            $n->update_mysql($n, $connexion_ecrire);
+            $n->update_mysql($connexion_ecrire);
           }
         }
       }

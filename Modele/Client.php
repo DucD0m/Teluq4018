@@ -108,7 +108,7 @@ class Client extends Personne implements Modele {
     else return false;
   }
 
-  public function select_personne_mysql(Int $id, Object $connexion_lire) : Object|Bool {
+  public function select_personne_mysql(Int $id, Object $connexion_lire) : Bool {
     $resultat = parent::select_mysql($id, $connexion_lire);
 
     if($resultat) {
@@ -185,12 +185,12 @@ class Client extends Personne implements Modele {
       return false;
     }
   }
-  public function update_personne_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    $resultat = parent::update_mysql($obj, $connexion_ecrire);
+  public function update_personne_mysql(Object $connexion_ecrire) : Int|Bool {
+    $resultat = parent::update_mysql($connexion_ecrire);
     return $resultat;
   }
-  public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    if(get_class($obj) === 'Client' && $obj->get_personne() > 0) {
+  public function update_mysql(Object $connexion_ecrire) : Int|Bool {
+    if($this->get_personne() > 0) {
       $sql = $connexion_ecrire->prepare("UPDATE clients SET
         renouvellement = :renouvellement,
         fin_abonnement = :fin_abonnement,
@@ -200,14 +200,14 @@ class Client extends Personne implements Modele {
         cours_groupe_semaine = :cours_groupe_semaine,
         plan = :plan
         WHERE personne = :personne");
-      $sql->bindParam(':personne', $obj->get_personne(), PDO::PARAM_INT);
-      $sql->bindParam(':renouvellement', $obj->get_renouvellement(), PDO::PARAM_STR);
-      $sql->bindParam(':fin_abonnement', $obj->get_fin_abonnement(), PDO::PARAM_STR);
-      $sql->bindParam(':fin_acces_appareils', $obj->get_fin_acces_appareils(), PDO::PARAM_STR);
-      $sql->bindParam(':heures_specialistes', $obj->get_heures_specialistes(), PDO::PARAM_INT);
-      $sql->bindParam(':heures_specialistes_utilise', $obj->get_heures_specialistes_utilise(), PDO::PARAM_INT);
-      $sql->bindParam(':cours_groupe_semaine', $obj->get_cours_groupe_semaine(), PDO::PARAM_INT);
-      $sql->bindParam(':plan', $obj->get_plan(), PDO::PARAM_INT);
+      $sql->bindParam(':personne', $this->get_personne(), PDO::PARAM_INT);
+      $sql->bindParam(':renouvellement', $this->get_renouvellement(), PDO::PARAM_STR);
+      $sql->bindParam(':fin_abonnement', $this->get_fin_abonnement(), PDO::PARAM_STR);
+      $sql->bindParam(':fin_acces_appareils', $this->get_fin_acces_appareils(), PDO::PARAM_STR);
+      $sql->bindParam(':heures_specialistes', $this->get_heures_specialistes(), PDO::PARAM_INT);
+      $sql->bindParam(':heures_specialistes_utilise', $this->get_heures_specialistes_utilise(), PDO::PARAM_INT);
+      $sql->bindParam(':cours_groupe_semaine', $this->get_cours_groupe_semaine(), PDO::PARAM_INT);
+      $sql->bindParam(':plan', $this->get_plan(), PDO::PARAM_INT);
       $resultat = $sql->execute();
       return $resultat;
     }
@@ -215,12 +215,12 @@ class Client extends Personne implements Modele {
       return false;
     }
   }
-  public function delete_personne_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
+  public function delete_personne_mysql(Object $connexion_effacer) : Int|Bool {
     // La clé étrangère est configuré "ON DELETE CASCADE". En effaçant la personne, on efface automatiquement le client.
-    $resultat = parent::delete_mysql($obj, $connexion_effacer);
+    $resultat = parent::delete_mysql($connexion_effacer);
     return $resultat;
   }
-  public function delete_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
+  public function delete_mysql(Object $connexion_effacer) : Int|Bool {
     // Code lorsque requis...
   }
 }

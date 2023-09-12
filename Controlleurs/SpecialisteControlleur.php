@@ -84,7 +84,7 @@ class SpecialisteControlleur {
               $heures_specialistes_utilise = $client->get_heures_specialistes_utilise() + 1;
               $client->set_heures_specialistes_utilise($heures_specialistes_utilise);
 
-              $resultat_update = $client->update_mysql($client, $connexion_ecrire);
+              $resultat_update = $client->update_mysql($connexion_ecrire);
 
               if($resultat_update > 0) {
                 $_SESSION['message'] .= "La mise à jour des heures spécialistes du client a été accomplie avec succès.";
@@ -100,7 +100,7 @@ class SpecialisteControlleur {
           // Si le client a utilisé toutes ses heures spécialistes. On remeà zéro.
           $client->set_heures_specialistes(0);
           $client->set_heures_specialistes_utilise(0);
-          $client->update_mysql($client, $connexion_ecrire);
+          $client->update_mysql($connexion_ecrire);
           $_SESSION['message'] = "Le rendez-vous ne peut être fixé. La banque d'heures du client est vide.";
         }
 

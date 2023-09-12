@@ -10,13 +10,21 @@ class Specialite implements Modele {
     return $this->id;
   }
   public function set_id(Int $id) {
-    $this->id = $id;
+    if($id > 0) {
+      $this->id = $id;
+      return true;
+    }
+    else return false;
   }
   public function get_nom() : String {
     return $this->nom;
   }
   public function set_nom(String $nom) {
-    $this->nom = $nom;
+    if(strlen($nom) > 0 && strlen($nom) <= 32) {
+      $this->nom = $nom;
+      return true;
+    }
+    else return false;
   }
 
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
@@ -27,10 +35,12 @@ class Specialite implements Modele {
       $specialite = $sql->fetch(PDO::FETCH_OBJ);
 
       if($specialite) {
-        $this->set_id($specialite->id);
-        $this->set_nom($specialite->nom);
+        $validation = true;
 
-        return true;
+        $validation = $this->set_id($specialite->id);
+        $validation = $this->set_nom($specialite->nom);
+
+        return $validation;
       }
       else return false;
     }
@@ -41,10 +51,10 @@ class Specialite implements Modele {
   public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     // Code ici lorsque requis...
   }
-  public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
+  public function update_mysql(Object $connexion_ecrire) : Int|Bool {
     // Code ici lorsque requis...
   }
-  public function delete_mysql(Object $obj, Object $connexion_effacer) :Int|Bool {
+  public function delete_mysql(Object $connexion_effacer) :Int|Bool {
     // Code ici lorsque requis...
   }
 }

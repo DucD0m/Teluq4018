@@ -10,24 +10,43 @@ class Gestionnaire extends Personne implements Modele {
     return $this->personne;
   }
   public function set_personne(Int $personne) {
-    $this->personne = $personne;
+    if($personne > 0) {
+      $this->personne = $personne;
+      return true;
+    }
+    else return false;
   }
   public function get_mot_passe() : String {
     return $this->mot_passe;
   }
   public function set_mot_passe(String $mot_passe) {
-    $this->mot_passe = $mot_passe;
+    if(strlen($mot_passe) == 97) {
+      $this->mot_passe = $mot_passe;
+      return true;
+    }
+    else return false;
   }
 
-  public function select_personne_mysql(Int $id, Object $connexion_lire) : Object|Bool {
-    $resultat = parent::select_mysql($id, $connexion_lire);
-    $this->set_id($resultat->id);
-    $this->set_prenom($resultat->prenom);
-    $this->set_nom($resultat->nom);
-    $this->set_adresse($resultat->adresse);
-    $this->set_telephone($resultat->telephone);
-    $this->set_courriel($resultat->courriel);
-    return true;
+  public function select_personne_mysql(Int $id, Object $connexion_lire) : Bool {
+    if($id > 0) {
+
+      $resultat = parent::select_mysql($id, $connexion_lire);
+
+      if($resultat) {
+        $validation = true;
+
+        $validation = $this->set_id($resultat->id);
+        $validation = $this->set_prenom($resultat->prenom);
+        $validation = $this->set_nom($resultat->nom);
+        $validation = $this->set_adresse($resultat->adresse);
+        $validation = $this->set_telephone($resultat->telephone);
+        $validation = $this->set_courriel($resultat->courriel);
+
+        return $validation;
+      }
+      else return false;
+    }
+    else return false;
   }
 
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
@@ -38,16 +57,18 @@ class Gestionnaire extends Personne implements Modele {
       $gestionnaire = $sql->fetch(PDO::FETCH_OBJ);
 
       if($gestionnaire) {
-        $this->set_id($gestionnaire->id);
-        $this->set_prenom($gestionnaire->prenom);
-        $this->set_nom($gestionnaire->nom);
-        $this->set_adresse($gestionnaire->adresse);
-        $this->set_telephone(intval($gestionnaire->telephone));
-        $this->set_courriel($gestionnaire->courriel);
-        $this->set_personne($gestionnaire->personne);
-        $this->set_mot_passe($gestionnaire->mot_passe);
+        $validation = true;
 
-        return true;
+        $validation = $this->set_id($gestionnaire->id);
+        $validation = $this->set_prenom($gestionnaire->prenom);
+        $validation = $this->set_nom($gestionnaire->nom);
+        $validation = $this->set_adresse($gestionnaire->adresse);
+        $validation = $this->set_telephone(intval($gestionnaire->telephone));
+        $validation = $this->set_courriel($gestionnaire->courriel);
+        $validation = $this->set_personne($gestionnaire->personne);
+        $validation = $this->set_mot_passe($gestionnaire->mot_passe);
+
+        return $validation;
       }
       else return false;
     }
@@ -58,13 +79,13 @@ class Gestionnaire extends Personne implements Modele {
   public function insert_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
     // Code ici lorsque requis...
   }
-  public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    if(get_class($obj) === 'Gestionnaire' && $obj->get_personne() > 0) {
+  public function update_mysql(Object $connexion_ecrire) : Int|Bool {
+    if($this->get_personne() > 0) {
       $sql = $connexion_ecrire->prepare("UPDATE gestionnaires SET
         mot_passe = :mot_passe
         WHERE personne = :personne");
-      $sql->bindParam(':personne', $obj->get_personne(), PDO::PARAM_INT);
-      $sql->bindParam(':mot_passe', $obj->get_mot_passe(), PDO::PARAM_STR);
+      $sql->bindParam(':personne', $this->get_personne(), PDO::PARAM_INT);
+      $sql->bindParam(':mot_passe', $this->get_mot_passe(), PDO::PARAM_STR);
       $resultat = $sql->execute();
       return $resultat;
     }
@@ -72,7 +93,7 @@ class Gestionnaire extends Personne implements Modele {
       return false;
     }
   }
-  public function delete_mysql(Object $obj, Object $connexion_effacer) : Int|Bool {
+  public function delete_mysql(Object $connexion_effacer) : Int|Bool {
     // Code ici lorsque requis...
   }
 }
