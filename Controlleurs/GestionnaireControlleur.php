@@ -104,7 +104,7 @@ class GestionnaireControlleur {
         }
 
         $validation = $client->set_heures_specialistes(intval($_POST['client-spec']));
-        $validation = $client->set_heures_specialistes_utilise(-1);
+        $validation = $client->set_heures_specialistes_utilise(0);
         $validation = $client->set_cours_groupe_semaine(intval($_POST['client-groupes']));
         $validation = $client->set_plan($_POST['plan-id']);
 
