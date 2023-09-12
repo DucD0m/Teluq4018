@@ -36,7 +36,7 @@ class GestionnaireControlleur {
       else if(isset($_POST['visualiser-compte']) && $_POST['visualiser-compte'] === 'oui') {
         $_SESSION['page'] = "PageClient";
         unset($_SESSION['client-id']);
-        
+
         $client_id_pos = strpos($_POST['vis-client']," -");
         $client_id = substr($_POST['vis-client'],0,$client_id_pos);
 
@@ -75,8 +75,10 @@ class GestionnaireControlleur {
       else if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
          isset($_POST['formulaire-nouveau-client']) && $_POST['formulaire-nouveau-client'] === 'oui') {
 
+        $validation = true;
+
         $plan = new Plan();
-        $plan->select_mysql($_POST['plan-id'], $connexion_lire);
+        $validation = $plan->select_mysql($_POST['plan-id'], $connexion_lire);
 
         $client = new Client();
         $client->set_prenom($_POST['nouveau-prenom']);
