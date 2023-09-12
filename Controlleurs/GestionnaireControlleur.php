@@ -238,7 +238,7 @@ class GestionnaireControlleur {
            if($validation) {
              $resultat_delete = $client->delete_personne_mysql($client, $connexion_effacer);
            }
-           
+
            if($resultat_delete > 0) {
              $_SESSION['message'] = "Le compte a été supprimé avec succès.";
              unset($_SESSION['client-id']);
@@ -258,18 +258,32 @@ class GestionnaireControlleur {
            unset($_POST['formulaire-modifier-plans']);
            unset($_POST['csrf_token']);
 
+           $_SESSION['message'] = "";
+
            foreach ($_POST as $prix) {
+
+             $validation = true;
+
              $plan = new Plan();
              $plan_id = $prix[0];
              $plan_prix_cours_groupe = $prix[1];
              $plan_prix = $prix[2];
-             $plan->select_mysql($plan_id,$connexion_lire);
-             $plan->set_prix_cours_groupe($plan_prix_cours_groupe);
-             $plan->set_prix($plan_prix);
-             $resultat_update = $plan->update_mysql($plan, $connexion_ecrire);
+             $validation = $plan->select_mysql($plan_id,$connexion_lire);
+             if(!$plan->set_prix_cours_groupe($plan_prix_cours_groupe)) $validation = false;
+             if(!$plan->set_prix($plan_prix)) $validation = false;
+
+             $resultat_update = 0;
+
+             if($validation) {
+               $resultat_update = $plan->update_mysql($plan, $connexion_ecrire);
+             }
+
+             if($resultat_update > 0) {
+               // On laisse le message tel quel.
+             }
+             else $_SESSION['message'] = "Il y a eu un problème avec la modification des prix. Veuillez vérifier et essayer de nouveau";
            }
-           if($resultat_update > 0) $_SESSION['message'] = "Les prix ont été modifiés avec succès.";
-           else $_SESSION['message'] = "Il y a eu un problème avec la modification des prix. Veuillez vérifier et essayer de nouveau";
+           if($_SESSION['message'] === '') $_SESSION['message'] = "Les prix ont été modifiés avec succès.";
            redirection();
       }
       // Marquer une notification comme vue.
