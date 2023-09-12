@@ -142,9 +142,10 @@ class PagePlans {
                     }
                     else if(val.indexOf("$") >= 0) {
               				val = parseFloat(val.replace('$','')).toFixed(2);
-              				if(Number.isFinite(parseFloat(val))) {
+              				if(Number.isFinite(parseFloat(val)) && val >= 0 && val < 1000) {
               					$(this).val(val);
               				}
+                      else validation = false;
                     }
                     else {
                       validation = false;
