@@ -34,7 +34,7 @@ class TypeNotification implements Modele {
       $sql->execute();
       $types_notifications = $sql->fetch(PDO::FETCH_OBJ);
 
-      if($type_notifications) {
+      if($types_notifications) {
         $validation = true;
 
         $validation = $this->set_id($types_notifications->id);
