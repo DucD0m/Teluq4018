@@ -17,6 +17,7 @@ class SpecialisteControlleur {
     $specialite = new Specialite();
     $specialite->select_mysql($specialiste->get_specialite(), $connexion_lire);
 
+    // Insertion d'un rendez-vous dans la BD.
     // On valide le token csrf, le formulaire et les entrées de l'utilisateur.
     if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
        isset($_POST['formulaire-rendez-vous-specialiste']) && $_POST['formulaire-rendez-vous-specialiste'] === 'oui' &&
@@ -24,16 +25,18 @@ class SpecialisteControlleur {
        isset($_POST['rdv-date']) && isset($_POST['rdv-heure']) &&
        date_format(date_create($_POST['rdv-date']." ".$_POST['rdv-heure']), "Y-m-d H:i")) {
 
-        $client_id_pos = strpos($_POST['rdv-client']," -");
-        $client_id = substr($_POST['rdv-client'],0,$client_id_pos);
+         $validation = true;
+
+        $client_id_pos = strpos(strval($_POST['rdv-client'])," -");
+        $client_id = substr(strval($_POST['rdv-client']),0,$client_id_pos);
 
         $date_heure = $_POST['rdv-date']." ".$_POST['rdv-heure'];
         $date_format = date_format(date_create($_POST['rdv-date']." ".$_POST['rdv-heure']), "Y-m-d H:i:s");
 
         $client = new Client();
-        $validation_client = $client->select_mysql($client_id, $connexion_lire);
+        $validation = $client->select_mysql($client_id, $connexion_lire);
 
-        if($validation_client === false) {
+        if($validation === false) {
             $_SESSION['message'] .= "Le compte client n'a pu être récupéré. Veuilez vérifier et essayer de nouveau.";
         }
 
@@ -72,19 +75,27 @@ class SpecialisteControlleur {
           if($rdv_specialiste_verification === false && $rdv_client_verification === false) {
 
             $rendez_vous = new RendezVous();
-            $rendez_vous->set_date_heure($date_heure);
-            $rendez_vous->set_client($client->get_personne());
-            $rendez_vous->set_specialiste($specialiste->get_specialiste_id());
+            $validation = $rendez_vous->set_date_heure($date_heure);
+            $validation = $rendez_vous->set_client($client->get_personne());
+            $validation = $rendez_vous->set_specialiste($specialiste->get_specialiste_id());
 
-            $resultat_insertion = $rendez_vous->insert_mysql($rendez_vous, $connexion_ecrire);
+            $resultat_insertion = 0;
+
+            if($validation) {
+              $resultat_insertion = $rendez_vous->insert_mysql($rendez_vous, $connexion_ecrire);
+            }
 
             if($resultat_insertion > 0) {
               $_SESSION['message'] = "Le nouveau rendez-vous a été fixé avec succès.";
 
               $heures_specialistes_utilise = $client->get_heures_specialistes_utilise() + 1;
-              $client->set_heures_specialistes_utilise($heures_specialistes_utilise);
+              $validation = $client->set_heures_specialistes_utilise($heures_specialistes_utilise);
 
-              $resultat_update = $client->update_mysql($connexion_ecrire);
+              $resultat_update = 0;
+
+              if($validation) {
+                $resultat_update = $client->update_mysql($connexion_ecrire);
+              }
 
               if($resultat_update > 0) {
                 $_SESSION['message'] .= "La mise à jour des heures spécialistes du client a été accomplie avec succès.";
