@@ -15,43 +15,71 @@ class Plan implements Modele {
     return $this->id;
   }
   public function set_id(Int $id) {
-    $this->id = $id;
+    if($id > 0) {
+      $this->id = $id;
+      return true;
+    }
+    else return false;
   }
   public function get_nom() : String {
     return $this->nom;
   }
   public function set_nom(String $nom) {
-    $this->nom = $nom;
+    if(strlen($nom) > 0 && strlen($nom) <= 48) {
+      $this->nom = $nom;
+      return true;
+    }
+    else return false;
   }
   public function get_duree() : Int {
     return $this->duree;
   }
   public function set_duree(Int $duree) {
-    $this->duree = $duree;
+    if($duree >= 0 && $duree <= 127) {
+      $this->duree = $duree;
+      return true;
+    }
+    else return false;
   }
-  public function get_prix() : Float{
+  public function get_prix() : Float {
     return $this->prix;
   }
   public function set_prix(Float $prix) {
-    $this->prix = $prix;
+    if($prix >= -9999.99 && $prix <= 9999.99) {
+      $this->prix = $prix;
+      return true;
+    }
+    else return false;
   }
   public function get_acces_appareils() : Int {
     return $this->acces_appareils;
   }
   public function set_acces_appareils(Int $acces_appareils) {
-    $this->acces_appareils = $acces_appareils;
+    if($acces_appareils >= 0 && $acces_appareils <= 127) {
+      $this->acces_appareils = $acces_appareils;
+      return true;
+    }
+    else return false;
   }
   public function get_acces_cours_groupe() : Int {
     return $this->acces_cours_groupe;
   }
   public function set_acces_cours_groupe(Int $acces_cours_groupe) {
-    $this->acces_cours_groupe = $acces_cours_groupe;
+    if($acces_cours_groupe >= 0 && $acces_cours_groupe <= 127) {
+      $this->acces_cours_groupe = $acces_cours_groupe;
+      return true;
+    }
+    else return false;
   }
   public function get_prix_cours_groupe() : Float {
     return $this->prix_cours_groupe;
   }
   public function set_prix_cours_groupe(Float $prix_cours_groupe) {
-    $this->prix_cours_groupe = $prix_cours_groupe;
+    if($prix_cours_groupe >= -9999.99 && $prix_cours_groupe <= 9999.99) {
+      $this->prix_cours_groupe = $prix_cours_groupe;
+      return true;
+    }
+    else return false;
   }
 
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
@@ -62,14 +90,17 @@ class Plan implements Modele {
       $plan = $sql->fetch(PDO::FETCH_OBJ);
 
       if($plan) {
-        $this->set_id($plan->id);
-        $this->set_nom($plan->nom);
-        $this->set_duree($plan->duree);
-        $this->set_prix(floatval($plan->prix));
-        $this->set_acces_appareils($plan->acces_appareils);
-        $this->set_acces_cours_groupe($plan->acces_cours_groupe);
-        $this->set_prix_cours_groupe(floatval($plan->prix_cours_groupe));
-        return true;
+        $validation = true;
+
+        $validation = $this->set_id($plan->id);
+        $validation = $this->set_nom($plan->nom);
+        $validation = $this->set_duree($plan->duree);
+        $validation = $this->set_prix(floatval($plan->prix));
+        $validation = $this->set_acces_appareils($plan->acces_appareils);
+        $validation = $this->set_acces_cours_groupe($plan->acces_cours_groupe);
+        $validation = $this->set_prix_cours_groupe(floatval($plan->prix_cours_groupe));
+
+        return $validation;
       }
       else return false;
     }
@@ -81,7 +112,7 @@ class Plan implements Modele {
     // Code lorsque requis...
   }
   public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    if(get_class($obj) === 'Plan') {
+    if(get_class($obj) === 'Plan' && $obj->get_personne() > 0) {
 
       $plan_id = $obj->get_id();
       $plan_prix = $obj->get_prix();

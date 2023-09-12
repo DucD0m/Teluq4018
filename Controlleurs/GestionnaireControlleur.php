@@ -128,16 +128,22 @@ class GestionnaireControlleur {
       else if (isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
          isset($_POST['formulaire-client-personne']) && $_POST['formulaire-client-personne'] === 'oui') {
 
+           $validation = true;
+
            $client = new Client();
-           $client->select_mysql($_POST['client-id'], $connexion_lire);
+           $validation = $client->select_mysql($_POST['client-id'], $connexion_lire);
 
-           $client->set_prenom($_POST['client-prenom']);
-           $client->set_nom($_POST['client-nom']);
-           $client->set_adresse($_POST['client-adresse']);
-           $client->set_telephone(intval($_POST['client-telephone']));
-           $client->set_courriel($_POST['client-courriel']);
+           if(!$client->set_prenom($_POST['client-prenom'])) $validation = false;
+           if(!$client->set_nom($_POST['client-nom'])) $validation = false;
+           if(!$client->set_adresse($_POST['client-adresse'])) $validation = false;
+           if(!$client->set_telephone(intval($_POST['client-telephone']))) $validation = false;
+           if(!$client->set_courriel($_POST['client-courriel'])) $validation = false;
 
-           $resultat_update = $client->update_personne_mysql($client, $connexion_ecrire);
+           $resultat_update = 0;
+
+           if($validation) {
+             $resultat_update = $client->update_personne_mysql($client, $connexion_ecrire);
+           }
 
            if($resultat_update > 0) {
              $_SESSION['message'] = "La mise à jour des informations personnelles du client a été accomplie avec succès.";
@@ -153,11 +159,13 @@ class GestionnaireControlleur {
       else if (isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
          isset($_POST['formulaire-client-plan']) && $_POST['formulaire-client-plan'] === 'oui') {
 
+           $validation = true;
+
            $plan = new Plan();
-           $plan->select_mysql($_POST['plan-id'], $connexion_lire);
+           $validation = $plan->select_mysql($_POST['plan-id'], $connexion_lire);
 
            $client = new Client();
-           $client->select_mysql($_POST['client-personne'], $connexion_lire);
+           $validation = $client->select_mysql($_POST['client-personne'], $connexion_lire);
 
            // Si on ajoute des heures spécialistes à un abonnement. On ne change pas la date de renouvellement.
            if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') {
@@ -166,12 +174,12 @@ class GestionnaireControlleur {
            // Si on prolonge un abonnement précédent qui vient à échéance d'ici 30jours.
            else if(strtotime($client->get_fin_abonnement()) >= strtotime($date) && strtotime($date) >= strtotime($client->get_fin_abonnement()." -1 month")) {
              // La date de fin d'abonnement devient la date de renouvellement.
-             $client->set_renouvellement(date("Y-m-d",strtotime($client->get_fin_abonnement())));
+             if(!$client->set_renouvellement(date("Y-m-d",strtotime($client->get_fin_abonnement())))) $validation = false;
            }
            // Si on ajoute un nouvel abonnement après la date d'échéance de l'abonnement précédent.
            else {
              // La date de renouvellement est aujourd'hui.
-             $client->set_renouvellement($date);
+             if(!$client->set_renouvellement($date)) $validation = false;
            }
 
            if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') {
@@ -180,25 +188,31 @@ class GestionnaireControlleur {
            }
            else {
              $fin_abonnement = date("Y-m-d",strtotime($client->get_renouvellement()." +".$plan->get_duree()." months"));
-             $client->set_fin_abonnement($fin_abonnement);
-             $client->set_plan($_POST['plan-id']);
+             if(!$client->set_fin_abonnement($fin_abonnement)) $validation = false;
+             if(!$client->set_plan($_POST['plan-id'])) $validation = false;
            }
 
            if($plan->get_acces_appareils() == 1) {
              $fin_acces_appareils = date("Y-m-d",strtotime($client->get_renouvellement()." +".$plan->get_duree()." months"));
-             $client->set_fin_acces_appareils($fin_acces_appareils);
+             if(!$client->set_fin_acces_appareils($fin_acces_appareils)) $validation = false;
            }
 
            // On ajoute les nouvelles heures spécialistes. On ne remet jamais le compteur à 0 ici. (Le compteur est remis à 0 lorsque le client
            // utilise sa dernière heure.)
            $somme_heures_specialistes = $client->get_heures_specialistes() + intval($_POST['client-spec']);
-           $client->set_heures_specialistes($somme_heures_specialistes);
+           if(!$client->set_heures_specialistes($somme_heures_specialistes)) $validation = false;
            if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') {
              // On garde le même nombre de cours de groupe.
            }
-           else $client->set_cours_groupe_semaine(intval($_POST['client-groupes']));
+           else {
+             if(!$client->set_cours_groupe_semaine(intval($_POST['client-groupes']))) $validation = false;
+           }
 
-           $resultat_update = $client->update_mysql($client, $connexion_ecrire);
+           $resultat_update = 0;
+
+           if($validation) {
+             $resultat_update = $client->update_mysql($client, $connexion_ecrire);
+           }
 
            if($resultat_update > 0) {
              $_SESSION['message'] = "La mise à jour du plan du client a été accomplie avec succès.";

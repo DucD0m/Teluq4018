@@ -14,7 +14,11 @@ abstract class Personne implements Modele {
     return $this->id;
   }
   public function set_id(Int $id) {
-    $this->id = $id;
+    if($id > 0) {
+      $this->id = $id;
+      return true;
+    }
+    else return false;
   }
   public function get_prenom() : String {
     return $this->prenom;
@@ -72,7 +76,11 @@ abstract class Personne implements Modele {
       $sql->bindParam(':id', $id, PDO::PARAM_INT);
       $sql->execute();
       $personne = $sql->fetch(PDO::FETCH_OBJ);
-      return $personne;
+
+      if($personne) {
+        return $personne;
+      }
+      else return false;
     }
     else {
       return false;
