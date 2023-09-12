@@ -40,7 +40,7 @@ abstract class Personne implements Modele {
     return $this->adresse;
   }
   public function set_adresse(String $adresse) {
-    if(strlen($nom) > 0 && strlen($nom) <= 256) {
+    if(strlen($adresse) > 0 && strlen($adresse) <= 256) {
       $this->adresse = $adresse;
       return true;
     }
