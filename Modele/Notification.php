@@ -7,37 +7,58 @@ class Notification implements Modele {
   private String $date_heure = "";
   private Int $type = 0;
   private Int $client = 0;
-  private Int $vu = 0; // 0 = non vu, 1 = vu, 2 = non visible. 
+  private Int $vu = 0; // 0 = non vu, 1 = vu, 2 = non visible.
 
   public function get_id() : Int {
     return $this->id;
   }
   public function set_id(Int $id) {
-    $this->id = $id;
+    if($id > 0) {
+      $this->id = $id;
+      return true;
+    }
+    else return false;
   }
   public function get_date_heure() : String {
     return $this->date_heure;
   }
   public function set_date_heure(String $date_heure) {
-    $this->date_heure = $date_heure;
+    $date = date_create($date_heure);
+    if(date_format($date,"Y-m-d H:i:s")) {
+      $this->date_heure = date_format($date,"Y-m-d H:i:s");
+      return true;
+    }
+    else return false;
   }
   public function get_type() : Int{
     return $this->type;
   }
   public function set_type(Int $type) {
-    $this->type = $type;
+    if($type > 0) {
+      $this->type = $type;
+      return true;
+    }
+    else return false;
   }
   public function get_client() : Int {
     return $this->client;
   }
   public function set_client(Int $client) {
-    $this->client = $client;
+    if($client > 0) {
+      $this->client = $client;
+      return true;
+    }
+    else return false;
   }
   public function get_vu() : Int {
     return $this->vu;
   }
   public function set_vu(Int $vu) {
-    $this->vu = $vu;
+    if($vu >= 0 && $vu <= 255) {
+      $this->vu = $vu;
+      return true;
+    }
+    else return false;
   }
 
   public function select_mysql(Int $id, Object $connexion_lire) : Object|Bool {
@@ -46,12 +67,19 @@ class Notification implements Modele {
       $sql->bindParam(':id', $id, PDO::PARAM_INT);
       $sql->execute();
       $notification = $sql->fetch(PDO::FETCH_OBJ);
-      $this->set_id($notification->id);
-      $this->set_date_heure($notification->date_heure);
-      $this->set_type($notification->type);
-      $this->set_client($notification->client);
-      $this->set_vu($notification->vu);
-      return true;
+
+      if($notification) {
+        $validation = true;
+
+        $validation =  $this->set_id($notification->id);
+        $validation =  $this->set_date_heure($notification->date_heure);
+        $validation =  $this->set_type($notification->type);
+        $validation =  $this->set_client($notification->client);
+        $validation =  $this->set_vu($notification->vu);
+
+        return $validation;
+      }
+      else return false;
     }
     else {
       return false;

@@ -37,8 +37,8 @@ class GestionnaireControlleur {
         $_SESSION['page'] = "PageClient";
         unset($_SESSION['client-id']);
 
-        $client_id_pos = strpos($_POST['vis-client']," -");
-        $client_id = substr($_POST['vis-client'],0,$client_id_pos);
+        $client_id_pos = strpos(strval($_POST['vis-client']," -"));
+        $client_id = substr(strval($_POST['vis-client'],0,$client_id_pos));
 
         if(intval($client_id) > 0) {
           $_SESSION['client-id'] = $client_id;
@@ -78,14 +78,14 @@ class GestionnaireControlleur {
         $validation = true;
 
         $plan = new Plan();
-        $validation = $plan->select_mysql($_POST['plan-id'], $connexion_lire);
+        $validation = $plan->select_mysql(intval($_POST['plan-id']), $connexion_lire);
 
         $client = new Client();
-        if(!$client->set_prenom($_POST['nouveau-prenom'])) $validation = false;
-        if(!$client->set_nom($_POST['nouveau-nom'])) $validation = false;
-        if(!$client->set_adresse($_POST['nouveau-adresse'])) $validation = false;
+        if(!$client->set_prenom(strval($_POST['nouveau-prenom']))) $validation = false;
+        if(!$client->set_nom(strval($_POST['nouveau-nom']))) $validation = false;
+        if(!$client->set_adresse(strval($_POST['nouveau-adresse']))) $validation = false;
         if(!$client->set_telephone(intval($_POST['nouveau-telephone']))) $validation = false;
-        if(!$client->set_courriel($_POST['nouveau-courriel'])) $validation = false;
+        if(!$client->set_courriel(strval($_POST['nouveau-courriel']))) $validation = false;
         if(!$client->set_adhesion($date)) $validation = false;
         if(!$client->set_renouvellement($date)) $validation = false;
 
@@ -108,7 +108,7 @@ class GestionnaireControlleur {
         if(!$client->set_heures_specialistes(intval($_POST['client-spec']))) $validation = false;
         if(!$client->set_heures_specialistes_utilise(0)) $validation = false;
         if(!$client->set_cours_groupe_semaine(intval($_POST['client-groupes']))) $validation = false;
-        if(!$client->set_plan($_POST['plan-id'])) $validation = false;
+        if(!$client->set_plan(intval($_POST['plan-id']))) $validation = false;
 
         $resultat_insertion = 0;
 
@@ -131,13 +131,13 @@ class GestionnaireControlleur {
            $validation = true;
 
            $client = new Client();
-           $validation = $client->select_mysql($_POST['client-id'], $connexion_lire);
+           $validation = $client->select_mysql(intval($_POST['client-id']), $connexion_lire);
 
-           if(!$client->set_prenom($_POST['client-prenom'])) $validation = false;
-           if(!$client->set_nom($_POST['client-nom'])) $validation = false;
-           if(!$client->set_adresse($_POST['client-adresse'])) $validation = false;
+           if(!$client->set_prenom(strval($_POST['client-prenom']))) $validation = false;
+           if(!$client->set_nom(strval($_POST['client-nom']))) $validation = false;
+           if(!$client->set_adresse(strval($_POST['client-adresse']))) $validation = false;
            if(!$client->set_telephone(intval($_POST['client-telephone']))) $validation = false;
-           if(!$client->set_courriel($_POST['client-courriel'])) $validation = false;
+           if(!$client->set_courriel(strval($_POST['client-courriel']))) $validation = false;
 
            $resultat_update = 0;
 
@@ -162,10 +162,10 @@ class GestionnaireControlleur {
            $validation = true;
 
            $plan = new Plan();
-           $validation = $plan->select_mysql($_POST['plan-id'], $connexion_lire);
+           $validation = $plan->select_mysql(intval($_POST['plan-id']), $connexion_lire);
 
            $client = new Client();
-           $validation = $client->select_mysql($_POST['client-personne'], $connexion_lire);
+           $validation = $client->select_mysql(intval($_POST['client-personne']), $connexion_lire);
 
            // Si on ajoute des heures spécialistes à un abonnement. On ne change pas la date de renouvellement.
            if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') {
@@ -189,7 +189,7 @@ class GestionnaireControlleur {
            else {
              $fin_abonnement = date("Y-m-d",strtotime($client->get_renouvellement()." +".$plan->get_duree()." months"));
              if(!$client->set_fin_abonnement($fin_abonnement)) $validation = false;
-             if(!$client->set_plan($_POST['plan-id'])) $validation = false;
+             if(!$client->set_plan(intval($_POST['plan-id']))) $validation = false;
            }
 
            if($plan->get_acces_appareils() == 1) {
@@ -200,7 +200,7 @@ class GestionnaireControlleur {
            // On ajoute les nouvelles heures spécialistes. On ne remet jamais le compteur à 0 ici. (Le compteur est remis à 0 lorsque le client
            // utilise sa dernière heure.)
            $somme_heures_specialistes = $client->get_heures_specialistes() + intval($_POST['client-spec']);
-           if(!$client->set_heures_specialistes($somme_heures_specialistes)) $validation = false;
+           if(!$client->set_heures_specialistes(intval($somme_heures_specialistes))) $validation = false;
            if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') {
              // On garde le même nombre de cours de groupe.
            }
@@ -231,7 +231,7 @@ class GestionnaireControlleur {
            $validation = true;
 
            $client = new Client();
-           $validation = $client->select_mysql($_POST['client-personne'], $connexion_lire);
+           $validation = $client->select_mysql(intval($_POST['client-personne']), $connexion_lire);
 
            $resultat_delete = 0;
 
@@ -291,14 +291,26 @@ class GestionnaireControlleur {
          isset($_POST['formulaire-notification-vu']) && $_POST['formulaire-notification-vu'] === 'oui' &&
          isset($_POST['notification-vu-id']) && intval($_POST['notification-vu-id']) > 0) {
 
+         $vaidation = true;
          $id = intval($_POST['notification-vu-id']);
 
          $notification = new Notification();
-         $resultat_select = $notification->select_mysql($id, $connexion_lire);
+         $validation = $notification->select_mysql($id, $connexion_lire);
 
-         $notification->set_vu(1);
-         $resultat_update = $notification->update_mysql($notification, $connexion_ecrire);
+         if(!$notification->set_vu(1)) $validation = false;
 
+         $resultat_update = 0;
+
+         if($validation) {
+           $resultat_update = $notification->update_mysql($notification, $connexion_ecrire);
+         }
+
+         if($resultat_update > 0) {
+           // Aucun message. L'utilisateur va voir les changements visuellement.
+         }
+         else {
+           $_SESSION['message'] = "Il y a eu un problème avec la mise à jour de la notification. Veuillez vérifier et essayer de nouveau.";
+         }
          redirection();
       }
       // Supprimer une notification
@@ -306,14 +318,27 @@ class GestionnaireControlleur {
          isset($_POST['formulaire-notification-supprimer']) && $_POST['formulaire-notification-supprimer'] === 'oui' &&
          isset($_POST['notification-supprimer-id']) && intval($_POST['notification-supprimer-id']) > 0) {
 
+         $validation = true;
+
          $id = intval($_POST['notification-supprimer-id']);
 
          $notification = new Notification();
-         $resultat_select = $notification->select_mysql($id, $connexion_lire);
+         $validation = $notification->select_mysql($id, $connexion_lire);
 
-         $notification->set_vu(2);
-         $resultat_update = $notification->update_mysql($notification, $connexion_ecrire);
+         if(!$notification->set_vu(2)) $validation = false;
 
+         $resultat_update = 0;
+
+         if($validation) {
+           $resultat_update = $notification->update_mysql($notification, $connexion_ecrire);
+         }
+
+         if($resultat_update > 0) {
+           // Aucun message. L'utilisateur va voir les changements visuellement.
+         }
+         else {
+           $_SESSION['message'] = "Il y a eu un problème avec la mise à jour de la notification. Veuillez vérifier et essayer de nouveau.";
+         }
          redirection();
       }
 
