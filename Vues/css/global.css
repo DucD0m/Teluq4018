@@ -383,14 +383,14 @@ tbody tr:nth-child(even) {
   height: 65vh;
   overflow: scroll;
 }
-#notif-cadre, #plan-liste {
+#notif-cadre, #plans-liste {
   overflow-y: overlay;
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
 /* Hide scrollbar for Chrome, Safari and Opera */
-#notif-cadre::-webkit-scrollbar, #plan-liste::-webkit-scrollbar {
+#notif-cadre::-webkit-scrollbar, #plans-liste::-webkit-scrollbar {
   display: none;
 }
 #nouveau-client {
