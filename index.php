@@ -1,5 +1,5 @@
 <?php
-
+// Front controller design pattern.
 require_once "Configuration/config.php";
 require_once "Vues/Templates/PageIndex.php";
 require_once "Controlleurs/ConnexionLireBD.php";
