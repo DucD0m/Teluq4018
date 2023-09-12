@@ -112,7 +112,7 @@ class Plan implements Modele {
     // Code lorsque requis...
   }
   public function update_mysql(Object $obj, Object $connexion_ecrire) : Int|Bool {
-    if(get_class($obj) === 'Plan' && $obj->get_personne() > 0) {
+    if(get_class($obj) === 'Plan' && $obj->get_id() > 0) {
 
       $plan_id = $obj->get_id();
       $plan_prix = $obj->get_prix();
