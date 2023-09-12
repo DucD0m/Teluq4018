@@ -268,7 +268,7 @@ class GestionnaireControlleur {
              $plan_id = $prix[0];
              $plan_prix_cours_groupe = $prix[1];
              //$plan_prix = $prix[2];
-             $plan_prix = 'test';
+             $plan_prix = 99999.99;
              $validation = $plan->select_mysql($plan_id,$connexion_lire);
              if(!$plan->set_prix_cours_groupe($plan_prix_cours_groupe)) $validation = false;
              if(!$plan->set_prix($plan_prix)) $validation = false;
