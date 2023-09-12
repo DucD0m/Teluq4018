@@ -81,32 +81,32 @@ class GestionnaireControlleur {
         $validation = $plan->select_mysql($_POST['plan-id'], $connexion_lire);
 
         $client = new Client();
-        $validation = $client->set_prenom($_POST['nouveau-prenom']);
-        $validation = $client->set_nom($_POST['nouveau-nom']);
-        $validation = $client->set_adresse($_POST['nouveau-adresse']);
-        $validation = $client->set_telephone(intval($_POST['nouveau-telephone']));
-        $validation = $client->set_courriel($_POST['nouveau-courriel']);
-        $validation = $client->set_adhesion($date);
-        $validation = $client->set_renouvellement($date);
+        if(!$client->set_prenom($_POST['nouveau-prenom'])) $validation = false;
+        if(!$client->set_nom($_POST['nouveau-nom'])) $validation = false;
+        if(!$client->set_adresse($_POST['nouveau-adresse'])) $validation = false;
+        if(!$client->set_telephone(intval($_POST['nouveau-telephone']))) $validation = false;
+        if(!$client->set_courriel($_POST['nouveau-courriel'])) $validation = false;
+        if(!$client->set_adhesion($date)) $validation = false;
+        if(!$client->set_renouvellement($date)) $validation = false;
 
         if(strpos($plan->get_nom(),"Spécialiste") >= 0 && strpos($plan->get_nom(),"Spécialiste") != '') $validation = $client->set_fin_abonnement($date);
         else {
           $fin_abonnement = date("Y-m-d",strtotime("+".$plan->get_duree()." months"));
-          $validation = $client->set_fin_abonnement($fin_abonnement);
+          if(!$client->set_fin_abonnement($fin_abonnement)) $validation = false;
         }
 
         if($plan->get_acces_appareils() == 1) {
           $fin_acces_appareils = date("Y-m-d",strtotime("+".$plan->get_duree()." months"));
-          $validation = $client->set_fin_acces_appareils($fin_acces_appareils);
+          if(!$client->set_fin_acces_appareils($fin_acces_appareils)) $validation = false;
         }
         else {
-          $validation = $client->set_fin_acces_appareils($date);
+          if(!$client->set_fin_acces_appareils($date)) $validation = false;
         }
 
-        $validation = $client->set_heures_specialistes(intval($_POST['client-spec']));
-        $validation = $client->set_heures_specialistes_utilise(0);
-        $validation = $client->set_cours_groupe_semaine(intval($_POST['client-groupes']));
-        $validation = $client->set_plan($_POST['plan-id']);
+        if(!$client->set_heures_specialistes(intval($_POST['client-spec']))) $validation = false;
+        if(!$client->set_heures_specialistes_utilise(0)) $validation = false;
+        if(!$client->set_cours_groupe_semaine(intval($_POST['client-groupes']))) $validation = false;
+        if(!$client->set_plan($_POST['plan-id'])) $validation = false;
 
         $resultat_insertion = 0;
 
