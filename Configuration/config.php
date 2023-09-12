@@ -50,13 +50,13 @@ header("Permissions-Policy: interest-cohort=()"); // Augmente la protection de l
 // PHP error handling
 // expose_php              = Off
 ini_set('error_reporting','32767'); //E_ALL
-ini_set('display_errors','On'); // DEV
-// ini_set('display_errors','Off'); // PROD
-ini_set('display_startup_errors','On'); // DEV
-// ini_set('display_startup_errors','Off'); // PROD
+// ini_set('display_errors','On'); // DEV
+ini_set('display_errors','Off'); // PROD
+// ini_set('display_startup_errors','On'); // DEV
+ini_set('display_startup_errors','Off'); // PROD
 ini_set('log_errors','On');
 
-// Ajuster pour google cloud
+// Ajuster pour google cloud si voulu. (Utile si plusieurs virtual hosts.)
 //ini_set('error_log','/var/www/html/PHP-logs/php_error.log');
 
 ini_set('ignore_repeated_errors','Off');
@@ -98,7 +98,7 @@ ini_set('file_uploads','Off');
 // PHP session handling
 
 // Les permissions doivent être ajustées pour permettre l'écriture au groupe du serveur web. (www-data).
-// Ajuster pour google cloud
+// Ajuster pour google cloud si voulu.
 //ini_set('session.save_path','/var/www/html/PHP-session/');
 
 ini_set('session.name', 'ab19b0956c3dc02dbca4c1d13ac00cea6b5c7a8f4c9db8ffd99ea5d577063e4a');
@@ -110,7 +110,6 @@ ini_set('session.use_trans_sid','0');
 
 #session.cookie_path             = /application/path/
 
-// À configurer ultérieurement...
 ini_set('session.use_strict_mode','1');
 ini_set('session.use_cookies','1');
 ini_set('session.use_only_cookies','1');
