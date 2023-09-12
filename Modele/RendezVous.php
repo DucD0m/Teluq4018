@@ -32,7 +32,7 @@ class RendezVous implements Modele {
     return $this->specialiste;
   }
   public function set_specialiste(Int $specialiste) {
-    if($specialite > 0) {
+    if($specialiste > 0) {
       $this->specialiste = $specialiste;
       return true;
     }
