@@ -37,8 +37,8 @@ class GestionnaireControlleur {
         $_SESSION['page'] = "PageClient";
         unset($_SESSION['client-id']);
 
-        $client_id_pos = strpos(strval($_POST['vis-client']," -"));
-        $client_id = substr(strval($_POST['vis-client'],0,$client_id_pos));
+        $client_id_pos = strpos(strval($_POST['vis-client'])," -");
+        $client_id = substr(strval($_POST['vis-client']),0,$client_id_pos);
 
         if(intval($client_id) > 0) {
           $_SESSION['client-id'] = $client_id;
