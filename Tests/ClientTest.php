@@ -42,7 +42,7 @@ class ClientTest {
                $client->set_courriel("louistremblay@google.com");
                $client_comparaison = $client;
 
-               $client_update = $client->update_personne_mysql($client, $connexion_ecrire);
+               $client_update = $client->update_personne_mysql($connexion_ecrire);
 
                $client_select = $client->select_personne_mysql($client->get_id(), $connexion_lire);
 
@@ -52,7 +52,7 @@ class ClientTest {
                   $client_comparaison->get_telephone() === $client->get_telephone() &&
                   $client_comparaison->get_courriel() === $client->get_courriel()) {
 
-                  $client_effacer = $client->delete_personne_mysql($client, $connexion_effacer);
+                  $client_effacer = $client->delete_personne_mysql($connexion_effacer);
 
                   if($client_effacer == 0) {
                     $message .= "Le test delete_personne_mysql à échoué\n";
@@ -66,20 +66,6 @@ class ClientTest {
                $message .= "Le test select_personne_mysql à échoué\n";
              }
          }
-
-
-
-        // $date->modify('+1 day');
-        // $date->format('Y-m-d H:i:s');
-        // $client->personne = 0;
-        // $client->adhesion = "";
-        // $client->renouvellement = "";
-        // $client->fin_abonnement = "";
-        // $client->fin_acces_appareils = "";
-        // $client->heures_specialistes = 0;
-        // $client->heures_specialistes_utilise = 0;
-        // $client->cours_groupe_semaine = 0;
-        // $client->plan = 0;
 
         echo "Résultat des tests Client:\n";
         if($message == "") {

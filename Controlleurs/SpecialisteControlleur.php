@@ -5,6 +5,7 @@ require_once "Modele/Specialiste.php";
 require_once "Modele/Specialite.php";
 require_once "Modele/RendezVous.php";
 require_once "Modele/ListeRendezVous.php";
+require_once "Controlleurs/Authentification.php";
 require_once "Controlleurs/fonctions_php.php";
 
 class SpecialisteControlleur {
@@ -17,9 +18,14 @@ class SpecialisteControlleur {
     $specialite = new Specialite();
     $specialite->select_mysql($specialiste->get_specialite(), $connexion_lire);
 
+    // Si le token csrf ne correspond pas.
+    if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+      Authentification::quitter();
+    }
+
     // Insertion d'un rendez-vous dans la BD.
     // On valide le token csrf, le formulaire et les entrées de l'utilisateur.
-    if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
+    else if(isset($_POST['csrf_token']) && isset($_SESSION['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] &&
        isset($_POST['formulaire-rendez-vous-specialiste']) && $_POST['formulaire-rendez-vous-specialiste'] === 'oui' &&
        isset($_POST['rdv-client']) && $_POST['rdv-client'] != '' &&
        isset($_POST['rdv-date']) && isset($_POST['rdv-heure']) &&
