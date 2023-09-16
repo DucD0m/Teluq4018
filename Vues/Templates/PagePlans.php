@@ -121,6 +121,7 @@ class PagePlans {
               $('input').each(function(){
                   if($(this).val() === '') {
                     validation = false;
+                    $(this).css('background-color','orange');
                   }
               });
               if(validation === false) alert('Tous les champs doivent être remplis.');
