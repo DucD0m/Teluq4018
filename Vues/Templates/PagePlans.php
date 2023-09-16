@@ -145,7 +145,10 @@ class PagePlans {
               				if(Number.isFinite(parseFloat(val)) && val >= 0 && val < 1000) {
               					$(this).val(val);
               				}
-                      else validation = false;
+                      else {
+                        validation = false;
+                        $(this).css('background-color','orange');
+                      }
                     }
                     else {
                       validation = false;
